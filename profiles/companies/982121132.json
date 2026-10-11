@@ -1,0 +1,422 @@
+{
+  "schema_version": "1.1",
+  "query": "982121132",
+  "organisation_number": "982121132",
+  "generated_at": "2026-10-11T11:34:09Z",
+  "status": "active",
+  "entity_type": "legal entity",
+  "name": "HONEYWELL CONTROL SYSTEMS LTD",
+  "facts": [
+    {
+      "field": "organisation_number",
+      "label": "Organisation number",
+      "category": "identity",
+      "value": "982121132",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982121132",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:34:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:34:10Z",
+      "last_verified": "2026-10-11T11:34:10Z"
+    },
+    {
+      "field": "legal_name",
+      "label": "Registered name",
+      "category": "identity",
+      "value": "HONEYWELL CONTROL SYSTEMS LTD",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982121132",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:34:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:34:10Z",
+      "last_verified": "2026-10-11T11:34:10Z"
+    },
+    {
+      "field": "legal_form",
+      "label": "Legal form",
+      "category": "identity",
+      "value": "UTLA – Utenlandsk enhet",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982121132",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:34:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:34:10Z",
+      "last_verified": "2026-10-11T11:34:10Z"
+    },
+    {
+      "field": "registered_date",
+      "label": "Registered in Enhetsregisteret",
+      "category": "identity",
+      "value": "2000-06-30",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982121132",
+      "as_of": "2000-06-30",
+      "retrieved_at": "2026-10-11T11:34:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:34:10Z",
+      "last_verified": "2026-10-11T11:34:10Z"
+    },
+    {
+      "field": "business_address",
+      "label": "Business address",
+      "category": "location",
+      "value": "Honeywell House, Arlington Business Park, Bracknell, Birkshire RG 12 1 EB, Storbritannia",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982121132",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:34:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:34:10Z",
+      "last_verified": "2026-10-11T11:34:10Z"
+    },
+    {
+      "field": "country",
+      "label": "Country",
+      "category": "location",
+      "value": "Storbritannia",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982121132",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:34:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:34:10Z",
+      "last_verified": "2026-10-11T11:34:10Z"
+    },
+    {
+      "field": "employees",
+      "label": "Registered number of employees",
+      "category": "size",
+      "value": 0,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982121132",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:34:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "note": "No employees registered in the Aa-register",
+      "first_seen": "2026-10-11T11:34:10Z",
+      "last_verified": "2026-10-11T11:34:10Z"
+    },
+    {
+      "field": "phone",
+      "label": "Phone (registered)",
+      "category": "contact",
+      "value": "01344 656 000",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982121132",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:34:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:34:10Z",
+      "last_verified": "2026-10-11T11:34:10Z"
+    },
+    {
+      "field": "vat_registered",
+      "label": "Registered for VAT",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982121132",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:34:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:34:10Z",
+      "last_verified": "2026-10-11T11:34:10Z"
+    },
+    {
+      "field": "in_business_register",
+      "label": "Registered in the Register of Business Enterprises",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982121132",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:34:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:34:10Z",
+      "last_verified": "2026-10-11T11:34:10Z"
+    },
+    {
+      "field": "in_foundation_register",
+      "label": "Registered in the Register of Foundations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982121132",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:34:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:34:10Z",
+      "last_verified": "2026-10-11T11:34:10Z"
+    },
+    {
+      "field": "in_voluntary_register",
+      "label": "Registered in the Register of Non-Profit Organisations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982121132",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:34:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:34:10Z",
+      "last_verified": "2026-10-11T11:34:10Z"
+    },
+    {
+      "field": "activity_description",
+      "label": "Registered activity",
+      "category": "activity",
+      "value": "Hovedforetak.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982121132",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:34:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:34:10Z",
+      "last_verified": "2026-10-11T11:34:10Z"
+    },
+    {
+      "field": "written_language",
+      "label": "Written language form",
+      "category": "registrations",
+      "value": "Bokmål",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982121132",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:34:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:34:10Z",
+      "last_verified": "2026-10-11T11:34:10Z"
+    },
+    {
+      "field": "bankrupt",
+      "label": "Bankrupt",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982121132",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:34:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:34:10Z",
+      "last_verified": "2026-10-11T11:34:10Z"
+    },
+    {
+      "field": "under_liquidation",
+      "label": "Under liquidation",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982121132",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:34:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:34:10Z",
+      "last_verified": "2026-10-11T11:34:10Z"
+    },
+    {
+      "field": "compulsory_dissolution",
+      "label": "Under compulsory liquidation/dissolution",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982121132",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:34:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:34:10Z",
+      "last_verified": "2026-10-11T11:34:10Z"
+    },
+    {
+      "field": "subunit_count",
+      "label": "Number of registered establishments (sub-units)",
+      "category": "size",
+      "value": 0,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=982121132&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982121132",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:34:11Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:34:11Z",
+      "last_verified": "2026-10-11T11:34:11Z"
+    }
+  ],
+  "profile": {
+    "identity": {
+      "organisation_number": "982121132",
+      "legal_name": "HONEYWELL CONTROL SYSTEMS LTD",
+      "legal_form": "UTLA – Utenlandsk enhet",
+      "registered_date": "2000-06-30"
+    },
+    "location": {
+      "business_address": "Honeywell House, Arlington Business Park, Bracknell, Birkshire RG 12 1 EB, Storbritannia",
+      "country": "Storbritannia"
+    },
+    "size": {
+      "employees": 0,
+      "subunit_count": 0
+    },
+    "contact": {
+      "phone": "01344 656 000"
+    },
+    "registrations": {
+      "vat_registered": false,
+      "in_business_register": false,
+      "in_foundation_register": false,
+      "in_voluntary_register": false,
+      "written_language": "Bokmål"
+    },
+    "activity": {
+      "activity_description": "Hovedforetak."
+    },
+    "status": {
+      "bankrupt": false,
+      "under_liquidation": false,
+      "compulsory_dissolution": false
+    }
+  },
+  "summary": "HONEYWELL CONTROL SYSTEMS LTD (org. no. 982 121 132) is an Utenlandsk enhet (UTLA), in the Brønnøysund registers since 2000-06-30. It is active with no bankruptcy or liquidation registered. It has 0 registered employees.",
+  "gaps": [
+    {
+      "topic": "financials",
+      "reason": "Legal form UTLA is normally not required to file annual accounts in Norway, so none are public."
+    },
+    {
+      "topic": "website",
+      "reason": "No website is registered in Enhetsregisteret or verified on Wikidata."
+    },
+    {
+      "topic": "identifiers",
+      "reason": "No LEI is registered with GLEIF for this organisation number (common for companies without traded securities or large financial contracts)."
+    },
+    {
+      "topic": "people",
+      "reason": "No CEO (daglig leder) is registered; this is optional for many legal forms."
+    },
+    {
+      "topic": "reference",
+      "reason": "No verified Wikidata item links to this number (normal for smaller companies)."
+    }
+  ],
+  "verification": {
+    "method": "Every fact comes from a record fetched by the exact organisation number. Secondary sources (GLEIF, Wikidata) are only accepted when their record names this number AND the legal name or LEI agrees; financial values are copied as filed and never estimated.",
+    "checks": [
+      {
+        "check": "organisation number checksum (mod 11)",
+        "result": "pass"
+      },
+      {
+        "check": "registry record organisation number equals query",
+        "result": "pass"
+      }
+    ],
+    "rejected": []
+  },
+  "sources": [
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_roller",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/982121132/roller",
+      "status": "not_found",
+      "http_status": 404,
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=982121132&size=50",
+      "status": "ok",
+      "http_status": 200,
+      "note": "sub-units",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "gleif",
+      "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bfulltext%5D=982121132&filter%5Bentity.legalAddress.country%5D=NO&page%5Bsize%5D=10",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Global Legal Entity Identifier Foundation (GLEIF) LEI records",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "wikidata",
+      "url": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP2333%3D982121132&srlimit=5&format=json",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Wikidata (matched on property P2333, Norwegian organisation number)",
+      "licence": "CC0 1.0"
+    }
+  ],
+  "changes": [],
+  "history": [],
+  "complete": true,
+  "stats": {
+    "requests": 106,
+    "seconds": 56.84,
+    "fact_count": 18
+  }
+}

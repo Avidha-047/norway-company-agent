@@ -1,0 +1,532 @@
+{
+  "schema_version": "1.1",
+  "query": "991037551",
+  "organisation_number": "991037551",
+  "generated_at": "2026-10-11T11:09:06Z",
+  "status": "active",
+  "entity_type": "legal entity",
+  "name": "SAMEIET SY STORM",
+  "facts": [
+    {
+      "field": "organisation_number",
+      "label": "Organisation number",
+      "category": "identity",
+      "value": "991037551",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "legal_name",
+      "label": "Registered name",
+      "category": "identity",
+      "value": "SAMEIET SY STORM",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "legal_form",
+      "label": "Legal form",
+      "category": "identity",
+      "value": "SAM – Tingsrettslig sameie",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "registered_date",
+      "label": "Registered in Enhetsregisteret",
+      "category": "identity",
+      "value": "2007-04-03",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": "2007-04-03",
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "founded_date",
+      "label": "Founded (stiftelsesdato)",
+      "category": "identity",
+      "value": "2007-03-12",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": "2007-03-12",
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "business_address",
+      "label": "Business address",
+      "category": "location",
+      "value": "Slemmestadveien 424, 1390 VOLLEN",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "municipality",
+      "label": "Municipality",
+      "category": "location",
+      "value": "ASKER",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "municipality_number",
+      "label": "Municipality number",
+      "category": "location",
+      "value": "3203",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "country",
+      "label": "Country",
+      "category": "location",
+      "value": "Norge",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "employees",
+      "label": "Registered number of employees",
+      "category": "size",
+      "value": 0,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "note": "No employees registered in the Aa-register",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "website",
+      "label": "Website (registered)",
+      "category": "contact",
+      "value": "www.systorm.no",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "email",
+      "label": "Email (registered)",
+      "category": "contact",
+      "value": "post@systorm.no",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "vat_registered",
+      "label": "Registered for VAT",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "in_business_register",
+      "label": "Registered in the Register of Business Enterprises",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "in_foundation_register",
+      "label": "Registered in the Register of Foundations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "in_voluntary_register",
+      "label": "Registered in the Register of Non-Profit Organisations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "activity_description",
+      "label": "Registered activity",
+      "category": "activity",
+      "value": "Eierskap av båt.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "written_language",
+      "label": "Written language form",
+      "category": "registrations",
+      "value": "Bokmål",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "bankrupt",
+      "label": "Bankrupt",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "under_liquidation",
+      "label": "Under liquidation",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "compulsory_dissolution",
+      "label": "Under compulsory liquidation/dissolution",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:06Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:09:06Z",
+      "last_verified": "2026-10-11T11:09:06Z"
+    },
+    {
+      "field": "board_members",
+      "label": "Board members",
+      "category": "people",
+      "value": [
+        {
+          "name": "Marius Mehren"
+        },
+        {
+          "name": "Jørgen Braathen"
+        }
+      ],
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": "2026-01-27",
+      "retrieved_at": "2026-10-11T11:09:07Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:09:07Z",
+      "last_verified": "2026-10-11T11:09:07Z"
+    },
+    {
+      "field": "subunit_count",
+      "label": "Number of registered establishments (sub-units)",
+      "category": "size",
+      "value": 0,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=991037551&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/991037551",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:09:08Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:09:08Z",
+      "last_verified": "2026-10-11T11:09:08Z"
+    }
+  ],
+  "profile": {
+    "identity": {
+      "organisation_number": "991037551",
+      "legal_name": "SAMEIET SY STORM",
+      "legal_form": "SAM – Tingsrettslig sameie",
+      "registered_date": "2007-04-03",
+      "founded_date": "2007-03-12"
+    },
+    "location": {
+      "business_address": "Slemmestadveien 424, 1390 VOLLEN",
+      "municipality": "ASKER",
+      "municipality_number": "3203",
+      "country": "Norge"
+    },
+    "size": {
+      "employees": 0,
+      "subunit_count": 0
+    },
+    "contact": {
+      "website": "www.systorm.no",
+      "email": "post@systorm.no"
+    },
+    "registrations": {
+      "vat_registered": false,
+      "in_business_register": false,
+      "in_foundation_register": false,
+      "in_voluntary_register": false,
+      "written_language": "Bokmål"
+    },
+    "activity": {
+      "activity_description": "Eierskap av båt."
+    },
+    "status": {
+      "bankrupt": false,
+      "under_liquidation": false,
+      "compulsory_dissolution": false
+    },
+    "people": {
+      "board_members": [
+        {
+          "name": "Marius Mehren"
+        },
+        {
+          "name": "Jørgen Braathen"
+        }
+      ]
+    }
+  },
+  "summary": "SAMEIET SY STORM (org. no. 991 037 551) is a jointly owned property (SAM) based in Asker, in the Brønnøysund registers since 2007-04-03. It is active with no bankruptcy or liquidation registered. It has 0 registered employees.",
+  "gaps": [
+    {
+      "topic": "financials",
+      "reason": "Legal form SAM is normally not required to file annual accounts in Norway, so none are public."
+    },
+    {
+      "topic": "website",
+      "reason": "The registered website could not be reached during this run."
+    },
+    {
+      "topic": "identifiers",
+      "reason": "No LEI is registered with GLEIF for this organisation number (common for companies without traded securities or large financial contracts)."
+    },
+    {
+      "topic": "people",
+      "reason": "No CEO (daglig leder) is registered; this is optional for many legal forms."
+    },
+    {
+      "topic": "reference",
+      "reason": "No verified Wikidata item links to this number (normal for smaller companies)."
+    }
+  ],
+  "verification": {
+    "method": "Every fact comes from a record fetched by the exact organisation number. Secondary sources (GLEIF, Wikidata) are only accepted when their record names this number AND the legal name or LEI agrees; financial values are copied as filed and never estimated.",
+    "checks": [
+      {
+        "check": "organisation number checksum (mod 11)",
+        "result": "pass"
+      },
+      {
+        "check": "registry record organisation number equals query",
+        "result": "pass"
+      }
+    ],
+    "rejected": []
+  },
+  "sources": [
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_roller",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/991037551/roller",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=991037551&size=50",
+      "status": "ok",
+      "http_status": 200,
+      "note": "sub-units",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "gleif",
+      "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bfulltext%5D=991037551&filter%5Bentity.legalAddress.country%5D=NO&page%5Bsize%5D=10",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Global Legal Entity Identifier Foundation (GLEIF) LEI records",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "wikidata",
+      "url": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP2333%3D991037551&srlimit=5&format=json",
+      "status": "error",
+      "http_status": 429,
+      "source_name": "Wikidata (matched on property P2333, Norwegian organisation number)",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "company_website",
+      "url": "https://www.systorm.no",
+      "status": "error",
+      "http_status": 0,
+      "note": "URLError: <urlopen error [Errno -2] Name or service not known>",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "licence": "public web page; only titles, descriptions and links extracted"
+    }
+  ],
+  "changes": [],
+  "history": [],
+  "complete": true,
+  "stats": {
+    "requests": 93,
+    "seconds": 54.7,
+    "fact_count": 23
+  }
+}

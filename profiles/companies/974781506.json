@@ -1,0 +1,649 @@
+{
+  "schema_version": "1.1",
+  "query": "974781506",
+  "organisation_number": "974781506",
+  "generated_at": "2026-10-11T11:11:59Z",
+  "status": "active",
+  "entity_type": "legal entity",
+  "name": "ASKØY KOMMUNE KOMMUNEDIREKTØR OG STAB",
+  "facts": [
+    {
+      "field": "organisation_number",
+      "label": "Organisation number",
+      "category": "identity",
+      "value": "974781506",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "legal_name",
+      "label": "Registered name",
+      "category": "identity",
+      "value": "ASKØY KOMMUNE KOMMUNEDIREKTØR OG STAB",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "legal_form",
+      "label": "Legal form",
+      "category": "identity",
+      "value": "ORGL – Organisasjonsledd",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "registered_date",
+      "label": "Registered in Enhetsregisteret",
+      "category": "identity",
+      "value": "1996-09-01",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": "1996-09-01",
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "founded_date",
+      "label": "Founded (stiftelsesdato)",
+      "category": "identity",
+      "value": "1995-01-01",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": "1995-01-01",
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "business_address",
+      "label": "Business address",
+      "category": "location",
+      "value": "Klampavikvegen 1, 5300 KLEPPESTØ",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "municipality",
+      "label": "Municipality",
+      "category": "location",
+      "value": "ASKØY",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "municipality_number",
+      "label": "Municipality number",
+      "category": "location",
+      "value": "4627",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "country",
+      "label": "Country",
+      "category": "location",
+      "value": "Norge",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "postal_address",
+      "label": "Postal address",
+      "category": "location",
+      "value": "Postboks 33, 5321 KLEPPESTØ",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "industry_code_1",
+      "label": "Industry code (NACE) primary",
+      "category": "activity",
+      "value": "84.110 – Generell offentlig administrasjon",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "employees",
+      "label": "Registered number of employees",
+      "category": "size",
+      "value": 236,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "institutional_sector",
+      "label": "Institutional sector",
+      "category": "activity",
+      "value": "6500 – Kommuneforvaltningen",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "vat_registered",
+      "label": "Registered for VAT",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "in_business_register",
+      "label": "Registered in the Register of Business Enterprises",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "in_foundation_register",
+      "label": "Registered in the Register of Foundations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "in_voluntary_register",
+      "label": "Registered in the Register of Non-Profit Organisations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "parent_unit",
+      "label": "Parent unit (overordnet enhet)",
+      "category": "ownership",
+      "value": "964338442",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "written_language",
+      "label": "Written language form",
+      "category": "registrations",
+      "value": "Bokmål",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "bankrupt",
+      "label": "Bankrupt",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "under_liquidation",
+      "label": "Under liquidation",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "compulsory_dissolution",
+      "label": "Under compulsory liquidation/dissolution",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:11:59Z",
+      "last_verified": "2026-10-11T11:11:59Z"
+    },
+    {
+      "field": "ceo",
+      "label": "CEO / managing director (daglig leder)",
+      "category": "people",
+      "value": {
+        "name": "Ørjan Raknes Forthun"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": "2024-10-01",
+      "retrieved_at": "2026-10-11T11:12:00Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:12:00Z",
+      "last_verified": "2026-10-11T11:12:00Z"
+    },
+    {
+      "field": "other_roles",
+      "label": "Other registered roles",
+      "category": "people",
+      "value": [
+        {
+          "name": "Org.ledd i offentlig sektor: ASKØY KOMMUNE",
+          "organisation_number": "964338442"
+        }
+      ],
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": "1996-10-14",
+      "retrieved_at": "2026-10-11T11:12:00Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:12:00Z",
+      "last_verified": "2026-10-11T11:12:00Z"
+    },
+    {
+      "field": "subunit_count",
+      "label": "Number of registered establishments (sub-units)",
+      "category": "size",
+      "value": 7,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=974781506&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:12:01Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:12:01Z",
+      "last_verified": "2026-10-11T11:12:01Z"
+    },
+    {
+      "field": "subunits",
+      "label": "Establishments (first 15)",
+      "category": "size",
+      "value": [
+        {
+          "organisation_number": "911622874",
+          "name": "ASKØY KOMMUNE KUNDETORGET",
+          "municipality": "ASKØY"
+        },
+        {
+          "organisation_number": "875319132",
+          "name": "ASKØY KOMMUNE PEDAGOGISK-PSYKOLOGISK RÅDGIVNING",
+          "municipality": "ASKØY",
+          "employees": 19
+        },
+        {
+          "organisation_number": "976673867",
+          "name": "ASKØY KOMMUNE SAMFUNNSMEDISINSK AVD ALMENNLEGETJENESTEN",
+          "municipality": "ASKØY",
+          "employees": 34
+        },
+        {
+          "organisation_number": "811619922",
+          "name": "ASKØY KOMMUNE SAMFUNNSMEDISINSK AVD HELSEADMINISTRASJON",
+          "municipality": "ASKØY"
+        },
+        {
+          "organisation_number": "911620014",
+          "name": "ASKØY KOMMUNE SAMFUNNSMEDISINSK AVD LEGEVAKTEN",
+          "municipality": "ASKØY",
+          "employees": 73
+        },
+        {
+          "organisation_number": "974600846",
+          "name": "ASKØY KOMMUNE SENTRALADMINISTRASJON",
+          "municipality": "ASKØY",
+          "employees": 105
+        },
+        {
+          "organisation_number": "917291020",
+          "name": "ASKØY KOMUNE MILJØRETTET HELSEVERN",
+          "municipality": "ASKØY"
+        }
+      ],
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=974781506&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/974781506",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:12:01Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:12:01Z",
+      "last_verified": "2026-10-11T11:12:01Z"
+    }
+  ],
+  "profile": {
+    "identity": {
+      "organisation_number": "974781506",
+      "legal_name": "ASKØY KOMMUNE KOMMUNEDIREKTØR OG STAB",
+      "legal_form": "ORGL – Organisasjonsledd",
+      "registered_date": "1996-09-01",
+      "founded_date": "1995-01-01"
+    },
+    "location": {
+      "business_address": "Klampavikvegen 1, 5300 KLEPPESTØ",
+      "municipality": "ASKØY",
+      "municipality_number": "4627",
+      "country": "Norge",
+      "postal_address": "Postboks 33, 5321 KLEPPESTØ"
+    },
+    "activity": {
+      "industry_code_1": "84.110 – Generell offentlig administrasjon",
+      "institutional_sector": "6500 – Kommuneforvaltningen"
+    },
+    "size": {
+      "employees": 236,
+      "subunit_count": 7,
+      "subunits": [
+        {
+          "organisation_number": "911622874",
+          "name": "ASKØY KOMMUNE KUNDETORGET",
+          "municipality": "ASKØY"
+        },
+        {
+          "organisation_number": "875319132",
+          "name": "ASKØY KOMMUNE PEDAGOGISK-PSYKOLOGISK RÅDGIVNING",
+          "municipality": "ASKØY",
+          "employees": 19
+        },
+        {
+          "organisation_number": "976673867",
+          "name": "ASKØY KOMMUNE SAMFUNNSMEDISINSK AVD ALMENNLEGETJENESTEN",
+          "municipality": "ASKØY",
+          "employees": 34
+        },
+        {
+          "organisation_number": "811619922",
+          "name": "ASKØY KOMMUNE SAMFUNNSMEDISINSK AVD HELSEADMINISTRASJON",
+          "municipality": "ASKØY"
+        },
+        {
+          "organisation_number": "911620014",
+          "name": "ASKØY KOMMUNE SAMFUNNSMEDISINSK AVD LEGEVAKTEN",
+          "municipality": "ASKØY",
+          "employees": 73
+        },
+        {
+          "organisation_number": "974600846",
+          "name": "ASKØY KOMMUNE SENTRALADMINISTRASJON",
+          "municipality": "ASKØY",
+          "employees": 105
+        },
+        {
+          "organisation_number": "917291020",
+          "name": "ASKØY KOMUNE MILJØRETTET HELSEVERN",
+          "municipality": "ASKØY"
+        }
+      ]
+    },
+    "registrations": {
+      "vat_registered": false,
+      "in_business_register": false,
+      "in_foundation_register": false,
+      "in_voluntary_register": false,
+      "written_language": "Bokmål"
+    },
+    "ownership": {
+      "parent_unit": "964338442"
+    },
+    "status": {
+      "bankrupt": false,
+      "under_liquidation": false,
+      "compulsory_dissolution": false
+    },
+    "people": {
+      "ceo": {
+        "name": "Ørjan Raknes Forthun"
+      },
+      "other_roles": [
+        {
+          "name": "Org.ledd i offentlig sektor: ASKØY KOMMUNE",
+          "organisation_number": "964338442"
+        }
+      ]
+    }
+  },
+  "summary": "ASKØY KOMMUNE KOMMUNEDIREKTØR OG STAB (org. no. 974 781 506) is an organisational unit (ORGL) based in Askøy, in the Brønnøysund registers since 1996-09-01. It is active with no bankruptcy or liquidation registered. Its main activity is NACE 84.110 (Generell offentlig administrasjon); it has 236 registered employees. CEO: Ørjan Raknes Forthun.",
+  "gaps": [
+    {
+      "topic": "financials",
+      "reason": "Legal form ORGL is normally not required to file annual accounts in Norway, so none are public."
+    },
+    {
+      "topic": "website",
+      "reason": "No website is registered in Enhetsregisteret or verified on Wikidata."
+    },
+    {
+      "topic": "identifiers",
+      "reason": "No LEI is registered with GLEIF for this organisation number (common for companies without traded securities or large financial contracts)."
+    },
+    {
+      "topic": "reference",
+      "reason": "No verified Wikidata item links to this number (normal for smaller companies)."
+    }
+  ],
+  "verification": {
+    "method": "Every fact comes from a record fetched by the exact organisation number. Secondary sources (GLEIF, Wikidata) are only accepted when their record names this number AND the legal name or LEI agrees; financial values are copied as filed and never estimated.",
+    "checks": [
+      {
+        "check": "organisation number checksum (mod 11)",
+        "result": "pass"
+      },
+      {
+        "check": "registry record organisation number equals query",
+        "result": "pass"
+      }
+    ],
+    "rejected": []
+  },
+  "sources": [
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_roller",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/974781506/roller",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=974781506&size=50",
+      "status": "ok",
+      "http_status": 200,
+      "note": "sub-units",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "gleif",
+      "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bfulltext%5D=974781506&filter%5Bentity.legalAddress.country%5D=NO&page%5Bsize%5D=10",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Global Legal Entity Identifier Foundation (GLEIF) LEI records",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "wikidata",
+      "url": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP2333%3D974781506&srlimit=5&format=json",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Wikidata (matched on property P2333, Norwegian organisation number)",
+      "licence": "CC0 1.0"
+    }
+  ],
+  "changes": [],
+  "history": [],
+  "complete": true,
+  "stats": {
+    "requests": 42,
+    "seconds": 6.03,
+    "fact_count": 26
+  }
+}

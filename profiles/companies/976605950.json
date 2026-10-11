@@ -1,0 +1,812 @@
+{
+  "schema_version": "1.1",
+  "query": "976605950",
+  "organisation_number": "976605950",
+  "generated_at": "2026-10-11T12:05:03Z",
+  "status": "active",
+  "entity_type": "legal entity",
+  "name": "GREENLIFE ANS",
+  "facts": [
+    {
+      "field": "organisation_number",
+      "label": "Organisation number",
+      "category": "identity",
+      "value": "976605950",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "legal_name",
+      "label": "Registered name",
+      "category": "identity",
+      "value": "GREENLIFE ANS",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "legal_form",
+      "label": "Legal form",
+      "category": "identity",
+      "value": "ANS – Ansvarlig selskap med solidarisk ansvar",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "registered_date",
+      "label": "Registered in Enhetsregisteret",
+      "category": "identity",
+      "value": "1996-07-29",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": "1996-07-29",
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "founded_date",
+      "label": "Founded (stiftelsesdato)",
+      "category": "identity",
+      "value": "1996-07-15",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": "1996-07-15",
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "business_address",
+      "label": "Business address",
+      "category": "location",
+      "value": "Kongleveien 37, 3055 KROKSTADELVA",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "municipality",
+      "label": "Municipality",
+      "category": "location",
+      "value": "DRAMMEN",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "municipality_number",
+      "label": "Municipality number",
+      "category": "location",
+      "value": "3301",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "country",
+      "label": "Country",
+      "category": "location",
+      "value": "Norge",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "industry_code_1",
+      "label": "Industry code (NACE) primary",
+      "category": "activity",
+      "value": "46.380 – Engroshandel med andre næringsmidler",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "employees",
+      "label": "Registered number of employees",
+      "category": "size",
+      "value": 0,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "note": "No employees registered in the Aa-register",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "website",
+      "label": "Website (registered)",
+      "category": "contact",
+      "value": "www.greenlife.no",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "email",
+      "label": "Email (registered)",
+      "category": "contact",
+      "value": "info@greenlife.no",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "phone",
+      "label": "Phone (registered)",
+      "category": "contact",
+      "value": "32 87 41 55",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "mobile",
+      "label": "Mobile (registered)",
+      "category": "contact",
+      "value": "92082673",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "institutional_sector",
+      "label": "Institutional sector",
+      "category": "activity",
+      "value": "2300 – Personlige foretak",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "vat_registered",
+      "label": "Registered for VAT",
+      "category": "registrations",
+      "value": true,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "in_business_register",
+      "label": "Registered in the Register of Business Enterprises",
+      "category": "registrations",
+      "value": true,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "in_foundation_register",
+      "label": "Registered in the Register of Foundations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "in_voluntary_register",
+      "label": "Registered in the Register of Non-Profit Organisations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "statutory_purpose",
+      "label": "Statutory purpose",
+      "category": "activity",
+      "value": "Import, varehandel og agenturvirksomhet med datautstyr eller datarelaterte tjenester samt vegetabilske matvarer og kosttilskudd. Selskapet kan delta i annen virksomhet.  ",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "activity_description",
+      "label": "Registered activity",
+      "category": "activity",
+      "value": "Handel/import/salg og markedsføring av diverse handelsvarer. Fortrinnsvis vegetabilske matvarer og kosttilskudd.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "articles_date",
+      "label": "Articles of association dated",
+      "category": "registrations",
+      "value": "2006-10-29",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": "2006-10-29",
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "written_language",
+      "label": "Written language form",
+      "category": "registrations",
+      "value": "Bokmål",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "bankrupt",
+      "label": "Bankrupt",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "under_liquidation",
+      "label": "Under liquidation",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "compulsory_dissolution",
+      "label": "Under compulsory liquidation/dissolution",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "ceo",
+      "label": "CEO / managing director (daglig leder)",
+      "category": "people",
+      "value": {
+        "name": "David John Christian Gamborg"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": "1996-08-20",
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "partners",
+      "label": "Partners (joint liability)",
+      "category": "people",
+      "value": [
+        {
+          "name": "Annie Brenda Smidt Gamborg"
+        },
+        {
+          "name": "David John Christian Gamborg"
+        }
+      ],
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": "1996-08-20",
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "board_chair",
+      "label": "Chair of the board",
+      "category": "people",
+      "value": {
+        "name": "David John Christian Gamborg"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": "2026-01-31",
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "board_members",
+      "label": "Board members",
+      "category": "people",
+      "value": [
+        {
+          "name": "Annie Brenda Smidt Gamborg"
+        },
+        {
+          "name": "Lars Christian Gamborg"
+        },
+        {
+          "name": "John Hardy Gamborg"
+        }
+      ],
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": "2026-01-31",
+      "retrieved_at": "2026-10-11T12:05:04Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:05:04Z",
+      "last_verified": "2026-10-11T12:05:04Z"
+    },
+    {
+      "field": "subunit_count",
+      "label": "Number of registered establishments (sub-units)",
+      "category": "size",
+      "value": 1,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=976605950&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:05Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T12:05:05Z",
+      "last_verified": "2026-10-11T12:05:05Z"
+    },
+    {
+      "field": "subunits",
+      "label": "Establishments (first 15)",
+      "category": "size",
+      "value": [
+        {
+          "organisation_number": "976778111",
+          "name": "NORANDA",
+          "municipality": "DRAMMEN"
+        }
+      ],
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=976605950&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976605950",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:05:05Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T12:05:05Z",
+      "last_verified": "2026-10-11T12:05:05Z"
+    },
+    {
+      "field": "website_final_url",
+      "label": "Website (resolved URL)",
+      "category": "web",
+      "value": "https://shop.greenlife.no//",
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://shop.greenlife.no//",
+      "evidence_url": "https://shop.greenlife.no//",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:06:00Z",
+      "confidence": "medium",
+      "match": "Website registered for this organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:06:00Z",
+      "last_verified": "2026-10-11T12:06:00Z"
+    },
+    {
+      "field": "website_title",
+      "label": "Website title",
+      "category": "web",
+      "value": "Greenlife Webshop",
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://shop.greenlife.no//",
+      "evidence_url": "https://shop.greenlife.no//",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:06:00Z",
+      "confidence": "medium",
+      "match": "Website registered for this organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:06:00Z",
+      "last_verified": "2026-10-11T12:06:00Z"
+    },
+    {
+      "field": "website_shows_orgnr",
+      "label": "Website shows the organisation number",
+      "category": "web",
+      "value": false,
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://shop.greenlife.no//",
+      "evidence_url": "https://shop.greenlife.no//",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:06:00Z",
+      "confidence": "medium",
+      "match": "Website registered for this organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:06:00Z",
+      "last_verified": "2026-10-11T12:06:00Z"
+    },
+    {
+      "field": "social_profiles",
+      "label": "Social media profiles (linked from website)",
+      "category": "contact",
+      "value": {
+        "facebook": "https://www.facebook.com/greenlifenorge"
+      },
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://shop.greenlife.no//",
+      "evidence_url": "https://shop.greenlife.no//",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:06:00Z",
+      "confidence": "medium",
+      "match": "Website registered for this organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:06:00Z",
+      "last_verified": "2026-10-11T12:06:00Z"
+    }
+  ],
+  "profile": {
+    "identity": {
+      "organisation_number": "976605950",
+      "legal_name": "GREENLIFE ANS",
+      "legal_form": "ANS – Ansvarlig selskap med solidarisk ansvar",
+      "registered_date": "1996-07-29",
+      "founded_date": "1996-07-15"
+    },
+    "location": {
+      "business_address": "Kongleveien 37, 3055 KROKSTADELVA",
+      "municipality": "DRAMMEN",
+      "municipality_number": "3301",
+      "country": "Norge"
+    },
+    "activity": {
+      "industry_code_1": "46.380 – Engroshandel med andre næringsmidler",
+      "institutional_sector": "2300 – Personlige foretak",
+      "statutory_purpose": "Import, varehandel og agenturvirksomhet med datautstyr eller datarelaterte tjenester samt vegetabilske matvarer og kosttilskudd. Selskapet kan delta i annen virksomhet.  ",
+      "activity_description": "Handel/import/salg og markedsføring av diverse handelsvarer. Fortrinnsvis vegetabilske matvarer og kosttilskudd."
+    },
+    "size": {
+      "employees": 0,
+      "subunit_count": 1,
+      "subunits": [
+        {
+          "organisation_number": "976778111",
+          "name": "NORANDA",
+          "municipality": "DRAMMEN"
+        }
+      ]
+    },
+    "contact": {
+      "website": "www.greenlife.no",
+      "email": "info@greenlife.no",
+      "phone": "32 87 41 55",
+      "mobile": "92082673",
+      "social_profiles": {
+        "facebook": "https://www.facebook.com/greenlifenorge"
+      }
+    },
+    "registrations": {
+      "vat_registered": true,
+      "in_business_register": true,
+      "in_foundation_register": false,
+      "in_voluntary_register": false,
+      "articles_date": "2006-10-29",
+      "written_language": "Bokmål"
+    },
+    "status": {
+      "bankrupt": false,
+      "under_liquidation": false,
+      "compulsory_dissolution": false
+    },
+    "people": {
+      "ceo": {
+        "name": "David John Christian Gamborg"
+      },
+      "partners": [
+        {
+          "name": "Annie Brenda Smidt Gamborg"
+        },
+        {
+          "name": "David John Christian Gamborg"
+        }
+      ],
+      "board_chair": {
+        "name": "David John Christian Gamborg"
+      },
+      "board_members": [
+        {
+          "name": "Annie Brenda Smidt Gamborg"
+        },
+        {
+          "name": "Lars Christian Gamborg"
+        },
+        {
+          "name": "John Hardy Gamborg"
+        }
+      ]
+    },
+    "web": {
+      "website_final_url": "https://shop.greenlife.no//",
+      "website_title": "Greenlife Webshop",
+      "website_shows_orgnr": false
+    }
+  },
+  "summary": "GREENLIFE ANS (org. no. 976 605 950) is a general partnership (ANS) based in Drammen, in the Brønnøysund registers since 1996-07-29. It is active with no bankruptcy or liquidation registered. Its main activity is NACE 46.380 (Engroshandel med andre næringsmidler); it has 0 registered employees. CEO: David John Christian Gamborg; board chair: David John Christian Gamborg.",
+  "gaps": [
+    {
+      "topic": "financials",
+      "reason": "Legal form ANS is normally not required to file annual accounts in Norway, so none are public."
+    },
+    {
+      "topic": "identifiers",
+      "reason": "No LEI is registered with GLEIF for this organisation number (common for companies without traded securities or large financial contracts)."
+    },
+    {
+      "topic": "reference",
+      "reason": "No verified Wikidata item links to this number (normal for smaller companies)."
+    }
+  ],
+  "verification": {
+    "method": "Every fact comes from a record fetched by the exact organisation number. Secondary sources (GLEIF, Wikidata) are only accepted when their record names this number AND the legal name or LEI agrees; financial values are copied as filed and never estimated.",
+    "checks": [
+      {
+        "check": "organisation number checksum (mod 11)",
+        "result": "pass"
+      },
+      {
+        "check": "registry record organisation number equals query",
+        "result": "pass"
+      },
+      {
+        "check": "registered website displays the organisation number",
+        "result": "not shown",
+        "note": "website facts kept at medium confidence"
+      }
+    ],
+    "rejected": []
+  },
+  "sources": [
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_roller",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/976605950/roller",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=976605950&size=50",
+      "status": "ok",
+      "http_status": 200,
+      "note": "sub-units",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "gleif",
+      "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bfulltext%5D=976605950&filter%5Bentity.legalAddress.country%5D=NO&page%5Bsize%5D=10",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Global Legal Entity Identifier Foundation (GLEIF) LEI records",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "wikidata",
+      "url": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP2333%3D976605950&srlimit=5&format=json",
+      "status": "error",
+      "http_status": 429,
+      "source_name": "Wikidata (matched on property P2333, Norwegian organisation number)",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "company_website",
+      "url": "https://shop.greenlife.no//",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "licence": "public web page; only titles, descriptions and links extracted"
+    }
+  ],
+  "changes": [],
+  "history": [],
+  "complete": true,
+  "stats": {
+    "requests": 96,
+    "seconds": 56.47,
+    "fact_count": 37
+  }
+}

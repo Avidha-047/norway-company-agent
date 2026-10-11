@@ -1,0 +1,696 @@
+{
+  "schema_version": "1.1",
+  "query": "933958450",
+  "organisation_number": "933958450",
+  "generated_at": "2026-10-11T11:20:03Z",
+  "status": "active",
+  "entity_type": "legal entity",
+  "name": "BRETTSPILLERNES FORENING",
+  "facts": [
+    {
+      "field": "organisation_number",
+      "label": "Organisation number",
+      "category": "identity",
+      "value": "933958450",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "legal_name",
+      "label": "Registered name",
+      "category": "identity",
+      "value": "BRETTSPILLERNES FORENING",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "legal_form",
+      "label": "Legal form",
+      "category": "identity",
+      "value": "FLI – Forening/lag/innretning",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "registered_date",
+      "label": "Registered in Enhetsregisteret",
+      "category": "identity",
+      "value": "2024-09-13",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": "2024-09-13",
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "founded_date",
+      "label": "Founded (stiftelsesdato)",
+      "category": "identity",
+      "value": "2024-08-05",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": "2024-08-05",
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "business_address",
+      "label": "Business address",
+      "category": "location",
+      "value": "Løvåsbakken 38, 5145 FYLLINGSDALEN",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "municipality",
+      "label": "Municipality",
+      "category": "location",
+      "value": "BERGEN",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "municipality_number",
+      "label": "Municipality number",
+      "category": "location",
+      "value": "4601",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "country",
+      "label": "Country",
+      "category": "location",
+      "value": "Norge",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "industry_code_1",
+      "label": "Industry code (NACE) primary",
+      "category": "activity",
+      "value": "94.992 – Aktiviteter i andre medlemsorganisasjoner ellers",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "employees",
+      "label": "Registered number of employees",
+      "category": "size",
+      "value": 0,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "note": "No employees registered in the Aa-register",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "website",
+      "label": "Website (registered)",
+      "category": "contact",
+      "value": "okeanos-rising.com",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "email",
+      "label": "Email (registered)",
+      "category": "contact",
+      "value": "contact@okeanos-rising.com",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "institutional_sector",
+      "label": "Institutional sector",
+      "category": "activity",
+      "value": "7000 – Ideelle organisasjoner",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "vat_registered",
+      "label": "Registered for VAT",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "in_business_register",
+      "label": "Registered in the Register of Business Enterprises",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "in_foundation_register",
+      "label": "Registered in the Register of Foundations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "in_voluntary_register",
+      "label": "Registered in the Register of Non-Profit Organisations",
+      "category": "registrations",
+      "value": true,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "activity_description",
+      "label": "Registered activity",
+      "category": "activity",
+      "value": "Utvikle det turneringsrettede brettspillmiljøet i Norge generelt og Vestlandet spesifikt. Formålet skal oppnås gjennom følgende aktiviteter knytte kontakt med spillergrupper på Vestlandet, i Norge og Europa, og gjennom dette øke deltagelsen på hverandres samlinger og turneringer. Hovedaktiviteten blir den årlige internasjonale turneringen Okeanos-rising som skal arrangeres i Bergen.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "written_language",
+      "label": "Written language form",
+      "category": "registrations",
+      "value": "Bokmål",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "bankrupt",
+      "label": "Bankrupt",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "under_liquidation",
+      "label": "Under liquidation",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "compulsory_dissolution",
+      "label": "Under compulsory liquidation/dissolution",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:04Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:20:04Z",
+      "last_verified": "2026-10-11T11:20:04Z"
+    },
+    {
+      "field": "board_chair",
+      "label": "Chair of the board",
+      "category": "people",
+      "value": {
+        "name": "Robert Skog Skjong"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": "2026-01-19",
+      "retrieved_at": "2026-10-11T11:20:05Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:20:05Z",
+      "last_verified": "2026-10-11T11:20:05Z"
+    },
+    {
+      "field": "board_members",
+      "label": "Board members",
+      "category": "people",
+      "value": [
+        {
+          "name": "Eric Bünger"
+        }
+      ],
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": "2026-01-19",
+      "retrieved_at": "2026-10-11T11:20:05Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:20:05Z",
+      "last_verified": "2026-10-11T11:20:05Z"
+    },
+    {
+      "field": "subunit_count",
+      "label": "Number of registered establishments (sub-units)",
+      "category": "size",
+      "value": 1,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=933958450&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:05Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:20:05Z",
+      "last_verified": "2026-10-11T11:20:05Z"
+    },
+    {
+      "field": "subunits",
+      "label": "Establishments (first 15)",
+      "category": "size",
+      "value": [
+        {
+          "organisation_number": "934094662",
+          "name": "BRETTSPILLERNES FORENING",
+          "municipality": "BERGEN"
+        }
+      ],
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=933958450&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/933958450",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:05Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:20:05Z",
+      "last_verified": "2026-10-11T11:20:05Z"
+    },
+    {
+      "field": "website_final_url",
+      "label": "Website (resolved URL)",
+      "category": "web",
+      "value": "https://www.okeanos-rising.com/",
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://www.okeanos-rising.com/",
+      "evidence_url": "https://www.okeanos-rising.com/",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:58Z",
+      "confidence": "high",
+      "match": "Website registered for this organisation number in Enhetsregisteret; the page itself shows the organisation number",
+      "first_seen": "2026-10-11T11:20:58Z",
+      "last_verified": "2026-10-11T11:20:58Z"
+    },
+    {
+      "field": "website_title",
+      "label": "Website title",
+      "category": "web",
+      "value": "Warhammer 40K competitive tournament in Bergen, Norway | Warhammer 40K",
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://www.okeanos-rising.com/",
+      "evidence_url": "https://www.okeanos-rising.com/",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:58Z",
+      "confidence": "high",
+      "match": "Website registered for this organisation number in Enhetsregisteret; the page itself shows the organisation number",
+      "first_seen": "2026-10-11T11:20:58Z",
+      "last_verified": "2026-10-11T11:20:58Z"
+    },
+    {
+      "field": "website_description",
+      "label": "Website description",
+      "category": "web",
+      "value": "Okeanos Rising is our annual tournament for competitive play, with a focus solely on 40k. Join us for exciting Warhammer tournaments and casual games in Bergen, Norway. Warhammer 40K is a massive universe and we intend to depict the depth of the franchise in expanding ways as we keep expanding.",
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://www.okeanos-rising.com/",
+      "evidence_url": "https://www.okeanos-rising.com/",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:58Z",
+      "confidence": "high",
+      "match": "Website registered for this organisation number in Enhetsregisteret; the page itself shows the organisation number",
+      "first_seen": "2026-10-11T11:20:58Z",
+      "last_verified": "2026-10-11T11:20:58Z"
+    },
+    {
+      "field": "website_site_name",
+      "label": "Website brand name",
+      "category": "web",
+      "value": "Warhammer 40K",
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://www.okeanos-rising.com/",
+      "evidence_url": "https://www.okeanos-rising.com/",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:58Z",
+      "confidence": "high",
+      "match": "Website registered for this organisation number in Enhetsregisteret; the page itself shows the organisation number",
+      "first_seen": "2026-10-11T11:20:58Z",
+      "last_verified": "2026-10-11T11:20:58Z"
+    },
+    {
+      "field": "website_shows_orgnr",
+      "label": "Website shows the organisation number",
+      "category": "web",
+      "value": true,
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://www.okeanos-rising.com/",
+      "evidence_url": "https://www.okeanos-rising.com/",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:20:58Z",
+      "confidence": "high",
+      "match": "Website registered for this organisation number in Enhetsregisteret; the page itself shows the organisation number",
+      "first_seen": "2026-10-11T11:20:58Z",
+      "last_verified": "2026-10-11T11:20:58Z"
+    }
+  ],
+  "profile": {
+    "identity": {
+      "organisation_number": "933958450",
+      "legal_name": "BRETTSPILLERNES FORENING",
+      "legal_form": "FLI – Forening/lag/innretning",
+      "registered_date": "2024-09-13",
+      "founded_date": "2024-08-05"
+    },
+    "location": {
+      "business_address": "Løvåsbakken 38, 5145 FYLLINGSDALEN",
+      "municipality": "BERGEN",
+      "municipality_number": "4601",
+      "country": "Norge"
+    },
+    "activity": {
+      "industry_code_1": "94.992 – Aktiviteter i andre medlemsorganisasjoner ellers",
+      "institutional_sector": "7000 – Ideelle organisasjoner",
+      "activity_description": "Utvikle det turneringsrettede brettspillmiljøet i Norge generelt og Vestlandet spesifikt. Formålet skal oppnås gjennom følgende aktiviteter knytte kontakt med spillergrupper på Vestlandet, i Norge og Europa, og gjennom dette øke deltagelsen på hverandres samlinger og turneringer. Hovedaktiviteten blir den årlige internasjonale turneringen Okeanos-rising som skal arrangeres i Bergen."
+    },
+    "size": {
+      "employees": 0,
+      "subunit_count": 1,
+      "subunits": [
+        {
+          "organisation_number": "934094662",
+          "name": "BRETTSPILLERNES FORENING",
+          "municipality": "BERGEN"
+        }
+      ]
+    },
+    "contact": {
+      "website": "okeanos-rising.com",
+      "email": "contact@okeanos-rising.com"
+    },
+    "registrations": {
+      "vat_registered": false,
+      "in_business_register": false,
+      "in_foundation_register": false,
+      "in_voluntary_register": true,
+      "written_language": "Bokmål"
+    },
+    "status": {
+      "bankrupt": false,
+      "under_liquidation": false,
+      "compulsory_dissolution": false
+    },
+    "people": {
+      "board_chair": {
+        "name": "Robert Skog Skjong"
+      },
+      "board_members": [
+        {
+          "name": "Eric Bünger"
+        }
+      ]
+    },
+    "web": {
+      "website_final_url": "https://www.okeanos-rising.com/",
+      "website_title": "Warhammer 40K competitive tournament in Bergen, Norway | Warhammer 40K",
+      "website_description": "Okeanos Rising is our annual tournament for competitive play, with a focus solely on 40k. Join us for exciting Warhammer tournaments and casual games in Bergen, Norway. Warhammer 40K is a massive universe and we intend to depict the depth of the franchise in expanding ways as we keep expanding.",
+      "website_site_name": "Warhammer 40K",
+      "website_shows_orgnr": true
+    }
+  },
+  "summary": "BRETTSPILLERNES FORENING (org. no. 933 958 450) is an association (FLI) based in Bergen, in the Brønnøysund registers since 2024-09-13. It is active with no bankruptcy or liquidation registered. Its main activity is NACE 94.992 (Aktiviteter i andre medlemsorganisasjoner ellers); it has 0 registered employees. Board chair: Robert Skog Skjong.",
+  "gaps": [
+    {
+      "topic": "financials",
+      "reason": "Legal form FLI is normally not required to file annual accounts in Norway, so none are public."
+    },
+    {
+      "topic": "identifiers",
+      "reason": "No LEI is registered with GLEIF for this organisation number (common for companies without traded securities or large financial contracts)."
+    },
+    {
+      "topic": "people",
+      "reason": "No CEO (daglig leder) is registered; this is optional for many legal forms."
+    },
+    {
+      "topic": "reference",
+      "reason": "No verified Wikidata item links to this number (normal for smaller companies)."
+    }
+  ],
+  "verification": {
+    "method": "Every fact comes from a record fetched by the exact organisation number. Secondary sources (GLEIF, Wikidata) are only accepted when their record names this number AND the legal name or LEI agrees; financial values are copied as filed and never estimated.",
+    "checks": [
+      {
+        "check": "organisation number checksum (mod 11)",
+        "result": "pass"
+      },
+      {
+        "check": "registry record organisation number equals query",
+        "result": "pass"
+      },
+      {
+        "check": "registered website displays the organisation number",
+        "result": "pass"
+      }
+    ],
+    "rejected": []
+  },
+  "sources": [
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_roller",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/933958450/roller",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=933958450&size=50",
+      "status": "ok",
+      "http_status": 200,
+      "note": "sub-units",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "gleif",
+      "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bfulltext%5D=933958450&filter%5Bentity.legalAddress.country%5D=NO&page%5Bsize%5D=10",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Global Legal Entity Identifier Foundation (GLEIF) LEI records",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "wikidata",
+      "url": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP2333%3D933958450&srlimit=5&format=json",
+      "status": "error",
+      "http_status": 429,
+      "source_name": "Wikidata (matched on property P2333, Norwegian organisation number)",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "company_website",
+      "url": "https://www.okeanos-rising.com/",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "licence": "public web page; only titles, descriptions and links extracted"
+    }
+  ],
+  "changes": [],
+  "history": [],
+  "complete": true,
+  "stats": {
+    "requests": 100,
+    "seconds": 55.11,
+    "fact_count": 32
+  }
+}

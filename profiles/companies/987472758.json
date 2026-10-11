@@ -1,0 +1,613 @@
+{
+  "schema_version": "1.1",
+  "query": "987472758",
+  "organisation_number": "987472758",
+  "generated_at": "2026-10-11T11:51:48Z",
+  "status": "active",
+  "entity_type": "legal entity",
+  "name": "KONGSVINGER FESTNINGS VENNER",
+  "facts": [
+    {
+      "field": "organisation_number",
+      "label": "Organisation number",
+      "category": "identity",
+      "value": "987472758",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "legal_name",
+      "label": "Registered name",
+      "category": "identity",
+      "value": "KONGSVINGER FESTNINGS VENNER",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "legal_form",
+      "label": "Legal form",
+      "category": "identity",
+      "value": "FLI – Forening/lag/innretning",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "registered_date",
+      "label": "Registered in Enhetsregisteret",
+      "category": "identity",
+      "value": "2005-03-15",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": "2005-03-15",
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "founded_date",
+      "label": "Founded (stiftelsesdato)",
+      "category": "identity",
+      "value": "2000-08-01",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": "2000-08-01",
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "business_address",
+      "label": "Business address",
+      "category": "location",
+      "value": "c/o Vidar Borge, Løkkegata 3, 2213 KONGSVINGER",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "municipality",
+      "label": "Municipality",
+      "category": "location",
+      "value": "KONGSVINGER",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "municipality_number",
+      "label": "Municipality number",
+      "category": "location",
+      "value": "3401",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "country",
+      "label": "Country",
+      "category": "location",
+      "value": "Norge",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "industry_code_1",
+      "label": "Industry code (NACE) primary",
+      "category": "activity",
+      "value": "94.992 – Aktiviteter i andre medlemsorganisasjoner ellers",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "employees",
+      "label": "Registered number of employees",
+      "category": "size",
+      "value": 0,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "note": "No employees registered in the Aa-register",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "email",
+      "label": "Email (registered)",
+      "category": "contact",
+      "value": "brev@festningsvenn.no",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "mobile",
+      "label": "Mobile (registered)",
+      "category": "contact",
+      "value": "403 29 380",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "institutional_sector",
+      "label": "Institutional sector",
+      "category": "activity",
+      "value": "7000 – Ideelle organisasjoner",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "vat_registered",
+      "label": "Registered for VAT",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "in_business_register",
+      "label": "Registered in the Register of Business Enterprises",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "in_foundation_register",
+      "label": "Registered in the Register of Foundations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "in_voluntary_register",
+      "label": "Registered in the Register of Non-Profit Organisations",
+      "category": "registrations",
+      "value": true,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "activity_description",
+      "label": "Registered activity",
+      "category": "activity",
+      "value": "Fremme interressen for Kongsvinger festning og knytte frivillige til dugnadsarbeid.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "written_language",
+      "label": "Written language form",
+      "category": "registrations",
+      "value": "Bokmål",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "bankrupt",
+      "label": "Bankrupt",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "under_liquidation",
+      "label": "Under liquidation",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "compulsory_dissolution",
+      "label": "Under compulsory liquidation/dissolution",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:48Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:51:48Z",
+      "last_verified": "2026-10-11T11:51:48Z"
+    },
+    {
+      "field": "ceo",
+      "label": "CEO / managing director (daglig leder)",
+      "category": "people",
+      "value": {
+        "name": "Vidar Borge"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": "2018-05-04",
+      "retrieved_at": "2026-10-11T11:51:49Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:51:49Z",
+      "last_verified": "2026-10-11T11:51:49Z"
+    },
+    {
+      "field": "board_chair",
+      "label": "Chair of the board",
+      "category": "people",
+      "value": {
+        "name": "Vidar Borge"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": "2024-11-14",
+      "retrieved_at": "2026-10-11T11:51:49Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:51:49Z",
+      "last_verified": "2026-10-11T11:51:49Z"
+    },
+    {
+      "field": "board_members",
+      "label": "Board members",
+      "category": "people",
+      "value": [
+        {
+          "name": "Knut Andreas Østbøll"
+        },
+        {
+          "name": "Fred Obert Håvarsthun"
+        },
+        {
+          "name": "Andreas Engebret Hemma"
+        },
+        {
+          "name": "Erik Haug"
+        },
+        {
+          "name": "Per Erik Rastad"
+        }
+      ],
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": "2024-11-14",
+      "retrieved_at": "2026-10-11T11:51:49Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:51:49Z",
+      "last_verified": "2026-10-11T11:51:49Z"
+    },
+    {
+      "field": "subunit_count",
+      "label": "Number of registered establishments (sub-units)",
+      "category": "size",
+      "value": 0,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=987472758&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/987472758",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:51:50Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:51:50Z",
+      "last_verified": "2026-10-11T11:51:50Z"
+    }
+  ],
+  "profile": {
+    "identity": {
+      "organisation_number": "987472758",
+      "legal_name": "KONGSVINGER FESTNINGS VENNER",
+      "legal_form": "FLI – Forening/lag/innretning",
+      "registered_date": "2005-03-15",
+      "founded_date": "2000-08-01"
+    },
+    "location": {
+      "business_address": "c/o Vidar Borge, Løkkegata 3, 2213 KONGSVINGER",
+      "municipality": "KONGSVINGER",
+      "municipality_number": "3401",
+      "country": "Norge"
+    },
+    "activity": {
+      "industry_code_1": "94.992 – Aktiviteter i andre medlemsorganisasjoner ellers",
+      "institutional_sector": "7000 – Ideelle organisasjoner",
+      "activity_description": "Fremme interressen for Kongsvinger festning og knytte frivillige til dugnadsarbeid."
+    },
+    "size": {
+      "employees": 0,
+      "subunit_count": 0
+    },
+    "contact": {
+      "email": "brev@festningsvenn.no",
+      "mobile": "403 29 380"
+    },
+    "registrations": {
+      "vat_registered": false,
+      "in_business_register": false,
+      "in_foundation_register": false,
+      "in_voluntary_register": true,
+      "written_language": "Bokmål"
+    },
+    "status": {
+      "bankrupt": false,
+      "under_liquidation": false,
+      "compulsory_dissolution": false
+    },
+    "people": {
+      "ceo": {
+        "name": "Vidar Borge"
+      },
+      "board_chair": {
+        "name": "Vidar Borge"
+      },
+      "board_members": [
+        {
+          "name": "Knut Andreas Østbøll"
+        },
+        {
+          "name": "Fred Obert Håvarsthun"
+        },
+        {
+          "name": "Andreas Engebret Hemma"
+        },
+        {
+          "name": "Erik Haug"
+        },
+        {
+          "name": "Per Erik Rastad"
+        }
+      ]
+    }
+  },
+  "summary": "KONGSVINGER FESTNINGS VENNER (org. no. 987 472 758) is an association (FLI) based in Kongsvinger, in the Brønnøysund registers since 2005-03-15. It is active with no bankruptcy or liquidation registered. Its main activity is NACE 94.992 (Aktiviteter i andre medlemsorganisasjoner ellers); it has 0 registered employees. CEO: Vidar Borge; board chair: Vidar Borge.",
+  "gaps": [
+    {
+      "topic": "financials",
+      "reason": "Legal form FLI is normally not required to file annual accounts in Norway, so none are public."
+    },
+    {
+      "topic": "website",
+      "reason": "No website is registered in Enhetsregisteret or verified on Wikidata."
+    },
+    {
+      "topic": "identifiers",
+      "reason": "No LEI is registered with GLEIF for this organisation number (common for companies without traded securities or large financial contracts)."
+    },
+    {
+      "topic": "reference",
+      "reason": "No verified Wikidata item links to this number (normal for smaller companies)."
+    }
+  ],
+  "verification": {
+    "method": "Every fact comes from a record fetched by the exact organisation number. Secondary sources (GLEIF, Wikidata) are only accepted when their record names this number AND the legal name or LEI agrees; financial values are copied as filed and never estimated.",
+    "checks": [
+      {
+        "check": "organisation number checksum (mod 11)",
+        "result": "pass"
+      },
+      {
+        "check": "registry record organisation number equals query",
+        "result": "pass"
+      }
+    ],
+    "rejected": []
+  },
+  "sources": [
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_roller",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/987472758/roller",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=987472758&size=50",
+      "status": "ok",
+      "http_status": 200,
+      "note": "sub-units",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "gleif",
+      "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bfulltext%5D=987472758&filter%5Bentity.legalAddress.country%5D=NO&page%5Bsize%5D=10",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Global Legal Entity Identifier Foundation (GLEIF) LEI records",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "wikidata",
+      "url": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP2333%3D987472758&srlimit=5&format=json",
+      "status": "error",
+      "http_status": 429,
+      "source_name": "Wikidata (matched on property P2333, Norwegian organisation number)",
+      "licence": "CC0 1.0"
+    }
+  ],
+  "changes": [],
+  "history": [],
+  "complete": true,
+  "stats": {
+    "requests": 131,
+    "seconds": 51.38,
+    "fact_count": 27
+  }
+}

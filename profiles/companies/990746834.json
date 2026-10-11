@@ -1,0 +1,654 @@
+{
+  "schema_version": "1.1",
+  "query": "990746834",
+  "organisation_number": "990746834",
+  "generated_at": "2026-10-11T11:10:58Z",
+  "status": "active",
+  "entity_type": "legal entity",
+  "name": "ATOSA & BITA ANS",
+  "facts": [
+    {
+      "field": "organisation_number",
+      "label": "Organisation number",
+      "category": "identity",
+      "value": "990746834",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "legal_name",
+      "label": "Registered name",
+      "category": "identity",
+      "value": "ATOSA & BITA ANS",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "legal_form",
+      "label": "Legal form",
+      "category": "identity",
+      "value": "ANS – Ansvarlig selskap med solidarisk ansvar",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "registered_date",
+      "label": "Registered in Enhetsregisteret",
+      "category": "identity",
+      "value": "2007-02-19",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": "2007-02-19",
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "founded_date",
+      "label": "Founded (stiftelsesdato)",
+      "category": "identity",
+      "value": "2006-12-27",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": "2006-12-27",
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "business_address",
+      "label": "Business address",
+      "category": "location",
+      "value": "Finne-Grønns veg 6, 2414 ELVERUM",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "municipality",
+      "label": "Municipality",
+      "category": "location",
+      "value": "ELVERUM",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "municipality_number",
+      "label": "Municipality number",
+      "category": "location",
+      "value": "3420",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "country",
+      "label": "Country",
+      "category": "location",
+      "value": "Norge",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "industry_code_1",
+      "label": "Industry code (NACE) primary",
+      "category": "activity",
+      "value": "56.110 – Drift av restauranter",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "employees",
+      "label": "Registered number of employees",
+      "category": "size",
+      "value": 0,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "note": "No employees registered in the Aa-register",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "phone",
+      "label": "Phone (registered)",
+      "category": "contact",
+      "value": "62 41 56 50",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "mobile",
+      "label": "Mobile (registered)",
+      "category": "contact",
+      "value": "97403640",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "institutional_sector",
+      "label": "Institutional sector",
+      "category": "activity",
+      "value": "2300 – Personlige foretak",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "vat_registered",
+      "label": "Registered for VAT",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "in_business_register",
+      "label": "Registered in the Register of Business Enterprises",
+      "category": "registrations",
+      "value": true,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "in_foundation_register",
+      "label": "Registered in the Register of Foundations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "in_voluntary_register",
+      "label": "Registered in the Register of Non-Profit Organisations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "statutory_purpose",
+      "label": "Statutory purpose",
+      "category": "activity",
+      "value": "Kafe/restaurantvirksomhet og lignende/tilhørende virksomhet.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "activity_description",
+      "label": "Registered activity",
+      "category": "activity",
+      "value": "Kafe/restaurantvirksomhet og lignende/tilhørende virksomhet.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "articles_date",
+      "label": "Articles of association dated",
+      "category": "registrations",
+      "value": "2012-07-01",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": "2012-07-01",
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "written_language",
+      "label": "Written language form",
+      "category": "registrations",
+      "value": "Bokmål",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "bankrupt",
+      "label": "Bankrupt",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "under_liquidation",
+      "label": "Under liquidation",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "compulsory_dissolution",
+      "label": "Under compulsory liquidation/dissolution",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "ceo",
+      "label": "CEO / managing director (daglig leder)",
+      "category": "people",
+      "value": {
+        "name": "Farnosh Mohebbi Salekdeh"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": "2007-02-19",
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "partners",
+      "label": "Partners (joint liability)",
+      "category": "people",
+      "value": [
+        {
+          "name": "Farnosh Mohebbi Salekdeh"
+        },
+        {
+          "name": "Mandana Rostami Zarei"
+        }
+      ],
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": "2013-04-06",
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "board_chair",
+      "label": "Chair of the board",
+      "category": "people",
+      "value": {
+        "name": "Farnosh Mohebbi Salekdeh"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": "2013-04-06",
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "board_deputies",
+      "label": "Deputy board members",
+      "category": "people",
+      "value": [
+        {
+          "name": "Mandana Rostami Zarei"
+        }
+      ],
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": "2013-04-06",
+      "retrieved_at": "2026-10-11T11:10:59Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:10:59Z",
+      "last_verified": "2026-10-11T11:10:59Z"
+    },
+    {
+      "field": "subunit_count",
+      "label": "Number of registered establishments (sub-units)",
+      "category": "size",
+      "value": 0,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=990746834&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990746834",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:11:00Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:11:00Z",
+      "last_verified": "2026-10-11T11:11:00Z"
+    }
+  ],
+  "profile": {
+    "identity": {
+      "organisation_number": "990746834",
+      "legal_name": "ATOSA & BITA ANS",
+      "legal_form": "ANS – Ansvarlig selskap med solidarisk ansvar",
+      "registered_date": "2007-02-19",
+      "founded_date": "2006-12-27"
+    },
+    "location": {
+      "business_address": "Finne-Grønns veg 6, 2414 ELVERUM",
+      "municipality": "ELVERUM",
+      "municipality_number": "3420",
+      "country": "Norge"
+    },
+    "activity": {
+      "industry_code_1": "56.110 – Drift av restauranter",
+      "institutional_sector": "2300 – Personlige foretak",
+      "statutory_purpose": "Kafe/restaurantvirksomhet og lignende/tilhørende virksomhet.",
+      "activity_description": "Kafe/restaurantvirksomhet og lignende/tilhørende virksomhet."
+    },
+    "size": {
+      "employees": 0,
+      "subunit_count": 0
+    },
+    "contact": {
+      "phone": "62 41 56 50",
+      "mobile": "97403640"
+    },
+    "registrations": {
+      "vat_registered": false,
+      "in_business_register": true,
+      "in_foundation_register": false,
+      "in_voluntary_register": false,
+      "articles_date": "2012-07-01",
+      "written_language": "Bokmål"
+    },
+    "status": {
+      "bankrupt": false,
+      "under_liquidation": false,
+      "compulsory_dissolution": false
+    },
+    "people": {
+      "ceo": {
+        "name": "Farnosh Mohebbi Salekdeh"
+      },
+      "partners": [
+        {
+          "name": "Farnosh Mohebbi Salekdeh"
+        },
+        {
+          "name": "Mandana Rostami Zarei"
+        }
+      ],
+      "board_chair": {
+        "name": "Farnosh Mohebbi Salekdeh"
+      },
+      "board_deputies": [
+        {
+          "name": "Mandana Rostami Zarei"
+        }
+      ]
+    }
+  },
+  "summary": "ATOSA & BITA ANS (org. no. 990 746 834) is a general partnership (ANS) based in Elverum, in the Brønnøysund registers since 2007-02-19. It is active with no bankruptcy or liquidation registered. Its main activity is NACE 56.110 (Drift av restauranter); it has 0 registered employees. CEO: Farnosh Mohebbi Salekdeh; board chair: Farnosh Mohebbi Salekdeh.",
+  "gaps": [
+    {
+      "topic": "financials",
+      "reason": "Legal form ANS is normally not required to file annual accounts in Norway, so none are public."
+    },
+    {
+      "topic": "website",
+      "reason": "No website is registered in Enhetsregisteret or verified on Wikidata."
+    },
+    {
+      "topic": "identifiers",
+      "reason": "No LEI is registered with GLEIF for this organisation number (common for companies without traded securities or large financial contracts)."
+    },
+    {
+      "topic": "reference",
+      "reason": "No verified Wikidata item links to this number (normal for smaller companies)."
+    }
+  ],
+  "verification": {
+    "method": "Every fact comes from a record fetched by the exact organisation number. Secondary sources (GLEIF, Wikidata) are only accepted when their record names this number AND the legal name or LEI agrees; financial values are copied as filed and never estimated.",
+    "checks": [
+      {
+        "check": "organisation number checksum (mod 11)",
+        "result": "pass"
+      },
+      {
+        "check": "registry record organisation number equals query",
+        "result": "pass"
+      }
+    ],
+    "rejected": []
+  },
+  "sources": [
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_roller",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/990746834/roller",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=990746834&size=50",
+      "status": "ok",
+      "http_status": 200,
+      "note": "sub-units",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "gleif",
+      "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bfulltext%5D=990746834&filter%5Bentity.legalAddress.country%5D=NO&page%5Bsize%5D=10",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Global Legal Entity Identifier Foundation (GLEIF) LEI records",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "wikidata",
+      "url": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP2333%3D990746834&srlimit=5&format=json",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Wikidata (matched on property P2333, Norwegian organisation number)",
+      "licence": "CC0 1.0"
+    }
+  ],
+  "changes": [],
+  "history": [],
+  "complete": true,
+  "stats": {
+    "requests": 45,
+    "seconds": 7.07,
+    "fact_count": 30
+  }
+}

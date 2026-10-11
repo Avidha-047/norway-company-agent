@@ -1,0 +1,560 @@
+{
+  "schema_version": "1.1",
+  "query": "922329486",
+  "organisation_number": "922329486",
+  "generated_at": "2026-10-11T11:59:07Z",
+  "status": "active",
+  "entity_type": "legal entity",
+  "name": "BAKERIET SAMEIE",
+  "facts": [
+    {
+      "field": "organisation_number",
+      "label": "Organisation number",
+      "category": "identity",
+      "value": "922329486",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "legal_name",
+      "label": "Registered name",
+      "category": "identity",
+      "value": "BAKERIET SAMEIE",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "legal_form",
+      "label": "Legal form",
+      "category": "identity",
+      "value": "ESEK – Eierseksjonssameie",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "registered_date",
+      "label": "Registered in Enhetsregisteret",
+      "category": "identity",
+      "value": "2019-03-19",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": "2019-03-19",
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "founded_date",
+      "label": "Founded (stiftelsesdato)",
+      "category": "identity",
+      "value": "2018-01-18",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": "2018-01-18",
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "business_address",
+      "label": "Business address",
+      "category": "location",
+      "value": "v/Angel Smenes, Hjertåsveien 59, 6532 AVERØY",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "municipality",
+      "label": "Municipality",
+      "category": "location",
+      "value": "AVERØY",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "municipality_number",
+      "label": "Municipality number",
+      "category": "location",
+      "value": "1554",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "country",
+      "label": "Country",
+      "category": "location",
+      "value": "Norge",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "industry_code_1",
+      "label": "Industry code (NACE) primary",
+      "category": "activity",
+      "value": "97.001 – Aktiviteter i borettslag og boligsameier",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "employees",
+      "label": "Registered number of employees",
+      "category": "size",
+      "value": 0,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "note": "No employees registered in the Aa-register",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "vat_registered",
+      "label": "Registered for VAT",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "in_business_register",
+      "label": "Registered in the Register of Business Enterprises",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "in_foundation_register",
+      "label": "Registered in the Register of Foundations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "in_voluntary_register",
+      "label": "Registered in the Register of Non-Profit Organisations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "activity_description",
+      "label": "Registered activity",
+      "category": "activity",
+      "value": "Eierseksjonssameie",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "written_language",
+      "label": "Written language form",
+      "category": "registrations",
+      "value": "Bokmål",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "bankrupt",
+      "label": "Bankrupt",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "under_liquidation",
+      "label": "Under liquidation",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "compulsory_dissolution",
+      "label": "Under compulsory liquidation/dissolution",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:07Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:07Z",
+      "last_verified": "2026-10-11T11:59:07Z"
+    },
+    {
+      "field": "board_chair",
+      "label": "Chair of the board",
+      "category": "people",
+      "value": {
+        "name": "Audun Gjersvik"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": "2025-09-16",
+      "retrieved_at": "2026-10-11T11:59:08Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:59:08Z",
+      "last_verified": "2026-10-11T11:59:08Z"
+    },
+    {
+      "field": "board_members",
+      "label": "Board members",
+      "category": "people",
+      "value": [
+        {
+          "name": "Rolf Wollert Hessen"
+        },
+        {
+          "name": "Aud Helen Dahl"
+        },
+        {
+          "name": "Gudrun Utstrand"
+        }
+      ],
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": "2025-09-16",
+      "retrieved_at": "2026-10-11T11:59:08Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:59:08Z",
+      "last_verified": "2026-10-11T11:59:08Z"
+    },
+    {
+      "field": "subunit_count",
+      "label": "Number of registered establishments (sub-units)",
+      "category": "size",
+      "value": 1,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=922329486&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "subunits",
+      "label": "Establishments (first 15)",
+      "category": "size",
+      "value": [
+        {
+          "organisation_number": "924108819",
+          "name": "BAKERIET SAMEIE",
+          "municipality": "AVERØY"
+        }
+      ],
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=922329486&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/922329486",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    }
+  ],
+  "profile": {
+    "identity": {
+      "organisation_number": "922329486",
+      "legal_name": "BAKERIET SAMEIE",
+      "legal_form": "ESEK – Eierseksjonssameie",
+      "registered_date": "2019-03-19",
+      "founded_date": "2018-01-18"
+    },
+    "location": {
+      "business_address": "v/Angel Smenes, Hjertåsveien 59, 6532 AVERØY",
+      "municipality": "AVERØY",
+      "municipality_number": "1554",
+      "country": "Norge"
+    },
+    "activity": {
+      "industry_code_1": "97.001 – Aktiviteter i borettslag og boligsameier",
+      "activity_description": "Eierseksjonssameie"
+    },
+    "size": {
+      "employees": 0,
+      "subunit_count": 1,
+      "subunits": [
+        {
+          "organisation_number": "924108819",
+          "name": "BAKERIET SAMEIE",
+          "municipality": "AVERØY"
+        }
+      ]
+    },
+    "registrations": {
+      "vat_registered": false,
+      "in_business_register": false,
+      "in_foundation_register": false,
+      "in_voluntary_register": false,
+      "written_language": "Bokmål"
+    },
+    "status": {
+      "bankrupt": false,
+      "under_liquidation": false,
+      "compulsory_dissolution": false
+    },
+    "people": {
+      "board_chair": {
+        "name": "Audun Gjersvik"
+      },
+      "board_members": [
+        {
+          "name": "Rolf Wollert Hessen"
+        },
+        {
+          "name": "Aud Helen Dahl"
+        },
+        {
+          "name": "Gudrun Utstrand"
+        }
+      ]
+    }
+  },
+  "summary": "BAKERIET SAMEIE (org. no. 922 329 486) is a condominium (ESEK) based in Averøy, in the Brønnøysund registers since 2019-03-19. It is active with no bankruptcy or liquidation registered. Its main activity is NACE 97.001 (Aktiviteter i borettslag og boligsameier); it has 0 registered employees. Board chair: Audun Gjersvik.",
+  "gaps": [
+    {
+      "topic": "financials",
+      "reason": "Legal form ESEK is normally not required to file annual accounts in Norway, so none are public."
+    },
+    {
+      "topic": "website",
+      "reason": "No website is registered in Enhetsregisteret or verified on Wikidata."
+    },
+    {
+      "topic": "identifiers",
+      "reason": "No LEI is registered with GLEIF for this organisation number (common for companies without traded securities or large financial contracts)."
+    },
+    {
+      "topic": "people",
+      "reason": "No CEO (daglig leder) is registered; this is optional for many legal forms."
+    },
+    {
+      "topic": "reference",
+      "reason": "No verified Wikidata item links to this number (normal for smaller companies)."
+    }
+  ],
+  "verification": {
+    "method": "Every fact comes from a record fetched by the exact organisation number. Secondary sources (GLEIF, Wikidata) are only accepted when their record names this number AND the legal name or LEI agrees; financial values are copied as filed and never estimated.",
+    "checks": [
+      {
+        "check": "organisation number checksum (mod 11)",
+        "result": "pass"
+      },
+      {
+        "check": "registry record organisation number equals query",
+        "result": "pass"
+      }
+    ],
+    "rejected": []
+  },
+  "sources": [
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_roller",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/922329486/roller",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=922329486&size=50",
+      "status": "ok",
+      "http_status": 200,
+      "note": "sub-units",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "gleif",
+      "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bfulltext%5D=922329486&filter%5Bentity.legalAddress.country%5D=NO&page%5Bsize%5D=10",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Global Legal Entity Identifier Foundation (GLEIF) LEI records",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "wikidata",
+      "url": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP2333%3D922329486&srlimit=5&format=json",
+      "status": "error",
+      "http_status": 429,
+      "source_name": "Wikidata (matched on property P2333, Norwegian organisation number)",
+      "licence": "CC0 1.0"
+    }
+  ],
+  "changes": [],
+  "history": [],
+  "complete": true,
+  "stats": {
+    "requests": 79,
+    "seconds": 52.83,
+    "fact_count": 24
+  }
+}

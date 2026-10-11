@@ -1,0 +1,1054 @@
+{
+  "schema_version": "1.1",
+  "query": "999541607",
+  "organisation_number": "999541607",
+  "generated_at": "2026-10-11T11:59:08Z",
+  "status": "active",
+  "entity_type": "legal entity",
+  "name": "EBBESEN STORKJØKKEN SERVICE AS",
+  "facts": [
+    {
+      "field": "organisation_number",
+      "label": "Organisation number",
+      "category": "identity",
+      "value": "999541607",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "legal_name",
+      "label": "Registered name",
+      "category": "identity",
+      "value": "EBBESEN STORKJØKKEN SERVICE AS",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "legal_form",
+      "label": "Legal form",
+      "category": "identity",
+      "value": "AS – Aksjeselskap",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "registered_date",
+      "label": "Registered in Enhetsregisteret",
+      "category": "identity",
+      "value": "2013-01-22",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2013-01-22",
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "founded_date",
+      "label": "Founded (stiftelsesdato)",
+      "category": "identity",
+      "value": "2013-01-02",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2013-01-02",
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "business_address",
+      "label": "Business address",
+      "category": "location",
+      "value": "Østvangveien 2A, 0588 OSLO",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "municipality",
+      "label": "Municipality",
+      "category": "location",
+      "value": "OSLO",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "municipality_number",
+      "label": "Municipality number",
+      "category": "location",
+      "value": "0301",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "country",
+      "label": "Country",
+      "category": "location",
+      "value": "Norge",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "industry_code_1",
+      "label": "Industry code (NACE) primary",
+      "category": "activity",
+      "value": "33.140 – Reparasjon og vedlikehold av elektrisk utstyr",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "email",
+      "label": "Email (registered)",
+      "category": "contact",
+      "value": "larseric@frisurf.no",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "mobile",
+      "label": "Mobile (registered)",
+      "category": "contact",
+      "value": "908 33 626",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "institutional_sector",
+      "label": "Institutional sector",
+      "category": "activity",
+      "value": "2100 – Private aksjeselskaper mv.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "vat_registered",
+      "label": "Registered for VAT",
+      "category": "registrations",
+      "value": true,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "in_business_register",
+      "label": "Registered in the Register of Business Enterprises",
+      "category": "registrations",
+      "value": true,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "in_foundation_register",
+      "label": "Registered in the Register of Foundations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "in_voluntary_register",
+      "label": "Registered in the Register of Non-Profit Organisations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "last_annual_accounts_year",
+      "label": "Last submitted annual accounts (year)",
+      "category": "financials",
+      "value": "2025",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "statutory_purpose",
+      "label": "Statutory purpose",
+      "category": "activity",
+      "value": "Salg av servicetjenester på storkjøkkenutstyr, og deltakelse i annen inntektsbringende aktivitet som naturlig faller inn under dette.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "activity_description",
+      "label": "Registered activity",
+      "category": "activity",
+      "value": "Servicetjenester på storkjøkkenutstyr.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "articles_date",
+      "label": "Articles of association dated",
+      "category": "registrations",
+      "value": "2013-01-02",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2013-01-02",
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "written_language",
+      "label": "Written language form",
+      "category": "registrations",
+      "value": "Bokmål",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "bankrupt",
+      "label": "Bankrupt",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "under_liquidation",
+      "label": "Under liquidation",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "compulsory_dissolution",
+      "label": "Under compulsory liquidation/dissolution",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:09Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:59:09Z",
+      "last_verified": "2026-10-11T11:59:09Z"
+    },
+    {
+      "field": "ceo",
+      "label": "CEO / managing director (daglig leder)",
+      "category": "people",
+      "value": {
+        "name": "Lars Eric Ebbesen"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2013-01-22",
+      "retrieved_at": "2026-10-11T11:59:10Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:59:10Z",
+      "last_verified": "2026-10-11T11:59:10Z"
+    },
+    {
+      "field": "board_chair",
+      "label": "Chair of the board",
+      "category": "people",
+      "value": {
+        "name": "Lars Eric Ebbesen"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2013-01-22",
+      "retrieved_at": "2026-10-11T11:59:10Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:59:10Z",
+      "last_verified": "2026-10-11T11:59:10Z"
+    },
+    {
+      "field": "board_deputies",
+      "label": "Deputy board members",
+      "category": "people",
+      "value": [
+        {
+          "name": "Anne Kristiansen"
+        }
+      ],
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2013-01-22",
+      "retrieved_at": "2026-10-11T11:59:10Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:59:10Z",
+      "last_verified": "2026-10-11T11:59:10Z"
+    },
+    {
+      "field": "accountant",
+      "label": "External accountant",
+      "category": "people",
+      "value": {
+        "name": "DAHL OG AARNES REGNSKAP AS",
+        "organisation_number": "991624473"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2013-01-22",
+      "retrieved_at": "2026-10-11T11:59:10Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:59:10Z",
+      "last_verified": "2026-10-11T11:59:10Z"
+    },
+    {
+      "field": "subunit_count",
+      "label": "Number of registered establishments (sub-units)",
+      "category": "size",
+      "value": 1,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=999541607&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:10Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:59:10Z",
+      "last_verified": "2026-10-11T11:59:10Z"
+    },
+    {
+      "field": "subunits",
+      "label": "Establishments (first 15)",
+      "category": "size",
+      "value": [
+        {
+          "organisation_number": "990367108",
+          "name": "EBBESEN STORKJØKKEN SERVICE AS",
+          "municipality": "OSLO"
+        }
+      ],
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=999541607&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:59:10Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:59:10Z",
+      "last_verified": "2026-10-11T11:59:10Z"
+    },
+    {
+      "field": "accounts_period",
+      "label": "Accounting period (company)",
+      "category": "financials",
+      "value": "2025-01-01/2025-12-31",
+      "source": "brreg_regnskap",
+      "source_name": "Brønnøysund Register Centre – Register of Company Accounts (Regnskapsregisteret)",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2025-12-31",
+      "retrieved_at": "2026-10-11T11:59:11Z",
+      "confidence": "high",
+      "match": "Annual statement filed under this exact organisation number (virksomhet.organisasjonsnummer verified)",
+      "first_seen": "2026-10-11T11:59:11Z",
+      "last_verified": "2026-10-11T11:59:11Z"
+    },
+    {
+      "field": "revenue",
+      "label": "Operating revenue (company)",
+      "category": "financials",
+      "value": {
+        "amount": 1200370.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "source": "brreg_regnskap",
+      "source_name": "Brønnøysund Register Centre – Register of Company Accounts (Regnskapsregisteret)",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2025-12-31",
+      "retrieved_at": "2026-10-11T11:59:11Z",
+      "confidence": "high",
+      "match": "Annual statement filed under this exact organisation number (virksomhet.organisasjonsnummer verified)",
+      "note": "Exact figure as filed; not estimated or recomputed",
+      "first_seen": "2026-10-11T11:59:11Z",
+      "last_verified": "2026-10-11T11:59:11Z"
+    },
+    {
+      "field": "operating_expenses",
+      "label": "Operating expenses (company)",
+      "category": "financials",
+      "value": {
+        "amount": 1096100.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "source": "brreg_regnskap",
+      "source_name": "Brønnøysund Register Centre – Register of Company Accounts (Regnskapsregisteret)",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2025-12-31",
+      "retrieved_at": "2026-10-11T11:59:11Z",
+      "confidence": "high",
+      "match": "Annual statement filed under this exact organisation number (virksomhet.organisasjonsnummer verified)",
+      "note": "Exact figure as filed; not estimated or recomputed",
+      "first_seen": "2026-10-11T11:59:11Z",
+      "last_verified": "2026-10-11T11:59:11Z"
+    },
+    {
+      "field": "operating_profit",
+      "label": "Operating profit (EBIT) (company)",
+      "category": "financials",
+      "value": {
+        "amount": 104270.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "source": "brreg_regnskap",
+      "source_name": "Brønnøysund Register Centre – Register of Company Accounts (Regnskapsregisteret)",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2025-12-31",
+      "retrieved_at": "2026-10-11T11:59:11Z",
+      "confidence": "high",
+      "match": "Annual statement filed under this exact organisation number (virksomhet.organisasjonsnummer verified)",
+      "note": "Exact figure as filed; not estimated or recomputed",
+      "first_seen": "2026-10-11T11:59:11Z",
+      "last_verified": "2026-10-11T11:59:11Z"
+    },
+    {
+      "field": "financial_result",
+      "label": "Net financial items (company)",
+      "category": "financials",
+      "value": {
+        "amount": 3994.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "source": "brreg_regnskap",
+      "source_name": "Brønnøysund Register Centre – Register of Company Accounts (Regnskapsregisteret)",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2025-12-31",
+      "retrieved_at": "2026-10-11T11:59:11Z",
+      "confidence": "high",
+      "match": "Annual statement filed under this exact organisation number (virksomhet.organisasjonsnummer verified)",
+      "note": "Exact figure as filed; not estimated or recomputed",
+      "first_seen": "2026-10-11T11:59:11Z",
+      "last_verified": "2026-10-11T11:59:11Z"
+    },
+    {
+      "field": "profit_before_tax",
+      "label": "Profit before tax (company)",
+      "category": "financials",
+      "value": {
+        "amount": 108264.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "source": "brreg_regnskap",
+      "source_name": "Brønnøysund Register Centre – Register of Company Accounts (Regnskapsregisteret)",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2025-12-31",
+      "retrieved_at": "2026-10-11T11:59:11Z",
+      "confidence": "high",
+      "match": "Annual statement filed under this exact organisation number (virksomhet.organisasjonsnummer verified)",
+      "note": "Exact figure as filed; not estimated or recomputed",
+      "first_seen": "2026-10-11T11:59:11Z",
+      "last_verified": "2026-10-11T11:59:11Z"
+    },
+    {
+      "field": "net_income",
+      "label": "Net income (årsresultat) (company)",
+      "category": "financials",
+      "value": {
+        "amount": 83639.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "source": "brreg_regnskap",
+      "source_name": "Brønnøysund Register Centre – Register of Company Accounts (Regnskapsregisteret)",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2025-12-31",
+      "retrieved_at": "2026-10-11T11:59:11Z",
+      "confidence": "high",
+      "match": "Annual statement filed under this exact organisation number (virksomhet.organisasjonsnummer verified)",
+      "note": "Exact figure as filed; not estimated or recomputed",
+      "first_seen": "2026-10-11T11:59:11Z",
+      "last_verified": "2026-10-11T11:59:11Z"
+    },
+    {
+      "field": "total_assets",
+      "label": "Total assets (company)",
+      "category": "financials",
+      "value": {
+        "amount": 553354.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "source": "brreg_regnskap",
+      "source_name": "Brønnøysund Register Centre – Register of Company Accounts (Regnskapsregisteret)",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2025-12-31",
+      "retrieved_at": "2026-10-11T11:59:11Z",
+      "confidence": "high",
+      "match": "Annual statement filed under this exact organisation number (virksomhet.organisasjonsnummer verified)",
+      "note": "Exact figure as filed; not estimated or recomputed",
+      "first_seen": "2026-10-11T11:59:11Z",
+      "last_verified": "2026-10-11T11:59:11Z"
+    },
+    {
+      "field": "current_assets",
+      "label": "Current assets (company)",
+      "category": "financials",
+      "value": {
+        "amount": 553354.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "source": "brreg_regnskap",
+      "source_name": "Brønnøysund Register Centre – Register of Company Accounts (Regnskapsregisteret)",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2025-12-31",
+      "retrieved_at": "2026-10-11T11:59:11Z",
+      "confidence": "high",
+      "match": "Annual statement filed under this exact organisation number (virksomhet.organisasjonsnummer verified)",
+      "note": "Exact figure as filed; not estimated or recomputed",
+      "first_seen": "2026-10-11T11:59:11Z",
+      "last_verified": "2026-10-11T11:59:11Z"
+    },
+    {
+      "field": "fixed_assets",
+      "label": "Non-current assets (company)",
+      "category": "financials",
+      "value": {
+        "amount": 0.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "source": "brreg_regnskap",
+      "source_name": "Brønnøysund Register Centre – Register of Company Accounts (Regnskapsregisteret)",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2025-12-31",
+      "retrieved_at": "2026-10-11T11:59:11Z",
+      "confidence": "high",
+      "match": "Annual statement filed under this exact organisation number (virksomhet.organisasjonsnummer verified)",
+      "note": "Exact figure as filed; not estimated or recomputed",
+      "first_seen": "2026-10-11T11:59:11Z",
+      "last_verified": "2026-10-11T11:59:11Z"
+    },
+    {
+      "field": "equity",
+      "label": "Total equity (company)",
+      "category": "financials",
+      "value": {
+        "amount": 329379.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "source": "brreg_regnskap",
+      "source_name": "Brønnøysund Register Centre – Register of Company Accounts (Regnskapsregisteret)",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2025-12-31",
+      "retrieved_at": "2026-10-11T11:59:11Z",
+      "confidence": "high",
+      "match": "Annual statement filed under this exact organisation number (virksomhet.organisasjonsnummer verified)",
+      "note": "Exact figure as filed; not estimated or recomputed",
+      "first_seen": "2026-10-11T11:59:11Z",
+      "last_verified": "2026-10-11T11:59:11Z"
+    },
+    {
+      "field": "total_liabilities",
+      "label": "Total liabilities (company)",
+      "category": "financials",
+      "value": {
+        "amount": 223976.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "source": "brreg_regnskap",
+      "source_name": "Brønnøysund Register Centre – Register of Company Accounts (Regnskapsregisteret)",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2025-12-31",
+      "retrieved_at": "2026-10-11T11:59:11Z",
+      "confidence": "high",
+      "match": "Annual statement filed under this exact organisation number (virksomhet.organisasjonsnummer verified)",
+      "note": "Exact figure as filed; not estimated or recomputed",
+      "first_seen": "2026-10-11T11:59:11Z",
+      "last_verified": "2026-10-11T11:59:11Z"
+    },
+    {
+      "field": "current_liabilities",
+      "label": "Current liabilities (company)",
+      "category": "financials",
+      "value": {
+        "amount": 223976.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "source": "brreg_regnskap",
+      "source_name": "Brønnøysund Register Centre – Register of Company Accounts (Regnskapsregisteret)",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2025-12-31",
+      "retrieved_at": "2026-10-11T11:59:11Z",
+      "confidence": "high",
+      "match": "Annual statement filed under this exact organisation number (virksomhet.organisasjonsnummer verified)",
+      "note": "Exact figure as filed; not estimated or recomputed",
+      "first_seen": "2026-10-11T11:59:11Z",
+      "last_verified": "2026-10-11T11:59:11Z"
+    },
+    {
+      "field": "accounts_audited",
+      "label": "Accounts audited (company)",
+      "category": "financials",
+      "value": true,
+      "source": "brreg_regnskap",
+      "source_name": "Brønnøysund Register Centre – Register of Company Accounts (Regnskapsregisteret)",
+      "source_url": "https://data.brreg.no/regnskapsregisteret/regnskap/999541607",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/999541607",
+      "as_of": "2025-12-31",
+      "retrieved_at": "2026-10-11T11:59:11Z",
+      "confidence": "high",
+      "match": "Annual statement filed under this exact organisation number (virksomhet.organisasjonsnummer verified)",
+      "first_seen": "2026-10-11T11:59:11Z",
+      "last_verified": "2026-10-11T11:59:11Z"
+    }
+  ],
+  "profile": {
+    "identity": {
+      "organisation_number": "999541607",
+      "legal_name": "EBBESEN STORKJØKKEN SERVICE AS",
+      "legal_form": "AS – Aksjeselskap",
+      "registered_date": "2013-01-22",
+      "founded_date": "2013-01-02"
+    },
+    "location": {
+      "business_address": "Østvangveien 2A, 0588 OSLO",
+      "municipality": "OSLO",
+      "municipality_number": "0301",
+      "country": "Norge"
+    },
+    "activity": {
+      "industry_code_1": "33.140 – Reparasjon og vedlikehold av elektrisk utstyr",
+      "institutional_sector": "2100 – Private aksjeselskaper mv.",
+      "statutory_purpose": "Salg av servicetjenester på storkjøkkenutstyr, og deltakelse i annen inntektsbringende aktivitet som naturlig faller inn under dette.",
+      "activity_description": "Servicetjenester på storkjøkkenutstyr."
+    },
+    "contact": {
+      "email": "larseric@frisurf.no",
+      "mobile": "908 33 626"
+    },
+    "registrations": {
+      "vat_registered": true,
+      "in_business_register": true,
+      "in_foundation_register": false,
+      "in_voluntary_register": false,
+      "articles_date": "2013-01-02",
+      "written_language": "Bokmål"
+    },
+    "financials": {
+      "last_annual_accounts_year": "2025",
+      "accounts_period": "2025-01-01/2025-12-31",
+      "revenue": {
+        "amount": 1200370.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "operating_expenses": {
+        "amount": 1096100.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "operating_profit": {
+        "amount": 104270.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "financial_result": {
+        "amount": 3994.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "profit_before_tax": {
+        "amount": 108264.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "net_income": {
+        "amount": 83639.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "total_assets": {
+        "amount": 553354.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "current_assets": {
+        "amount": 553354.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "fixed_assets": {
+        "amount": 0.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "equity": {
+        "amount": 329379.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "total_liabilities": {
+        "amount": 223976.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "current_liabilities": {
+        "amount": 223976.0,
+        "currency": "NOK",
+        "period": "2025-01-01/2025-12-31",
+        "statement": "company"
+      },
+      "accounts_audited": true
+    },
+    "status": {
+      "bankrupt": false,
+      "under_liquidation": false,
+      "compulsory_dissolution": false
+    },
+    "people": {
+      "ceo": {
+        "name": "Lars Eric Ebbesen"
+      },
+      "board_chair": {
+        "name": "Lars Eric Ebbesen"
+      },
+      "board_deputies": [
+        {
+          "name": "Anne Kristiansen"
+        }
+      ],
+      "accountant": {
+        "name": "DAHL OG AARNES REGNSKAP AS",
+        "organisation_number": "991624473"
+      }
+    },
+    "size": {
+      "subunit_count": 1,
+      "subunits": [
+        {
+          "organisation_number": "990367108",
+          "name": "EBBESEN STORKJØKKEN SERVICE AS",
+          "municipality": "OSLO"
+        }
+      ]
+    }
+  },
+  "summary": "EBBESEN STORKJØKKEN SERVICE AS (org. no. 999 541 607) is a private limited company (AS) based in Oslo, in the Brønnøysund registers since 2013-01-22. It is active with no bankruptcy or liquidation registered. Its main activity is NACE 33.140 (Reparasjon og vedlikehold av elektrisk utstyr). In its 2025 accounts (company level) operating revenue was NOK 1.2 m and net income was NOK 83 639. CEO: Lars Eric Ebbesen; board chair: Lars Eric Ebbesen.",
+  "gaps": [
+    {
+      "topic": "website",
+      "reason": "No website is registered in Enhetsregisteret or verified on Wikidata."
+    },
+    {
+      "topic": "identifiers",
+      "reason": "No LEI is registered with GLEIF for this organisation number (common for companies without traded securities or large financial contracts)."
+    },
+    {
+      "topic": "reference",
+      "reason": "No verified Wikidata item links to this number (normal for smaller companies)."
+    }
+  ],
+  "verification": {
+    "method": "Every fact comes from a record fetched by the exact organisation number. Secondary sources (GLEIF, Wikidata) are only accepted when their record names this number AND the legal name or LEI agrees; financial values are copied as filed and never estimated.",
+    "checks": [
+      {
+        "check": "organisation number checksum (mod 11)",
+        "result": "pass"
+      },
+      {
+        "check": "registry record organisation number equals query",
+        "result": "pass"
+      },
+      {
+        "check": "annual statement filed under this organisation number",
+        "result": "pass"
+      }
+    ],
+    "rejected": []
+  },
+  "sources": [
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_roller",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/999541607/roller",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=999541607&size=50",
+      "status": "ok",
+      "http_status": 200,
+      "note": "sub-units",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_regnskap",
+      "url": "https://data.brreg.no/regnskapsregisteret/regnskap/999541607",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – Register of Company Accounts (Regnskapsregisteret)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "gleif",
+      "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bfulltext%5D=999541607&filter%5Bentity.legalAddress.country%5D=NO&page%5Bsize%5D=10",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Global Legal Entity Identifier Foundation (GLEIF) LEI records",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "wikidata",
+      "url": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP2333%3D999541607&srlimit=5&format=json",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Wikidata (matched on property P2333, Norwegian organisation number)",
+      "licence": "CC0 1.0"
+    }
+  ],
+  "changes": [],
+  "history": [],
+  "complete": true,
+  "stats": {
+    "requests": 104,
+    "seconds": 56.29,
+    "fact_count": 45
+  }
+}

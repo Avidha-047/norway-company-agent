@@ -1,0 +1,589 @@
+{
+  "schema_version": "1.1",
+  "query": "880715542",
+  "organisation_number": "880715542",
+  "generated_at": "2026-10-11T11:31:00Z",
+  "status": "under_liquidation",
+  "entity_type": "legal entity",
+  "name": "DET GODE SELSKAB ANITA FON MATHISEN SIDSEL LUNDIN ANS",
+  "facts": [
+    {
+      "field": "organisation_number",
+      "label": "Organisation number",
+      "category": "identity",
+      "value": "880715542",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "legal_name",
+      "label": "Registered name",
+      "category": "identity",
+      "value": "DET GODE SELSKAB ANITA FON MATHISEN SIDSEL LUNDIN ANS",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "legal_form",
+      "label": "Legal form",
+      "category": "identity",
+      "value": "ANS – Ansvarlig selskap med solidarisk ansvar",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "registered_date",
+      "label": "Registered in Enhetsregisteret",
+      "category": "identity",
+      "value": "1999-05-12",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": "1999-05-12",
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "founded_date",
+      "label": "Founded (stiftelsesdato)",
+      "category": "identity",
+      "value": "1999-04-20",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": "1999-04-20",
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "business_address",
+      "label": "Business address",
+      "category": "location",
+      "value": "Voldportgaten 74, 1632 GAMLE FREDRIKSTAD",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "municipality",
+      "label": "Municipality",
+      "category": "location",
+      "value": "FREDRIKSTAD",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "municipality_number",
+      "label": "Municipality number",
+      "category": "location",
+      "value": "3107",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "country",
+      "label": "Country",
+      "category": "location",
+      "value": "Norge",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "postal_address",
+      "label": "Postal address",
+      "category": "location",
+      "value": "Trollveien 2A, 3123 TØNSBERG",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "industry_code_1",
+      "label": "Industry code (NACE) primary",
+      "category": "activity",
+      "value": "47.762 – Detaljhandel med kjæledyr og varer til kjæledyr",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "employees",
+      "label": "Registered number of employees",
+      "category": "size",
+      "value": 0,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "note": "No employees registered in the Aa-register",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "institutional_sector",
+      "label": "Institutional sector",
+      "category": "activity",
+      "value": "2300 – Personlige foretak",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "vat_registered",
+      "label": "Registered for VAT",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "in_business_register",
+      "label": "Registered in the Register of Business Enterprises",
+      "category": "registrations",
+      "value": true,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "in_foundation_register",
+      "label": "Registered in the Register of Foundations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "in_voluntary_register",
+      "label": "Registered in the Register of Non-Profit Organisations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "statutory_purpose",
+      "label": "Statutory purpose",
+      "category": "activity",
+      "value": "Butikksalg av gave/interiør produkter. Egenproduksjon av varer. Engrossalg. Salg av kaffe/is, enkel matservering. Kursvirksomhet.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "activity_description",
+      "label": "Registered activity",
+      "category": "activity",
+      "value": "Butikkhandel med gave/interiør varer. Produksjon av gaver/interiør varer. Salg av turistprodukter. Salg av kaffe/is enkel servering.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "articles_date",
+      "label": "Articles of association dated",
+      "category": "registrations",
+      "value": "1999-04-20",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": "1999-04-20",
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "written_language",
+      "label": "Written language form",
+      "category": "registrations",
+      "value": "Bokmål",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "bankrupt",
+      "label": "Bankrupt",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "under_liquidation",
+      "label": "Under liquidation",
+      "category": "status",
+      "value": true,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": "2026-07-21",
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "liquidation_date",
+      "label": "Liquidation date",
+      "category": "status",
+      "value": "2026-07-21",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "compulsory_dissolution",
+      "label": "Under compulsory liquidation/dissolution",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:01Z",
+      "last_verified": "2026-10-11T11:31:01Z"
+    },
+    {
+      "field": "partners",
+      "label": "Partners (joint liability)",
+      "category": "people",
+      "value": [
+        {
+          "name": "Anita Fon"
+        },
+        {
+          "name": "Sidsel Ingeborg Stangeland"
+        }
+      ],
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": "1999-06-08",
+      "retrieved_at": "2026-10-11T11:31:02Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:31:02Z",
+      "last_verified": "2026-10-11T11:31:02Z"
+    },
+    {
+      "field": "subunit_count",
+      "label": "Number of registered establishments (sub-units)",
+      "category": "size",
+      "value": 0,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=880715542&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/880715542",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:02Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:31:02Z",
+      "last_verified": "2026-10-11T11:31:02Z"
+    }
+  ],
+  "profile": {
+    "identity": {
+      "organisation_number": "880715542",
+      "legal_name": "DET GODE SELSKAB ANITA FON MATHISEN SIDSEL LUNDIN ANS",
+      "legal_form": "ANS – Ansvarlig selskap med solidarisk ansvar",
+      "registered_date": "1999-05-12",
+      "founded_date": "1999-04-20"
+    },
+    "location": {
+      "business_address": "Voldportgaten 74, 1632 GAMLE FREDRIKSTAD",
+      "municipality": "FREDRIKSTAD",
+      "municipality_number": "3107",
+      "country": "Norge",
+      "postal_address": "Trollveien 2A, 3123 TØNSBERG"
+    },
+    "activity": {
+      "industry_code_1": "47.762 – Detaljhandel med kjæledyr og varer til kjæledyr",
+      "institutional_sector": "2300 – Personlige foretak",
+      "statutory_purpose": "Butikksalg av gave/interiør produkter. Egenproduksjon av varer. Engrossalg. Salg av kaffe/is, enkel matservering. Kursvirksomhet.",
+      "activity_description": "Butikkhandel med gave/interiør varer. Produksjon av gaver/interiør varer. Salg av turistprodukter. Salg av kaffe/is enkel servering."
+    },
+    "size": {
+      "employees": 0,
+      "subunit_count": 0
+    },
+    "registrations": {
+      "vat_registered": false,
+      "in_business_register": true,
+      "in_foundation_register": false,
+      "in_voluntary_register": false,
+      "articles_date": "1999-04-20",
+      "written_language": "Bokmål"
+    },
+    "status": {
+      "bankrupt": false,
+      "under_liquidation": true,
+      "liquidation_date": "2026-07-21",
+      "compulsory_dissolution": false
+    },
+    "people": {
+      "partners": [
+        {
+          "name": "Anita Fon"
+        },
+        {
+          "name": "Sidsel Ingeborg Stangeland"
+        }
+      ]
+    }
+  },
+  "summary": "DET GODE SELSKAB ANITA FON MATHISEN SIDSEL LUNDIN ANS (org. no. 880 715 542) is a general partnership (ANS) based in Fredrikstad, in the Brønnøysund registers since 1999-05-12. It is under liquidation. Its main activity is NACE 47.762 (Detaljhandel med kjæledyr og varer til kjæledyr); it has 0 registered employees.",
+  "gaps": [
+    {
+      "topic": "financials",
+      "reason": "Legal form ANS is normally not required to file annual accounts in Norway, so none are public."
+    },
+    {
+      "topic": "website",
+      "reason": "No website is registered in Enhetsregisteret or verified on Wikidata."
+    },
+    {
+      "topic": "identifiers",
+      "reason": "No LEI is registered with GLEIF for this organisation number (common for companies without traded securities or large financial contracts)."
+    },
+    {
+      "topic": "people",
+      "reason": "No CEO (daglig leder) is registered; this is optional for many legal forms."
+    },
+    {
+      "topic": "reference",
+      "reason": "No verified Wikidata item links to this number (normal for smaller companies)."
+    }
+  ],
+  "verification": {
+    "method": "Every fact comes from a record fetched by the exact organisation number. Secondary sources (GLEIF, Wikidata) are only accepted when their record names this number AND the legal name or LEI agrees; financial values are copied as filed and never estimated.",
+    "checks": [
+      {
+        "check": "organisation number checksum (mod 11)",
+        "result": "pass"
+      },
+      {
+        "check": "registry record organisation number equals query",
+        "result": "pass"
+      }
+    ],
+    "rejected": []
+  },
+  "sources": [
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_roller",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/880715542/roller",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=880715542&size=50",
+      "status": "ok",
+      "http_status": 200,
+      "note": "sub-units",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "gleif",
+      "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bfulltext%5D=880715542&filter%5Bentity.legalAddress.country%5D=NO&page%5Bsize%5D=10",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Global Legal Entity Identifier Foundation (GLEIF) LEI records",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "wikidata",
+      "url": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP2333%3D880715542&srlimit=5&format=json",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Wikidata (matched on property P2333, Norwegian organisation number)",
+      "licence": "CC0 1.0"
+    }
+  ],
+  "changes": [],
+  "history": [],
+  "complete": true,
+  "stats": {
+    "requests": 49,
+    "seconds": 7.04,
+    "fact_count": 27
+  }
+}

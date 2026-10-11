@@ -1,0 +1,758 @@
+{
+  "schema_version": "1.1",
+  "query": "982008859",
+  "organisation_number": "982008859",
+  "generated_at": "2026-10-11T11:42:01Z",
+  "status": "active",
+  "entity_type": "legal entity",
+  "name": "HEIMDAL FOTBALL",
+  "facts": [
+    {
+      "field": "organisation_number",
+      "label": "Organisation number",
+      "category": "identity",
+      "value": "982008859",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "legal_name",
+      "label": "Registered name",
+      "category": "identity",
+      "value": "HEIMDAL FOTBALL",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "legal_form",
+      "label": "Legal form",
+      "category": "identity",
+      "value": "FLI – Forening/lag/innretning",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "registered_date",
+      "label": "Registered in Enhetsregisteret",
+      "category": "identity",
+      "value": "2000-06-27",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": "2000-06-27",
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "founded_date",
+      "label": "Founded (stiftelsesdato)",
+      "category": "identity",
+      "value": "1998-06-30",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": "1998-06-30",
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "business_address",
+      "label": "Business address",
+      "category": "location",
+      "value": "Vestre Rosten 4, 7072 HEIMDAL",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "municipality",
+      "label": "Municipality",
+      "category": "location",
+      "value": "TRONDHEIM",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "municipality_number",
+      "label": "Municipality number",
+      "category": "location",
+      "value": "5001",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "country",
+      "label": "Country",
+      "category": "location",
+      "value": "Norge",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "postal_address",
+      "label": "Postal address",
+      "category": "location",
+      "value": "Postboks 104  Heimdal, 7473 TRONDHEIM",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "industry_code_1",
+      "label": "Industry code (NACE) primary",
+      "category": "activity",
+      "value": "93.120 – Aktiviteter i idrettslag og -klubber",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "website",
+      "label": "Website (registered)",
+      "category": "contact",
+      "value": "www.heimdal-fotball.no",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "email",
+      "label": "Email (registered)",
+      "category": "contact",
+      "value": "kontoret@heimdal-fotball.no",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "mobile",
+      "label": "Mobile (registered)",
+      "category": "contact",
+      "value": "922 35 559",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "institutional_sector",
+      "label": "Institutional sector",
+      "category": "activity",
+      "value": "7000 – Ideelle organisasjoner",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "vat_registered",
+      "label": "Registered for VAT",
+      "category": "registrations",
+      "value": true,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "in_business_register",
+      "label": "Registered in the Register of Business Enterprises",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "in_foundation_register",
+      "label": "Registered in the Register of Foundations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "in_voluntary_register",
+      "label": "Registered in the Register of Non-Profit Organisations",
+      "category": "registrations",
+      "value": true,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "activity_description",
+      "label": "Registered activity",
+      "category": "activity",
+      "value": "Idrettslag.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "written_language",
+      "label": "Written language form",
+      "category": "registrations",
+      "value": "Bokmål",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "bankrupt",
+      "label": "Bankrupt",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "under_liquidation",
+      "label": "Under liquidation",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "compulsory_dissolution",
+      "label": "Under compulsory liquidation/dissolution",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "ceo",
+      "label": "CEO / managing director (daglig leder)",
+      "category": "people",
+      "value": {
+        "name": "Ragnar Slettestøl"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": "2025-05-12",
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "board_chair",
+      "label": "Chair of the board",
+      "category": "people",
+      "value": {
+        "name": "Thomas Lillevik Thorgård"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": "2026-06-04",
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "board_members",
+      "label": "Board members",
+      "category": "people",
+      "value": [
+        {
+          "name": "Kim Roger Bergmann"
+        },
+        {
+          "name": "Rolf Reidar Østby Sundberg"
+        }
+      ],
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": "2026-06-04",
+      "retrieved_at": "2026-10-11T11:42:02Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:42:02Z",
+      "last_verified": "2026-10-11T11:42:02Z"
+    },
+    {
+      "field": "subunit_count",
+      "label": "Number of registered establishments (sub-units)",
+      "category": "size",
+      "value": 1,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=982008859&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:03Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:42:03Z",
+      "last_verified": "2026-10-11T11:42:03Z"
+    },
+    {
+      "field": "subunits",
+      "label": "Establishments (first 15)",
+      "category": "size",
+      "value": [
+        {
+          "organisation_number": "917055068",
+          "name": "HEIMDAL FOTBALL",
+          "municipality": "TRONDHEIM"
+        }
+      ],
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=982008859&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/982008859",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:03Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:42:03Z",
+      "last_verified": "2026-10-11T11:42:03Z"
+    },
+    {
+      "field": "website_final_url",
+      "label": "Website (resolved URL)",
+      "category": "web",
+      "value": "https://www.heimdal-fotball.no",
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://www.heimdal-fotball.no",
+      "evidence_url": "https://www.heimdal-fotball.no",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:09Z",
+      "confidence": "high",
+      "match": "Website registered for this organisation number in Enhetsregisteret; the page itself shows the organisation number",
+      "first_seen": "2026-10-11T11:42:09Z",
+      "last_verified": "2026-10-11T11:42:09Z"
+    },
+    {
+      "field": "website_title",
+      "label": "Website title",
+      "category": "web",
+      "value": "Hjem | Heimdal Fotball",
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://www.heimdal-fotball.no",
+      "evidence_url": "https://www.heimdal-fotball.no",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:09Z",
+      "confidence": "high",
+      "match": "Website registered for this organisation number in Enhetsregisteret; the page itself shows the organisation number",
+      "first_seen": "2026-10-11T11:42:09Z",
+      "last_verified": "2026-10-11T11:42:09Z"
+    },
+    {
+      "field": "website_description",
+      "label": "Website description",
+      "category": "web",
+      "value": "Official website for Heimdal Fotball",
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://www.heimdal-fotball.no",
+      "evidence_url": "https://www.heimdal-fotball.no",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:09Z",
+      "confidence": "high",
+      "match": "Website registered for this organisation number in Enhetsregisteret; the page itself shows the organisation number",
+      "first_seen": "2026-10-11T11:42:09Z",
+      "last_verified": "2026-10-11T11:42:09Z"
+    },
+    {
+      "field": "website_site_name",
+      "label": "Website brand name",
+      "category": "web",
+      "value": "Heimdal Fotball",
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://www.heimdal-fotball.no",
+      "evidence_url": "https://www.heimdal-fotball.no",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:09Z",
+      "confidence": "high",
+      "match": "Website registered for this organisation number in Enhetsregisteret; the page itself shows the organisation number",
+      "first_seen": "2026-10-11T11:42:09Z",
+      "last_verified": "2026-10-11T11:42:09Z"
+    },
+    {
+      "field": "website_shows_orgnr",
+      "label": "Website shows the organisation number",
+      "category": "web",
+      "value": true,
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://www.heimdal-fotball.no",
+      "evidence_url": "https://www.heimdal-fotball.no",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:09Z",
+      "confidence": "high",
+      "match": "Website registered for this organisation number in Enhetsregisteret; the page itself shows the organisation number",
+      "first_seen": "2026-10-11T11:42:09Z",
+      "last_verified": "2026-10-11T11:42:09Z"
+    },
+    {
+      "field": "social_profiles",
+      "label": "Social media profiles (linked from website)",
+      "category": "contact",
+      "value": {
+        "facebook": "https://www.facebook.com/heimdalfotball1929",
+        "instagram": "https://www.instagram.com/heimdalindoor"
+      },
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://www.heimdal-fotball.no",
+      "evidence_url": "https://www.heimdal-fotball.no",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:42:09Z",
+      "confidence": "high",
+      "match": "Website registered for this organisation number in Enhetsregisteret; the page itself shows the organisation number",
+      "first_seen": "2026-10-11T11:42:09Z",
+      "last_verified": "2026-10-11T11:42:09Z"
+    }
+  ],
+  "profile": {
+    "identity": {
+      "organisation_number": "982008859",
+      "legal_name": "HEIMDAL FOTBALL",
+      "legal_form": "FLI – Forening/lag/innretning",
+      "registered_date": "2000-06-27",
+      "founded_date": "1998-06-30"
+    },
+    "location": {
+      "business_address": "Vestre Rosten 4, 7072 HEIMDAL",
+      "municipality": "TRONDHEIM",
+      "municipality_number": "5001",
+      "country": "Norge",
+      "postal_address": "Postboks 104  Heimdal, 7473 TRONDHEIM"
+    },
+    "activity": {
+      "industry_code_1": "93.120 – Aktiviteter i idrettslag og -klubber",
+      "institutional_sector": "7000 – Ideelle organisasjoner",
+      "activity_description": "Idrettslag."
+    },
+    "contact": {
+      "website": "www.heimdal-fotball.no",
+      "email": "kontoret@heimdal-fotball.no",
+      "mobile": "922 35 559",
+      "social_profiles": {
+        "facebook": "https://www.facebook.com/heimdalfotball1929",
+        "instagram": "https://www.instagram.com/heimdalindoor"
+      }
+    },
+    "registrations": {
+      "vat_registered": true,
+      "in_business_register": false,
+      "in_foundation_register": false,
+      "in_voluntary_register": true,
+      "written_language": "Bokmål"
+    },
+    "status": {
+      "bankrupt": false,
+      "under_liquidation": false,
+      "compulsory_dissolution": false
+    },
+    "people": {
+      "ceo": {
+        "name": "Ragnar Slettestøl"
+      },
+      "board_chair": {
+        "name": "Thomas Lillevik Thorgård"
+      },
+      "board_members": [
+        {
+          "name": "Kim Roger Bergmann"
+        },
+        {
+          "name": "Rolf Reidar Østby Sundberg"
+        }
+      ]
+    },
+    "size": {
+      "subunit_count": 1,
+      "subunits": [
+        {
+          "organisation_number": "917055068",
+          "name": "HEIMDAL FOTBALL",
+          "municipality": "TRONDHEIM"
+        }
+      ]
+    },
+    "web": {
+      "website_final_url": "https://www.heimdal-fotball.no",
+      "website_title": "Hjem | Heimdal Fotball",
+      "website_description": "Official website for Heimdal Fotball",
+      "website_site_name": "Heimdal Fotball",
+      "website_shows_orgnr": true
+    }
+  },
+  "summary": "HEIMDAL FOTBALL (org. no. 982 008 859) is an association (FLI) based in Trondheim, in the Brønnøysund registers since 2000-06-27. It is active with no bankruptcy or liquidation registered. Its main activity is NACE 93.120 (Aktiviteter i idrettslag og -klubber). CEO: Ragnar Slettestøl; board chair: Thomas Lillevik Thorgård.",
+  "gaps": [
+    {
+      "topic": "financials",
+      "reason": "Legal form FLI is normally not required to file annual accounts in Norway, so none are public."
+    },
+    {
+      "topic": "identifiers",
+      "reason": "No LEI is registered with GLEIF for this organisation number (common for companies without traded securities or large financial contracts)."
+    },
+    {
+      "topic": "reference",
+      "reason": "No verified Wikidata item links to this number (normal for smaller companies)."
+    }
+  ],
+  "verification": {
+    "method": "Every fact comes from a record fetched by the exact organisation number. Secondary sources (GLEIF, Wikidata) are only accepted when their record names this number AND the legal name or LEI agrees; financial values are copied as filed and never estimated.",
+    "checks": [
+      {
+        "check": "organisation number checksum (mod 11)",
+        "result": "pass"
+      },
+      {
+        "check": "registry record organisation number equals query",
+        "result": "pass"
+      },
+      {
+        "check": "registered website displays the organisation number",
+        "result": "pass"
+      }
+    ],
+    "rejected": []
+  },
+  "sources": [
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_roller",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/982008859/roller",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=982008859&size=50",
+      "status": "ok",
+      "http_status": 200,
+      "note": "sub-units",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "gleif",
+      "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bfulltext%5D=982008859&filter%5Bentity.legalAddress.country%5D=NO&page%5Bsize%5D=10",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Global Legal Entity Identifier Foundation (GLEIF) LEI records",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "wikidata",
+      "url": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP2333%3D982008859&srlimit=5&format=json",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Wikidata (matched on property P2333, Norwegian organisation number)",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "company_website",
+      "url": "https://www.heimdal-fotball.no",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "licence": "public web page; only titles, descriptions and links extracted"
+    }
+  ],
+  "changes": [],
+  "history": [],
+  "complete": true,
+  "stats": {
+    "requests": 64,
+    "seconds": 8.29,
+    "fact_count": 35
+  }
+}

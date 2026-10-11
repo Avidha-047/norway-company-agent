@@ -1,0 +1,519 @@
+{
+  "schema_version": "1.1",
+  "query": "811995932",
+  "organisation_number": "811995932",
+  "generated_at": "2026-10-11T12:16:07Z",
+  "status": "active",
+  "entity_type": "legal entity",
+  "name": "CATO REGNSKAP & RÅDGIVNING TOR SKIPPERØ",
+  "facts": [
+    {
+      "field": "organisation_number",
+      "label": "Organisation number",
+      "category": "identity",
+      "value": "811995932",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "legal_name",
+      "label": "Registered name",
+      "category": "identity",
+      "value": "CATO REGNSKAP & RÅDGIVNING TOR SKIPPERØ",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "legal_form",
+      "label": "Legal form",
+      "category": "identity",
+      "value": "ENK – Enkeltpersonforetak",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "registered_date",
+      "label": "Registered in Enhetsregisteret",
+      "category": "identity",
+      "value": "2013-05-28",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": "2013-05-28",
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "business_address",
+      "label": "Business address",
+      "category": "location",
+      "value": "Vikhovlia 1722, 7560 VIKHAMMER",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "municipality",
+      "label": "Municipality",
+      "category": "location",
+      "value": "MALVIK",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "municipality_number",
+      "label": "Municipality number",
+      "category": "location",
+      "value": "5031",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "country",
+      "label": "Country",
+      "category": "location",
+      "value": "Norge",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "industry_code_1",
+      "label": "Industry code (NACE) primary",
+      "category": "activity",
+      "value": "70.200 – Bedriftsrådgivning og annen administrativ rådgivning",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "employees",
+      "label": "Registered number of employees",
+      "category": "size",
+      "value": 0,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "note": "No employees registered in the Aa-register",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "institutional_sector",
+      "label": "Institutional sector",
+      "category": "activity",
+      "value": "8200 – Personlig næringsdrivende",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "vat_registered",
+      "label": "Registered for VAT",
+      "category": "registrations",
+      "value": true,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "in_business_register",
+      "label": "Registered in the Register of Business Enterprises",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "in_foundation_register",
+      "label": "Registered in the Register of Foundations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "in_voluntary_register",
+      "label": "Registered in the Register of Non-Profit Organisations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "activity_description",
+      "label": "Registered activity",
+      "category": "activity",
+      "value": "Rådgivning overfor bedrifter og privatpersoner.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "written_language",
+      "label": "Written language form",
+      "category": "registrations",
+      "value": "Bokmål",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "bankrupt",
+      "label": "Bankrupt",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "under_liquidation",
+      "label": "Under liquidation",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "compulsory_dissolution",
+      "label": "Under compulsory liquidation/dissolution",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:16:08Z",
+      "last_verified": "2026-10-11T12:16:08Z"
+    },
+    {
+      "field": "owner",
+      "label": "Owner (sole proprietorship)",
+      "category": "people",
+      "value": {
+        "name": "Tor Skipperø"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": "2013-05-28",
+      "retrieved_at": "2026-10-11T12:16:09Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:16:09Z",
+      "last_verified": "2026-10-11T12:16:09Z"
+    },
+    {
+      "field": "subunit_count",
+      "label": "Number of registered establishments (sub-units)",
+      "category": "size",
+      "value": 1,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=811995932&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:09Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T12:16:09Z",
+      "last_verified": "2026-10-11T12:16:09Z"
+    },
+    {
+      "field": "subunits",
+      "label": "Establishments (first 15)",
+      "category": "size",
+      "value": [
+        {
+          "organisation_number": "912012018",
+          "name": "CATO REGNSKAP & RÅDGIVNING TOR SKIPPERØ",
+          "municipality": "MALVIK"
+        }
+      ],
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=811995932&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/811995932",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:16:09Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T12:16:09Z",
+      "last_verified": "2026-10-11T12:16:09Z"
+    }
+  ],
+  "profile": {
+    "identity": {
+      "organisation_number": "811995932",
+      "legal_name": "CATO REGNSKAP & RÅDGIVNING TOR SKIPPERØ",
+      "legal_form": "ENK – Enkeltpersonforetak",
+      "registered_date": "2013-05-28"
+    },
+    "location": {
+      "business_address": "Vikhovlia 1722, 7560 VIKHAMMER",
+      "municipality": "MALVIK",
+      "municipality_number": "5031",
+      "country": "Norge"
+    },
+    "activity": {
+      "industry_code_1": "70.200 – Bedriftsrådgivning og annen administrativ rådgivning",
+      "institutional_sector": "8200 – Personlig næringsdrivende",
+      "activity_description": "Rådgivning overfor bedrifter og privatpersoner."
+    },
+    "size": {
+      "employees": 0,
+      "subunit_count": 1,
+      "subunits": [
+        {
+          "organisation_number": "912012018",
+          "name": "CATO REGNSKAP & RÅDGIVNING TOR SKIPPERØ",
+          "municipality": "MALVIK"
+        }
+      ]
+    },
+    "registrations": {
+      "vat_registered": true,
+      "in_business_register": false,
+      "in_foundation_register": false,
+      "in_voluntary_register": false,
+      "written_language": "Bokmål"
+    },
+    "status": {
+      "bankrupt": false,
+      "under_liquidation": false,
+      "compulsory_dissolution": false
+    },
+    "people": {
+      "owner": {
+        "name": "Tor Skipperø"
+      }
+    }
+  },
+  "summary": "CATO REGNSKAP & RÅDGIVNING TOR SKIPPERØ (org. no. 811 995 932) is a sole proprietorship (ENK) based in Malvik, in the Brønnøysund registers since 2013-05-28. It is active with no bankruptcy or liquidation registered. Its main activity is NACE 70.200 (Bedriftsrådgivning og annen administrativ rådgivning); it has 0 registered employees.",
+  "gaps": [
+    {
+      "topic": "financials",
+      "reason": "Legal form ENK is normally not required to file annual accounts in Norway, so none are public."
+    },
+    {
+      "topic": "website",
+      "reason": "No website is registered in Enhetsregisteret or verified on Wikidata."
+    },
+    {
+      "topic": "identifiers",
+      "reason": "No LEI is registered with GLEIF for this organisation number (common for companies without traded securities or large financial contracts)."
+    },
+    {
+      "topic": "reference",
+      "reason": "No verified Wikidata item links to this number (normal for smaller companies)."
+    }
+  ],
+  "verification": {
+    "method": "Every fact comes from a record fetched by the exact organisation number. Secondary sources (GLEIF, Wikidata) are only accepted when their record names this number AND the legal name or LEI agrees; financial values are copied as filed and never estimated.",
+    "checks": [
+      {
+        "check": "organisation number checksum (mod 11)",
+        "result": "pass"
+      },
+      {
+        "check": "registry record organisation number equals query",
+        "result": "pass"
+      }
+    ],
+    "rejected": []
+  },
+  "sources": [
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_roller",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/811995932/roller",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=811995932&size=50",
+      "status": "ok",
+      "http_status": 200,
+      "note": "sub-units",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "gleif",
+      "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bfulltext%5D=811995932&filter%5Bentity.legalAddress.country%5D=NO&page%5Bsize%5D=10",
+      "status": "error",
+      "http_status": 429,
+      "source_name": "Global Legal Entity Identifier Foundation (GLEIF) LEI records",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "wikidata",
+      "url": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP2333%3D811995932&srlimit=5&format=json",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Wikidata (matched on property P2333, Norwegian organisation number)",
+      "licence": "CC0 1.0"
+    }
+  ],
+  "changes": [],
+  "history": [],
+  "complete": true,
+  "stats": {
+    "requests": 101,
+    "seconds": 62.33,
+    "fact_count": 23
+  }
+}

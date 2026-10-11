@@ -1,0 +1,543 @@
+{
+  "schema_version": "1.1",
+  "query": "936064787",
+  "organisation_number": "936064787",
+  "generated_at": "2026-10-11T11:53:07Z",
+  "status": "active",
+  "entity_type": "legal entity",
+  "name": "ANDRZEJ SKRZYPEK NUF",
+  "facts": [
+    {
+      "field": "organisation_number",
+      "label": "Organisation number",
+      "category": "identity",
+      "value": "936064787",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "legal_name",
+      "label": "Registered name",
+      "category": "identity",
+      "value": "ANDRZEJ SKRZYPEK NUF",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "legal_form",
+      "label": "Legal form",
+      "category": "identity",
+      "value": "NUF – Norskregistrert utenlandsk foretak",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "registered_date",
+      "label": "Registered in Enhetsregisteret",
+      "category": "identity",
+      "value": "2025-10-06",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": "2025-10-06",
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "business_address",
+      "label": "Business address",
+      "category": "location",
+      "value": "Laka nr 28, lok 1, PL-59-700, GM BOLESLAWIEC, Polen",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "country",
+      "label": "Country",
+      "category": "location",
+      "value": "Polen",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "postal_address",
+      "label": "Postal address",
+      "category": "location",
+      "value": "c/o Rödl & Partner Accounting AS, Karenslyst allé 2, 0278 OSLO",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "industry_code_1",
+      "label": "Industry code (NACE) primary",
+      "category": "activity",
+      "value": "42.990 – Bygging av andre anlegg ikke nevnt annet sted",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "employees",
+      "label": "Registered number of employees",
+      "category": "size",
+      "value": 0,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "note": "No employees registered in the Aa-register",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "vat_registered",
+      "label": "Registered for VAT",
+      "category": "registrations",
+      "value": true,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "in_business_register",
+      "label": "Registered in the Register of Business Enterprises",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "in_foundation_register",
+      "label": "Registered in the Register of Foundations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "in_voluntary_register",
+      "label": "Registered in the Register of Non-Profit Organisations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "activity_description",
+      "label": "Registered activity",
+      "category": "activity",
+      "value": "Bygg av minigolfbane.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "written_language",
+      "label": "Written language form",
+      "category": "registrations",
+      "value": "Bokmål",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "bankrupt",
+      "label": "Bankrupt",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "under_liquidation",
+      "label": "Under liquidation",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "compulsory_dissolution",
+      "label": "Under compulsory liquidation/dissolution",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "contact_person",
+      "label": "Contact person",
+      "category": "people",
+      "value": {
+        "name": "Olga Janina Zak"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": "2025-10-06",
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "accountant",
+      "label": "External accountant",
+      "category": "people",
+      "value": {
+        "name": "RÖDL ACCOUNTING AS",
+        "organisation_number": "913416252"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": "2025-10-06",
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "foreign_head_office",
+      "label": "Foreign head office",
+      "category": "people",
+      "value": {
+        "name": "ANDRZEJ SKRZYPEK",
+        "organisation_number": "936319890"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": "2025-10-06",
+      "retrieved_at": "2026-10-11T11:53:08Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:53:08Z",
+      "last_verified": "2026-10-11T11:53:08Z"
+    },
+    {
+      "field": "subunit_count",
+      "label": "Number of registered establishments (sub-units)",
+      "category": "size",
+      "value": 1,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=936064787&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:09Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:53:09Z",
+      "last_verified": "2026-10-11T11:53:09Z"
+    },
+    {
+      "field": "subunits",
+      "label": "Establishments (first 15)",
+      "category": "size",
+      "value": [
+        {
+          "organisation_number": "936322344",
+          "name": "ANDRZEJ SKRZYPEK NUF",
+          "municipality": "PL-59-700, GM BOLESLAWIEC"
+        }
+      ],
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=936064787&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/936064787",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:53:09Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:53:09Z",
+      "last_verified": "2026-10-11T11:53:09Z"
+    }
+  ],
+  "profile": {
+    "identity": {
+      "organisation_number": "936064787",
+      "legal_name": "ANDRZEJ SKRZYPEK NUF",
+      "legal_form": "NUF – Norskregistrert utenlandsk foretak",
+      "registered_date": "2025-10-06"
+    },
+    "location": {
+      "business_address": "Laka nr 28, lok 1, PL-59-700, GM BOLESLAWIEC, Polen",
+      "country": "Polen",
+      "postal_address": "c/o Rödl & Partner Accounting AS, Karenslyst allé 2, 0278 OSLO"
+    },
+    "activity": {
+      "industry_code_1": "42.990 – Bygging av andre anlegg ikke nevnt annet sted",
+      "activity_description": "Bygg av minigolfbane."
+    },
+    "size": {
+      "employees": 0,
+      "subunit_count": 1,
+      "subunits": [
+        {
+          "organisation_number": "936322344",
+          "name": "ANDRZEJ SKRZYPEK NUF",
+          "municipality": "PL-59-700, GM BOLESLAWIEC"
+        }
+      ]
+    },
+    "registrations": {
+      "vat_registered": true,
+      "in_business_register": false,
+      "in_foundation_register": false,
+      "in_voluntary_register": false,
+      "written_language": "Bokmål"
+    },
+    "status": {
+      "bankrupt": false,
+      "under_liquidation": false,
+      "compulsory_dissolution": false
+    },
+    "people": {
+      "contact_person": {
+        "name": "Olga Janina Zak"
+      },
+      "accountant": {
+        "name": "RÖDL ACCOUNTING AS",
+        "organisation_number": "913416252"
+      },
+      "foreign_head_office": {
+        "name": "ANDRZEJ SKRZYPEK",
+        "organisation_number": "936319890"
+      }
+    }
+  },
+  "summary": "ANDRZEJ SKRZYPEK NUF (org. no. 936 064 787) is a Norwegian branch of a foreign company (NUF), in the Brønnøysund registers since 2025-10-06. It is active with no bankruptcy or liquidation registered. Its main activity is NACE 42.990 (Bygging av andre anlegg ikke nevnt annet sted); it has 0 registered employees.",
+  "gaps": [
+    {
+      "topic": "financials",
+      "reason": "No annual accounts are available in the Register of Company Accounts (newly registered, late filer, or exempt)."
+    },
+    {
+      "topic": "website",
+      "reason": "No website is registered in Enhetsregisteret or verified on Wikidata."
+    },
+    {
+      "topic": "identifiers",
+      "reason": "No LEI is registered with GLEIF for this organisation number (common for companies without traded securities or large financial contracts)."
+    },
+    {
+      "topic": "people",
+      "reason": "No CEO (daglig leder) is registered; this is optional for many legal forms."
+    },
+    {
+      "topic": "reference",
+      "reason": "No verified Wikidata item links to this number (normal for smaller companies)."
+    }
+  ],
+  "verification": {
+    "method": "Every fact comes from a record fetched by the exact organisation number. Secondary sources (GLEIF, Wikidata) are only accepted when their record names this number AND the legal name or LEI agrees; financial values are copied as filed and never estimated.",
+    "checks": [
+      {
+        "check": "organisation number checksum (mod 11)",
+        "result": "pass"
+      },
+      {
+        "check": "registry record organisation number equals query",
+        "result": "pass"
+      }
+    ],
+    "rejected": []
+  },
+  "sources": [
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_roller",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/936064787/roller",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=936064787&size=50",
+      "status": "ok",
+      "http_status": 200,
+      "note": "sub-units",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_regnskap",
+      "url": "https://data.brreg.no/regnskapsregisteret/regnskap/936064787",
+      "status": "not_found",
+      "http_status": 404,
+      "source_name": "Brønnøysund Register Centre – Register of Company Accounts (Regnskapsregisteret)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "gleif",
+      "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bfulltext%5D=936064787&filter%5Bentity.legalAddress.country%5D=NO&page%5Bsize%5D=10",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Global Legal Entity Identifier Foundation (GLEIF) LEI records",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "wikidata",
+      "url": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP2333%3D936064787&srlimit=5&format=json",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Wikidata (matched on property P2333, Norwegian organisation number)",
+      "licence": "CC0 1.0"
+    }
+  ],
+  "changes": [],
+  "history": [],
+  "complete": true,
+  "stats": {
+    "requests": 105,
+    "seconds": 56.41,
+    "fact_count": 23
+  }
+}

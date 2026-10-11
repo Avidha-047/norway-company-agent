@@ -1,0 +1,546 @@
+{
+  "schema_version": "1.1",
+  "query": "976795555",
+  "organisation_number": "976795555",
+  "generated_at": "2026-10-11T12:11:01Z",
+  "status": "active",
+  "entity_type": "legal entity",
+  "name": "ILSENG SANGFORENING",
+  "facts": [
+    {
+      "field": "organisation_number",
+      "label": "Organisation number",
+      "category": "identity",
+      "value": "976795555",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "legal_name",
+      "label": "Registered name",
+      "category": "identity",
+      "value": "ILSENG SANGFORENING",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "legal_form",
+      "label": "Legal form",
+      "category": "identity",
+      "value": "FLI – Forening/lag/innretning",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "registered_date",
+      "label": "Registered in Enhetsregisteret",
+      "category": "identity",
+      "value": "1996-10-10",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": "1996-10-10",
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "founded_date",
+      "label": "Founded (stiftelsesdato)",
+      "category": "identity",
+      "value": "1947-05-12",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": "1947-05-12",
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "postal_address",
+      "label": "Postal address",
+      "category": "location",
+      "value": "c/o Rita Bråthen, Grindervegen 38, 2340 LØTEN",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "industry_code_1",
+      "label": "Industry code (NACE) primary",
+      "category": "activity",
+      "value": "90.201 – Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "employees",
+      "label": "Registered number of employees",
+      "category": "size",
+      "value": 0,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "note": "No employees registered in the Aa-register",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "website",
+      "label": "Website (registered)",
+      "category": "contact",
+      "value": "www.ilseng.net/ilsengsangforening",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "institutional_sector",
+      "label": "Institutional sector",
+      "category": "activity",
+      "value": "7000 – Ideelle organisasjoner",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "vat_registered",
+      "label": "Registered for VAT",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "in_business_register",
+      "label": "Registered in the Register of Business Enterprises",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "in_foundation_register",
+      "label": "Registered in the Register of Foundations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "in_voluntary_register",
+      "label": "Registered in the Register of Non-Profit Organisations",
+      "category": "registrations",
+      "value": true,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "activity_description",
+      "label": "Registered activity",
+      "category": "activity",
+      "value": "Sangkor.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "written_language",
+      "label": "Written language form",
+      "category": "registrations",
+      "value": "Bokmål",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "bankrupt",
+      "label": "Bankrupt",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "under_liquidation",
+      "label": "Under liquidation",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "compulsory_dissolution",
+      "label": "Under compulsory liquidation/dissolution",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:01Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:11:01Z",
+      "last_verified": "2026-10-11T12:11:01Z"
+    },
+    {
+      "field": "board_chair",
+      "label": "Chair of the board",
+      "category": "people",
+      "value": {
+        "name": "Rita Bråthen"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": "2026-01-21",
+      "retrieved_at": "2026-10-11T12:11:02Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:11:02Z",
+      "last_verified": "2026-10-11T12:11:02Z"
+    },
+    {
+      "field": "board_members",
+      "label": "Board members",
+      "category": "people",
+      "value": [
+        {
+          "name": "Randi Marie Bjerke Furuseth"
+        },
+        {
+          "name": "Evy Bjørnå"
+        }
+      ],
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": "2026-01-21",
+      "retrieved_at": "2026-10-11T12:11:02Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:11:02Z",
+      "last_verified": "2026-10-11T12:11:02Z"
+    },
+    {
+      "field": "subunit_count",
+      "label": "Number of registered establishments (sub-units)",
+      "category": "size",
+      "value": 1,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=976795555&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:03Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T12:11:03Z",
+      "last_verified": "2026-10-11T12:11:03Z"
+    },
+    {
+      "field": "subunits",
+      "label": "Establishments (first 15)",
+      "category": "size",
+      "value": [
+        {
+          "organisation_number": "920068383",
+          "name": "ILSENG SANGFORENING"
+        }
+      ],
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=976795555&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/976795555",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:11:03Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T12:11:03Z",
+      "last_verified": "2026-10-11T12:11:03Z"
+    }
+  ],
+  "profile": {
+    "identity": {
+      "organisation_number": "976795555",
+      "legal_name": "ILSENG SANGFORENING",
+      "legal_form": "FLI – Forening/lag/innretning",
+      "registered_date": "1996-10-10",
+      "founded_date": "1947-05-12"
+    },
+    "location": {
+      "postal_address": "c/o Rita Bråthen, Grindervegen 38, 2340 LØTEN"
+    },
+    "activity": {
+      "industry_code_1": "90.201 – Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk",
+      "institutional_sector": "7000 – Ideelle organisasjoner",
+      "activity_description": "Sangkor."
+    },
+    "size": {
+      "employees": 0,
+      "subunit_count": 1,
+      "subunits": [
+        {
+          "organisation_number": "920068383",
+          "name": "ILSENG SANGFORENING"
+        }
+      ]
+    },
+    "contact": {
+      "website": "www.ilseng.net/ilsengsangforening"
+    },
+    "registrations": {
+      "vat_registered": false,
+      "in_business_register": false,
+      "in_foundation_register": false,
+      "in_voluntary_register": true,
+      "written_language": "Bokmål"
+    },
+    "status": {
+      "bankrupt": false,
+      "under_liquidation": false,
+      "compulsory_dissolution": false
+    },
+    "people": {
+      "board_chair": {
+        "name": "Rita Bråthen"
+      },
+      "board_members": [
+        {
+          "name": "Randi Marie Bjerke Furuseth"
+        },
+        {
+          "name": "Evy Bjørnå"
+        }
+      ]
+    }
+  },
+  "summary": "ILSENG SANGFORENING (org. no. 976 795 555) is an association (FLI), in the Brønnøysund registers since 1996-10-10. It is active with no bankruptcy or liquidation registered. Its main activity is NACE 90.201 (Utøvende kunstnerisk virksomhet og underholdningsvirksomhet innenfor musikk); it has 0 registered employees. Board chair: Rita Bråthen.",
+  "gaps": [
+    {
+      "topic": "financials",
+      "reason": "Legal form FLI is normally not required to file annual accounts in Norway, so none are public."
+    },
+    {
+      "topic": "website",
+      "reason": "The registered website could not be reached during this run."
+    },
+    {
+      "topic": "identifiers",
+      "reason": "No LEI is registered with GLEIF for this organisation number (common for companies without traded securities or large financial contracts)."
+    },
+    {
+      "topic": "people",
+      "reason": "No CEO (daglig leder) is registered; this is optional for many legal forms."
+    },
+    {
+      "topic": "reference",
+      "reason": "No verified Wikidata item links to this number (normal for smaller companies)."
+    }
+  ],
+  "verification": {
+    "method": "Every fact comes from a record fetched by the exact organisation number. Secondary sources (GLEIF, Wikidata) are only accepted when their record names this number AND the legal name or LEI agrees; financial values are copied as filed and never estimated.",
+    "checks": [
+      {
+        "check": "organisation number checksum (mod 11)",
+        "result": "pass"
+      },
+      {
+        "check": "registry record organisation number equals query",
+        "result": "pass"
+      }
+    ],
+    "rejected": []
+  },
+  "sources": [
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_roller",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/976795555/roller",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=976795555&size=50",
+      "status": "ok",
+      "http_status": 200,
+      "note": "sub-units",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "gleif",
+      "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bfulltext%5D=976795555&filter%5Bentity.legalAddress.country%5D=NO&page%5Bsize%5D=10",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Global Legal Entity Identifier Foundation (GLEIF) LEI records",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "wikidata",
+      "url": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP2333%3D976795555&srlimit=5&format=json",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Wikidata (matched on property P2333, Norwegian organisation number)",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "company_website",
+      "url": "https://www.ilseng.net/ilsengsangforening",
+      "status": "error",
+      "http_status": 404,
+      "note": "website not reachable",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "licence": "public web page; only titles, descriptions and links extracted"
+    }
+  ],
+  "changes": [],
+  "history": [],
+  "complete": true,
+  "stats": {
+    "requests": 71,
+    "seconds": 9.98,
+    "fact_count": 23
+  }
+}

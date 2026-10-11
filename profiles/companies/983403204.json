@@ -1,0 +1,682 @@
+{
+  "schema_version": "1.1",
+  "query": "983403204",
+  "organisation_number": "983403204",
+  "generated_at": "2026-10-11T12:09:10Z",
+  "status": "active",
+  "entity_type": "legal entity",
+  "name": "TROMS LEGEFORENING",
+  "facts": [
+    {
+      "field": "organisation_number",
+      "label": "Organisation number",
+      "category": "identity",
+      "value": "983403204",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "legal_name",
+      "label": "Registered name",
+      "category": "identity",
+      "value": "TROMS LEGEFORENING",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "legal_form",
+      "label": "Legal form",
+      "category": "identity",
+      "value": "FLI – Forening/lag/innretning",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "registered_date",
+      "label": "Registered in Enhetsregisteret",
+      "category": "identity",
+      "value": "2001-10-11",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": "2001-10-11",
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "founded_date",
+      "label": "Founded (stiftelsesdato)",
+      "category": "identity",
+      "value": "1859-07-27",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": "1859-07-27",
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "business_address",
+      "label": "Business address",
+      "category": "location",
+      "value": "c/o Jo-Endre Digranes Midtbu, Skavstien 32, 9102 KVALØYSLETTA",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "municipality",
+      "label": "Municipality",
+      "category": "location",
+      "value": "TROMSØ",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "municipality_number",
+      "label": "Municipality number",
+      "category": "location",
+      "value": "5501",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "country",
+      "label": "Country",
+      "category": "location",
+      "value": "Norge",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "postal_address",
+      "label": "Postal address",
+      "category": "location",
+      "value": "c/o Azets Insight AS, Postboks 2297 Løkkemyra, 6503 KRISTIANSUND N",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "industry_code_1",
+      "label": "Industry code (NACE) primary",
+      "category": "activity",
+      "value": "94.120 – Aktiviteter i yrkessammenslutninger",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "employees",
+      "label": "Registered number of employees",
+      "category": "size",
+      "value": 0,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "note": "No employees registered in the Aa-register",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "institutional_sector",
+      "label": "Institutional sector",
+      "category": "activity",
+      "value": "7000 – Ideelle organisasjoner",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "vat_registered",
+      "label": "Registered for VAT",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "in_business_register",
+      "label": "Registered in the Register of Business Enterprises",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "in_foundation_register",
+      "label": "Registered in the Register of Foundations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "in_voluntary_register",
+      "label": "Registered in the Register of Non-Profit Organisations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "activity_description",
+      "label": "Registered activity",
+      "category": "activity",
+      "value": "Legeforening.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "written_language",
+      "label": "Written language form",
+      "category": "registrations",
+      "value": "Bokmål",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "bankrupt",
+      "label": "Bankrupt",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "under_liquidation",
+      "label": "Under liquidation",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "compulsory_dissolution",
+      "label": "Under compulsory liquidation/dissolution",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:09:10Z",
+      "last_verified": "2026-10-11T12:09:10Z"
+    },
+    {
+      "field": "board_chair",
+      "label": "Chair of the board",
+      "category": "people",
+      "value": {
+        "name": "Jo-Endre Digranes Midtbu"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": "2025-10-09",
+      "retrieved_at": "2026-10-11T12:09:11Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:09:11Z",
+      "last_verified": "2026-10-11T12:09:11Z"
+    },
+    {
+      "field": "board_members",
+      "label": "Board members",
+      "category": "people",
+      "value": [
+        {
+          "name": "Lise Birthe Pilegaard Figenschou"
+        },
+        {
+          "name": "Morten Mangersnes"
+        },
+        {
+          "name": "Karina Olsen"
+        },
+        {
+          "name": "Marthe Nissen"
+        },
+        {
+          "name": "Anette Svensgaard Steinert"
+        },
+        {
+          "name": "Yngve Anton Figenschau"
+        },
+        {
+          "name": "Ellen Poppe Skipenes"
+        },
+        {
+          "name": "Kristin Vik Hagerupsen"
+        },
+        {
+          "name": "Anna Louise Aminoff"
+        },
+        {
+          "name": "Hedda Maria Yderberg Nordahl"
+        }
+      ],
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": "2025-10-09",
+      "retrieved_at": "2026-10-11T12:09:11Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:09:11Z",
+      "last_verified": "2026-10-11T12:09:11Z"
+    },
+    {
+      "field": "auditor",
+      "label": "Auditor",
+      "category": "people",
+      "value": {
+        "name": "VEKST REVISJON AS",
+        "organisation_number": "960132734"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": "2019-12-03",
+      "retrieved_at": "2026-10-11T12:09:11Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:09:11Z",
+      "last_verified": "2026-10-11T12:09:11Z"
+    },
+    {
+      "field": "accountant",
+      "label": "External accountant",
+      "category": "people",
+      "value": {
+        "name": "AZETS INSIGHT AS",
+        "organisation_number": "983338917"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": "2023-09-30",
+      "retrieved_at": "2026-10-11T12:09:11Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:09:11Z",
+      "last_verified": "2026-10-11T12:09:11Z"
+    },
+    {
+      "field": "subunit_count",
+      "label": "Number of registered establishments (sub-units)",
+      "category": "size",
+      "value": 1,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=983403204&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:11Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T12:09:11Z",
+      "last_verified": "2026-10-11T12:09:11Z"
+    },
+    {
+      "field": "subunits",
+      "label": "Establishments (first 15)",
+      "category": "size",
+      "value": [
+        {
+          "organisation_number": "913945123",
+          "name": "TROMS LEGEFORENING",
+          "municipality": "TROMSØ"
+        }
+      ],
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=983403204&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/983403204",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:09:11Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T12:09:11Z",
+      "last_verified": "2026-10-11T12:09:11Z"
+    }
+  ],
+  "profile": {
+    "identity": {
+      "organisation_number": "983403204",
+      "legal_name": "TROMS LEGEFORENING",
+      "legal_form": "FLI – Forening/lag/innretning",
+      "registered_date": "2001-10-11",
+      "founded_date": "1859-07-27"
+    },
+    "location": {
+      "business_address": "c/o Jo-Endre Digranes Midtbu, Skavstien 32, 9102 KVALØYSLETTA",
+      "municipality": "TROMSØ",
+      "municipality_number": "5501",
+      "country": "Norge",
+      "postal_address": "c/o Azets Insight AS, Postboks 2297 Løkkemyra, 6503 KRISTIANSUND N"
+    },
+    "activity": {
+      "industry_code_1": "94.120 – Aktiviteter i yrkessammenslutninger",
+      "institutional_sector": "7000 – Ideelle organisasjoner",
+      "activity_description": "Legeforening."
+    },
+    "size": {
+      "employees": 0,
+      "subunit_count": 1,
+      "subunits": [
+        {
+          "organisation_number": "913945123",
+          "name": "TROMS LEGEFORENING",
+          "municipality": "TROMSØ"
+        }
+      ]
+    },
+    "registrations": {
+      "vat_registered": false,
+      "in_business_register": false,
+      "in_foundation_register": false,
+      "in_voluntary_register": false,
+      "written_language": "Bokmål"
+    },
+    "status": {
+      "bankrupt": false,
+      "under_liquidation": false,
+      "compulsory_dissolution": false
+    },
+    "people": {
+      "board_chair": {
+        "name": "Jo-Endre Digranes Midtbu"
+      },
+      "board_members": [
+        {
+          "name": "Lise Birthe Pilegaard Figenschou"
+        },
+        {
+          "name": "Morten Mangersnes"
+        },
+        {
+          "name": "Karina Olsen"
+        },
+        {
+          "name": "Marthe Nissen"
+        },
+        {
+          "name": "Anette Svensgaard Steinert"
+        },
+        {
+          "name": "Yngve Anton Figenschau"
+        },
+        {
+          "name": "Ellen Poppe Skipenes"
+        },
+        {
+          "name": "Kristin Vik Hagerupsen"
+        },
+        {
+          "name": "Anna Louise Aminoff"
+        },
+        {
+          "name": "Hedda Maria Yderberg Nordahl"
+        }
+      ],
+      "auditor": {
+        "name": "VEKST REVISJON AS",
+        "organisation_number": "960132734"
+      },
+      "accountant": {
+        "name": "AZETS INSIGHT AS",
+        "organisation_number": "983338917"
+      }
+    }
+  },
+  "summary": "TROMS LEGEFORENING (org. no. 983 403 204) is an association (FLI) based in Tromsø, in the Brønnøysund registers since 2001-10-11. It is active with no bankruptcy or liquidation registered. Its main activity is NACE 94.120 (Aktiviteter i yrkessammenslutninger); it has 0 registered employees. Board chair: Jo-Endre Digranes Midtbu; auditor: VEKST REVISJON AS.",
+  "gaps": [
+    {
+      "topic": "financials",
+      "reason": "Legal form FLI is normally not required to file annual accounts in Norway, so none are public."
+    },
+    {
+      "topic": "website",
+      "reason": "No website is registered in Enhetsregisteret or verified on Wikidata."
+    },
+    {
+      "topic": "identifiers",
+      "reason": "No LEI is registered with GLEIF for this organisation number (common for companies without traded securities or large financial contracts)."
+    },
+    {
+      "topic": "people",
+      "reason": "No CEO (daglig leder) is registered; this is optional for many legal forms."
+    },
+    {
+      "topic": "reference",
+      "reason": "No verified Wikidata item links to this number (normal for smaller companies)."
+    }
+  ],
+  "verification": {
+    "method": "Every fact comes from a record fetched by the exact organisation number. Secondary sources (GLEIF, Wikidata) are only accepted when their record names this number AND the legal name or LEI agrees; financial values are copied as filed and never estimated.",
+    "checks": [
+      {
+        "check": "organisation number checksum (mod 11)",
+        "result": "pass"
+      },
+      {
+        "check": "registry record organisation number equals query",
+        "result": "pass"
+      }
+    ],
+    "rejected": []
+  },
+  "sources": [
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_roller",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/983403204/roller",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=983403204&size=50",
+      "status": "ok",
+      "http_status": 200,
+      "note": "sub-units",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "gleif",
+      "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bfulltext%5D=983403204&filter%5Bentity.legalAddress.country%5D=NO&page%5Bsize%5D=10",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Global Legal Entity Identifier Foundation (GLEIF) LEI records",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "wikidata",
+      "url": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP2333%3D983403204&srlimit=5&format=json",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Wikidata (matched on property P2333, Norwegian organisation number)",
+      "licence": "CC0 1.0"
+    }
+  ],
+  "changes": [],
+  "history": [],
+  "complete": true,
+  "stats": {
+    "requests": 96,
+    "seconds": 54.61,
+    "fact_count": 28
+  }
+}

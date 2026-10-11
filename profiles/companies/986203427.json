@@ -1,0 +1,731 @@
+{
+  "schema_version": "1.1",
+  "query": "986203427",
+  "organisation_number": "986203427",
+  "generated_at": "2026-10-11T11:31:09Z",
+  "status": "active",
+  "entity_type": "legal entity",
+  "name": "NEDSTRAND BÅTFORENING",
+  "facts": [
+    {
+      "field": "organisation_number",
+      "label": "Organisation number",
+      "category": "identity",
+      "value": "986203427",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "legal_name",
+      "label": "Registered name",
+      "category": "identity",
+      "value": "NEDSTRAND BÅTFORENING",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "legal_form",
+      "label": "Legal form",
+      "category": "identity",
+      "value": "FLI – Forening/lag/innretning",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "registered_date",
+      "label": "Registered in Enhetsregisteret",
+      "category": "identity",
+      "value": "2003-11-20",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": "2003-11-20",
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "founded_date",
+      "label": "Founded (stiftelsesdato)",
+      "category": "identity",
+      "value": "1984-06-25",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": "1984-06-25",
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "business_address",
+      "label": "Business address",
+      "category": "location",
+      "value": "c/o Arne Jon Myskja, Stranda 3, 5560 NEDSTRAND",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "municipality",
+      "label": "Municipality",
+      "category": "location",
+      "value": "TYSVÆR",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "municipality_number",
+      "label": "Municipality number",
+      "category": "location",
+      "value": "1146",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "country",
+      "label": "Country",
+      "category": "location",
+      "value": "Norge",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "industry_code_1",
+      "label": "Industry code (NACE) primary",
+      "category": "activity",
+      "value": "94.992 – Aktiviteter i andre medlemsorganisasjoner ellers",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "website",
+      "label": "Website (registered)",
+      "category": "contact",
+      "value": "www.nedstrand.org",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "email",
+      "label": "Email (registered)",
+      "category": "contact",
+      "value": "nedstrand.bf@gmail.com",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "mobile",
+      "label": "Mobile (registered)",
+      "category": "contact",
+      "value": "467 67 200",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "institutional_sector",
+      "label": "Institutional sector",
+      "category": "activity",
+      "value": "7000 – Ideelle organisasjoner",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "vat_registered",
+      "label": "Registered for VAT",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "in_business_register",
+      "label": "Registered in the Register of Business Enterprises",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "in_foundation_register",
+      "label": "Registered in the Register of Foundations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "in_voluntary_register",
+      "label": "Registered in the Register of Non-Profit Organisations",
+      "category": "registrations",
+      "value": true,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "activity_description",
+      "label": "Registered activity",
+      "category": "activity",
+      "value": "Nedstrand Båtforening skal vera ei forening for dei båtinteresserte som bur eller har hytte i Nedstransområdet. Nedstrand Båtforening skal arbeida for båtfolket sine saker og hjelpa til med tilretteleggjing av bryggeplassar.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "written_language",
+      "label": "Written language form",
+      "category": "registrations",
+      "value": "Nynorsk",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "bankrupt",
+      "label": "Bankrupt",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "under_liquidation",
+      "label": "Under liquidation",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "compulsory_dissolution",
+      "label": "Under compulsory liquidation/dissolution",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "board_chair",
+      "label": "Chair of the board",
+      "category": "people",
+      "value": {
+        "name": "Tor Øiseth"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": "2026-04-23",
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "board_members",
+      "label": "Board members",
+      "category": "people",
+      "value": [
+        {
+          "name": "Kjetil Galta"
+        },
+        {
+          "name": "Dietlind Exner Nakling"
+        },
+        {
+          "name": "Ole Nordbø"
+        },
+        {
+          "name": "Bjørg Mathisen Døving"
+        },
+        {
+          "name": "Christian Flåten Rørtveit"
+        },
+        {
+          "name": "Arne Jon Myskja"
+        }
+      ],
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": "2026-04-23",
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "accountant",
+      "label": "External accountant",
+      "category": "people",
+      "value": {
+        "name": "JANSSON & LARSEN REGNSKAP AS",
+        "organisation_number": "979713894"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": "2020-05-08",
+      "retrieved_at": "2026-10-11T11:31:10Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T11:31:10Z",
+      "last_verified": "2026-10-11T11:31:10Z"
+    },
+    {
+      "field": "subunit_count",
+      "label": "Number of registered establishments (sub-units)",
+      "category": "size",
+      "value": 1,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=986203427&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:11Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:31:11Z",
+      "last_verified": "2026-10-11T11:31:11Z"
+    },
+    {
+      "field": "subunits",
+      "label": "Establishments (first 15)",
+      "category": "size",
+      "value": [
+        {
+          "organisation_number": "817675182",
+          "name": "NEDSTRAND BÅTFORENING",
+          "municipality": "TYSVÆR"
+        }
+      ],
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=986203427&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/986203427",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:31:11Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T11:31:11Z",
+      "last_verified": "2026-10-11T11:31:11Z"
+    },
+    {
+      "field": "website_final_url",
+      "label": "Website (resolved URL)",
+      "category": "web",
+      "value": "https://www.nedstrand.org",
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://www.nedstrand.org",
+      "evidence_url": "https://www.nedstrand.org",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:32:06Z",
+      "confidence": "high",
+      "match": "Website registered for this organisation number in Enhetsregisteret; the page itself shows the organisation number",
+      "first_seen": "2026-10-11T11:32:06Z",
+      "last_verified": "2026-10-11T11:32:06Z"
+    },
+    {
+      "field": "website_title",
+      "label": "Website title",
+      "category": "web",
+      "value": "nedstrand.org",
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://www.nedstrand.org",
+      "evidence_url": "https://www.nedstrand.org",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:32:06Z",
+      "confidence": "high",
+      "match": "Website registered for this organisation number in Enhetsregisteret; the page itself shows the organisation number",
+      "first_seen": "2026-10-11T11:32:06Z",
+      "last_verified": "2026-10-11T11:32:06Z"
+    },
+    {
+      "field": "website_site_name",
+      "label": "Website brand name",
+      "category": "web",
+      "value": "nedstrand.org",
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://www.nedstrand.org",
+      "evidence_url": "https://www.nedstrand.org",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:32:06Z",
+      "confidence": "high",
+      "match": "Website registered for this organisation number in Enhetsregisteret; the page itself shows the organisation number",
+      "first_seen": "2026-10-11T11:32:06Z",
+      "last_verified": "2026-10-11T11:32:06Z"
+    },
+    {
+      "field": "website_shows_orgnr",
+      "label": "Website shows the organisation number",
+      "category": "web",
+      "value": true,
+      "source": "company_website",
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "source_url": "https://www.nedstrand.org",
+      "evidence_url": "https://www.nedstrand.org",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T11:32:06Z",
+      "confidence": "high",
+      "match": "Website registered for this organisation number in Enhetsregisteret; the page itself shows the organisation number",
+      "first_seen": "2026-10-11T11:32:06Z",
+      "last_verified": "2026-10-11T11:32:06Z"
+    }
+  ],
+  "profile": {
+    "identity": {
+      "organisation_number": "986203427",
+      "legal_name": "NEDSTRAND BÅTFORENING",
+      "legal_form": "FLI – Forening/lag/innretning",
+      "registered_date": "2003-11-20",
+      "founded_date": "1984-06-25"
+    },
+    "location": {
+      "business_address": "c/o Arne Jon Myskja, Stranda 3, 5560 NEDSTRAND",
+      "municipality": "TYSVÆR",
+      "municipality_number": "1146",
+      "country": "Norge"
+    },
+    "activity": {
+      "industry_code_1": "94.992 – Aktiviteter i andre medlemsorganisasjoner ellers",
+      "institutional_sector": "7000 – Ideelle organisasjoner",
+      "activity_description": "Nedstrand Båtforening skal vera ei forening for dei båtinteresserte som bur eller har hytte i Nedstransområdet. Nedstrand Båtforening skal arbeida for båtfolket sine saker og hjelpa til med tilretteleggjing av bryggeplassar."
+    },
+    "contact": {
+      "website": "www.nedstrand.org",
+      "email": "nedstrand.bf@gmail.com",
+      "mobile": "467 67 200"
+    },
+    "registrations": {
+      "vat_registered": false,
+      "in_business_register": false,
+      "in_foundation_register": false,
+      "in_voluntary_register": true,
+      "written_language": "Nynorsk"
+    },
+    "status": {
+      "bankrupt": false,
+      "under_liquidation": false,
+      "compulsory_dissolution": false
+    },
+    "people": {
+      "board_chair": {
+        "name": "Tor Øiseth"
+      },
+      "board_members": [
+        {
+          "name": "Kjetil Galta"
+        },
+        {
+          "name": "Dietlind Exner Nakling"
+        },
+        {
+          "name": "Ole Nordbø"
+        },
+        {
+          "name": "Bjørg Mathisen Døving"
+        },
+        {
+          "name": "Christian Flåten Rørtveit"
+        },
+        {
+          "name": "Arne Jon Myskja"
+        }
+      ],
+      "accountant": {
+        "name": "JANSSON & LARSEN REGNSKAP AS",
+        "organisation_number": "979713894"
+      }
+    },
+    "size": {
+      "subunit_count": 1,
+      "subunits": [
+        {
+          "organisation_number": "817675182",
+          "name": "NEDSTRAND BÅTFORENING",
+          "municipality": "TYSVÆR"
+        }
+      ]
+    },
+    "web": {
+      "website_final_url": "https://www.nedstrand.org",
+      "website_title": "nedstrand.org",
+      "website_site_name": "nedstrand.org",
+      "website_shows_orgnr": true
+    }
+  },
+  "summary": "NEDSTRAND BÅTFORENING (org. no. 986 203 427) is an association (FLI) based in Tysvær, in the Brønnøysund registers since 2003-11-20. It is active with no bankruptcy or liquidation registered. Its main activity is NACE 94.992 (Aktiviteter i andre medlemsorganisasjoner ellers). Board chair: Tor Øiseth.",
+  "gaps": [
+    {
+      "topic": "financials",
+      "reason": "Legal form FLI is normally not required to file annual accounts in Norway, so none are public."
+    },
+    {
+      "topic": "identifiers",
+      "reason": "No LEI is registered with GLEIF for this organisation number (common for companies without traded securities or large financial contracts)."
+    },
+    {
+      "topic": "people",
+      "reason": "No CEO (daglig leder) is registered; this is optional for many legal forms."
+    },
+    {
+      "topic": "reference",
+      "reason": "No verified Wikidata item links to this number (normal for smaller companies)."
+    }
+  ],
+  "verification": {
+    "method": "Every fact comes from a record fetched by the exact organisation number. Secondary sources (GLEIF, Wikidata) are only accepted when their record names this number AND the legal name or LEI agrees; financial values are copied as filed and never estimated.",
+    "checks": [
+      {
+        "check": "organisation number checksum (mod 11)",
+        "result": "pass"
+      },
+      {
+        "check": "registry record organisation number equals query",
+        "result": "pass"
+      },
+      {
+        "check": "registered website displays the organisation number",
+        "result": "pass"
+      }
+    ],
+    "rejected": []
+  },
+  "sources": [
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_roller",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/986203427/roller",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=986203427&size=50",
+      "status": "ok",
+      "http_status": 200,
+      "note": "sub-units",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "gleif",
+      "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bfulltext%5D=986203427&filter%5Bentity.legalAddress.country%5D=NO&page%5Bsize%5D=10",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Global Legal Entity Identifier Foundation (GLEIF) LEI records",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "wikidata",
+      "url": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP2333%3D986203427&srlimit=5&format=json",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Wikidata (matched on property P2333, Norwegian organisation number)",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "company_website",
+      "url": "https://www.nedstrand.org",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Company's own website (as registered in Enhetsregisteret)",
+      "licence": "public web page; only titles, descriptions and links extracted"
+    }
+  ],
+  "changes": [],
+  "history": [],
+  "complete": true,
+  "stats": {
+    "requests": 106,
+    "seconds": 57.22,
+    "fact_count": 32
+  }
+}

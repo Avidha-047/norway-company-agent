@@ -1,0 +1,687 @@
+{
+  "schema_version": "1.1",
+  "query": "990083010",
+  "organisation_number": "990083010",
+  "generated_at": "2026-10-11T12:23:36Z",
+  "status": "active",
+  "entity_type": "legal entity",
+  "name": "FOSS MILJØTRANSPORT ANS",
+  "facts": [
+    {
+      "field": "organisation_number",
+      "label": "Organisation number",
+      "category": "identity",
+      "value": "990083010",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "legal_name",
+      "label": "Registered name",
+      "category": "identity",
+      "value": "FOSS MILJØTRANSPORT ANS",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "legal_form",
+      "label": "Legal form",
+      "category": "identity",
+      "value": "ANS – Ansvarlig selskap med solidarisk ansvar",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "registered_date",
+      "label": "Registered in Enhetsregisteret",
+      "category": "identity",
+      "value": "2006-08-07",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": "2006-08-07",
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "founded_date",
+      "label": "Founded (stiftelsesdato)",
+      "category": "identity",
+      "value": "2006-07-14",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": "2006-07-14",
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "business_address",
+      "label": "Business address",
+      "category": "location",
+      "value": "Nøtåsvegen 159, 2415 HERADSBYGD",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "municipality",
+      "label": "Municipality",
+      "category": "location",
+      "value": "ELVERUM",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "municipality_number",
+      "label": "Municipality number",
+      "category": "location",
+      "value": "3420",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "country",
+      "label": "Country",
+      "category": "location",
+      "value": "Norge",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "postal_address",
+      "label": "Postal address",
+      "category": "location",
+      "value": "Nøtåsvegen 159, 2415 HERADSBYGD",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "industry_code_1",
+      "label": "Industry code (NACE) primary",
+      "category": "activity",
+      "value": "01.190 – Dyrking av ettårige vekster ellers",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "employees",
+      "label": "Registered number of employees",
+      "category": "size",
+      "value": 0,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "note": "No employees registered in the Aa-register",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "institutional_sector",
+      "label": "Institutional sector",
+      "category": "activity",
+      "value": "2300 – Personlige foretak",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "vat_registered",
+      "label": "Registered for VAT",
+      "category": "registrations",
+      "value": true,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "in_business_register",
+      "label": "Registered in the Register of Business Enterprises",
+      "category": "registrations",
+      "value": true,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "in_foundation_register",
+      "label": "Registered in the Register of Foundations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "in_voluntary_register",
+      "label": "Registered in the Register of Non-Profit Organisations",
+      "category": "registrations",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "statutory_purpose",
+      "label": "Statutory purpose",
+      "category": "activity",
+      "value": "Gressproduksjon og salg av landbrukstjenester.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "activity_description",
+      "label": "Registered activity",
+      "category": "activity",
+      "value": "Gressproduksjon og salg av landbrukstjenester.",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "articles_date",
+      "label": "Articles of association dated",
+      "category": "registrations",
+      "value": "2011-01-01",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": "2011-01-01",
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "written_language",
+      "label": "Written language form",
+      "category": "registrations",
+      "value": "Bokmål",
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "bankrupt",
+      "label": "Bankrupt",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "under_liquidation",
+      "label": "Under liquidation",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "compulsory_dissolution",
+      "label": "Under compulsory liquidation/dissolution",
+      "category": "status",
+      "value": false,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:37Z",
+      "confidence": "high",
+      "match": "Record retrieved from Enhetsregisteret by exact organisation number",
+      "first_seen": "2026-10-11T12:23:37Z",
+      "last_verified": "2026-10-11T12:23:37Z"
+    },
+    {
+      "field": "ceo",
+      "label": "CEO / managing director (daglig leder)",
+      "category": "people",
+      "value": {
+        "name": "Glenn Arild Foss"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": "2007-06-06",
+      "retrieved_at": "2026-10-11T12:23:38Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:23:38Z",
+      "last_verified": "2026-10-11T12:23:38Z"
+    },
+    {
+      "field": "partners",
+      "label": "Partners (joint liability)",
+      "category": "people",
+      "value": [
+        {
+          "name": "Glenn Arild Foss"
+        },
+        {
+          "name": "Stine Hogseth"
+        }
+      ],
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": "2006-08-07",
+      "retrieved_at": "2026-10-11T12:23:38Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:23:38Z",
+      "last_verified": "2026-10-11T12:23:38Z"
+    },
+    {
+      "field": "board_chair",
+      "label": "Chair of the board",
+      "category": "people",
+      "value": {
+        "name": "Glenn Arild Foss"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": "2006-08-07",
+      "retrieved_at": "2026-10-11T12:23:38Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:23:38Z",
+      "last_verified": "2026-10-11T12:23:38Z"
+    },
+    {
+      "field": "board_deputies",
+      "label": "Deputy board members",
+      "category": "people",
+      "value": [
+        {
+          "name": "Stine Hogseth"
+        }
+      ],
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": "2006-08-07",
+      "retrieved_at": "2026-10-11T12:23:38Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:23:38Z",
+      "last_verified": "2026-10-11T12:23:38Z"
+    },
+    {
+      "field": "accountant",
+      "label": "External accountant",
+      "category": "people",
+      "value": {
+        "name": "ØKORÅD ELVERUM & RENA AS",
+        "organisation_number": "844396082"
+      },
+      "source": "brreg_roller",
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010/roller",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": "2018-06-29",
+      "retrieved_at": "2026-10-11T12:23:38Z",
+      "confidence": "high",
+      "match": "Roles listed under this exact organisation number in Enhetsregisteret",
+      "first_seen": "2026-10-11T12:23:38Z",
+      "last_verified": "2026-10-11T12:23:38Z"
+    },
+    {
+      "field": "subunit_count",
+      "label": "Number of registered establishments (sub-units)",
+      "category": "size",
+      "value": 1,
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=990083010&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:38Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T12:23:38Z",
+      "last_verified": "2026-10-11T12:23:38Z"
+    },
+    {
+      "field": "subunits",
+      "label": "Establishments (first 15)",
+      "category": "size",
+      "value": [
+        {
+          "organisation_number": "990036667",
+          "name": "FOSS LANDBRUKSTJENESTER ANS",
+          "municipality": "ELVERUM"
+        }
+      ],
+      "source": "brreg_enhetsregisteret",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "source_url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=990083010&size=50",
+      "evidence_url": "https://virksomhet.brreg.no/nb/oppslag/enheter/990083010",
+      "as_of": null,
+      "retrieved_at": "2026-10-11T12:23:38Z",
+      "confidence": "high",
+      "match": "Sub-units whose registered parent (overordnetEnhet) is this organisation number",
+      "first_seen": "2026-10-11T12:23:38Z",
+      "last_verified": "2026-10-11T12:23:38Z"
+    }
+  ],
+  "profile": {
+    "identity": {
+      "organisation_number": "990083010",
+      "legal_name": "FOSS MILJØTRANSPORT ANS",
+      "legal_form": "ANS – Ansvarlig selskap med solidarisk ansvar",
+      "registered_date": "2006-08-07",
+      "founded_date": "2006-07-14"
+    },
+    "location": {
+      "business_address": "Nøtåsvegen 159, 2415 HERADSBYGD",
+      "municipality": "ELVERUM",
+      "municipality_number": "3420",
+      "country": "Norge",
+      "postal_address": "Nøtåsvegen 159, 2415 HERADSBYGD"
+    },
+    "activity": {
+      "industry_code_1": "01.190 – Dyrking av ettårige vekster ellers",
+      "institutional_sector": "2300 – Personlige foretak",
+      "statutory_purpose": "Gressproduksjon og salg av landbrukstjenester.",
+      "activity_description": "Gressproduksjon og salg av landbrukstjenester."
+    },
+    "size": {
+      "employees": 0,
+      "subunit_count": 1,
+      "subunits": [
+        {
+          "organisation_number": "990036667",
+          "name": "FOSS LANDBRUKSTJENESTER ANS",
+          "municipality": "ELVERUM"
+        }
+      ]
+    },
+    "registrations": {
+      "vat_registered": true,
+      "in_business_register": true,
+      "in_foundation_register": false,
+      "in_voluntary_register": false,
+      "articles_date": "2011-01-01",
+      "written_language": "Bokmål"
+    },
+    "status": {
+      "bankrupt": false,
+      "under_liquidation": false,
+      "compulsory_dissolution": false
+    },
+    "people": {
+      "ceo": {
+        "name": "Glenn Arild Foss"
+      },
+      "partners": [
+        {
+          "name": "Glenn Arild Foss"
+        },
+        {
+          "name": "Stine Hogseth"
+        }
+      ],
+      "board_chair": {
+        "name": "Glenn Arild Foss"
+      },
+      "board_deputies": [
+        {
+          "name": "Stine Hogseth"
+        }
+      ],
+      "accountant": {
+        "name": "ØKORÅD ELVERUM & RENA AS",
+        "organisation_number": "844396082"
+      }
+    }
+  },
+  "summary": "FOSS MILJØTRANSPORT ANS (org. no. 990 083 010) is a general partnership (ANS) based in Elverum, in the Brønnøysund registers since 2006-08-07. It is active with no bankruptcy or liquidation registered. Its main activity is NACE 01.190 (Dyrking av ettårige vekster ellers); it has 0 registered employees. CEO: Glenn Arild Foss; board chair: Glenn Arild Foss.",
+  "gaps": [
+    {
+      "topic": "financials",
+      "reason": "Legal form ANS is normally not required to file annual accounts in Norway, so none are public."
+    },
+    {
+      "topic": "website",
+      "reason": "No website is registered in Enhetsregisteret or verified on Wikidata."
+    },
+    {
+      "topic": "identifiers",
+      "reason": "No LEI is registered with GLEIF for this organisation number (common for companies without traded securities or large financial contracts)."
+    },
+    {
+      "topic": "reference",
+      "reason": "No verified Wikidata item links to this number (normal for smaller companies)."
+    }
+  ],
+  "verification": {
+    "method": "Every fact comes from a record fetched by the exact organisation number. Secondary sources (GLEIF, Wikidata) are only accepted when their record names this number AND the legal name or LEI agrees; financial values are copied as filed and never estimated.",
+    "checks": [
+      {
+        "check": "organisation number checksum (mod 11)",
+        "result": "pass"
+      },
+      {
+        "check": "registry record organisation number equals query",
+        "result": "pass"
+      }
+    ],
+    "rejected": []
+  },
+  "sources": [
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "brreg_roller",
+      "url": "https://data.brreg.no/enhetsregisteret/api/enheter/990083010/roller",
+      "status": "ok",
+      "http_status": 200,
+      "source_name": "Brønnøysund Register Centre – registered roles (board, CEO, auditor)",
+      "licence": "NLOD 2.0"
+    },
+    {
+      "source": "brreg_enhetsregisteret",
+      "url": "https://data.brreg.no/enhetsregisteret/api/underenheter?overordnetEnhet=990083010&size=50",
+      "status": "ok",
+      "http_status": 200,
+      "note": "sub-units",
+      "source_name": "Brønnøysund Register Centre – Central Coordinating Register for Legal Entities (Enhetsregisteret)",
+      "licence": "Norwegian Licence for Open Government Data (NLOD 2.0)"
+    },
+    {
+      "source": "gleif",
+      "url": "https://api.gleif.org/api/v1/lei-records?filter%5Bfulltext%5D=990083010&filter%5Bentity.legalAddress.country%5D=NO&page%5Bsize%5D=10",
+      "status": "error",
+      "http_status": 429,
+      "source_name": "Global Legal Entity Identifier Foundation (GLEIF) LEI records",
+      "licence": "CC0 1.0"
+    },
+    {
+      "source": "wikidata",
+      "url": "https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP2333%3D990083010&srlimit=5&format=json",
+      "status": "not_found",
+      "http_status": 200,
+      "source_name": "Wikidata (matched on property P2333, Norwegian organisation number)",
+      "licence": "CC0 1.0"
+    }
+  ],
+  "changes": [],
+  "history": [],
+  "complete": true,
+  "stats": {
+    "requests": 102,
+    "seconds": 64.98,
+    "fact_count": 31
+  }
+}
