@@ -27,6 +27,21 @@ SOURCES = {
         "licence": "CC0 1.0",
         "authority": "community",
     },
+    "brreg_kunngjoringer": {
+        "name": "Brønnøysund Register Centre – official announcements (kunngjøringer)",
+        "licence": "public register announcements",
+        "authority": "official",
+    },
+    "company_website_feed": {
+        "name": "Company's own website news feed (RSS/Atom)",
+        "licence": "public web feed; titles, dates and links only",
+        "authority": "self-published",
+    },
+    "press": {
+        "name": "Press coverage found via Bing News RSS (accepted only with an exact company-name match)",
+        "licence": "public news headlines; titles, dates and links only",
+        "authority": "press",
+    },
     "company_website": {
         "name": "Company's own website (as registered in Enhetsregisteret)",
         "licence": "public web page; only titles, descriptions and links extracted",

@@ -76,6 +76,11 @@ def entity_facts(fs, orgnr, kind, rec, api_url):
         if nk.get("kode"):
             add(f"industry_code_{i}", f"Industry code (NACE) {'primary' if i == 1 else i}",
                 f"{nk['kode']} – {nk.get('beskrivelse', '')}".strip(" –"), "activity")
+    nk1 = (rec.get("naeringskode1") or {}).get("kode")
+    if nk1:
+        from .profile import nace_sector
+        add("industry_sector_en", "Industry sector (English, NACE section)", nace_sector(nk1), "activity",
+            note="NACE section looked up from the registered industry code")
     if is_number(rec.get("antallAnsatte")) and rec.get("harRegistrertAntallAnsatte", True) is not False:
         add("employees", "Registered number of employees", rec["antallAnsatte"], "size")
     elif rec.get("harRegistrertAntallAnsatte") is False:
@@ -610,4 +615,7 @@ def website_facts(http, fs, orgnr, site):
         platform = mm.group(1).split(".")[0].lower().replace("twitter", "x")
         socials.setdefault(platform, link)
     add("social_profiles", "Social media profiles (linked from website)", socials or None, "contact")
-    return SourceStatus.make("company_website", r.final_url, "ok", 200)
+    from .news import find_feed
+    st = SourceStatus.make("company_website", r.final_url, "ok", 200)
+    st["feed_url"] = find_feed(html, r.final_url)
+    return st

@@ -16,7 +16,8 @@ import urllib.parse
 USER_AGENT = "NorwayCompanyAgent/1.1 (open-data company research; contact: {})".format(
     os.environ.get("NCA_CONTACT", "see project repository"))
 # Minimum seconds between requests to the same host (keeps us inside fair-use limits).
-HOST_PACE = {"www.wikidata.org": 1.0, "query.wikidata.org": 2.0, "api.gleif.org": 0.25}
+HOST_PACE = {"www.wikidata.org": 1.0, "query.wikidata.org": 2.0, "api.gleif.org": 0.25,
+             "www.bing.com": 0.6, "w2.brreg.no": 0.2}
 
 
 class BudgetExceeded(Exception):

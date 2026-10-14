@@ -245,3 +245,73 @@ class Tests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+KUNNGJ_HTML = """<html><body><h2>Kunngjøringer for EQUINOR ASA, org.nr 923 609 016</h2><table>
+<tr><td>12.06.2025</td><td><a href="hent_en.jsp?kid=111&sokeverdi=923609016&spr=">Endring av styre</a></td></tr>
+<tr><td>03.01.2024</td><td><a href="hent_en.jsp?kid=222&amp;sokeverdi=923609016">Endring av forretningsadresse</a></td></tr>
+<tr><td>header</td></tr></table></body></html>"""
+FEED = """<?xml version="1.0"?><rss><channel>
+<item><title>Equinor awards contract</title><link>https://www.equinor.com/news/a</link><pubDate>Tue, 07 Oct 2025 08:00:00 GMT</pubDate></item>
+<item><title>No date item</title><link>https://www.equinor.com/news/b</link></item>
+</channel></rss>"""
+BING = """<?xml version="1.0"?><rss xmlns:News="https://www.bing.com/news/search?q=x"><channel>
+<item><title>Equinor ASA lifts dividend</title><link>http://www.bing.com/news/apiclick.aspx?ref=FexRss&amp;url=https%3a%2f%2fe24.no%2fartikkel1&amp;c=1</link>
+<description>Oslo-listed Equinor ASA said...</description><pubDate>Mon, 13 Oct 2025 06:00:00 GMT</pubDate><News:Source>E24</News:Source></item>
+<item><title>Equinor Fan Club meets</title><link>http://www.bing.com/news/apiclick.aspx?url=https%3a%2f%2fx.no%2f2</link>
+<description>A different organisation</description><pubDate>Mon, 13 Oct 2025 06:00:00 GMT</pubDate></item>
+</channel></rss>"""
+HTML_FEED = HTML.replace("</head>", "<link rel='alternate' type='application/rss+xml' href='/news/rss'></head>")
+
+
+class NewsTests(unittest.TestCase):
+    def routes(self, **over):
+        r = routes(**{"equinor.com/news/rss": (200, FEED), "equinor.com": (200, HTML_FEED),
+                      "kunngjoring/hent_nr": (200, KUNNGJ_HTML), "bing.com/news": (200, BING)})
+        # order matters in FakeHttp: put the feed before the homepage
+        ordered = {"equinor.com/news/rss": (200, FEED)}
+        ordered.update(r)
+        ordered.update(over)
+        return ordered
+
+    def test_news_sources(self):
+        p = build_profile(FakeHttp(self.routes()), ORG)
+        off = field(p, "news_official")["value"]
+        self.assertEqual(off[0], {"title": "Endring av styre",
+                                  "url": "https://w2.brreg.no/kunngjoring/hent_en.jsp?kid=111&sokeverdi=923609016&spr=",
+                                  "published": "2025-06-12", "source": "Brønnøysundregistrene – kunngjøringer",
+                                  "kind": "official_announcement",
+                                  "company_match": "Official announcement listed under organisation number 923609016"})
+        self.assertEqual(len(off), 2)
+        comp = field(p, "news_company")["value"]
+        self.assertEqual([c["url"] for c in comp], ["https://www.equinor.com/news/a"])   # undated item dropped
+        press = field(p, "news_press")["value"]
+        self.assertEqual(len(press), 1)                                                   # 'Equinor Fan Club' rejected
+        self.assertEqual(press[0]["url"], "https://e24.no/artikkel1")
+        self.assertEqual(press[0]["published"], "2025-10-13")
+        self.assertEqual(press[0]["source"], "E24")
+        self.assertEqual(p["news"][0]["published"], "2025-10-13")
+        for it in p["news"]:
+            for k in ("title", "url", "published", "source", "company_match"):
+                self.assertTrue(it[k])
+        self.assertIn("Most recent dated item", p["summary"])
+        self.assertTrue(any(k.startswith("Sector: B") for k in p["key_points"]))
+
+    def test_official_rejected_if_page_lacks_orgnr(self):
+        p = build_profile(FakeHttp(self.routes(**{"kunngjoring/hent_nr": (200, "<tr><td>01.01.2025</td><td><a href='hent_en.jsp?kid=1'>X</a></td></tr>")})), ORG)
+        self.assertIsNone(field(p, "news_official"))
+
+    def test_no_press_search_for_sole_proprietor(self):
+        e = dict(ENHET, organisasjonsform={"kode": "ENK", "beskrivelse": "Enkeltpersonforetak"}, navn="KARI NORDMANN")
+        http = FakeHttp(self.routes(**{f"/enheter/{ORG}": (200, e)}))
+        p = build_profile(http, ORG)
+        self.assertIsNone(field(p, "news_press"))
+
+    def test_risk_signals(self):
+        reg = json.loads(json.dumps(REGNSKAP))
+        reg[0]["egenkapitalGjeld"]["egenkapital"]["sumEgenkapital"] = -5
+        reg[0]["resultatregnskapResultat"]["aarsresultat"] = -10
+        p = build_profile(FakeHttp(self.routes(**{f"regnskap/{ORG}": (200, reg)})), ORG)
+        sigs = {s["signal"] for s in p["risk_signals"]}
+        self.assertIn("negative equity in latest filed accounts", sigs)
+        self.assertIn("Watch-outs:", p["summary"])

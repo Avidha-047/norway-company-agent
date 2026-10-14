@@ -16,6 +16,7 @@ No installs, no API keys, no paid services: Python 3.9+ standard library only. *
 |---|---|
 | One company (JSON) | `python agent.py 923609016` |
 | One company (readable) | `python agent.py 923609016 --format text` |
+| One company (browser page) | `python agent.py 923609016 --format html` → opens as `company_report.html` |
 | Daily test – a list of numbers (txt / csv / json, any layout) | `python agent.py --input companies.txt --out output` |
 | Build 1,000 random profiles | `python agent.py --sample 1000 --seed 2026 --out profiles` |
 | Refresh / update existing profiles | run the same `--out` command again |
@@ -31,7 +32,8 @@ Org numbers may be written `923609016`, `923 609 016` or `NO 923 609 016 MVA`.
 | `companies/<orgnr>.json` | Full profile per company (facts, evidence, summary, gaps, changes, history) |
 | `profiles.jsonl` | All profiles, one per line |
 | `index.csv` | One row per company: name, status, form, municipality, industry, employees, revenue, net income, CEO, website, LEI, summary |
-| `run_report.json` | Companies, statuses, facts per company, outbound requests used, runtime, cost |
+| `run_report.json` | Companies, statuses, facts per company, dated news items, outbound requests used, runtime, cost |
+| `report.html` | **Open in any browser:** searchable list of all companies with summary, key points, risk signals, dated news and every fact with its source link |
 
 ### A fact looks like this
 
@@ -56,6 +58,9 @@ Org numbers may be written `923609016`, `923 609 016` or `NO 923 609 016 MVA`.
 ```
 
 Each profile also has:
+- `news` – **dated news and announcements**, newest first. Every item has `title`, `url` (the original source), `published` (full YYYY-MM-DD date), `source`, `kind` and its own `company_match` reason
+- `key_points` – sector (English NACE section), age, size class, latest financials as filed, leadership, latest news, listing
+- `risk_signals` – bankruptcy/liquidation, negative equity, losses, overdue accounts, recent role changes, recent official announcements
 - `summary` – a plain-English paragraph built only from the published facts
 - `profile` – the same facts grouped by category for easy reading
 - `gaps` – what was **not** found and why (e.g. "Legal form ENK is normally not required to file annual accounts")
@@ -73,8 +78,16 @@ Each profile also has:
 | **GLEIF** (CC0) | LEI, LEI status/renewal, direct & ultimate parent | 1–3 |
 | **Wikidata** (CC0) | Wikidata ID, description, inception, ISIN, stock exchange & ticker, parent organisation, logo, Wikipedia links | 1 |
 | Company's **own website** (registered in Brreg) | Title, description, brand name, whether it shows the org number, social profiles | 1–2 |
+| Brønnøysund **announcements** (kunngjøringer) | Dated official announcements: board changes, address/name changes, mergers, liquidation, bankruptcy | 1 |
+| Company **website news feed** (RSS/Atom linked from the registered site) | Dated company news | 0–1 |
+| **Press coverage** (Bing News RSS) | Dated articles naming the exact company | 1 (skipped for sole proprietorships, whose names are personal names) |
 
-Typical cost: **6–9 outbound requests per company** → about 700–900 for the daily 100 companies (limit 2,000).
+### How news is matched to the right company
+- **Official announcements** are fetched by organisation number, and the page must show that number.
+- **Company news** comes only from a feed on the same domain as the website registered for that number.
+- **Press articles** are kept only if the title or snippet contains the **exact registered name including its legal suffix** (e.g. "Maleran AS"; such names are unique in Foretaksregisteret), or the name plus an independent corroborator from the registry (municipality, CEO/chair surname, website domain, ticker), or the organisation number. Everything else is rejected and counted. Items without a full publication date are never published.
+
+Typical cost: **about 10–13 outbound requests per company** → roughly 1,000–1,300 for the daily 100 companies (limit 2,000; hard cap 1,900).
 
 ## How wrong-company errors are prevented
 

@@ -10,6 +10,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from .http import BudgetExceeded
 from .profile import build_profile
+from .report import write_report
 from .sources import BRREG
 from .util import ORGNR_RE, now_iso
 
@@ -64,7 +65,7 @@ def _load(path):
         return None
 
 
-def run_batch(http, orgnrs, out_dir, workers=8, use_web=True, use_wikidata=True, progress=True):
+def run_batch(http, orgnrs, out_dir, workers=8, use_web=True, use_wikidata=True, use_news=True, progress=True):
     os.makedirs(os.path.join(out_dir, "companies"), exist_ok=True)
     t0 = time.time()
     results = {}
@@ -72,7 +73,7 @@ def run_batch(http, orgnrs, out_dir, workers=8, use_web=True, use_wikidata=True,
     def one(n):
         path = os.path.join(out_dir, "companies", f"{n}.json")
         prev = _load(path)
-        prof = build_profile(http, n, previous=prev, use_web=use_web, use_wikidata=use_wikidata)
+        prof = build_profile(http, n, previous=prev, use_web=use_web, use_wikidata=use_wikidata, use_news=use_news)
         # never overwrite a good profile with a budget-truncated one
         if prev and not prof.get("complete", True) and prof.get("status") in ("lookup_incomplete", "lookup_failed"):
             prev["last_attempt"] = {"at": prof["generated_at"], "result": prof["status"]}
@@ -100,6 +101,7 @@ def run_batch(http, orgnrs, out_dir, workers=8, use_web=True, use_wikidata=True,
 
     ordered = [results[n] for n in orgnrs if n in results]
     write_outputs(out_dir, ordered)
+    write_report(os.path.join(out_dir, "report.html"), ordered, now_iso())
     report = {
         "finished_at": now_iso(),
         "companies": len(ordered),
@@ -107,6 +109,8 @@ def run_batch(http, orgnrs, out_dir, workers=8, use_web=True, use_wikidata=True,
         "facts_total": sum(len(p.get("facts", [])) for p in ordered),
         "facts_per_company_avg": round(sum(len(p.get("facts", [])) for p in ordered) / max(1, len(ordered)), 1),
         "companies_with_changes": sum(1 for p in ordered if p.get("changes")),
+        "companies_with_dated_news": sum(1 for p in ordered if p.get("news")),
+        "dated_news_items": sum(len(p.get("news") or []) for p in ordered),
         "outbound_requests": http.used,
         "request_budget": http.max_requests,
         "seconds": round(time.time() - t0, 1),
@@ -135,7 +139,7 @@ def write_outputs(out_dir, profiles):
         for p in profiles:
             fh.write(json.dumps(p, ensure_ascii=False) + "\n")
     cols = ["organisation_number", "name", "status", "legal_form", "municipality", "industry", "employees",
-            "revenue_nok", "net_income_nok", "accounts_period", "ceo", "website", "lei", "fact_count", "summary"]
+            "revenue_nok", "net_income_nok", "accounts_period", "ceo", "website", "lei", "news_count", "latest_news_date", "latest_news_title", "fact_count", "summary"]
     with open(os.path.join(out_dir, "index.csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
         w.writerow(cols)
@@ -150,6 +154,8 @@ def write_outputs(out_dir, profiles):
                 pr.get("financials", {}).get("accounts_period"),
                 ceo.get("name") if isinstance(ceo, dict) else None,
                 pr.get("contact", {}).get("website"), pr.get("identifiers", {}).get("lei"),
+                len(p.get("news") or []), (p.get("news") or [{}])[0].get("published"),
+                (p.get("news") or [{}])[0].get("title"),
                 len(p.get("facts", [])), p.get("summary"),
             ])
 
@@ -159,7 +165,7 @@ def to_text(p):
     lines = [f"{p.get('name') or '(unknown)'} — {p.get('organisation_number')} — status: {p.get('status')}", "",
              p.get("summary") or "", ""]
     cur = None
-    for f in sorted(p.get("facts", []), key=lambda f: f["category"]):
+    for f in sorted((f for f in p.get("facts", []) if f["category"] != "news"), key=lambda f: f["category"]):
         if f["category"] != cur:
             cur = f["category"]
             lines.append(f"== {cur.upper()} ==")
@@ -174,6 +180,18 @@ def to_text(p):
         stale = " (STALE)" if f.get("stale") else ""
         lines.append(f"  {f['label']}: {v}{date}{stale}")
         lines.append(f"      source: {f['evidence_url']}")
+    if p.get("key_points"):
+        lines.append("== KEY POINTS ==")
+        lines += [f"  - {k}" for k in p["key_points"]]
+    if p.get("risk_signals"):
+        lines.append("== RISK SIGNALS ==")
+        lines += [f"  - [{r['severity']}] {r['signal']} ({r['evidence']})" for r in p["risk_signals"]]
+    if p.get("news"):
+        lines.append("== DATED NEWS & ANNOUNCEMENTS ==")
+        for it in p["news"][:15]:
+            lines.append(f"  {it['published']}  {it['title']}  [{it['source']}]")
+            lines.append(f"      {it['url']}")
+            lines.append(f"      match: {it['company_match']}")
     if p.get("gaps"):
         lines.append("== NOT FOUND (and why) ==")
         for g in p["gaps"]:

@@ -32,13 +32,15 @@ def main(argv=None):
     ap.add_argument("--time-limit", type=int, default=40 * 60, help="seconds before the agent stops starting new requests (default 2400)")
     ap.add_argument("--no-web", action="store_true", help="skip fetching company websites")
     ap.add_argument("--no-wikidata", action="store_true", help="skip Wikidata")
+    ap.add_argument("--no-news", action="store_true", help="skip dated news and announcements")
     ap.add_argument("--check", action="store_true", help="live connectivity + schema check against known companies")
-    ap.add_argument("--format", choices=["json", "text"], default="json", help="stdout format when no --out is given")
+    ap.add_argument("--format", choices=["json", "text", "html"], default="json",
+                    help="stdout format when no --out is given (html writes company_report.html)")
     a = ap.parse_args(argv)
 
     if a.check:
         return live_check()
-    budget = a.max_requests or (a.sample * 12 + 600 if a.sample else 1900)
+    budget = a.max_requests or (a.sample * 16 + 600 if a.sample else 1900)
     http = Http(max_requests=budget, deadline=time.time() + a.time_limit)
 
     inputs = list(a.orgnr)
@@ -61,20 +63,29 @@ def main(argv=None):
             os.makedirs(a.out, exist_ok=True)
             with open(os.path.join(a.out, "sample_orgnrs.txt"), "w") as fh:
                 fh.write("\n".join(orgnrs) + "\n")
-        profiles, report = run_batch(http, orgnrs, a.out, workers=a.workers,
-                                     use_web=not a.no_web, use_wikidata=not a.no_wikidata)
+        profiles, report = run_batch(http, orgnrs, a.out, workers=a.workers, use_web=not a.no_web,
+                                     use_wikidata=not a.no_wikidata, use_news=not a.no_news)
         print(json.dumps(report, indent=2), file=sys.stderr)
+        print(f"\nDone: {report['companies']} profiles, {report['dated_news_items']} dated news items, "
+              f"{report['outbound_requests']} requests, ${report['external_api_cost_usd']:.2f} API cost.", file=sys.stderr)
+        print(f"Open {os.path.join(a.out, 'report.html')} in a browser to browse the results; "
+              f"machine-readable files: profiles.jsonl, index.csv, companies/*.json", file=sys.stderr)
         return 0
 
     # No output dir: print to stdout
     out = []
     for n in orgnrs:
-        p = build_profile(http, n, use_web=not a.no_web, use_wikidata=not a.no_wikidata)
+        p = build_profile(http, n, use_web=not a.no_web, use_wikidata=not a.no_wikidata, use_news=not a.no_news)
         out.append(p)
         if a.format == "text":
             print(to_text(p) + "\n")
     if a.format == "json":
         print(json.dumps(out[0] if len(out) == 1 else out, ensure_ascii=False, indent=2))
+    if a.format == "html":
+        from nca.report import write_report
+        from nca.util import now_iso
+        write_report("company_report.html", out, now_iso())
+        print("Wrote company_report.html – open it in a browser.", file=sys.stderr)
     print(f"\n[{http.used} outbound requests, $0.00 external API cost]", file=sys.stderr)
     return 0
 
@@ -83,8 +94,9 @@ def live_check():
     """Hits every source for Equinor ASA and DNB Bank ASA and reports which key facts came back."""
     expect = ["legal_name", "legal_form", "employees", "industry_code_1", "ceo", "board_chair", "auditor",
               "subunit_count", "accounts_period", "revenue", "net_income", "total_assets", "equity",
-              "lei", "wikidata_id", "stock_listings", "website_title", "website_shows_orgnr"]
-    http = Http(max_requests=60)
+              "lei", "wikidata_id", "stock_listings", "website_title", "website_shows_orgnr",
+              "news_official", "news_press"]
+    http = Http(max_requests=80)
     ok = True
     for n in ("923609016", "984851006"):
         p = build_profile(http, n)
@@ -94,6 +106,8 @@ def live_check():
             print(f"  source {s['source']:<24} {s['status']:<10} http {s.get('http_status')} {s.get('note') or ''}")
         missing = [e for e in expect if e not in got]
         print("  missing expected:", ", ".join(missing) or "none")
+        for it in (p.get("news") or [])[:5]:
+            print(f"  news {it['published']} [{it['kind']}] {it['title'][:70]} – {it['source']}")
         for rj in p.get("verification", {}).get("rejected", []):
             print("  rejected:", rj)
         bad = [s["source"] for s in p.get("sources", []) if s.get("status") == "error"]

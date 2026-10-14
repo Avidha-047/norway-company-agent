@@ -2,17 +2,20 @@
 import json
 import time
 
+import datetime
+
+from . import news as N
 from . import sources as S
 from .facts import SOURCES, FactSet
 from .http import BudgetExceeded
 from .util import fmt_money, fmt_orgnr, normalize_orgnr, now_iso, valid_orgnr
 
-SCHEMA_VERSION = "1.1"
+SCHEMA_VERSION = "2.0"
 # Legal forms that are normally not obliged to file annual accounts in Norway.
 NO_ACCOUNTS_DUTY = {"ENK", "ANS", "DA", "FLI", "SAM", "KIRK", "ORGL", "STAT", "FYLK", "KOMM", "IKS", "ESEK", "PERS", "UTLA", "VPFO"}
 
 
-def build_profile(http, query, previous=None, use_web=True, use_wikidata=True):
+def build_profile(http, query, previous=None, use_web=True, use_wikidata=True, use_news=True):
     started = time.time()
     used_before = http.used
     orgnr = normalize_orgnr(query)
@@ -59,10 +62,13 @@ def build_profile(http, query, previous=None, use_web=True, use_wikidata=True):
                 wst, _ = S.wikidata_facts(http, fs, orgnr, prof["name"], lei, rejections)
                 statuses.append(wst)
             site = rec.get("hjemmeside") or fs.get("official_website")
+            wst = None
             if use_web and site and prof["status"] != "deleted":
                 wst = S.website_facts(http, fs, orgnr, site)
                 if wst:
                     statuses.append(wst)
+            if use_news and kind in ("enhet", "deleted"):
+                collect_news(http, fs, statuses, orgnr, rec, site, wst)
     except BudgetExceeded as e:
         complete = False
         statuses.append(S.SourceStatus.make("agent", None, "stopped", note=str(e)))
@@ -74,6 +80,10 @@ def build_profile(http, query, previous=None, use_web=True, use_wikidata=True):
     changes, facts = diff_against(previous, facts, ok_sources, complete)
     prof["facts"] = facts
     prof["profile"] = flatten(facts)
+    prof["news"] = N.dedupe([it for f in facts if f["field"].startswith("news_") and isinstance(f["value"], list)
+                             for it in f["value"]])
+    prof["key_points"] = key_points(prof, fs)
+    prof["risk_signals"] = risk_signals(prof, fs, rec)
     prof["summary"] = explain(prof, fs)
     prof["gaps"] = gaps(prof, kind, rec, statuses)
     prof["verification"] = {
@@ -91,6 +101,164 @@ def build_profile(http, query, previous=None, use_web=True, use_wikidata=True):
     prof["complete"] = complete
     prof["stats"] = {"requests": http.used - used_before, "seconds": round(time.time() - started, 2), "fact_count": len(facts)}
     return prof
+
+
+NEWS_FACTS = {
+    "brreg_kunngjoringer": ("news_official", "Official announcements (Brønnøysund kunngjøringer)"),
+    "company_website_feed": ("news_company", "News from the company's own website"),
+    "press": ("news_press", "Press coverage naming this exact company"),
+}
+
+
+def collect_news(http, fs, statuses, orgnr, rec, site, wst):
+    form = ((rec or {}).get("organisasjonsform") or {}).get("kode")
+    batches = []
+    items, st = N.official_announcements(http, orgnr)
+    batches.append(("brreg_kunngjoringer", items, st))
+    if site and wst and wst.get("feed_url"):
+        items, st = N.company_feed(http, wst.get("url") or site, wst["feed_url"], orgnr)
+        batches.append(("company_website_feed", items, st))
+    corr = []
+    addr = (rec or {}).get("forretningsadresse") or (rec or {}).get("beliggenhetsadresse") or {}
+    corr += [addr.get("kommune"), addr.get("poststed")]
+    for role in ("ceo", "board_chair"):
+        v = fs.get(role)
+        if isinstance(v, dict) and v.get("name"):
+            corr.append(v["name"].split()[-1])
+    if site:
+        corr.append(N._host(site if "://" in site else "https://" + site))
+    for l in fs.get("stock_listings") or []:
+        corr.append(l.get("ticker"))
+    if http.remaining() > 40:
+        items, st = N.press_coverage(http, (rec or {}).get("navn"), form, corr, orgnr)
+        batches.append(("press", items, st))
+    for src, items, st in batches:
+        if st:
+            statuses.append(S.SourceStatus(**{k: v for k, v in st.items() if v is not None}))
+        if items:
+            field, label = NEWS_FACTS[src]
+            newest = items[0]["published"]
+            fs.add(field, label, items, src, st["url"], evidence_url=items[0]["url"], as_of=newest,
+                   category="news", confidence="high" if src != "press" else "medium",
+                   match="; ".join(sorted({i["company_match"] for i in items}))[:400],
+                   note=f"{len(items)} dated items; each item has title, source URL, full publication date and its own company-match reason")
+
+
+NACE_SECTIONS = [
+    (1, 3, "A", "Agriculture, forestry and fishing"), (5, 9, "B", "Mining and quarrying"),
+    (10, 33, "C", "Manufacturing"), (35, 35, "D", "Electricity, gas and heating supply"),
+    (36, 39, "E", "Water supply, sewerage and waste management"), (41, 43, "F", "Construction"),
+    (45, 47, "G", "Wholesale and retail trade"), (49, 53, "H", "Transportation and storage"),
+    (55, 56, "I", "Accommodation and food services"), (58, 63, "J", "Information and communication"),
+    (64, 66, "K", "Financial and insurance activities"), (68, 68, "L", "Real estate activities"),
+    (69, 75, "M", "Professional, scientific and technical activities"),
+    (77, 82, "N", "Administrative and support services"), (84, 84, "O", "Public administration"),
+    (85, 85, "P", "Education"), (86, 88, "Q", "Health and social work"),
+    (90, 93, "R", "Arts, entertainment and recreation"), (94, 96, "S", "Other service activities"),
+    (97, 98, "T", "Activities of households"), (99, 99, "U", "Extraterritorial organisations"),
+]
+
+
+def nace_sector(code):
+    try:
+        div = int(str(code).split(".")[0])
+    except ValueError:
+        return None
+    for lo, hi, sec, name in NACE_SECTIONS:
+        if lo <= div <= hi:
+            return f"{sec} – {name}"
+    return None
+
+
+def _years_since(d):
+    try:
+        y, m, dd = map(int, str(d)[:10].split("-"))
+        days = (datetime.date.today() - datetime.date(y, m, dd)).days
+        return days // 365
+    except Exception:
+        return None
+
+
+def size_class(emp):
+    if not isinstance(emp, int):
+        return None
+    if emp == 0:
+        return "no registered employees"
+    return "micro (1–9 employees)" if emp < 10 else "small (10–49)" if emp < 50 else "medium (50–249)" if emp < 250 else "large (250+)"
+
+
+def key_points(prof, fs):
+    pts = []
+    if prof.get("status") in (None, "not_found", "invalid_organisation_number", "lookup_failed"):
+        return pts
+    ind = fs.get("industry_code_1")
+    if ind:
+        sec = nace_sector(ind.split(" – ")[0])
+        pts.append(f"Sector: {sec}" + (f" (NACE {ind})" if ind else "") if sec else f"Industry: NACE {ind}")
+    age = _years_since(fs.get("founded_date") or fs.get("registered_date"))
+    if age is not None:
+        pts.append(f"Age: about {age} years (founded/registered {fs.get('founded_date') or fs.get('registered_date')})")
+    sc = size_class(fs.get("employees"))
+    if sc:
+        pts.append(f"Size: {sc}" + (f", {fs.get('subunit_count')} registered establishments" if fs.get("subunit_count") else ""))
+    rev, ni, eq = _val(fs, "revenue"), _val(fs, "net_income"), _val(fs, "equity")
+    period = fs.get("accounts_period")
+    if period and rev is not None:
+        yr = str(period)[-10:-6]
+        bits = [f"revenue {fmt_money(rev)}"]
+        if ni is not None:
+            bits.append(("profit " if ni >= 0 else "loss ") + fmt_money(abs(ni)))
+        if eq is not None:
+            bits.append(f"equity {fmt_money(eq)}")
+        pts.append(f"Financials {yr} (as filed): " + ", ".join(bits))
+    ceo, chair = fs.get("ceo"), fs.get("board_chair")
+    lead = []
+    if isinstance(ceo, dict):
+        lead.append(f"CEO {ceo['name']}")
+    if isinstance(chair, dict):
+        lead.append(f"chair {chair['name']}")
+    if lead:
+        pts.append("Leadership: " + ", ".join(lead))
+    if prof.get("news"):
+        n = prof["news"][0]
+        pts.append(f"Latest dated item: \"{n['title']}\" ({n['published']}, {n['source']})")
+    if fs.get("stock_listings"):
+        l = fs.get("stock_listings")[0]
+        pts.append(f"Listed on {l['exchange']}" + (f" as {l['ticker']}" if l.get("ticker") else ""))
+    return pts
+
+
+def risk_signals(prof, fs, rec):
+    sig = []
+    st = prof.get("status")
+    if st in ("bankrupt", "under_liquidation", "compulsory_liquidation", "deleted"):
+        sig.append({"signal": st.replace("_", " "), "severity": "high", "evidence": "Enhetsregisteret status flags"})
+    ni, eq = _val(fs, "net_income"), _val(fs, "equity")
+    period = fs.get("accounts_period")
+    if isinstance(eq, (int, float)) and eq < 0:
+        sig.append({"signal": "negative equity in latest filed accounts", "severity": "high", "evidence": f"Regnskapsregisteret {period}"})
+    if isinstance(ni, (int, float)) and ni < 0:
+        sig.append({"signal": "reported a net loss in latest filed accounts", "severity": "medium", "evidence": f"Regnskapsregisteret {period}"})
+    form = ((rec or {}).get("organisasjonsform") or {}).get("kode")
+    last = (rec or {}).get("sisteInnsendteAarsregnskap")
+    reg_age = _years_since(fs.get("registered_date"))
+    if form in ("AS", "ASA") and st == "active" and reg_age is not None and reg_age >= 2:
+        try:
+            if not last or int(last) < datetime.date.today().year - 2:
+                sig.append({"signal": "annual accounts appear overdue", "severity": "medium",
+                            "evidence": f"last submitted accounts year: {last or 'none'}"})
+        except ValueError:
+            pass
+    for f in prof.get("facts", []):
+        if f["category"] == "people" and f.get("as_of") and _years_since(f["as_of"]) == 0:
+            sig.append({"signal": f"{f['label'].lower()} changed within the last 12 months", "severity": "info",
+                        "evidence": f"role register updated {f['as_of']}"})
+            break
+    recent = [n for n in prof.get("news", []) if n["kind"] == "official_announcement" and _years_since(n["published"]) == 0]
+    if recent:
+        sig.append({"signal": f"{len(recent)} official announcement(s) in the last 12 months", "severity": "info",
+                    "evidence": recent[0]["title"]})
+    return sig
 
 
 def flatten(facts):
@@ -248,6 +416,14 @@ def explain(prof, fs):
         extra.append(f"ultimate parent {fs.get('ultimate_parent')['name']}")
     if extra:
         parts.append("Also: " + ", ".join(extra) + ".")
+    news = prof.get("news") or []
+    if news:
+        n = news[0]
+        parts.append(f"Most recent dated item ({n['published']}): \"{n['title']}\" – {n['source']}.")
+        parts.append(f"{len(news)} dated news/announcement items are listed with source links.")
+    risks = [r["signal"] for r in prof.get("risk_signals", []) if r["severity"] in ("high", "medium")]
+    if risks:
+        parts.append("Watch-outs: " + "; ".join(risks) + ".")
     return " ".join(parts)
 
 
@@ -276,6 +452,8 @@ def gaps(prof, kind, rec, statuses):
         out.append({"topic": "identifiers", "reason": "No LEI is registered with GLEIF for this organisation number (common for companies without traded securities or large financial contracts)."})
     if "ceo" not in fields and kind == "enhet" and form not in ("ENK",):
         out.append({"topic": "people", "reason": "No CEO (daglig leder) is registered; this is optional for many legal forms."})
+    if not prof.get("news") and kind == "enhet":
+        out.append({"topic": "news", "reason": "No dated announcement, company-site news or press article that provably refers to this exact company was found."})
     if "wikidata_id" not in fields and kind == "enhet":
         out.append({"topic": "reference", "reason": "No verified Wikidata item links to this number (normal for smaller companies)."})
     return out
