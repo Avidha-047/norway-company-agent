@@ -13,7 +13,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 300
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -22,7 +22,7 @@ jobs:
       - name: Offline tests
         run: python -m unittest discover -s tests -v
       - name: Build profiles
-        run: python agent.py --sample ${{ github.event.inputs.count }} --seed 2026 --out profiles --time-limit 6600
+        run: python agent.py --sample ${{ github.event.inputs.count }} --seed 2026 --out profiles --time-limit 16000
       - name: Commit profiles
         run: |
           git config user.name "github-actions"
