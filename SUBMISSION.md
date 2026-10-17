@@ -2,12 +2,12 @@
 
 | Item | Value |
 |---|---|
-| Repository | https://github.com/<your-username>/norway-company-agent |
-| Commit hash | `<paste output of: git rev-parse HEAD>` |
+| Repository | https://github.com/Avidha-047/norway-company-agent |
+| Commit hash | Provided in the submission email |
 | Command | `python agent.py --input companies.txt --out output` |
 | Company profiles | `profiles/` folder – 1,000+ profiles (`profiles/companies/*.json`, `profiles/profiles.jsonl`, `profiles/index.csv`) |
 | Model / API | No LLM or paid API. Deterministic Python 3.9+ (standard library only). Free public sources: Brønnøysund Enhetsregisteret, roles and sub-units API, Regnskapsregisteret (NLOD 2.0); GLEIF LEI API (CC0); Wikidata SPARQL (CC0); company websites registered in Enhetsregisteret. |
-| Expected run cost | $0.00 external API cost per daily test. About 700–900 outbound requests and 3–8 minutes for 100 companies (hard caps: 1,900 requests, 40 minutes). |
+| Expected run cost | $0.00 external API cost per daily test. About 1,000–1,300 outbound requests and 3–8 minutes for 100 companies (hard caps: 1,900 requests, 40 minutes). |
 | Built with JBOX | No |
 
 ## Notes for the evaluators
