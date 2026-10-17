@@ -17,7 +17,7 @@ USER_AGENT = "NorwayCompanyAgent/1.1 (open-data company research; contact: {})".
     os.environ.get("NCA_CONTACT", "see project repository"))
 # Minimum seconds between requests to the same host (keeps us inside fair-use limits).
 HOST_PACE = {"www.wikidata.org": 1.0, "query.wikidata.org": 2.0, "api.gleif.org": 0.25,
-             "www.bing.com": 0.6, "w2.brreg.no": 0.2}
+             "www.bing.com": 0.6, "w2.brreg.no": 0.2, "api.gdeltproject.org": 5.5}
 
 
 class BudgetExceeded(Exception):
@@ -65,6 +65,7 @@ class Http:
         self.cache = {}
         self.log = []
         self._next_slot = {}
+        self.reserve = 0          # requests kept back for companies still waiting in the batch
 
     def _pace(self, url):
         host = urllib.parse.urlsplit(url).hostname or ""
@@ -80,6 +81,10 @@ class Http:
 
     def remaining(self):
         return self.max_requests - self.used
+
+    def spare(self, n=1):
+        """True when n optional requests can be spent without starving later companies."""
+        return self.remaining() - n >= self.reserve and not (self.deadline and time.time() > self.deadline - 120)
 
     def _take(self):
         with self.lock:

@@ -65,7 +65,7 @@ def _load(path):
         return None
 
 
-def run_batch(http, orgnrs, out_dir, workers=8, use_web=True, use_wikidata=True, use_news=True, progress=True):
+def run_batch(http, orgnrs, out_dir, workers=8, use_web=True, use_wikidata=True, use_news=True, use_bing=False, progress=True):
     os.makedirs(os.path.join(out_dir, "companies"), exist_ok=True)
     t0 = time.time()
     results = {}
@@ -73,7 +73,7 @@ def run_batch(http, orgnrs, out_dir, workers=8, use_web=True, use_wikidata=True,
     def one(n):
         path = os.path.join(out_dir, "companies", f"{n}.json")
         prev = _load(path)
-        prof = build_profile(http, n, previous=prev, use_web=use_web, use_wikidata=use_wikidata, use_news=use_news)
+        prof = build_profile(http, n, previous=prev, use_web=use_web, use_wikidata=use_wikidata, use_news=use_news, use_bing=use_bing)
         # never overwrite a good profile with a budget-truncated one
         if prev and not prof.get("complete", True) and prof.get("status") in ("lookup_incomplete", "lookup_failed"):
             prev["last_attempt"] = {"at": prof["generated_at"], "result": prof["status"]}
@@ -84,9 +84,13 @@ def run_batch(http, orgnrs, out_dir, workers=8, use_web=True, use_wikidata=True,
         os.replace(tmp, path)
         return n, prof
 
+    # keep ~5 core requests (entity, roles, sub-units, accounts, announcements) for every company not yet finished
+    CORE = 5
+    http.reserve = CORE * max(0, len(orgnrs) - workers)
     with ThreadPoolExecutor(max_workers=workers) as ex:
         futs = {ex.submit(one, n): n for n in orgnrs}
         for i, f in enumerate(as_completed(futs), 1):
+            http.reserve = CORE * max(0, len(orgnrs) - i - workers)
             n = futs[f]
             try:
                 n, prof = f.result()
@@ -200,4 +204,39 @@ def to_text(p):
         lines.append("== CHANGES SINCE LAST RUN ==")
         for c in p["changes"]:
             lines.append(f"  {c['type']}: {c['field']}")
+    return "\n".join(lines)
+
+
+COMPARE_ROWS = [("Status", None, "status"), ("Legal form", "identity", "legal_form"), ("Municipality", "location", "municipality"),
+                ("Industry", "activity", "industry_code_1"), ("Employees", "size", "employees"),
+                ("Accounting period", "financials", "accounts_period"), ("Revenue", "financials", "revenue"),
+                ("Net income", "financials", "net_income"), ("Equity", "financials", "equity"), ("CEO", "people", "ceo"),
+                ("Board chair", "people", "board_chair"), ("Website", "contact", "website")]
+
+
+def _cell(p, cat, field):
+    if cat is None:
+        return str(p.get(field) or "—")
+    v = (p.get("profile") or {}).get(cat, {}).get(field)
+    if v is None and field == "website":
+        v = (p.get("profile") or {}).get("contact", {}).get("website_discovered")
+    if isinstance(v, dict) and "amount" in v:
+        return f"{v['amount']:,} {v['currency']}".replace(",", " ")
+    if isinstance(v, dict):
+        return v.get("name") or str(v)
+    return "—" if v is None else str(v)
+
+
+def compare_table(profiles):
+    """Plain-text side-by-side comparison (values are taken only from sourced facts)."""
+    cols = [[p.get("name") or p.get("organisation_number") or "?"] + [_cell(p, c, f) for _, c, f in COMPARE_ROWS]
+            + [str(len(p.get("news") or []))] for p in profiles]
+    labels = ["Company"] + [r[0] for r in COMPARE_ROWS] + ["Dated news items"]
+    width = [max(len(x) for x in labels)] + [min(34, max(len(x) for x in col)) for col in cols]
+    lines = []
+    for i, lab in enumerate(labels):
+        row = [lab.ljust(width[0])] + [col[i][:width[j + 1]].ljust(width[j + 1]) for j, col in enumerate(cols)]
+        lines.append(" | ".join(row))
+        if i == 0:
+            lines.append("-+-".join("-" * w for w in width))
     return "\n".join(lines)

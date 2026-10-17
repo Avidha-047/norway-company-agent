@@ -63,6 +63,27 @@ def _date_from_any(s):
     return None
 
 
+ANNOUNCEMENT_EN = [
+    (r"konkurs", "Bankruptcy"), (r"tvangsoppl|tvangsavvikl", "Compulsory dissolution"),
+    (r"oppl.sning|avvikling", "Dissolution / liquidation"), (r"fusjon", "Merger"), (r"fisjon", "Demerger"),
+    (r"nyregistrering|stiftelse", "New registration"), (r"sletting|slettet", "Deregistration"),
+    (r"daglig leder", "CEO change"), (r"styre", "Board change"), (r"revisor", "Auditor change"),
+    (r"regnskapsf.rer", "Accountant change"), (r"kapital", "Share capital change"), (r"navn", "Name change"),
+    (r"forretningsadresse|adresse", "Address change"), (r"vedtekt", "Articles of association change"),
+    (r"form.l", "Purpose change"), (r"signatur", "Signature authority change"), (r"prokura", "Procuration change"),
+    (r".rsregnskap", "Annual accounts approved"), (r"omdanning|organisasjonsform", "Change of legal form"),
+    (r"kreditorvarsel", "Notice to creditors"), (r"eierskifte|innehaver", "Change of owner"),
+]
+
+
+def translate_announcement(title):
+    t = (title or "").lower()
+    for pat, en in ANNOUNCEMENT_EN:
+        if re.search(pat, t):
+            return en
+    return None
+
+
 def _item(title, url, published, source, kind, match, **extra):
     return {"title": title, "url": url, "published": published, "source": source, "kind": kind,
             "company_match": match, **extra}
@@ -94,8 +115,10 @@ def official_announcements(http, orgnr, limit=15):
         if not title or not pub or link in seen:
             continue
         seen.add(link)
+        en = translate_announcement(title)
         items.append(_item(title, link, pub, "Brønnøysundregistrene – kunngjøringer", "official_announcement",
-                           f"Official announcement listed under organisation number {orgnr}"))
+                           f"Official announcement listed under organisation number {orgnr}",
+                           **({"title_en": en} if en else {})))
     items.sort(key=lambda x: x["published"], reverse=True)
     return items[:limit], {"source": "brreg_kunngjoringer", "url": url, "status": "ok" if items else "not_found",
                            "http_status": 200}
@@ -187,6 +210,22 @@ def _real_url(bing_link):
     return (q.get("url") or [bing_link])[0]
 
 
+def match_reason(text, legal_name, corroborators, orgnr):
+    """Why an article is about this exact company, or None."""
+    if orgnr_pattern(orgnr).search(text):
+        return f"Article shows organisation number {orgnr}"
+    exact = _suffix_pattern(legal_name)
+    if exact and exact.search(text):
+        return f"Article names the exact registered company name '{legal_name}' (legal names are unique in Foretaksregisteret)"
+    core = norm_name(legal_name)
+    core_pat = _suffix_pattern(core) if len(core) >= 6 else None
+    if core_pat and core_pat.search(text):
+        for c in corroborators:
+            if c and len(c) >= 4 and re.search(rf"(?<!\w){re.escape(c)}(?!\w)", text, re.I):
+                return f"Article names '{core}' and also mentions '{c}', which matches this company's registry record"
+    return None
+
+
 def press_coverage(http, legal_name, form, corroborators, orgnr, limit=10):
     if not press_eligible(legal_name, form):
         return [], None
@@ -195,10 +234,6 @@ def press_coverage(http, legal_name, form, corroborators, orgnr, limit=10):
     r = http.get(url, accept="application/rss+xml,text/xml", retries=1, timeout=15)
     if r.status != 200:
         return [], {"source": "press", "url": url, "status": "error", "http_status": r.status}
-    exact = _suffix_pattern(legal_name)
-    core = norm_name(legal_name)
-    core_pat = _suffix_pattern(core) if len(core) >= 6 else None
-    corr = [c for c in corroborators if c and len(c) >= 4]
     items, rejected = [], 0
     try:
         root = ET.fromstring(r.body)
@@ -213,16 +248,7 @@ def press_coverage(http, legal_name, form, corroborators, orgnr, limit=10):
         for c in el:
             if c.tag.split("}")[-1] in ("Source", "source") and (c.text or "").strip():
                 src = c.text.strip()
-        text = f"{title} {desc}"
-        reason = None
-        if exact and exact.search(text):
-            reason = f"Article names the exact registered company name '{legal_name}' (legal names are unique in Foretaksregisteret)"
-        elif core_pat and core_pat.search(text):
-            hit = next((c for c in corr if re.search(rf"(?<!\w){re.escape(c)}(?!\w)", text, re.I)), None)
-            if hit:
-                reason = f"Article names '{core}' and also mentions '{hit}', which matches this company's registry record"
-        if orgnr_pattern(orgnr).search(text):
-            reason = f"Article shows organisation number {orgnr}"
+        reason = match_reason(f"{title} {desc}", legal_name, corroborators, orgnr)
         if not reason or not pub or not link.startswith("http"):
             rejected += 1
             continue
@@ -230,6 +256,46 @@ def press_coverage(http, legal_name, form, corroborators, orgnr, limit=10):
     items.sort(key=lambda x: x["published"], reverse=True)
     return items[:limit], {"source": "press", "url": url, "status": "ok" if items else "not_found", "http_status": 200,
                            "note": f"{rejected} search results rejected as not provably about this company" if rejected else None}
+
+
+GDELT = "https://api.gdeltproject.org/api/v2/doc/doc?query={q}&mode=artlist&maxrecords=75&format=json&sort=datedesc&startdatetime=20170101000000"
+
+
+def gdelt_coverage(http, legal_name, form, corroborators, orgnr, limit=10):
+    """GDELT news index. Query by the distinctive name; keep only articles whose title proves the company."""
+    core = norm_name(legal_name)
+    words = [w for w in core.split() if len(w) >= 3]
+    if not words:
+        return [], None
+    q = urllib.parse.quote(f'"{" ".join(words)}"' if len(words) > 1 else words[0])
+    url = GDELT.format(q=q)
+    if getattr(http, "gdelt_blocked", False):
+        return [], None
+    r = http.get(url, retries=0, timeout=20)
+    if r.status == 429:
+        http.gdelt_blocked = True      # GDELT is strict: stop asking for the rest of this run
+        return [], {"source": "press_gdelt", "url": url, "status": "not_found", "http_status": 429,
+                    "note": "GDELT rate limit reached; skipped for the rest of this run"}
+    data = r.json() if r.status == 200 else None
+    if not isinstance(data, dict):
+        return [], {"source": "press_gdelt", "url": url, "status": "error" if r.status != 200 else "not_found",
+                    "http_status": r.status, "note": None if r.status != 200 else "no results"}
+    items, rejected = [], 0
+    for a in data.get("articles") or []:
+        title = _clean(a.get("title"))
+        link = a.get("url") or ""
+        sd = a.get("seendate") or ""
+        pub = f"{sd[:4]}-{sd[4:6]}-{sd[6:8]}" if re.match(r"\d{8}", sd) else None
+        reason = match_reason(title, legal_name, corroborators, orgnr)
+        if not reason or not pub or not link.startswith("http"):
+            rejected += 1
+            continue
+        items.append(_item(title, link, pub, a.get("domain") or _host(link), "press", reason,
+                           date_note="date the article was first indexed by GDELT"))
+    items.sort(key=lambda x: x["published"], reverse=True)
+    return items[:limit], {"source": "press_gdelt", "url": url, "status": "ok" if items else "not_found",
+                           "http_status": 200,
+                           "note": f"{rejected} results rejected as not provably about this company" if rejected else None}
 
 
 def dedupe(items):

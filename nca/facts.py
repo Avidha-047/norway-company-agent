@@ -42,6 +42,16 @@ SOURCES = {
         "licence": "public news headlines; titles, dates and links only",
         "authority": "press",
     },
+    "website_discovery": {
+        "name": "Company website found by web search and verified (org number, or registered name + address on the page)",
+        "licence": "public web page; only titles, descriptions, contact details and links extracted",
+        "authority": "self-published",
+    },
+    "press_gdelt": {
+        "name": "Press coverage found via the GDELT news index (accepted only with an exact company-name match)",
+        "licence": "public news metadata; titles, dates and links only",
+        "authority": "press",
+    },
     "company_website": {
         "name": "Company's own website (as registered in Enhetsregisteret)",
         "licence": "public web page; only titles, descriptions and links extracted",

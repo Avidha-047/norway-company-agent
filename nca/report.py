@@ -23,12 +23,15 @@ summary::-webkit-details-marker{display:none}.nm{font-weight:600}.org{color:var(
 ul{margin:0;padding-left:18px}li{margin:2px 0}a{color:var(--acc)}
 table{width:100%;border-collapse:collapse;font-size:13px}td{border-top:1px solid var(--line);padding:5px 6px;vertical-align:top}
 td:first-child{color:var(--mute);width:34%}.wrap{overflow-x:auto}.sev-high{color:var(--bad)}.sev-medium{color:var(--warn)}
-.more{margin:12px 0;text-align:center}button{padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.more{margin:12px 0;text-align:center}.sel{margin-left:auto;font-size:13px;color:var(--mute)}
+#cmp table{background:var(--card);border:1px solid var(--line);border-radius:8px;margin:8px 0}#cmp th{text-align:left;padding:6px;font-size:13px}button{padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
 </style></head><body>
 <header><h1>Norway Company Profiles</h1><div class="sub">Every fact links to its public source. Generated __GENERATED__.</div></header>
 <main>
 <div class="stats" id="stats"></div>
 <input id="q" placeholder="Search by name, organisation number, municipality or industry…" autocomplete="off">
+<div id="cmpbar" class="stats" style="display:none"><div class="stat"><b id="cmpn">0</b>selected</div><button id="cmpgo">Compare selected</button><button id="cmpclear">Clear</button></div>
+<div id="cmp" class="wrap"></div>
 <div id="list"></div><div class="more"><button id="more">Show more</button></div>
 </main>
 <script id="data" type="application/json">__DATA__</script>
@@ -41,14 +44,14 @@ const fmtv=v=>{if(v&&typeof v==='object'&&'amount'in v)return Number(v.amount).t
 const st=document.getElementById('stats');
 const n=D.length,withNews=D.filter(p=>(p.news||[]).length).length,facts=D.reduce((a,p)=>a+(p.facts||[]).length,0);
 st.innerHTML=[['Companies',n],['Avg. facts',n?(facts/n).toFixed(1):0],['With dated news',withNews]].map(([k,v])=>`<div class="stat"><b>${v}</b>${k}</div>`).join('');
-let shown=50,rows=D;
+let shown=50,rows=D;const SEL=new Set();
 function card(p){const s=p.status||'';const cls=s==='active'?'active':(['bankrupt','deleted','under_liquidation','compulsory_liquidation'].includes(s)?'bad':'');
  const news=(p.news||[]).slice(0,10).map(i=>`<li>${esc(i.published)} · <a href="${esc(i.url)}" target="_blank" rel="noopener">${esc(i.title)}</a> <span class="org">— ${esc(i.source)}</span></li>`).join('');
  const risks=(p.risk_signals||[]).map(r=>`<li class="sev-${r.severity}">${esc(r.signal)} <span class="org">(${esc(r.evidence)})</span></li>`).join('');
  const kp=(p.key_points||[]).map(k=>`<li>${esc(k)}</li>`).join('');
  const facts=(p.facts||[]).filter(f=>f.category!=='news').map(f=>`<tr><td>${esc(f.label)}</td><td>${esc(fmtv(f.value))}${f.as_of?` <span class="org">as of ${esc(f.as_of)}</span>`:''} · <a href="${esc(f.evidence_url)}" target="_blank" rel="noopener">source</a></td></tr>`).join('');
  const gaps=(p.gaps||[]).map(g=>`<li><b>${esc(g.topic)}:</b> ${esc(g.reason)}</li>`).join('');
- return `<details><summary><span class="nm">${esc(p.name||'(unknown)')}</span><span class="org">${esc(p.organisation_number||'')}</span><span class="pill ${cls}">${esc(s.replace(/_/g,' '))}</span>${(p.news||[]).length?`<span class="pill">${p.news.length} news</span>`:''}</summary>
+ return `<details><summary><span class="nm">${esc(p.name||'(unknown)')}</span><span class="org">${esc(p.organisation_number||'')}</span><span class="pill ${cls}">${esc(s.replace(/_/g,' '))}</span>${(p.news||[]).length?`<span class="pill">${p.news.length} news</span>`:''}<label class="sel" onclick="event.stopPropagation()"><input type="checkbox" data-org="${esc(p.organisation_number)}" ${SEL.has(p.organisation_number)?'checked':''}> compare</label></summary>
  <div class="body"><p>${esc(p.summary)}</p>${kp?`<h3>Key points</h3><ul>${kp}</ul>`:''}${risks?`<h3>Risk signals</h3><ul>${risks}</ul>`:''}
  ${news?`<h3>Dated news &amp; announcements</h3><ul>${news}</ul>`:''}<h3>Facts with sources</h3><div class="wrap"><table>${facts}</table></div>
  ${gaps?`<h3>Not found, and why</h3><ul>${gaps}</ul>`:''}</div></details>`}
@@ -56,7 +59,23 @@ function render(){document.getElementById('list').innerHTML=rows.slice(0,shown).
  document.getElementById('more').style.display=rows.length>shown?'':'none'}
 document.getElementById('q').addEventListener('input',e=>{const q=e.target.value.toLowerCase().replace(/\s/g,'');shown=50;
  rows=!q?D:D.filter(p=>((p.name||'')+(p.organisation_number||'')+JSON.stringify(p.profile&&p.profile.location||'')+JSON.stringify(p.profile&&p.profile.activity||'')).toLowerCase().replace(/\s/g,'').includes(q));render()});
-document.getElementById('more').onclick=()=>{shown+=50;render()};render();
+document.getElementById('more').onclick=()=>{shown+=50;render()};
+const SELBAR=document.getElementById('cmpbar');
+function updSel(){document.getElementById('cmpn').textContent=SEL.size;SELBAR.style.display=SEL.size?'flex':'none'}
+document.getElementById('list').addEventListener('change',e=>{const o=e.target.dataset&&e.target.dataset.org;if(!o)return;e.target.checked?SEL.add(o):SEL.delete(o);updSel()});
+const pick=(p,c,f)=>{const v=((p.profile||{})[c]||{})[f];return v==null?'—':fmtv(v)};
+const ROWS=[['Status',p=>esc((p.status||'').replace(/_/g,' '))],['Legal form',p=>esc(pick(p,'identity','legal_form'))],
+ ['Municipality',p=>esc(pick(p,'location','municipality'))],['Industry',p=>esc(pick(p,'activity','industry_code_1'))],
+ ['Employees',p=>esc(pick(p,'size','employees'))],['Accounting period',p=>esc(pick(p,'financials','accounts_period'))],
+ ['Revenue',p=>esc(pick(p,'financials','revenue'))],['Net income',p=>esc(pick(p,'financials','net_income'))],
+ ['Equity',p=>esc(pick(p,'financials','equity'))],['CEO',p=>esc(pick(p,'people','ceo'))],['Board chair',p=>esc(pick(p,'people','board_chair'))],
+ ['Website',p=>esc(pick(p,'contact','website')!=='—'?pick(p,'contact','website'):pick(p,'contact','website_discovered'))],
+ ['Dated news items',p=>(p.news||[]).length],['Risk signals',p=>esc((p.risk_signals||[]).map(r=>r.signal).join('; ')||'—')]];
+document.getElementById('cmpgo').onclick=()=>{const ps=D.filter(p=>SEL.has(p.organisation_number));
+ document.getElementById('cmp').innerHTML=`<table><tr><th></th>${ps.map(p=>`<th>${esc(p.name)}<br><span class="org">${esc(p.organisation_number)}</span></th>`).join('')}</tr>`+
+ ROWS.map(([k,f])=>`<tr><td>${k}</td>${ps.map(p=>`<td>${f(p)}</td>`).join('')}</tr>`).join('')+'</table><p class="sub">All values come from the sourced facts in each profile; "—" means not found.</p>'};
+document.getElementById('cmpclear').onclick=()=>{SEL.clear();document.getElementById('cmp').innerHTML='';updSel();render()};
+render();
 </script></body></html>"""
 
 KEEP = ("organisation_number", "name", "status", "summary", "key_points", "risk_signals", "news", "gaps", "profile")

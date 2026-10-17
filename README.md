@@ -21,6 +21,8 @@ No installs, no API keys, no paid services: Python 3.9+ standard library only. *
 | Build 1,000 random profiles | `python agent.py --sample 1000 --seed 2026 --out profiles` |
 | Refresh / update existing profiles | run the same `--out` command again |
 | Live health check of all sources | `python agent.py --check` |
+| Show how a website is found for one company | `python agent.py --debug-search 975820440` |
+| Compare companies side by side | `python agent.py 923609016 984851006 --compare` (also: tick "compare" in `report.html`) |
 | Offline tests | `python -m unittest discover -s tests -v` |
 
 Org numbers may be written `923609016`, `923 609 016` or `NO 923 609 016 MVA`.
@@ -77,10 +79,13 @@ Each profile also has:
 | Brønnøysund **Regnskapsregisteret** (NLOD 2.0) | Latest filed accounts: revenue, costs, EBIT, pre-tax profit, net income, assets, equity, liabilities – company and group level | 1 (skipped for forms with no filing duty) |
 | **GLEIF** (CC0) | LEI, LEI status/renewal, direct & ultimate parent | 1–3 |
 | **Wikidata** (CC0) | Wikidata ID, description, inception, ISIN, stock exchange & ticker, parent organisation, logo, Wikipedia links | 1 |
-| Company's **own website** (registered in Brreg) | Title, description, brand name, whether it shows the org number, social profiles | 1–2 |
+| Company's **own website** (registered in Brreg) | Title, description, brand name, "about" text, emails, phone numbers, address, logo, social profiles, schema.org data, contact page | 1–3 |
+| **Website discovery** for companies with no registered site: the agent checks the domains that match the registered name (e.g. `maleran.no`, `maleran.com`) | The same website facts, but only after the site is **proven** to belong to the company: its pages show the organisation number (high confidence) or the registered name **and** registered street address + postcode (medium). Otherwise nothing is published and the candidate is listed under `verification.rejected` | 0–3 |
 | Brønnøysund **announcements** (kunngjøringer) | Dated official announcements: board changes, address/name changes, mergers, liquidation, bankruptcy | 1 |
 | Company **website news feed** (RSS/Atom linked from the registered site) | Dated company news | 0–1 |
-| **Press coverage** (Bing News RSS) | Dated articles naming the exact company | 1 (skipped for sole proprietorships, whose names are personal names) |
+| **Press coverage** (GDELT news index; Bing News RSS optional with `--bing`) | Dated articles naming the exact company | 1 (skipped for sole proprietorships, whose names are personal names) |
+
+Bing RSS is **off by default** because Bing's RSS terms restrict reuse of its results; enable it only if that is acceptable for your use (`--bing`).
 
 ### How news is matched to the right company
 - **Official announcements** are fetched by organisation number, and the page must show that number.
@@ -95,8 +100,9 @@ Typical cost: **about 10–13 outbound requests per company** → roughly 1,000�
 2. **Exact-key retrieval** – every source is queried by the org number itself, never by name search.
 3. **Record verification** – the returned record must contain the same org number (accounts: `virksomhet.organisasjonsnummer`; GLEIF: `registeredAs` + country NO; Wikidata: property P2333).
 4. **Cross-checks** – GLEIF and Wikidata records are accepted only if their legal name matches the registry name (normalised similarity, legal suffixes ignored) or their LEI agrees. Conflicting or ambiguous records are dropped and listed under `verification.rejected`.
-5. **No fabricated numbers** – financial values are copied exactly as filed, with currency and period. Nothing is estimated, derived or filled in; missing values are explained in `gaps`.
-6. **Website evidence** – the agent checks whether the company's site displays the org number; if not, website facts are kept at `medium` confidence.
+5. **No over-claiming** – an employee number is published only when the register holds one ("no count registered" is reported as unknown, never as 0); when Enhetsregisteret lists a newer filing than the figures returned, the profile says so instead of presenting older figures as current.
+6. **No fabricated numbers** – financial values are copied exactly as filed, with currency and period. Nothing is estimated, derived or filled in; missing values are explained in `gaps`.
+7. **Website evidence** – the agent checks whether the company's site displays the org number; if not, website facts are kept at `medium` confidence.
 
 ## Keeping profiles current
 
@@ -107,6 +113,8 @@ Running again with the same `--out` folder re-fetches live data and compares it 
 - `as_of` carries the source's own date (accounting period end, role-group last-changed date, LEI update date) so freshness is visible per fact.
 
 ## Limits and safety
+- **Budget-aware:** core register lookups are reserved for every company still waiting; optional sources (website discovery, contact pages, press, Wikidata) are used only when the request budget allows, so the last company in a batch is never starved.
+- Wikidata is queried only where an item is plausible (listed/large companies or companies with an LEI).
 
 - Hard request cap (default **1,900**, `--max-requests`) counting every attempt and retry.
 - Time limit (default **40 min**, `--time-limit`) – stops starting new requests before the 45-minute limit.

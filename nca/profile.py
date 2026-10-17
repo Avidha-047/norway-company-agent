@@ -15,7 +15,7 @@ SCHEMA_VERSION = "2.0"
 NO_ACCOUNTS_DUTY = {"ENK", "ANS", "DA", "FLI", "SAM", "KIRK", "ORGL", "STAT", "FYLK", "KOMM", "IKS", "ESEK", "PERS", "UTLA", "VPFO"}
 
 
-def build_profile(http, query, previous=None, use_web=True, use_wikidata=True, use_news=True):
+def build_profile(http, query, previous=None, use_web=True, use_wikidata=True, use_news=True, use_bing=False):
     started = time.time()
     used_before = http.used
     orgnr = normalize_orgnr(query)
@@ -53,28 +53,36 @@ def build_profile(http, query, previous=None, use_web=True, use_wikidata=True, u
                 statuses.append(S.subunits_facts(http, fs, orgnr))
                 if rec.get("sisteInnsendteAarsregnskap") or form not in NO_ACCOUNTS_DUTY:
                     statuses.append(S.accounts_facts(http, fs, orgnr))
-            if kind in ("enhet", "deleted"):
-                gst, lei = S.gleif_facts(http, fs, orgnr, prof["name"], rejections)
+            emp = rec.get("antallAnsatte") if isinstance(rec.get("antallAnsatte"), int) else 0
+            big = form in ("ASA", "SPA", "SF", "STAT", "KOMM") or emp >= 50 or bool(rec.get("hjemmeside")) and emp >= 20
+            lei = None
+            if kind in ("enhet", "deleted") and http.spare(1):
+                gst, lei = S.gleif_facts(http, fs, orgnr, prof["name"], rejections, thorough=big and http.spare(3))
                 statuses.append(gst)
-            else:
-                lei = None
-            if use_wikidata and kind in ("enhet", "deleted"):
+            # Wikidata rarely knows small firms: query it only where an item is plausible
+            if use_wikidata and kind in ("enhet", "deleted") and (big or lei) and http.spare(2):
                 wst, _ = S.wikidata_facts(http, fs, orgnr, prof["name"], lei, rejections)
                 statuses.append(wst)
             site = rec.get("hjemmeside") or fs.get("official_website")
             wst = None
-            if use_web and site and prof["status"] != "deleted":
-                wst = S.website_facts(http, fs, orgnr, site)
+            if use_web and site and prof["status"] != "deleted" and http.spare(1):
+                wst = S.website_facts(http, fs, orgnr, site, rec=rec, rejections=rejections)
                 if wst:
                     statuses.append(wst)
+            if use_web and not site and kind == "enhet" and prof["status"] == "active":
+                dst, dstats = S.discover_website(http, fs, orgnr, rec, rejections, use_search=use_bing)
+                statuses.extend(dstats)
+                if dst:
+                    wst, site = dst, dst.get("url")
             if use_news and kind in ("enhet", "deleted"):
-                collect_news(http, fs, statuses, orgnr, rec, site, wst)
+                collect_news(http, fs, statuses, orgnr, rec, site, wst, use_bing)
     except BudgetExceeded as e:
         complete = False
         statuses.append(S.SourceStatus.make("agent", None, "stopped", note=str(e)))
         prof.setdefault("status", "lookup_incomplete")
         prof.setdefault("name", rec.get("navn") if rec else None)
 
+    stale_accounts_note(fs)
     facts = fs.items
     ok_sources = {s["source"] for s in statuses if s and s.get("status") in ("ok", "not_found")}
     changes, facts = diff_against(previous, facts, ok_sources, complete)
@@ -107,15 +115,16 @@ NEWS_FACTS = {
     "brreg_kunngjoringer": ("news_official", "Official announcements (Brønnøysund kunngjøringer)"),
     "company_website_feed": ("news_company", "News from the company's own website"),
     "press": ("news_press", "Press coverage naming this exact company"),
+    "press_gdelt": ("news_press_gdelt", "Press coverage naming this exact company (GDELT news index)"),
 }
 
 
-def collect_news(http, fs, statuses, orgnr, rec, site, wst):
+def collect_news(http, fs, statuses, orgnr, rec, site, wst, use_bing):
     form = ((rec or {}).get("organisasjonsform") or {}).get("kode")
     batches = []
     items, st = N.official_announcements(http, orgnr)
     batches.append(("brreg_kunngjoringer", items, st))
-    if site and wst and wst.get("feed_url"):
+    if site and wst and wst.get("feed_url") and http.spare(1):
         items, st = N.company_feed(http, wst.get("url") or site, wst["feed_url"], orgnr)
         batches.append(("company_website_feed", items, st))
     corr = []
@@ -129,9 +138,12 @@ def collect_news(http, fs, statuses, orgnr, rec, site, wst):
         corr.append(N._host(site if "://" in site else "https://" + site))
     for l in fs.get("stock_listings") or []:
         corr.append(l.get("ticker"))
-    if http.remaining() > 40:
+    if use_bing and http.spare(1):
         items, st = N.press_coverage(http, (rec or {}).get("navn"), form, corr, orgnr)
         batches.append(("press", items, st))
+    if http.spare(1) and N.press_eligible((rec or {}).get("navn"), form):
+        items, st = N.gdelt_coverage(http, (rec or {}).get("navn"), form, corr, orgnr)
+        batches.append(("press_gdelt", items, st))
     for src, items, st in batches:
         if st:
             statuses.append(S.SourceStatus(**{k: v for k, v in st.items() if v is not None}))
@@ -183,7 +195,7 @@ def size_class(emp):
     if not isinstance(emp, int):
         return None
     if emp == 0:
-        return "no registered employees"
+        return "0 registered employees"
     return "micro (1–9 employees)" if emp < 10 else "small (10–49)" if emp < 50 else "medium (50–249)" if emp < 250 else "large (250+)"
 
 
@@ -203,6 +215,8 @@ def key_points(prof, fs):
         pts.append(f"Size: {sc}" + (f", {fs.get('subunit_count')} registered establishments" if fs.get("subunit_count") else ""))
     rev, ni, eq = _val(fs, "revenue"), _val(fs, "net_income"), _val(fs, "equity")
     period = fs.get("accounts_period")
+    if fs.get("employee_count_registered") is False:
+        pts.append("Employees: no employee count is registered (unknown, not zero)")
     if period and rev is not None:
         yr = str(period)[-10:-6]
         bits = [f"revenue {fmt_money(rev)}"]
@@ -210,7 +224,9 @@ def key_points(prof, fs):
             bits.append(("profit " if ni >= 0 else "loss ") + fmt_money(abs(ni)))
         if eq is not None:
             bits.append(f"equity {fmt_money(eq)}")
-        pts.append(f"Financials {yr} (as filed): " + ", ".join(bits))
+        pts.append(f"Financials {yr} (as filed, period {period}"
+                   + (f"; newer {fs.get('last_annual_accounts_year')} filing registered but not retrievable" if fs.get("accounts_currency_note") else "")
+                   + "): " + ", ".join(bits))
     ceo, chair = fs.get("ceo"), fs.get("board_chair")
     lead = []
     if isinstance(ceo, dict):
@@ -221,7 +237,7 @@ def key_points(prof, fs):
         pts.append("Leadership: " + ", ".join(lead))
     if prof.get("news"):
         n = prof["news"][0]
-        pts.append(f"Latest dated item: \"{n['title']}\" ({n['published']}, {n['source']})")
+        pts.append(f"Most recent dated item: \"{n.get('title_en') or n['title']}\" ({n['published']}, {n['source']})")
     if fs.get("stock_listings"):
         l = fs.get("stock_listings")[0]
         pts.append(f"Listed on {l['exchange']}" + (f" as {l['ticker']}" if l.get("ticker") else ""))
@@ -236,17 +252,19 @@ def risk_signals(prof, fs, rec):
     ni, eq = _val(fs, "net_income"), _val(fs, "equity")
     period = fs.get("accounts_period")
     if isinstance(eq, (int, float)) and eq < 0:
-        sig.append({"signal": "negative equity in latest filed accounts", "severity": "high", "evidence": f"Regnskapsregisteret {period}"})
+        sig.append({"signal": f"negative equity in the {str(period)[-10:-6]} accounts", "severity": "high", "evidence": f"Regnskapsregisteret, period {period}"})
     if isinstance(ni, (int, float)) and ni < 0:
-        sig.append({"signal": "reported a net loss in latest filed accounts", "severity": "medium", "evidence": f"Regnskapsregisteret {period}"})
+        sig.append({"signal": f"net loss in the {str(period)[-10:-6]} accounts", "severity": "medium", "evidence": f"Regnskapsregisteret, period {period}"})
     form = ((rec or {}).get("organisasjonsform") or {}).get("kode")
     last = (rec or {}).get("sisteInnsendteAarsregnskap")
     reg_age = _years_since(fs.get("registered_date"))
     if form in ("AS", "ASA") and st == "active" and reg_age is not None and reg_age >= 2:
         try:
             if not last or int(last) < datetime.date.today().year - 2:
-                sig.append({"signal": "annual accounts appear overdue", "severity": "medium",
-                            "evidence": f"last submitted accounts year: {last or 'none'}"})
+                sig.append({"signal": (f"most recent annual accounts registered are for {last}" if last
+                                       else "no annual accounts are registered in Enhetsregisteret"),
+                            "severity": "medium",
+                            "evidence": f"Enhetsregisteret field sisteInnsendteAarsregnskap = {last or 'not set'}"})
         except ValueError:
             pass
     for f in prof.get("facts", []):
@@ -259,6 +277,25 @@ def risk_signals(prof, fs, rec):
         sig.append({"signal": f"{len(recent)} official announcement(s) in the last 12 months", "severity": "info",
                     "evidence": recent[0]["title"]})
     return sig
+
+
+def stale_accounts_note(fs):
+    """If Enhetsregisteret lists a newer filed year than the figures we could retrieve, say so explicitly
+    instead of letting older figures look like the current ones."""
+    period, last = fs.get("accounts_period"), fs.get("last_annual_accounts_year")
+    if not period or not last:
+        return
+    try:
+        have, newest = int(str(period)[-10:-6]), int(str(last))
+    except ValueError:
+        return
+    if newest > have:
+        src = next((f for f in fs.items if f["field"] == "accounts_period"), None)
+        fs.add("accounts_currency_note", "Accounts currency note",
+               f"Enhetsregisteret lists annual accounts filed for {newest}, but the accounts register only returned "
+               f"figures for {have}; the {have} figures are shown and are not the most recent filing",
+               "brreg_regnskap", src["source_url"] if src else None, evidence_url=src["evidence_url"] if src else None,
+               as_of=str(period)[-10:], category="financials", match=src["match"] if src else None)
 
 
 def flatten(facts):
@@ -312,6 +349,8 @@ def verification_checks(orgnr, fs, name):
     checks = [{"check": "organisation number checksum (mod 11)", "result": "pass"}]
     if fs.get("organisation_number") == orgnr:
         checks.append({"check": "registry record organisation number equals query", "result": "pass"})
+    if fs.get("website_discovered"):
+        checks.append({"check": "discovered website proven to belong to this company", "result": "pass"})
     if fs.get("website_shows_orgnr") is True:
         checks.append({"check": "registered website displays the organisation number", "result": "pass"})
     elif fs.get("website_shows_orgnr") is False:
@@ -385,7 +424,9 @@ def explain(prof, fs):
     rev, ni, period = _val(fs, "revenue"), _val(fs, "net_income"), fs.get("accounts_period")
     if period and (rev is not None or ni is not None):
         year = str(period)[-10:-6]
-        t = f"In its {year} accounts (company level)"
+        newer = fs.get("accounts_currency_note")
+        t = (f"In its {year} accounts (company level; a newer {fs.get('last_annual_accounts_year')} filing is registered "
+             f"but its figures were not available)") if newer else f"In its {year} accounts (company level, period {period})"
         bits = []
         if rev is not None:
             bits.append(f"operating revenue was {fmt_money(rev)}")
@@ -444,8 +485,8 @@ def gaps(prof, kind, rec, statuses):
             out.append({"topic": "financials", "reason": "The Register of Company Accounts did not respond; financials were not published rather than estimated."})
         else:
             out.append({"topic": "financials", "reason": "No annual accounts are available in the Register of Company Accounts (newly registered, late filer, or exempt)."})
-    if "website" not in fields and "official_website" not in fields:
-        out.append({"topic": "website", "reason": "No website is registered in Enhetsregisteret or verified on Wikidata."})
+    if not fields & {"website", "official_website", "website_discovered"}:
+        out.append({"topic": "website", "reason": "No website is registered, and no search result could be proven to belong to this company (org number or registered name + address on the page)."})
     elif any(s["status"] == "error" for s in by.get("company_website", [])):
         out.append({"topic": "website", "reason": "The registered website could not be reached during this run."})
     if "lei" not in fields and kind == "enhet":

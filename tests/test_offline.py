@@ -96,13 +96,19 @@ class FakeHttp:
         self.used = 0
         self.max_requests = max_requests
 
+    reserve = 0
+
     def remaining(self):
         return self.max_requests - self.used
+
+    def spare(self, n=1):
+        return self.remaining() - n >= self.reserve
 
     def get(self, url, **kw):
         if self.used >= self.max_requests:
             raise BudgetExceeded("request budget exhausted")
         self.used += 1
+        self.urls = getattr(self, "urls", []) + [url]
         for key, (status, body) in self.routes.items():
             if key in url:
                 raw = body.encode() if isinstance(body, str) else json.dumps(body).encode()
@@ -275,13 +281,14 @@ class NewsTests(unittest.TestCase):
         return ordered
 
     def test_news_sources(self):
-        p = build_profile(FakeHttp(self.routes()), ORG)
+        p = build_profile(FakeHttp(self.routes()), ORG, use_bing=True)
         off = field(p, "news_official")["value"]
         self.assertEqual(off[0], {"title": "Endring av styre",
                                   "url": "https://w2.brreg.no/kunngjoring/hent_en.jsp?kid=111&sokeverdi=923609016&spr=",
                                   "published": "2025-06-12", "source": "Brønnøysundregistrene – kunngjøringer",
                                   "kind": "official_announcement",
-                                  "company_match": "Official announcement listed under organisation number 923609016"})
+                                  "company_match": "Official announcement listed under organisation number 923609016",
+                                  "title_en": "Board change"})
         self.assertEqual(len(off), 2)
         comp = field(p, "news_company")["value"]
         self.assertEqual([c["url"] for c in comp], ["https://www.equinor.com/news/a"])   # undated item dropped
@@ -313,5 +320,118 @@ class NewsTests(unittest.TestCase):
         reg[0]["resultatregnskapResultat"]["aarsresultat"] = -10
         p = build_profile(FakeHttp(self.routes(**{f"regnskap/{ORG}": (200, reg)})), ORG)
         sigs = {s["signal"] for s in p["risk_signals"]}
-        self.assertIn("negative equity in latest filed accounts", sigs)
+        self.assertIn("negative equity in the 2024 accounts", sigs)
         self.assertIn("Watch-outs:", p["summary"])
+
+
+SMALL = {
+    "organisasjonsnummer": "975820440", "navn": "MALERAN AS",
+    "organisasjonsform": {"kode": "AS", "beskrivelse": "Aksjeselskap"},
+    "forretningsadresse": {"adresse": ["Fjellveien 12"], "postnummer": "5003", "poststed": "BERGEN",
+                           "kommune": "BERGEN", "landkode": "NO", "land": "Norge"},
+    "registreringsdatoEnhetsregisteret": "1995-06-01", "antallAnsatte": 4, "konkurs": False,
+    "underAvvikling": False, "naeringskode1": {"kode": "43.341", "beskrivelse": "Malerarbeid"},
+}
+SN = "975820440"
+BING_WEB = """<?xml version="1.0"?><rss><channel>
+<item><title>Maleran AS - Proff</title><link>https://www.proff.no/selskap/maleran-as/x</link></item>
+<item><title>Maleran AS – maler i Bergen</title><link>https://maleran.no/tjenester</link></item>
+<item><title>Other</title><link>https://other-painter.no/</link></item>
+</channel></rss>"""
+SITE_OK = """<html><head><title>Maleran AS – Malerfirma i Bergen</title>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HousePainter","name":"Maleran AS",
+"telephone":"+47 55 12 34 56","address":{"streetAddress":"Fjellveien 12","postalCode":"5003","addressLocality":"Bergen"},
+"sameAs":["https://www.facebook.com/maleran"]}</script></head>
+<body><p>Maleran AS er et malerfirma i Bergen med over 25 års erfaring innen innvendig og utvendig maling for private og bedrifter.</p>
+<a href="/kontakt">Kontakt oss</a></body></html>"""
+CONTACT_OK = """<html><body><h1>Kontakt</h1><p>Maleran AS, Fjellveien 12, 5003 Bergen</p>
+<a href="mailto:post@maleran.no">post@maleran.no</a> Tlf: 922 33 444 <p>Org.nr: 975 820 440 MVA</p></body></html>"""
+SITE_OTHER = "<html><head><title>Other painter</title></head><body><p>Vi maler hus i Oslo.</p></body></html>"
+
+
+class DiscoveryTests(unittest.TestCase):
+    def r(self, **over):
+        base = {f"/enheter/{SN}/roller": (200, {"rollegrupper": []}),
+                f"underenheter?overordnetEnhet={SN}": (200, {"_embedded": {"underenheter": []}, "page": {"totalElements": 0}}),
+                f"/enheter/{SN}": (200, SMALL), "bing.com/search": (200, BING_WEB),
+                "maleran.no/kontakt": (200, CONTACT_OK), "maleran.no": (200, SITE_OK),
+                "other-painter.no": (200, SITE_OTHER)}
+        base.update(over)
+        return base
+
+    def test_discovers_and_verifies_site(self):
+        p = build_profile(FakeHttp(self.r()), SN)
+        self.assertEqual(field(p, "website_discovered")["value"], "https://maleran.no/")
+        self.assertEqual(field(p, "website_discovered")["confidence"], "high")      # org number on contact page
+        self.assertEqual(field(p, "website_emails")["value"], ["post@maleran.no"])
+        self.assertIn("+47 92 23 34 44", field(p, "website_phones")["value"])
+        self.assertIn("+47 55 12 34 56", field(p, "website_phones")["value"])
+        self.assertEqual(field(p, "website_address")["value"], "Fjellveien 12, 5003 Bergen")
+        self.assertIn("malerfirma", field(p, "website_about")["value"])
+        self.assertEqual(field(p, "social_profiles")["value"], {"facebook": "https://www.facebook.com/maleran"})
+        self.assertEqual(field(p, "industry_sector_en")["value"], "F – Construction")
+
+    def test_rejects_unproven_site(self):
+        # maleran.no exists but belongs to someone else: no org number, no registered address
+        p = build_profile(FakeHttp(self.r(**{"maleran.no/kontakt": (404, ""), "maleran.no": (200, SITE_OTHER)})), SN)
+        self.assertIsNone(field(p, "website_discovered"))
+        self.assertIsNone(field(p, "website_title"))
+        self.assertTrue(any(x["source"] == "website_discovery" for x in p["verification"]["rejected"]))
+
+    def test_domain_guesses_and_directory_filter(self):
+        from nca.web import guess_domains, is_directory
+        self.assertEqual(guess_domains("MALERAN AS"), ["https://maleran.no/", "https://maleran.com/"])
+        self.assertEqual(guess_domains("Bjørn Sæther Bygg AS")[:2], ["https://bjornsaetherbygg.no/", "https://bjorn-saether-bygg.no/"])
+        self.assertEqual(guess_domains("INVEST HOLDING AS"), [])     # generic names are not guessed
+        self.assertTrue(is_directory("https://www.proff.no/x") and is_directory("https://www.gulesider.no/y"))
+        self.assertFalse(is_directory("https://maleran.no/"))
+
+    def test_bing_off_by_default(self):
+        http = FakeHttp(self.r())
+        build_profile(http, SN)
+        self.assertFalse(any("bing.com" in u for u in getattr(http, "urls", [])))
+
+    def test_name_and_address_without_orgnr_is_medium(self):
+        contact = CONTACT_OK.replace("<p>Org.nr: 975 820 440 MVA</p>", "")
+        p = build_profile(FakeHttp(self.r(**{"maleran.no/kontakt": (200, contact)})), SN)
+        self.assertEqual(field(p, "website_discovered")["confidence"], "medium")
+
+    def test_budget_reserve_skips_optional_sources(self):
+        http = FakeHttp(self.r())
+        http.reserve = 10 ** 6      # nothing optional allowed
+        p = build_profile(http, SN)
+        self.assertIsNone(field(p, "website_discovered"))
+        self.assertEqual(p["name"], "MALERAN AS")
+        self.assertLessEqual(http.used, 6)
+
+    def test_gdelt(self):
+        from nca.news import gdelt_coverage
+        data = {"articles": [
+            {"title": "Maleran AS vant anbud i Bergen", "url": "https://ba.no/a", "seendate": "20260901T101500Z", "domain": "ba.no"},
+            {"title": "Maleran Oslo åpner", "url": "https://x.no/b", "seendate": "20260902T101500Z", "domain": "x.no"}]}
+        items, st = gdelt_coverage(FakeHttp({"gdeltproject": (200, data)}), "MALERAN AS", "AS", ["BERGEN"], SN)
+        self.assertEqual([i["url"] for i in items], ["https://ba.no/a"])
+        self.assertEqual(items[0]["published"], "2026-09-01")
+
+
+class PrecisionFixTests(unittest.TestCase):
+    def test_unregistered_employee_count_is_not_zero(self):
+        e = dict(ENHET, harRegistrertAntallAnsatte=False)
+        e.pop("antallAnsatte")
+        p = build_profile(FakeHttp(routes(**{f"/enheter/{ORG}": (200, e)})), ORG)
+        self.assertIsNone(field(p, "employees"))
+        self.assertIs(field(p, "employee_count_registered")["value"], False)
+        self.assertNotIn("0 registered employees", p["summary"])
+        self.assertTrue(any("unknown, not zero" in k for k in p["key_points"]))
+
+    def test_registered_zero_is_kept(self):
+        e = dict(ENHET, harRegistrertAntallAnsatte=True, antallAnsatte=0)
+        p = build_profile(FakeHttp(routes(**{f"/enheter/{ORG}": (200, e)})), ORG)
+        self.assertEqual(field(p, "employees")["value"], 0)
+
+    def test_newer_filing_is_flagged_not_called_latest(self):
+        e = dict(ENHET, sisteInnsendteAarsregnskap="2025")
+        p = build_profile(FakeHttp(routes(**{f"/enheter/{ORG}": (200, e)})), ORG)
+        self.assertIn("not the most recent filing", field(p, "accounts_currency_note")["value"])
+        self.assertIn("newer 2025 filing is registered", p["summary"])
+        self.assertNotIn("latest", p["summary"].lower())

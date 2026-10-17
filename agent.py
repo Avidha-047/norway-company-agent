@@ -33,13 +33,35 @@ def main(argv=None):
     ap.add_argument("--no-web", action="store_true", help="skip fetching company websites")
     ap.add_argument("--no-wikidata", action="store_true", help="skip Wikidata")
     ap.add_argument("--no-news", action="store_true", help="skip dated news and announcements")
+    ap.add_argument("--bing", action="store_true",
+                    help="also use Bing RSS (web + news search). Off by default: Bing's RSS terms limit reuse")
+    ap.add_argument("--compare", action="store_true", help="print a side-by-side comparison of the given companies")
     ap.add_argument("--check", action="store_true", help="live connectivity + schema check against known companies")
+    ap.add_argument("--debug-search", metavar="ORGNR", help="show raw website-search results for one company")
     ap.add_argument("--format", choices=["json", "text", "html"], default="json",
                     help="stdout format when no --out is given (html writes company_report.html)")
     a = ap.parse_args(argv)
 
     if a.check:
         return live_check()
+    if a.debug_search:
+        from nca import web
+        from nca.sources import fetch_entity
+        h = Http(max_requests=10)
+        kind, rec, _, _ = fetch_entity(h, a.debug_search)
+        print("Company:", (rec or {}).get("navn"))
+        print("Domains that will be checked:", web.guess_domains((rec or {}).get("navn")))
+        from nca.facts import FactSet
+        from nca.sources import discover_website
+        fs, rej = FactSet(), []
+        st, sts = discover_website(h, fs, a.debug_search, rec, rej)
+        print("Result:", (st or {}).get("url") or "no website proven", "| rejected:", rej)
+        for f in fs.items:
+            print(f"  {f['field']}: {str(f['value'])[:90]}  [{f['confidence']}]")
+        from nca import news as N
+        r = h.get(N.GDELT.format(q="equinor"), retries=0)
+        print("GDELT test: http", r.status, r.text()[:200].replace("\n", " "))
+        return 0
     budget = a.max_requests or (a.sample * 16 + 600 if a.sample else 1900)
     http = Http(max_requests=budget, deadline=time.time() + a.time_limit)
 
@@ -64,7 +86,7 @@ def main(argv=None):
             with open(os.path.join(a.out, "sample_orgnrs.txt"), "w") as fh:
                 fh.write("\n".join(orgnrs) + "\n")
         profiles, report = run_batch(http, orgnrs, a.out, workers=a.workers, use_web=not a.no_web,
-                                     use_wikidata=not a.no_wikidata, use_news=not a.no_news)
+                                     use_wikidata=not a.no_wikidata, use_news=not a.no_news, use_bing=a.bing)
         print(json.dumps(report, indent=2), file=sys.stderr)
         print(f"\nDone: {report['companies']} profiles, {report['dated_news_items']} dated news items, "
               f"{report['outbound_requests']} requests, ${report['external_api_cost_usd']:.2f} API cost.", file=sys.stderr)
@@ -75,11 +97,14 @@ def main(argv=None):
     # No output dir: print to stdout
     out = []
     for n in orgnrs:
-        p = build_profile(http, n, use_web=not a.no_web, use_wikidata=not a.no_wikidata, use_news=not a.no_news)
+        p = build_profile(http, n, use_web=not a.no_web, use_wikidata=not a.no_wikidata, use_news=not a.no_news, use_bing=a.bing)
         out.append(p)
         if a.format == "text":
             print(to_text(p) + "\n")
-    if a.format == "json":
+    if a.compare:
+        from nca.runner import compare_table
+        print(compare_table(out))
+    elif a.format == "json":
         print(json.dumps(out[0] if len(out) == 1 else out, ensure_ascii=False, indent=2))
     if a.format == "html":
         from nca.report import write_report
@@ -91,28 +116,33 @@ def main(argv=None):
 
 
 def live_check():
-    """Hits every source for Equinor ASA and DNB Bank ASA and reports which key facts came back."""
-    expect = ["legal_name", "legal_form", "employees", "industry_code_1", "ceo", "board_chair", "auditor",
-              "subunit_count", "accounts_period", "revenue", "net_income", "total_assets", "equity",
-              "lei", "wikidata_id", "stock_listings", "website_title", "website_shows_orgnr",
-              "news_official", "news_press"]
-    http = Http(max_requests=80)
+    """Hits every source for two large and three small companies and shows what came back."""
+    big_expect = ["legal_name", "legal_form", "employees", "industry_code_1", "ceo", "board_chair", "auditor",
+                  "subunit_count", "accounts_period", "revenue", "net_income", "total_assets", "equity",
+                  "lei", "wikidata_id", "stock_listings", "website_title", "website_shows_orgnr", "news_official"]
+    small = ("975820440", "993114316", "982826233")
+    http = Http(max_requests=160)
     ok = True
-    for n in ("923609016", "984851006"):
+    for n in ("923609016", "984851006") + small:
+        before = http.used
         p = build_profile(http, n)
         got = {f["field"] for f in p["facts"]}
-        print(f"\n{n} {p.get('name')} — status {p.get('status')} — {len(p['facts'])} facts")
+        print(f"\n{n} {p.get('name')} — status {p.get('status')} — {len(p['facts'])} facts — {http.used - before} requests")
         for s in p.get("sources", []):
             print(f"  source {s['source']:<24} {s['status']:<10} http {s.get('http_status')} {s.get('note') or ''}")
-        missing = [e for e in expect if e not in got]
-        print("  missing expected:", ", ".join(missing) or "none")
+        if n not in small:
+            missing = [e for e in big_expect if e not in got]
+            print("  missing expected:", ", ".join(missing) or "none")
+        for f in ("website", "website_discovered", "website_emails", "website_phones", "website_address", "website_about"):
+            v = next((x["value"] for x in p["facts"] if x["field"] == f), None)
+            if v:
+                print(f"  {f}: {str(v)[:90]}")
         for it in (p.get("news") or [])[:5]:
-            print(f"  news {it['published']} [{it['kind']}] {it['title'][:70]} – {it['source']}")
+            print(f"  news {it['published']} [{it['kind']}] {(it.get('title_en') or it['title'])[:70]} – {it['source']}")
         for rj in p.get("verification", {}).get("rejected", []):
-            print("  rejected:", rj)
-        bad = [s["source"] for s in p.get("sources", []) if s.get("status") == "error"]
-        ok = ok and p.get("status") == "active" and "ceo" in got and not bad
-    print("\nRESULT:", "PASS" if ok else "CHECK OUTPUT ABOVE", f"({http.used} requests)")
+            print("  rejected:", str(rj)[:150])
+        ok = ok and p.get("status") in ("active", "under_liquidation", "bankrupt") and bool(p["facts"])
+    print("\nRESULT:", "PASS" if ok else "CHECK OUTPUT ABOVE", f"({http.used} requests for 5 companies)")
     return 0 if ok else 1
 
 

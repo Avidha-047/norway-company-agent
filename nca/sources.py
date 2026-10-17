@@ -81,10 +81,15 @@ def entity_facts(fs, orgnr, kind, rec, api_url):
         from .profile import nace_sector
         add("industry_sector_en", "Industry sector (English, NACE section)", nace_sector(nk1), "activity",
             note="NACE section looked up from the registered industry code")
-    if is_number(rec.get("antallAnsatte")) and rec.get("harRegistrertAntallAnsatte", True) is not False:
-        add("employees", "Registered number of employees", rec["antallAnsatte"], "size")
-    elif rec.get("harRegistrertAntallAnsatte") is False:
-        add("employees", "Registered number of employees", 0, "size", note="No employees registered in the Aa-register")
+    # An employee number is published only when the register actually holds one.
+    # "harRegistrertAntallAnsatte": false means NO count is registered - that is not the same as zero.
+    has_count = rec.get("harRegistrertAntallAnsatte")
+    if is_number(rec.get("antallAnsatte")) and has_count is not False:
+        add("employees", "Registered number of employees", rec["antallAnsatte"], "size",
+            note="Count as registered in Enhetsregisteret (from the Aa-register)")
+    elif has_count is False:
+        add("employee_count_registered", "Employee count registered", False, "size",
+            note="Enhetsregisteret holds no employee count for this entity; the number of employees is unknown (not zero)")
     add("website", "Website (registered)", rec.get("hjemmeside"), "contact")
     add("email", "Email (registered)", rec.get("epostadresse"), "contact")
     add("phone", "Phone (registered)", rec.get("telefon"), "contact")
@@ -245,7 +250,7 @@ def subunits_facts(http, fs, orgnr):
         place = dig(u, "beliggenhetsadresse", "kommune") or dig(u, "beliggenhetsadresse", "poststed")
         if place:
             item["municipality"] = place
-        if is_number(u.get("antallAnsatte")):
+        if is_number(u.get("antallAnsatte")) and u.get("harRegistrertAntallAnsatte") is not False:
             item["employees"] = u["antallAnsatte"]
         listed.append(item)
     fs.add("subunits", "Establishments (first 15)", listed, "brreg_enhetsregisteret", url,
@@ -379,13 +384,15 @@ def _gleif_entity_summary(rec):
     }
 
 
-def gleif_facts(http, fs, orgnr, legal_name, rejections):
+def gleif_facts(http, fs, orgnr, legal_name, rejections, thorough=True):
     queries = [
         {"filter[entity.registeredAs]": orgnr},
         {"filter[entity.registeredAs]": fmt_orgnr(orgnr)},
         {"filter[fulltext]": orgnr, "filter[entity.legalAddress.country]": "NO"},
     ]
     records, url, r = [], GLEIF, None
+    if not thorough:
+        queries = queries[:1]
     for q in queries:
         url = f"{GLEIF}?{urllib.parse.urlencode(dict(q, **{'page[size]': 10}))}"
         r = http.get(url, accept="application/vnd.api+json")
@@ -582,26 +589,65 @@ def _clean(s):
     return re.sub(r"\s+", " ", h.unescape(s)).strip()[:400] or None
 
 
-def website_facts(http, fs, orgnr, site):
-    if not site:
-        return None
+def _fetch_home(http, site, probe=False):
     url = site.strip()
     if not re.match(r"https?://", url, re.I):
         url = "https://" + url
-    r = http.get(url, accept="text/html,application/xhtml+xml", max_bytes=1_500_000, retries=1, timeout=12)
+    r = http.get(url, accept="text/html,application/xhtml+xml", max_bytes=1_500_000, retries=0 if probe else 1,
+                 timeout=8 if probe else 12)
+    if probe:
+        return r, url
     if r.status != 200 and url.startswith("https://"):
         alt = "http://" + url[len("https://"):]
         r2 = http.get(alt, accept="text/html", max_bytes=1_500_000, retries=0, timeout=12)
         if r2.status == 200:
             r, url = r2, alt
-    if r.status != 200:
-        return SourceStatus.make("company_website", url, "error", r.status, r.error or "website not reachable")
+    return r, url
+
+
+def website_facts(http, fs, orgnr, site, rec=None, discovered=False, rejections=None, probe=False):
+    """Facts from the company's website. For a discovered (unregistered) site the page must prove it
+    belongs to this company before anything is published."""
+    from . import web
+    from .news import find_feed
+    if not site:
+        return None
+    src = "website_discovery" if discovered else "company_website"
+    r, url = _fetch_home(http, site, probe=probe)
+    if r.status != 200 or "html" not in (r.headers.get("Content-Type", "") or "html").lower():
+        return SourceStatus.make(src, url, "error", r.status, r.error or "website not reachable")
     html = r.text()
-    mentions = bool(orgnr_pattern(orgnr).search(html))
-    conf = "high" if mentions else "medium"
-    m = ("Website registered for this organisation number in Enhetsregisteret"
-         + ("; the page itself shows the organisation number" if mentions else ""))
-    add = lambda f, l, v, cat="web": fs.add(f, l, v, "company_website", r.final_url, category=cat, confidence=conf, match=m)
+    site_host = web.host(r.final_url)
+    home = web.extract(html, r.final_url, site_host)
+    contact, contact_url = None, home.get("contact_page")
+    if contact_url and http.spare(1):
+        rc = http.get(contact_url, accept="text/html", max_bytes=1_000_000, retries=0, timeout=10)
+        if rc.status == 200 and web.host(rc.final_url) == site_host:
+            contact = web.extract(rc.text(), rc.final_url, site_host)
+    texts = home["text"] + " " + (contact["text"] if contact else "")
+    mentions = bool(orgnr_pattern(orgnr).search(html) or (contact and orgnr_pattern(orgnr).search(contact["text"])))
+    addr_hit = web.address_match(texts, rec)
+    named = web.name_on_page(texts, (rec or {}).get("navn"))
+    if discovered:
+        how = "by checking the domain matching the registered name" if probe else "by web search"
+        form = ((rec or {}).get("organisasjonsform") or {}).get("kode")
+        if mentions:
+            m, conf = f"Website found ({how}); its pages show organisation number {orgnr}", "high"
+        elif named and addr_hit and form != "ENK":
+            m, conf = f"Website found ({how}); its pages show the registered name and registered address ({addr_hit})", "medium"
+        else:
+            if rejections is not None:
+                rejections.append({"source": "website_discovery", "candidate": r.final_url,
+                                   "reason": "page does not show the organisation number or the registered name + address"})
+            return SourceStatus.make(src, r.final_url, "not_found", 200, "candidate rejected: could not prove ownership")
+    else:
+        conf = "high" if mentions else "medium"
+        m = ("Website registered for this organisation number in Enhetsregisteret"
+             + ("; the page itself shows the organisation number" if mentions else ""))
+    add = lambda f, l, v, cat="web", ev=None: fs.add(f, l, v, src, r.final_url, evidence_url=ev or r.final_url,
+                                                     category=cat, confidence=conf, match=m)
+    if discovered:
+        add("website_discovered", "Website (found and verified)", r.final_url, "contact")
     title = re.search(r"<title[^>]*>(.*?)</title>", html, re.I | re.S)
     add("website_final_url", "Website (resolved URL)", r.final_url)
     add("website_title", "Website title", (_clean(title.group(1)) if title else None)
@@ -609,13 +655,62 @@ def website_facts(http, fs, orgnr, site):
     add("website_description", "Website description", _meta(html, "description") or _meta(html, "og:description"))
     add("website_site_name", "Website brand name", _meta(html, "og:site_name"))
     add("website_shows_orgnr", "Website shows the organisation number", mentions)
+    add("website_about", "About the company (from its website)", home.get("about") or (contact or {}).get("about"), "activity")
     socials = {}
-    for mm in SOCIAL.finditer(html):
-        link = mm.group(0).rstrip("/.")
-        platform = mm.group(1).split(".")[0].lower().replace("twitter", "x")
-        socials.setdefault(platform, link)
+    for page_html in (html, ):
+        for mm in SOCIAL.finditer(page_html):
+            link = mm.group(0).rstrip("/.")
+            platform = mm.group(1).split(".")[0].lower().replace("twitter", "x")
+            socials.setdefault(platform, link)
+    ld = home.get("ld") or (contact or {}).get("ld") or {}
+    for s_ in ld.get("same_as") or []:
+        mm = SOCIAL.search(s_)
+        if mm:
+            socials.setdefault(mm.group(1).split(".")[0].lower().replace("twitter", "x"), mm.group(0).rstrip("/."))
     add("social_profiles", "Social media profiles (linked from website)", socials or None, "contact")
-    from .news import find_feed
-    st = SourceStatus.make("company_website", r.final_url, "ok", 200)
+    emails = web.rank_emails(list(dict.fromkeys(([ld["email"].lower()] if ld.get("email") else [])
+                                                 + (contact or {}).get("emails", []) + home.get("emails", []))))[:3]
+    phones = list(dict.fromkeys((contact or {}).get("phones", []) + home.get("phones", [])
+                                + ([p for p in [web.norm_phone(ld["telephone"])] if p] if ld.get("telephone") else [])))[:3]
+    ev = contact_url if contact and ((contact.get("emails") or contact.get("phones"))) else None
+    add("website_emails", "Email addresses (published on website)", emails or None, "contact", ev)
+    add("website_phones", "Phone numbers (published on website)", phones or None, "contact", ev)
+    add("website_contact_page", "Contact page", contact_url if contact else None, "contact")
+    add("website_address", "Address shown on website", ld.get("address") or addr_hit, "location")
+    add("website_logo", "Logo (from website)", ld.get("logo") or _meta(html, "og:image"), "identity")
+    if ld.get("founding_date"):
+        add("website_founding_date", "Founding date stated on website", ld["founding_date"][:10], "identity")
+    st = SourceStatus.make(src, r.final_url, "ok", 200)
     st["feed_url"] = find_feed(html, r.final_url)
     return st
+
+
+def discover_website(http, fs, orgnr, rec, rejections, use_search=False):
+    """Find a website when none is registered: try the domains matching the registered name
+    (maleran.no, maleran.com …), optionally web search; publish only after ownership is proven."""
+    from . import web
+    statuses = []
+    tried = set()
+    name = (rec or {}).get("navn")
+    for cand in web.guess_domains(name):
+        if not http.spare(2):
+            break
+        tried.add(web.host(cand))
+        st = website_facts(http, fs, orgnr, cand, rec=rec, discovered=True, rejections=rejections, probe=True)
+        if st and st.get("status") == "ok":
+            statuses.append(st)
+            return st, statuses
+    if use_search and http.spare(3):
+        cands, sst = web.search_candidates(http, name, rec)
+        statuses.append(SourceStatus(**{k: v for k, v in sst.items() if v is not None}))
+        for c in cands:
+            if web.host(c) in tried or not http.spare(2):
+                continue
+            st = website_facts(http, fs, orgnr, c, rec=rec, discovered=True, rejections=rejections)
+            if st:
+                statuses.append(st)
+                if st.get("status") == "ok":
+                    return st, statuses
+    statuses.append(SourceStatus.make("website_discovery", None, "not_found", None,
+                                      f"checked {len(tried)} name-matching domain(s); none proven to belong to this company"))
+    return None, statuses
