@@ -1271,3 +1271,14 @@ class ReportSizeTests(unittest.TestCase):
                 self.assertFalse(any(f.startswith(".") for f in os.listdir(d)))
         finally:
             R.PART_BYTES = old
+
+    def test_escaped_unicode_address_is_quoted(self):
+        geo = json.loads(json.dumps(GEO))
+        geo["adresser"][0]["adressetekst"] = "Mølledalen 7B"
+        e = json.loads(json.dumps(ENHET))
+        e["forretningsadresse"]["adresse"] = ["Mølledalen 7B"]
+        raw = json.dumps(geo)                       # ASCII-escaped, as some APIs send it
+        p = build_profile(FakeHttp(routes(**{"ws.geonorge.no": (200, raw), f"/enheter/{ORG}": (200, e)})), ORG)
+        self.assertEqual(field(p, "address_official")["value"], "Mølledalen 7B, 4035 STAVANGER")
+        self.assertIsNotNone(field(p, "address_map"))
+        self.assertFalse(p["verification"]["withheld"])
