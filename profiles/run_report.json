@@ -1,0 +1,20 @@
+{
+  "finished_at": "2026-10-28T12:45:54Z",
+  "companies": 1100,
+  "statuses": {
+    "active": 1088,
+    "under_liquidation": 12
+  },
+  "facts_total": 52631,
+  "facts_per_company_avg": 47.8,
+  "companies_with_changes": 0,
+  "companies_with_dated_news": 566,
+  "facts_with_content_hash": 52631,
+  "facts_with_exact_or_derived_quote": 52631,
+  "dated_news_items": 6130,
+  "outbound_requests": 10397,
+  "request_budget": 18200,
+  "seconds": 1301.2,
+  "external_api_cost_usd": 0.0,
+  "note": "All sources are free public APIs/pages; no paid API or LLM is called."
+}
