@@ -38,6 +38,18 @@ GENERIC_MAILBOX = ("post", "postmottak", "firmapost", "info", "kontakt", "contac
                    "office", "kundeservice", "service", "salg", "sales", "booking", "resepsjon")
 
 
+CREDIT = re.compile(r"(?i)laget av|levert av|utviklet av|designet av|design av|webdesign|nettside av|nettsiden er laget|"
+                    r"powered by|created by|developed by|website by|site by|made by|drevet av")
+
+
+def _credit_context(text, needle):
+    """True when the contact detail sits in a web-agency credit ("Laget av …", "Powered by …")."""
+    i = (text or "").find(needle)
+    if i < 0:
+        return False
+    return bool(CREDIT.search(text[max(0, i - 90):i + len(needle) + 20]))
+
+
 def rank_emails(emails):
     """General company mailboxes (post@, info@, kontakt@ …) first, then the rest in page order."""
     def key(e):
@@ -120,10 +132,12 @@ def extract(html, base_url, site_host):
     clean = []
     for e in emails:
         e = e.strip().strip(".").lower()
-        if EMAIL_RE.fullmatch(e) and not BAD_EMAIL.search(e) and e not in clean:
+        if EMAIL_RE.fullmatch(e) and not BAD_EMAIL.search(e) and e not in clean and not _credit_context(text, e):
             clean.append(e)
-    same = [e for e in clean if site_host and site_host.split(".")[-2] in e.split("@")[1]]
-    out["emails"] = rank_emails(same or clean)[:3]
+    # only mailboxes on the site's own domain (a web agency's or a supplier's address is not the company's)
+    same = [e for e in clean if site_host and registrable(e.split("@")[1]) == registrable(site_host)]
+    out["emails"] = rank_emails(same)[:3]
+    out["other_emails"] = [e for e in clean if e not in same][:5]
     phones = []
     for m in re.finditer(r'(?i)href=["\']tel:([^"\']+)["\']', html or ""):
         p = norm_phone(m.group(1))
@@ -131,12 +145,13 @@ def extract(html, base_url, site_host):
             phones.append(p)
     for m in PHONE_CTX.finditer(text):
         p = norm_phone((m.group(1) or "") + m.group(2))
-        if p and p not in phones:
+        if p and p not in phones and not _credit_context(text, m.group(0)):
             phones.append(p)
     out["phones"] = phones[:3]
     org = json_ld_org(html)
     if org:
         out["ld"] = {
+            "_raw": {k: org.get(k) for k in ("vatID", "taxID") if isinstance(org.get(k), (str, int))},
             "name": org.get("name") if isinstance(org.get("name"), str) else None,
             "telephone": org.get("telephone") if isinstance(org.get("telephone"), str) else None,
             "email": (org.get("email") or "").replace("mailto:", "") if isinstance(org.get("email"), str) else None,
@@ -145,13 +160,8 @@ def extract(html, base_url, site_host):
             "same_as": [s for s in (org.get("sameAs") if isinstance(org.get("sameAs"), list) else [org.get("sameAs")]) if isinstance(s, str)][:8],
             "logo": org.get("logo") if isinstance(org.get("logo"), str) else (org.get("logo") or {}).get("url") if isinstance(org.get("logo"), dict) else None,
         }
-    about = None
-    for p in re.findall(r"(?is)<p\b[^>]*>(.*?)</p>", html or ""):
-        t = _text(p)
-        if 80 <= len(t) <= 600 and not re.search(r"(?i)cookie|personvern|privacy|javascript", t):
-            about = t
-            break
-    out["about"] = about
+    out["paragraphs"] = [t for t in (_text(p) for p in re.findall(r"(?is)<p\b[^>]*>(.*?)</p>", html or ""))
+                         if 80 <= len(t) <= 600 and not re.search(r"(?i)cookie|personvern|privacy|javascript", t)][:12]
     contact = None
     for m in CONTACT_LINK.finditer(html or ""):
         href, label = m.group(1), _text(m.group(2))
@@ -163,6 +173,7 @@ def extract(html, base_url, site_host):
                     break
     out["contact_page"] = contact
     out["text"] = text
+    out["raw"] = html or ""
     return out
 
 
@@ -177,6 +188,131 @@ def address_match(text, rec):
     if re.search(rf"(?<!\d){pc}(?!\d)", text) and re.search(re.escape(street), text, re.I):
         return f"{lines[0]}, {pc} {(addr.get('poststed') or '').title()}".strip()
     return None
+
+
+_SUFFIX_TOKENS = {"AS", "ASA", "SA", "ANS", "DA", "BA", "NUF", "KS", "IKS", "SF", "KF", "BRL", "STI"}
+
+
+def full_name_pattern(legal_name):
+    """Regex for the FULL registered name, legal suffix included and in capitals ("Maleran Holding AS"):
+    name words case-insensitive, at least one separator between words, whole-word boundaries."""
+    toks = re.findall(r"[^\W_]+", legal_name or "", re.UNICODE)
+    if not toks:
+        return None
+    parts = []
+    for i, t in enumerate(toks):
+        if i == len(toks) - 1 and t.upper() in _SUFFIX_TOKENS and len(toks) > 1:
+            parts.append(re.escape(t.upper()))                   # suffix must be written as a suffix (AS, ASA)
+        else:
+            parts.append("(?i:" + re.escape(t) + ")")
+    return re.compile(r"(?<![\w])" + r"[\s\-.,&/'’()]+".join(parts) + r"(?![\w])")
+
+
+def _mod11(n):
+    w = [3, 2, 7, 6, 5, 4, 3, 2]
+    r = sum(int(d) * x for d, x in zip(n[:8], w)) % 11
+    c = 0 if r == 0 else 11 - r
+    return c != 10 and c == int(n[8])
+
+
+ORGNR_ANY = re.compile(r"(?<!\d)(\d{3})[\s.\u00a0]?(\d{3})[\s.\u00a0]?(\d{3})(?!\d)")
+ORGNR_CUE = re.compile(r"(?i)org\.?\s*n|organisasjonsn|foretaksreg|mva|\bno\s?$|vat|business id|reg\.?\s*nr")
+
+
+def org_numbers_on(text, ld=None):
+    """Distinct valid organisation numbers WRITTEN AS SUCH on a page: visible text with an org-number cue
+    ("Org.nr", "MVA", "Foretaksregisteret", "NO …") right before or after it, plus JSON-LD vatID/taxID.
+    Script ids and tracking numbers in raw HTML are not counted."""
+    out = {}
+    t = text or ""
+    for m in ORGNR_ANY.finditer(t):
+        n = "".join(m.groups())
+        if not _mod11(n):
+            continue
+        before, after = t[max(0, m.start() - 30):m.start()], t[m.end():m.end() + 6]
+        if ORGNR_CUE.search(before) or re.match(r"\s*(mva|MVA)", after):
+            out.setdefault(n, []).append(m.start())
+    for k in ("vatID", "taxID", "leiCode"):
+        v = (ld or {}).get(k) if isinstance(ld, dict) else None
+        d = re.sub(r"\D", "", str(v or ""))
+        if len(d) == 9 and _mod11(d):
+            out.setdefault(d, []).append(-1)
+    return out
+
+
+SECOND_LEVEL = {"kommune.no", "priv.no", "vgs.no", "fhs.no", "folkebibl.no", "museum.no", "herad.no", "stat.no",
+                "dep.no", "idrett.no", "mil.no", "co.uk", "org.uk", "ac.uk", "com.au", "co.nz"}
+
+
+def registrable(host_name):
+    parts = (host_name or "").lower().split(".")
+    if len(parts) >= 3 and ".".join(parts[-2:]) in SECOND_LEVEL:
+        return ".".join(parts[-3:])
+    return ".".join(parts[-2:]) if len(parts) >= 2 else host_name
+
+
+def ownership(pages_text, orgnr, legal_name, registered_url=None, final_url=None, identity_text="", rec=None, ld=None,
+              discovered=False):
+    """Decide whether a website is this company's own. Returns (verdict, how, detail):
+      verdict "own"     – proven: this org number is the only org number written on the pages; or several are
+                          written but the site's own identity (title / site name / structured data) names this company;
+                          or (no other org number shown) the full legal name with suffix, or the registered
+                          e-mail/phone, appears.
+      verdict "shared"  – positive evidence it belongs to someone else: other companies' org numbers are written
+                          and the site does not identify as this one. (A redirect alone only makes it "unproven".)
+      Registered contact details count as proof only for the registered site (never for a discovered one), and
+      the registered e-mail only when it is on the site's own domain.
+      verdict "unproven" – neither (e.g. a brand-only page): nothing company-specific is published from it.
+    """
+    nums = org_numbers_on(pages_text, ld)
+    others = [n for n in nums if n != orgnr]
+    pat = full_name_pattern(legal_name)
+    redirected = bool(registered_url and final_url and registrable(host(registered_url)) != registrable(host(final_url)))
+    identity_ok = bool(pat and pat.search(identity_text or "")) or orgnr in {re.sub(r"\D", "", str((ld or {}).get(k) or ""))
+                                                                           for k in ("vatID", "taxID")}
+    if orgnr in nums and not others:
+        return "own", "orgnr", "the pages show this organisation number and no other"
+    if orgnr in nums and identity_ok:
+        return "own", "orgnr", "the pages show this organisation number and the site identifies itself as this company"
+    if others:
+        return "shared", None, (f"the pages show {len(others)} other organisation number(s)"
+                                + (" and do not identify the site as this company" if orgnr in nums else " and not this one"))
+    if redirected:
+        return "unproven", None, (f"the registered address redirects to another domain ({host(final_url)}) and the "
+                                  "pages do not show this organisation number")
+    if pat and pat.search(pages_text):
+        return "own", "name", "the pages show the company's full registered name"
+    if not discovered:
+        proof = contact_proof(pages_text, rec, final_url or registered_url)
+        if proof:
+            return "own", "contact", proof[0]
+    return "unproven", None, "the pages show neither this company's organisation number, its full registered name nor its registered contact details"
+
+
+def contact_proof(pages_text, rec, site_url):
+    """(detail, regex) when the pages show the registered e-mail (only if it is on the site's own domain) or the
+    registered phone number; None otherwise. Only used for the site registered in Enhetsregisteret."""
+    reg_email = ((rec or {}).get("epostadresse") or "").strip().lower()
+    site_dom = registrable(host(site_url or ""))
+    if reg_email and "@" in reg_email and site_dom and registrable(reg_email.split("@", 1)[1]) == site_dom \
+            and reg_email in (pages_text or "").lower():
+        return (f"the pages show the e-mail address registered for this company ({reg_email})",
+                "(?i)" + re.escape(reg_email))
+    for ph in ((rec or {}).get("telefon"), (rec or {}).get("mobil")):
+        d = re.sub(r"\D", "", str(ph or ""))[-8:]
+        if len(d) == 8:
+            pat = r"(?<!\d)" + r"[\s.\-]?".join(d) + r"(?!\d)"
+            if re.search(pat, pages_text or ""):
+                return "the pages show the phone number registered for this company", pat
+    return None
+
+
+SOCIAL_HOSTS = ("facebook.com", "linkedin.com", "instagram.com", "twitter.com", "x.com", "youtube.com", "tiktok.com")
+
+
+def is_social(url):
+    h = host(url or "")
+    return any(h == s or h.endswith("." + s) for s in SOCIAL_HOSTS)
 
 
 def name_on_page(text, legal_name):

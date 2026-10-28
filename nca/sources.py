@@ -5,11 +5,13 @@ when it is present in a source record that is keyed to the same org number.
 import re
 import urllib.parse
 
-from .util import dig, fmt_address, fmt_orgnr, is_number, name_similarity, orgnr_pattern
+from .util import dig, fmt_address, fmt_orgnr, is_number, name_similarity, norm_name, orgnr_pattern
 
 BRREG = "https://data.brreg.no/enhetsregisteret/api"
 REGNSKAP = "https://data.brreg.no/regnskapsregisteret/regnskap"
 GLEIF = "https://api.gleif.org/api/v1/lei-records"
+GEONORGE = "https://ws.geonorge.no/adresser/v1/sok"
+FRIVILLIG = "https://data.brreg.no/frivillighetsregisteret/api/frivillige-organisasjoner"
 
 
 def brreg_page(orgnr, sub=False):
@@ -42,7 +44,10 @@ def fetch_entity(http, orgnr):
             return "underenhet", r2.json(), url2, SourceStatus.make("brreg_enhetsregisteret", url2, "ok", 200, "sub-unit")
         if r2.status == 410:
             return "deleted_underenhet", r2.json() or {}, url2, SourceStatus.make("brreg_enhetsregisteret", url2, "ok", 410)
-        return None, None, url, SourceStatus.make("brreg_enhetsregisteret", url, "not_found", r.status)
+        if r2.status in (404, 400):          # both registers answered: there is no such unit
+            return None, None, url, SourceStatus.make("brreg_enhetsregisteret", url, "not_found", r.status)
+        return None, None, url2, SourceStatus.make("brreg_enhetsregisteret", url2, "error", r2.status,
+                                                   r2.error or "sub-unit register did not answer; existence not decided")
     return None, None, url, SourceStatus.make("brreg_enhetsregisteret", url, "error", r.status, r.error)
 
 
@@ -118,6 +123,8 @@ def entity_facts(fs, orgnr, kind, rec, api_url):
     add("articles_date", "Articles of association dated", rec.get("vedtektsdato"), "registrations", as_of=rec.get("vedtektsdato"))
     add("written_language", "Written language form", rec.get("maalform"), "registrations")
 
+    entity_extra_facts(add, rec)
+
     # Status flags (always published when present: they matter most for "is this company alive?")
     if isinstance(rec.get("konkurs"), bool):
         add("bankrupt", "Bankrupt", rec["konkurs"], "status", as_of=rec.get("konkursdato"))
@@ -133,7 +140,57 @@ def entity_facts(fs, orgnr, kind, rec, api_url):
         as_of=rec.get("slettedato") or rec.get("nedleggelsesdato"))
 
 
+REG_DATES = {
+    "registreringsdatoForetaksregisteret": ("registered_business_register_date", "Registered in the Register of Business Enterprises (date)"),
+    "registreringsdatoMerverdiavgiftsregisteret": ("vat_registered_date", "Registered for VAT (date)"),
+    "registreringsdatoFrivilligMerverdiavgiftsregisteret": ("voluntary_vat_registered_date", "Voluntarily registered for VAT (date)"),
+    "registreringsdatoFrivillighetsregisteret": ("voluntary_register_date", "Registered in the Register of Non-Profit Organisations (date)"),
+    "registreringsdatoPartiregisteret": ("party_register_date", "Registered in the Register of Political Parties (date)"),
+    "registreringsdatoAntallAnsatteEnhetsregisteret": ("employee_count_date", "Employee count last updated in Enhetsregisteret (date)"),
+    "registreringsdatoAntallAnsatteNAVAaregisteret": ("employee_count_aa_date", "Employee count last updated in the Aa-register (date)"),
+    "registreringsdatoStiftelsesregisteret": ("foundation_register_date", "Registered in the Register of Foundations (date)"),
+}
+
+
+def entity_extra_facts(add, rec):
+    """Remaining fields of the Enhetsregisteret record (they cost no extra request)."""
+    for key, (field, label) in REG_DATES.items():
+        v = rec.get(key)
+        if isinstance(v, str) and re.match(r"\d{4}-\d{2}-\d{2}", v):
+            add(field, label, v[:10], "registrations", as_of=v[:10])
+    for key, val in rec.items():                       # any other registration date the API adds later
+        if key.startswith("registreringsdato") and key not in REG_DATES and key != "registreringsdatoEnhetsregisteret" \
+                and isinstance(val, str) and re.match(r"\d{4}-\d{2}-\d{2}", val):
+            add("date_" + re.sub(r"(?<!^)(?=[A-Z])", "_", key).lower(), f"Registration date ({key})", val[:10],
+                "registrations", as_of=val[:10])
+    if isinstance(rec.get("registrertIPartiregisteret"), bool):
+        add("in_party_register", "Registered in the Register of Political Parties", rec["registrertIPartiregisteret"], "registrations")
+    vol = rec.get("frivilligMvaRegistrertBeskrivelser")
+    if isinstance(vol, list) and vol:
+        add("voluntary_vat_descriptions", "Voluntary VAT registration", [x for x in vol if x], "registrations")
+    hk = rec.get("hjelpeenhetskode") or {}
+    if hk.get("kode"):
+        add("auxiliary_unit_code", "Auxiliary unit code", f"{hk['kode']} – {hk.get('beskrivelse', '')}".strip(" –"), "activity")
+    notes = rec.get("paategninger")
+    if isinstance(notes, list) and notes:
+        clean = [{"type": n.get("infotype"), "text": n.get("tekst"), "date": n.get("innfoertDato")}
+                 for n in notes if isinstance(n, dict) and n.get("tekst")]
+        add("register_notes", "Notes recorded on the register entry (påtegninger)", clean or None, "status")
+    addr = rec.get("forretningsadresse") or rec.get("beliggenhetsadresse")
+    if isinstance(addr, dict):
+        lines = [l for l in (addr.get("adresse") or []) if l]
+        add("business_street", "Business address – street", ", ".join(lines) or None, "location")
+        add("business_postcode", "Business address – postcode", addr.get("postnummer"), "location")
+        add("business_city", "Business address – postal town", addr.get("poststed"), "location")
+    pa = rec.get("postadresse")
+    if isinstance(pa, dict):
+        add("postal_postcode", "Postal address – postcode", pa.get("postnummer"), "location")
+        add("postal_city", "Postal address – postal town", pa.get("poststed"), "location")
+
+
 def status_of(kind, rec):
+    """Registry status. 'active' only when the register actually states the bankruptcy and liquidation flags as false;
+    otherwise 'registered' (e.g. sub-units, whose flags are held on the parent unit)."""
     rec = rec or {}
     if kind in ("deleted", "deleted_underenhet") or rec.get("slettedato") or rec.get("nedleggelsesdato"):
         return "deleted"
@@ -143,7 +200,137 @@ def status_of(kind, rec):
         return "compulsory_liquidation"
     if rec.get("underAvvikling"):
         return "under_liquidation"
-    return "active"
+    flags = (rec.get("konkurs"), rec.get("underAvvikling"), rec.get("underTvangsavviklingEllerTvangsopplosning"))
+    if all(f is False for f in flags):
+        return "active"
+    return "registered"
+
+
+# --------------------------------------------------------------------------- #
+# Kartverket: the registered street address in Norway's official address register
+# --------------------------------------------------------------------------- #
+
+def _street_line(addr):
+    """The street line of a registered address (not a c/o, PO box or building-name line), or None."""
+    for line in (addr or {}).get("adresse") or []:
+        l = (line or "").strip()
+        if not l or re.match(r"(?i)(c/o|co\b|postboks|pb\.?\s|boks\s|postbox)", l):
+            continue
+        if re.search(r"\d", l) and re.match(r"^[^\d]+\s\d+\s?[A-Za-z]?$", l):
+            return l
+    return None
+
+
+def _addr_key(s):
+    return re.sub(r"\s+", "", (s or "")).lower()
+
+
+def address_register_facts(http, fs, orgnr, rec):
+    """Look up the registered business address in Kartverket's address register. Published only on an exact match
+    of street + house number + postcode; otherwise nothing is published (no 'address not found' claim)."""
+    addr = (rec or {}).get("forretningsadresse") or (rec or {}).get("beliggenhetsadresse") or {}
+    street, pn = _street_line(addr), addr.get("postnummer")
+    if not street or not pn or (addr.get("landkode") or "NO") != "NO":
+        return None
+    url = GEONORGE + "?" + urllib.parse.urlencode({"sok": street, "postnummer": pn, "treffPerSide": 10, "utkoordsys": 4258})
+    r = http.get(url, retries=1, timeout=15)
+    if r.status != 200 or not isinstance(r.json(), dict):
+        return SourceStatus.make("kartverket_adresser", url, "error", r.status, r.error)
+    hits = [a for a in r.json().get("adresser") or []
+            if _addr_key(a.get("adressetekst")) == _addr_key(street) and str(a.get("postnummer")) == str(pn)]
+    if len(hits) != 1:
+        return SourceStatus.make("kartverket_adresser", url, "not_found", 200,
+                                 "no single exact match for the registered street address" if hits == [] else
+                                 "several exact matches; nothing published")
+    a = hits[0]
+    m = (f"Exact match of the address registered for {orgnr} in Enhetsregisteret ({street}, {pn}) "
+         "in the official address register")
+    key = r'text:"adressetekst"\s*:\s*' + re.escape(json_str(a.get("adressetekst")))
+    add = lambda f, l, v, k=key: fs.add(f, l, v, "kartverket_adresser", url, evidence_url="https://www.norgeskart.no/",
+                                         category="location", match=m, key=k)
+    add("address_official", "Address in the official address register (Kartverket)",
+        f"{a.get('adressetekst')}, {a.get('postnummer')} {a.get('poststed')}")
+    pt = a.get("representasjonspunkt") or {}
+    lat, lon = pt.get("lat"), pt.get("lon")
+    if is_number(lat) and is_number(lon):
+        add("address_coordinates", "Map position of the registered address (latitude, longitude, ETRS89)",
+            f"{lat}, {lon}")
+        add("address_map", "Map link (OpenStreetMap, from the official coordinates)",
+            f"https://www.openstreetmap.org/?mlat={lat}&mlon={lon}#map=17/{lat}/{lon}")
+    if a.get("kommunenavn"):
+        add("address_municipality_official", "Municipality of the address (Kartverket)", a["kommunenavn"])
+    return SourceStatus.make("kartverket_adresser", url, "ok", 200)
+
+
+def json_str(v):
+    import json as _json
+    return _json.dumps(v, ensure_ascii=False)
+
+
+# --------------------------------------------------------------------------- #
+# Frivillighetsregisteret (non-profit organisations)
+# --------------------------------------------------------------------------- #
+
+VOLUNTARY_DATE_LABELS = {
+    "foersteGangInnfoert": "First entered in the Register of Non-Profit Organisations",
+    "registreringsdatoFrivillighetsregisteret": "First entered in the Register of Non-Profit Organisations",
+    "innfoertDato": "Entered in the Register of Non-Profit Organisations",
+    "sistEndret": "Non-profit register entry last changed",
+    "vedtektsdato": "Date of the articles of association (non-profit register)",
+    "aarsregnskapSistInnsendt": "Last annual accounts sent to the non-profit register",
+}
+
+
+def voluntary_register_facts(http, fs, orgnr):
+    """Facts from the Register of Non-Profit Organisations, for units the main register says are registered there.
+    Only fields present in a record carrying this exact organisation number are published."""
+    url = f"{FRIVILLIG}/{orgnr}"
+    r = http.get(url, retries=1, timeout=15)
+    data = r.json() if r.status == 200 else None
+    if isinstance(data, dict) and "_embedded" in data:
+        lists = [v for v in data["_embedded"].values() if isinstance(v, list)]
+        data = next((x for l in lists for x in l if isinstance(x, dict) and x.get("organisasjonsnummer") == orgnr), None)
+    if not isinstance(data, dict):
+        return SourceStatus.make("brreg_frivillighetsregisteret", url, "not_found" if r.status in (200, 404) else "error",
+                                 r.status, r.error)
+    if str(data.get("organisasjonsnummer") or "") != orgnr:
+        return SourceStatus.make("brreg_frivillighetsregisteret", url, "not_found", r.status,
+                                 "record does not carry this organisation number; nothing published")
+    m = "Record retrieved from Frivillighetsregisteret by exact organisation number"
+    add = lambda f, l, v, k, cat="registrations": fs.add(f, l, v, "brreg_frivillighetsregisteret", url,
+                                                          evidence_url=brreg_page(orgnr), category=cat, match=m, key=k)
+    n, dates = 0, set()
+
+    def walk(obj, path, depth):
+        nonlocal n
+        for k, v in obj.items():
+            if k.startswith("_") or k == "organisasjonsnummer":
+                continue
+            kp = path + [k]
+            snake = "_".join(re.sub(r"(?<!^)(?=[A-Z])", "_", x).lower() for x in kp)
+            if isinstance(v, str) and re.fullmatch(r"\d{4}-\d{2}-\d{2}(T.*)?", v):
+                label = VOLUNTARY_DATE_LABELS.get(k)
+                if label and v[:10] not in dates:
+                    dates.add(v[:10])
+                    add("voluntary_" + snake, label, v[:10], r'text:"%s"\s*:\s*"%s' % (re.escape(k), v[:10]))
+                    n += 1
+            elif isinstance(v, list) and v and all(isinstance(x, dict) for x in v):
+                descs = [x.get("beskrivelse") or x.get("navn") for x in v
+                         if isinstance(x.get("beskrivelse") or x.get("navn"), str)]
+                if descs:
+                    add("voluntary_" + snake, "Activity categories (Register of Non-Profit Organisations)" if "kategor" in k.lower()
+                        else f"Register of Non-Profit Organisations – {k}", descs, "text:" + re.escape(json_str(descs[0])), "activity")
+                    n += 1
+            elif isinstance(v, bool) and "grasrot" in " ".join(kp).lower():
+                add("voluntary_grassroots_share", "Takes part in the Norsk Tipping grassroots share (Grasrotandelen)", v,
+                    r'text:"%s"\s*:\s*%s' % (re.escape(k), "true" if v else "false"))
+                n += 1
+            elif isinstance(v, dict) and depth < 2:
+                walk(v, kp, depth + 1)
+
+    walk(data, [], 0)
+    return SourceStatus.make("brreg_frivillighetsregisteret", url, "ok" if n else "not_found", r.status,
+                             None if n else "record found but no publishable fields")
 
 
 # --------------------------------------------------------------------------- #
@@ -279,6 +466,42 @@ FIN_FIELDS = [
 ]
 
 
+ACC_LABELS = {
+    "salgsinntekter": "Sales revenue", "annenDriftsinntekt": "Other operating income",
+    "loennskostnad": "Payroll costs", "avskrivning": "Depreciation", "nedskrivning": "Write-downs",
+    "varekostnad": "Cost of goods sold", "annenDriftskostnad": "Other operating expenses",
+    "sumFinansinntekter": "Total financial income", "sumFinanskostnad": "Total financial expenses",
+    "rentekostnadSammeKonsern": "Interest expense (group companies)", "annenRentekostnad": "Other interest expense",
+    "renteinntektSammeKonsern": "Interest income (group companies)", "annenRenteinntekt": "Other interest income",
+    "ordinaertResultatSkattekostnad": "Tax on ordinary result", "skattekostnadOrdinaertResultat": "Tax on ordinary result",
+    "ekstraordinaerePoster": "Extraordinary items", "skattekostnadEkstraordinaertResultat": "Tax on extraordinary items",
+    "totalresultat": "Total comprehensive income", "goodwill": "Goodwill",
+    "sumVarer": "Inventories", "sumFordringer": "Receivables", "sumInvesteringer": "Short-term investments",
+    "sumBankinnskuddOgKontanter": "Cash and bank deposits", "sumImmatrielleEiendeler": "Intangible assets",
+    "sumVarigeDriftsmidler": "Property, plant and equipment", "sumFinansielleAnleggsmidler": "Non-current financial assets",
+    "sumInnskuttEgenkaptial": "Paid-in equity", "sumInnskuttEgenkapital": "Paid-in equity",
+    "sumOpptjentEgenkapital": "Retained earnings", "sumEgenkapitalGjeld": "Total equity and liabilities",
+    "aksjekapital": "Share capital", "utbytte": "Dividend", "sumAvsetningerForForpliktelser": "Provisions",
+    "sumLeverandoergjeld": "Trade payables", "sumSkyldigeOffentligeAvgifter": "Public duties payable",
+}
+
+
+def all_numeric_lines(st, skip_keys):
+    """Every numeric leaf in a filed statement, with its path, except keys already published under a named field."""
+    out = []
+
+    def walk(o, path):
+        if isinstance(o, dict):
+            for k, v in o.items():
+                if k in ("id", "journalnr", "organisasjonsnummer"):
+                    continue
+                walk(v, path + [k])
+        elif is_number(o) and path and path[-1] not in skip_keys and path[0] not in ("regnskapsperiode", "virksomhet"):
+            out.append((path, o))
+    walk(st, [])
+    return out
+
+
 def find_number(obj, key):
     """Depth-first search for a numeric value stored under `key` (schema-drift safety net)."""
     if isinstance(obj, dict):
@@ -305,10 +528,15 @@ def accounts_facts(http, fs, orgnr):
     data = r.json() if r.status == 200 else None
     if isinstance(data, dict):
         data = [data]
+    stmt_url = {}                      # each statement keeps the URL of the exact response it came from
+    for st_ in data or []:
+        stmt_url[id(st_)] = url
     if data is None:
         # The combined endpoint sometimes fails for banks/insurers; ask per statement type instead.
         data, last = [], r
         for typ in ("SELSKAP", "KONSERN"):
+            if hasattr(http, "spare") and not http.spare(1):
+                break
             alt = f"{url}?regnskapstype={typ}"
             ra = http.get(alt)
             last = ra
@@ -316,8 +544,9 @@ def accounts_facts(http, fs, orgnr):
             if isinstance(js, dict):
                 js = [js]
             if js:
+                for st_ in js:
+                    stmt_url[id(st_)] = alt
                 data.extend(js)
-                url = alt if typ == "SELSKAP" else url
         if not data:
             if last.status == 404:
                 return SourceStatus.make("brreg_regnskap", url, "not_found", 404)
@@ -341,12 +570,19 @@ def accounts_facts(http, fs, orgnr):
                                  "no statements for this organisation number" + (" (mismatched records rejected)" if rejected else ""))
     evidence = f"https://virksomhet.brreg.no/nb/oppslag/enheter/{orgnr}"
     m = "Annual statement filed under this exact organisation number (virksomhet.organisasjonsnummer verified)"
+    first_url = url
     for typ, st in by_type.items():
+        url = stmt_url.get(id(st), first_url)
         prefix = "" if typ == "SELSKAP" else "group_"
         scope = "company" if typ == "SELSKAP" else "group (consolidated)"
         start = dig(st, "regnskapsperiode", "fraDato")
         end = dig(st, "regnskapsperiode", "tilDato")
-        cur = st.get("valuta") or "NOK"
+        cur = st.get("valuta") or None
+        if not cur:
+            fs.add(prefix + "accounts_currency_unstated", f"Currency of the filed statement ({scope})",
+                   "not stated in the filing; figures are shown without a currency",
+                   "brreg_regnskap", url, evidence_url=evidence, as_of=end, category="financials", match=m,
+                   key="regnskapsperiode")
         period = f"{start}/{end}" if start and end else end
         fs.add(prefix + "accounts_period", f"Accounting period ({scope})", period, "brreg_regnskap", url,
                evidence_url=evidence, as_of=end, category="financials", match=m)
@@ -359,15 +595,31 @@ def accounts_facts(http, fs, orgnr):
             for v in cands:
                 if is_number(v):
                     fs.add(prefix + field, f"{label} ({scope})",
-                           {"amount": v, "currency": cur, "period": period, "statement": scope},
+                           {"amount": v, "currency": cur, "period": period, "statement": scope,
+                            "filed_as": ".".join(paths[0]) if v == dig(st, *paths[0]) else leaf},
                            "brreg_regnskap", url, evidence_url=evidence, as_of=end, category="financials", match=m,
                            note="Exact figure as filed; not estimated or recomputed")
                     break
+        named = {paths[0][-1] for _, _, paths in FIN_FIELDS}
+        used = set()
+        for path, v in all_numeric_lines(st, named):
+            key = path[-1]
+            label = ACC_LABELS.get(key) or re.sub(r"(?<!^)(?=[A-Z])", " ", key).capitalize()
+            fid = prefix + "acc_" + re.sub(r"(?<!^)(?=[A-Z])", "_", key).lower()
+            if fid in used:
+                fid = prefix + "acc_" + "_".join(re.sub(r"(?<!^)(?=[A-Z])", "_", k).lower() for k in path[-2:])
+            if fid in used:
+                continue
+            used.add(fid)
+            fs.add(fid, f"{label} ({scope})", {"amount": v, "currency": cur, "period": period, "statement": scope,
+                                                "filed_as": ".".join(path)},
+                   "brreg_regnskap", url, evidence_url=evidence, as_of=end, category="financials", match=m,
+                   note="Exact figure as filed; not estimated or recomputed")
         aud = st.get("revisjon") or {}
         if isinstance(aud.get("ikkeRevidertAarsregnskap"), bool):
             fs.add(prefix + "accounts_audited", f"Accounts audited ({scope})", not aud["ikkeRevidertAarsregnskap"],
                    "brreg_regnskap", url, evidence_url=evidence, as_of=end, category="financials", match=m)
-    return SourceStatus.make("brreg_regnskap", url, "ok", 200)
+    return SourceStatus.make("brreg_regnskap", first_url, "ok", 200)
 
 
 # --------------------------------------------------------------------------- #
@@ -409,7 +661,7 @@ def gleif_facts(http, fs, orgnr, legal_name, rejections, thorough=True):
         country = (dig(a, "entity", "legalAddress", "country") or "")[:2]
         juris = (dig(a, "entity", "jurisdiction") or "")[:2]
         name = dig(a, "entity", "legalName", "name") or ""
-        sim = name_similarity(name, legal_name) if legal_name else 1.0
+        sim = name_similarity(name, legal_name) if legal_name else 0.0     # no registry name: cannot verify
         if reg_as != orgnr or "NO" not in (country, juris):
             rejections.append({"source": "gleif", "candidate": a.get("lei"), "reason": f"registeredAs/country mismatch ({reg_as}, {country})"})
             continue
@@ -570,7 +822,7 @@ def wikidata_facts(http, fs, orgnr, legal_name, gleif_lei, rejections):
 # --------------------------------------------------------------------------- #
 
 SOCIAL = re.compile(
-    r"https?://(?:[a-z]{2,3}\.)?(?:www\.)?(linkedin\.com/company/[\w\-%.]+|facebook\.com/(?!sharer|share|dialog|plugins|tr\b)[\w\-.%]+"
+    r"https?://(?:[a-z]{2,3}\.)?(?:www\.)?(linkedin\.com/company/[\w\-%.]+|facebook\.com/(?!sharer|share|dialog|plugins|tr\b|\d+(?![\w\-.%]))[\w\-.%]+"
     r"|instagram\.com/(?!p/|share)[\w\-.]+|(?:twitter|x)\.com/(?!intent|share|home)[\w]+|youtube\.com/(?:@|c/|channel/|user/)[\w\-.]+)",
     re.I)
 
@@ -605,7 +857,7 @@ def _fetch_home(http, site, probe=False):
     return r, url
 
 
-def website_facts(http, fs, orgnr, site, rec=None, discovered=False, rejections=None, probe=False):
+def website_facts(http, fs, orgnr, site, rec=None, discovered=False, rejections=None, probe=False, origin=None):
     """Facts from the company's website. For a discovered (unregistered) site the page must prove it
     belongs to this company before anything is published."""
     from . import web
@@ -625,37 +877,80 @@ def website_facts(http, fs, orgnr, site, rec=None, discovered=False, rejections=
         if rc.status == 200 and web.host(rc.final_url) == site_host:
             contact = web.extract(rc.text(), rc.final_url, site_host)
     texts = home["text"] + " " + (contact["text"] if contact else "")
-    mentions = bool(orgnr_pattern(orgnr).search(html) or (contact and orgnr_pattern(orgnr).search(contact["text"])))
+    legal_name = (rec or {}).get("navn") or ""
+    ld0 = home.get("ld") or (contact or {}).get("ld") or {}
+    title0 = re.search(r"<title[^>]*>(.*?)</title>", html, re.I | re.S)
+    identity = " ".join(x for x in ((_clean(title0.group(1)) if title0 else ""), _meta(html, "og:site_name") or "",
+                                    ld0.get("name") or "") if x)
+    verdict, own_how, own_detail = web.ownership(texts, orgnr, legal_name, registered_url=None if discovered else site,
+                                                 final_url=r.final_url, identity_text=identity, rec=rec,
+                                                 ld=ld0.get("_raw") if isinstance(ld0.get("_raw"), dict) else None,
+                                                 discovered=discovered)
+    own = verdict == "own"
+    mentions = orgnr in web.org_numbers_on(texts) or bool(orgnr_pattern(orgnr).search(texts))
     addr_hit = web.address_match(texts, rec)
-    named = web.name_on_page(texts, (rec or {}).get("navn"))
+    name_pat = web.full_name_pattern(legal_name)
+    named = bool(name_pat and name_pat.search(texts))
     if discovered:
-        how = "by checking the domain matching the registered name" if probe else "by web search"
+        how = origin or ("by checking the domain matching the registered name" if probe else "by web search")
         form = ((rec or {}).get("organisasjonsform") or {}).get("kode")
-        if mentions:
-            m, conf = f"Website found ({how}); its pages show organisation number {orgnr}", "high"
+        if own and own_how in ("orgnr", "contact"):
+            m, conf = f"Website found ({how}); {own_detail} ({orgnr})", "high" if own_how == "orgnr" else "medium"
         elif named and addr_hit and form != "ENK":
-            m, conf = f"Website found ({how}); its pages show the registered name and registered address ({addr_hit})", "medium"
+            m, conf = (f"Website found ({how}); its pages show the full registered name '{legal_name}' and the "
+                       f"registered address ({addr_hit})"), "medium"
         else:
             if rejections is not None:
                 rejections.append({"source": "website_discovery", "candidate": r.final_url,
-                                   "reason": "page does not show the organisation number or the registered name + address"})
+                                   "reason": ("not proven to be this company's site: " + own_detail
+                                              + ("" if not named else "; the full name is shown but not the registered address"))})
             return SourceStatus.make(src, r.final_url, "not_found", 200, "candidate rejected: could not prove ownership")
+        own = True
     else:
-        conf = "high" if mentions else "medium"
-        m = ("Website registered for this organisation number in Enhetsregisteret"
-             + ("; the page itself shows the organisation number" if mentions else ""))
-    add = lambda f, l, v, cat="web", ev=None: fs.add(f, l, v, src, r.final_url, evidence_url=ev or r.final_url,
-                                                     category=cat, confidence=conf, match=m)
+        conf = "high" if own_how == "orgnr" else "medium"
+        m = "Website registered for this organisation number in Enhetsregisteret" + (f"; {own_detail}" if own else "")
+        how = None
+    add = lambda f, l, v, cat="web", ev=None, key=None: fs.add(f, l, v, src, r.final_url, evidence_url=ev or r.final_url,
+                                                               category=cat, confidence=conf, match=m, key=key)
+    # page whose content proves the org number / address (home page or contact page)
+    orgnr_url = r.final_url if orgnr_pattern(orgnr).search(html) else (contact_url if contact and mentions else None)
+    addr_url = r.final_url if web.address_match(home["text"], rec) else (contact_url if contact else None)
+    name_url = r.final_url if (name_pat and name_pat.search(home["text"] + html)) else (contact_url if contact else None)
+    name_key = "text:" + name_pat.pattern if name_pat else None
     if discovered:
-        add("website_discovered", "Website (found and verified)", r.final_url, "contact")
+        if own_how == "orgnr":
+            add("website_discovered", "Website (found and verified)", r.final_url, "contact", ev=orgnr_url, key=f"orgnr:{orgnr}")
+        else:
+            add("website_discovered", "Website (found and verified)", r.final_url, "contact", ev=addr_url)
     title = re.search(r"<title[^>]*>(.*?)</title>", html, re.I | re.S)
     add("website_final_url", "Website (resolved URL)", r.final_url)
     add("website_title", "Website title", (_clean(title.group(1)) if title else None)
         or _meta(html, "og:title") or _meta(html, "twitter:title"))
+    add("website_shows_orgnr", "Organisation number found on the pages checked (home and contact page)", mentions,
+        ev=orgnr_url if mentions else None, key=f"orgnr:{orgnr}" if mentions else None)
+    if not own:
+        label = "shared or parent-group site" if verdict == "shared" else "ownership not proven"
+        fs.add("website_ownership", "Website ownership check",
+               f"{label}: {own_detail}",
+               src, r.final_url, category="web", confidence="high",
+               match="Website registered for this organisation number in Enhetsregisteret",
+               note="Social accounts, news, contact details and job posts from this site are not attributed to the company")
+        st = SourceStatus.make(src, r.final_url, "ok", 200, f"{label}: only the address and title are published")
+        st["feed_url"] = None
+        return st
+    own_key, own_ev = (f"orgnr:{orgnr}", orgnr_url) if own_how == "orgnr" else (name_key, name_url)
+    if own_how == "contact":
+        cp = web.contact_proof(texts, rec, r.final_url)
+        if cp:
+            own_key = "text:" + cp[1]
+            own_ev = r.final_url if re.search(cp[1], home["text"] + " " + html) else (contact_url if contact else None)
+    add("website_ownership", "Website ownership check", "the company's own site: " + own_detail, ev=own_ev, key=own_key)
     add("website_description", "Website description", _meta(html, "description") or _meta(html, "og:description"))
     add("website_site_name", "Website brand name", _meta(html, "og:site_name"))
-    add("website_shows_orgnr", "Website shows the organisation number", mentions)
-    add("website_about", "About the company (from its website)", home.get("about") or (contact or {}).get("about"), "activity")
+    core = [t for t in norm_name(legal_name).split() if len(t) >= 4]
+    about = next((t for t in (home.get("paragraphs") or []) + ((contact or {}).get("paragraphs") or [])
+                  if (name_pat and name_pat.search(t)) or (core and re.search(r"(?i)(?<!\w)" + re.escape(core[0]) + r"(?!\w)", t))), None)
+    add("website_about", "Text about the company (from its website, mentions its name)", about, "activity")
     socials = {}
     for page_html in (html, ):
         for mm in SOCIAL.finditer(page_html):
@@ -668,7 +963,10 @@ def website_facts(http, fs, orgnr, site, rec=None, discovered=False, rejections=
         if mm:
             socials.setdefault(mm.group(1).split(".")[0].lower().replace("twitter", "x"), mm.group(0).rstrip("/."))
     add("social_profiles", "Social media profiles (linked from website)", socials or None, "contact")
-    emails = web.rank_emails(list(dict.fromkeys(([ld["email"].lower()] if ld.get("email") else [])
+    ld_email = (ld.get("email") or "").lower()
+    if ld_email and web.registrable(ld_email.split("@")[-1]) != web.registrable(web.host(r.final_url)):
+        ld_email = ""
+    emails = web.rank_emails(list(dict.fromkeys(([ld_email] if ld_email else [])
                                                  + (contact or {}).get("emails", []) + home.get("emails", []))))[:3]
     phones = list(dict.fromkeys((contact or {}).get("phones", []) + home.get("phones", [])
                                 + ([p for p in [web.norm_phone(ld["telephone"])] if p] if ld.get("telephone") else [])))[:3]
@@ -676,12 +974,14 @@ def website_facts(http, fs, orgnr, site, rec=None, discovered=False, rejections=
     add("website_emails", "Email addresses (published on website)", emails or None, "contact", ev)
     add("website_phones", "Phone numbers (published on website)", phones or None, "contact", ev)
     add("website_contact_page", "Contact page", contact_url if contact else None, "contact")
-    add("website_address", "Address shown on website", ld.get("address") or addr_hit, "location")
-    add("website_logo", "Logo (from website)", ld.get("logo") or _meta(html, "og:image"), "identity")
+    add("website_address", "Address shown on website", ld.get("address") or addr_hit, "location",
+        ev=None if ld.get("address") else addr_url)
+    add("website_logo", "Logo (from the site's structured data)", ld.get("logo"), "identity")
     if ld.get("founding_date"):
         add("website_founding_date", "Founding date stated on website", ld["founding_date"][:10], "identity")
     st = SourceStatus.make(src, r.final_url, "ok", 200)
     st["feed_url"] = find_feed(html, r.final_url)
+    st["ownership"] = m
     return st
 
 

@@ -17,7 +17,7 @@ USER_AGENT = "NorwayCompanyAgent/1.1 (open-data company research; contact: {})".
     os.environ.get("NCA_CONTACT", "see project repository"))
 # Minimum seconds between requests to the same host (keeps us inside fair-use limits).
 HOST_PACE = {"www.wikidata.org": 1.0, "query.wikidata.org": 2.0, "api.gleif.org": 0.25,
-             "www.bing.com": 0.6, "w2.brreg.no": 0.2, "api.gdeltproject.org": 5.5}
+             "www.bing.com": 0.6, "w2.brreg.no": 0.5, "ws.geonorge.no": 0.1, "api.gdeltproject.org": 5.5}
 
 
 class BudgetExceeded(Exception):
@@ -66,6 +66,8 @@ class Http:
         self.log = []
         self._next_slot = {}
         self.reserve = 0          # requests kept back for companies still waiting in the batch
+        self.seen = {}            # url -> last response, used to hash and quote evidence
+        self._local = threading.local()
 
     def _pace(self, url):
         host = urllib.parse.urlsplit(url).hostname or ""
@@ -78,6 +80,41 @@ class Http:
             self._next_slot[host] = slot + gap
         if slot > now:
             time.sleep(slot - now)
+
+    def begin_company(self):
+        """Start tracking the responses fetched for one company (per thread). `got` holds this company's own
+        references, so freeing shared bodies in another thread can never remove evidence this company needs."""
+        self._local.urls = set()
+        self._local.got = {}
+
+    def company_lookup(self, url):
+        got = getattr(self._local, "got", None)
+        if got and url in got:
+            return got[url]
+        return self.seen.get(url)
+
+    def end_company(self):
+        """Free the response bodies of the company just finished (keeps memory flat in big batches)."""
+        urls = getattr(self._local, "urls", None) or set()
+        self._local.urls = None
+        self._local.got = None
+        if getattr(self, "keep_bodies", False):
+            return
+        with self.lock:
+            for u in urls:
+                self.seen.pop(u, None)
+            for k in [k for k in list(self.cache) if k[0] in urls]:
+                self.cache.pop(k, None)
+
+    def forget(self, url):
+        """Drop a cached response so the next get() fetches the URL again."""
+        with self.lock:
+            for k in [k for k in self.cache if k[0] == url]:
+                self.cache.pop(k, None)
+            self.seen.pop(url, None)
+        got = getattr(self._local, "got", None)
+        if got:
+            got.pop(url, None)
 
     def remaining(self):
         return self.max_requests - self.used
@@ -96,8 +133,17 @@ class Http:
 
     def get(self, url, accept="application/json", max_bytes=4_000_000, retries=2, timeout=None):
         key = (url, accept)
-        if key in self.cache:
-            return self.cache[key]
+        with self.lock:
+            res = self.cache.get(key)
+        if res is not None:
+            with self.lock:
+                self.seen.setdefault(url, res)
+            got = getattr(self._local, "got", None)
+            if got is not None:
+                got[url] = res
+                if getattr(res, "final_url", None):
+                    got.setdefault(res.final_url, res)
+            return res
         attempt = 0
         while True:
             self._take()
@@ -128,5 +174,19 @@ class Http:
                     wait = (3.0 if res.status == 429 else 0.8) * (2 ** attempt) + random.random()
                 time.sleep(wait)
                 continue
-            self.cache[key] = res
+            with self.lock:
+                self.cache[key] = res
+            res.truncated = len(res.body or b"") >= max_bytes
+            mine = getattr(self._local, "urls", None)
+            if mine is not None:
+                mine.update({url, res.final_url})
+            got = getattr(self._local, "got", None)
+            if got is not None:
+                got[url] = res
+                if res.final_url:
+                    got.setdefault(res.final_url, res)
+            with self.lock:
+                self.seen[url] = res
+                if res.final_url and res.final_url != url:
+                    self.seen.setdefault(res.final_url, res)
             return res

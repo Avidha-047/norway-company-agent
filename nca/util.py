@@ -99,3 +99,17 @@ def fmt_address(addr):
     if addr.get("land") and addr.get("landkode") not in (None, "NO"):
         parts.append(addr["land"])
     return ", ".join(parts) or None
+
+
+def fmt_exact(amount, currency="NOK"):
+    """Exact amount as filed, e.g. 'NOK 376 040 030' (no rounding). With no currency: '376 040 030 (currency not stated)'."""
+    if not is_number(amount):
+        return str(amount)
+    if not currency:
+        return fmt_exact(amount, "§").replace("§ ", "") + " (currency not stated)"
+    sign = "-" if amount < 0 else ""
+    a = abs(amount)
+    if isinstance(a, float) and not a.is_integer():
+        whole, frac = repr(a).split(".") if "e" not in repr(a) else (f"{a:.6f}".split("."))
+        return f"{currency} {sign}{int(whole):,}".replace(",", " ") + "." + frac
+    return f"{currency} {sign}{int(a):,}".replace(",", " ")

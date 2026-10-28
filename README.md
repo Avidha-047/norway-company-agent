@@ -21,6 +21,10 @@ No installs, no API keys, no paid services: Python 3.9+ standard library only. *
 | Build 1,000 random profiles | `python agent.py --sample 1000 --seed 2026 --out profiles` |
 | Refresh / update existing profiles | run the same `--out` command again |
 | Live health check of all sources | `python agent.py --check` |
+| Self-audit on 50 random real companies | `python agent.py --audit-sample 50` |
+| Re-check only stored profiles whose lookup failed or whose register source was down (keeps all others) | `python agent.py --retry-incomplete --out profiles --compact` |
+| Audit saved profiles | `python agent.py --audit profiles` |
+| Write a few files under 18 MB instead of one per company | add `--compact` |
 | Show how a website is found for one company | `python agent.py --debug-search 975820440` |
 | Compare companies side by side | `python agent.py 923609016 984851006 --compare` (also: tick "compare" in `report.html`) |
 | Offline tests | `python -m unittest discover -s tests -v` |
@@ -35,7 +39,7 @@ Org numbers may be written `923609016`, `923 609 016` or `NO 923 609 016 MVA`.
 | `profiles.jsonl` | All profiles, one per line |
 | `index.csv` | One row per company: name, status, form, municipality, industry, employees, revenue, net income, CEO, website, LEI, summary |
 | `run_report.json` | Companies, statuses, facts per company, dated news items, outbound requests used, runtime, cost |
-| `report.html` | **Open in any browser:** searchable list of all companies with summary, key points, risk signals, dated news and every fact with its source link |
+| `report.html` | **Open in any browser, laptop or phone:** find a company (name, org number, municipality, industry; `report.html#923609016` deep-links), compare companies (tick *Compare* on two or more), and tap **Where this came from** on any fact or news item to see the source, retrieval time, content hash and exact quote |
 
 ### A fact looks like this
 
@@ -77,6 +81,8 @@ Each profile also has:
 | Brønnøysund **roles** (NLOD 2.0) | CEO, chair, board, deputies, auditor, accountant, owners/partners, with last-changed date | 1 |
 | Brønnøysund **sub-units** (NLOD 2.0) | Number of establishments and the first 15 with municipality and staff | 1 |
 | Brønnøysund **Regnskapsregisteret** (NLOD 2.0) | Latest filed accounts: revenue, costs, EBIT, pre-tax profit, net income, assets, equity, liabilities – company and group level | 1 (skipped for forms with no filing duty) |
+| **Kartverket address register** via Geonorge (CC BY 4.0) | The registered street address confirmed in Norway's official address register, its map position (ETRS89 latitude/longitude) and a map link. Published only on one exact street + number + postcode match; c/o and PO-box lines are never looked up | 1 |
+| **Frivillighetsregisteret** (NLOD 2.0) | For units registered there: registration date, activity categories, grassroots-share participation (only fields present in a record carrying this exact org number) | 1 |
 | **GLEIF** (CC0) | LEI, LEI status/renewal, direct & ultimate parent | 1–3 |
 | **Wikidata** (CC0) | Wikidata ID, description, inception, ISIN, stock exchange & ticker, parent organisation, logo, Wikipedia links | 1 |
 | Company's **own website** (registered in Brreg) | Title, description, brand name, "about" text, emails, phone numbers, address, logo, social profiles, schema.org data, contact page | 1–3 |
@@ -93,6 +99,65 @@ Bing RSS is **off by default** because Bing's RSS terms restrict reuse of its re
 - **Press articles** are kept only if the title or snippet contains the **exact registered name including its legal suffix** (e.g. "Maleran AS"; such names are unique in Foretaksregisteret), or the name plus an independent corroborator from the registry (municipality, CEO/chair surname, website domain, ticker), or the organisation number. Everything else is rejected and counted. Items without a full publication date are never published.
 
 Typical cost: **about 10–13 outbound requests per company** → roughly 1,000–1,300 for the daily 100 companies (limit 2,000; hard cap 1,900).
+
+## Evidence receipts (every fact)
+
+Every fact and every news item carries a `reference`:
+
+```json
+"reference": {
+  "url": "https://data.brreg.no/enhetsregisteret/api/enheter/923609016",
+  "retrieved_at": "2026-10-23T11:50:16Z",
+  "content_sha256": "c7bd44b46c336b1d6208601cd35df036f6e8eef9a7200f5ff07136a10e07dd6f",
+  "content_bytes": 2817,
+  "quote": "\"antallAnsatte\": 21000",
+  "quote_status": "exact"
+}
+```
+
+- `content_sha256` is the SHA-256 hash of the exact bytes retrieved, so anyone can verify the content later.
+- `quote` is a **verbatim substring** of that content which supports the fact (tested: every quote is checked to be present in the retrieved content).
+- `quote_status` is `exact`, or `derived` for facts computed from the quoted text (e.g. the English NACE section looked up from the quoted industry code), with `basis` explaining the step.
+
+## Self-audit (built in)
+
+Before a profile is published, every fact is re-checked against its receipt: the content hash must match the
+retrieved bytes, the quote must be verbatim in that content, and the published value must appear in the quote
+(numbers digit-for-digit, true/false flags as the quoted literal). Anything that fails is **withheld** – listed
+under `verification.withheld` with the reason – instead of being published. Each profile is then checked for
+consistency (`verification.self_audit`): every figure in the summary and conclusion must equal a published
+amount, news items need full publication dates and receipts, translations must be exact, shared/group
+websites must not contribute company facts, and wording must not imply a filing is the most recent one unless it is.
+
+## Website ownership
+
+A website is treated as the company's own only if its pages show **this organisation number** (and no other
+company's number, unless this one stands next to the company's full name) or the **full registered name with its
+legal suffix** ("Telenor Norge AS" – "Telenor Group" is not enough). For the registered site only, the registered
+phone number, or the registered e-mail when it is on the site's own domain, also counts. A group footer listing other
+companies' numbers makes it a **shared or parent-group site**; a registered address that redirects to another domain
+without showing this number makes it **ownership not proven**. In both cases its social accounts, news, contact
+details and job posts are **not** attributed to the company. Sites not registered in
+Enhetsregisteret (name-matching domains, or a site listed on Wikidata) are used only if they show this
+organisation number, or the full registered name **and** the registered address. Contact details are published only
+for mailboxes on the site's own domain and never from web-agency credits ("Laget av …").
+
+## News rules
+
+- Official announcements keep the **original Norwegian title**; an English `title_en` is added only for exact, known announcement categories (literal translation), never guessed.
+- Website news must be a **real, dated post** on the company's own site: Atom `updated` dates are not used as publish dates; menu labels, product, category, contact and job pages are rejected; feeds where every item has the same date are rejected.
+- Stock-quote pages are not news. Press search (Bing RSS / GDELT) is off by default (`--bing` to enable): Bing's RSS terms restrict reuse and GDELT dates are index dates, not publication dates.
+
+## Status wording
+
+"Active" is used only when Enhetsregisteret explicitly states the bankruptcy, liquidation and compulsory-dissolution
+flags as false. Sub-units are described as establishments whose status is held on their main unit. Gaps are worded by
+what actually happened to each source (checked and empty, could not be reached, not queried), so a failed or skipped
+lookup is never reported as "does not exist".
+
+## Conclusion (synthesis)
+
+Each profile has `conclusion` with a `verdict` (e.g. *No registry risk flags*, *Needs attention*, *Incomplete*) and short claims; every claim lists the facts that support it (`supported_by`), and figures are exact as filed.
 
 ## How wrong-company errors are prevented
 

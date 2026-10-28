@@ -43,7 +43,7 @@ SOURCES = {
         "authority": "press",
     },
     "website_discovery": {
-        "name": "Company website found by web search and verified (org number, or registered name + address on the page)",
+        "name": "Company website not registered in Enhetsregisteret (name-matching domain or Wikidata), used only after its pages proved ownership (this org number, or full registered name + registered address)",
         "licence": "public web page; only titles, descriptions, contact details and links extracted",
         "authority": "self-published",
     },
@@ -51,6 +51,16 @@ SOURCES = {
         "name": "Press coverage found via the GDELT news index (accepted only with an exact company-name match)",
         "licence": "public news metadata; titles, dates and links only",
         "authority": "press",
+    },
+    "kartverket_adresser": {
+        "name": "Norwegian Mapping Authority (Kartverket) – official address register (Matrikkelen), via the Geonorge address API",
+        "licence": "CC BY 4.0 (Kartverket)",
+        "authority": "official",
+    },
+    "brreg_frivillighetsregisteret": {
+        "name": "Brønnøysund Register Centre – Register of Non-Profit Organisations (Frivillighetsregisteret)",
+        "licence": "NLOD 2.0",
+        "authority": "official",
     },
     "company_website": {
         "name": "Company's own website (as registered in Enhetsregisteret)",
@@ -67,7 +77,7 @@ class FactSet:
         self.items = []
 
     def add(self, field, label, value, source, source_url, *, evidence_url=None, as_of=None,
-            category="identity", confidence="high", match=None, note=None):
+            category="identity", confidence="high", match=None, note=None, key=None):
         if value is None or value == "" or value == [] or value == {}:
             return
         self.items.append({
@@ -84,6 +94,7 @@ class FactSet:
             "confidence": confidence,
             "match": match,
             **({"note": note} if note else {}),
+            **({"_key": key} if key else {}),
         })
 
     def get(self, field):

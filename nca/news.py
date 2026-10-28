@@ -14,6 +14,7 @@ import datetime
 import email.utils
 import html as htmllib
 import re
+import time
 import urllib.parse
 import xml.etree.ElementTree as ET
 
@@ -63,25 +64,53 @@ def _date_from_any(s):
     return None
 
 
-ANNOUNCEMENT_EN = [
-    (r"konkurs", "Bankruptcy"), (r"tvangsoppl|tvangsavvikl", "Compulsory dissolution"),
-    (r"oppl.sning|avvikling", "Dissolution / liquidation"), (r"fusjon", "Merger"), (r"fisjon", "Demerger"),
-    (r"nyregistrering|stiftelse", "New registration"), (r"sletting|slettet", "Deregistration"),
-    (r"daglig leder", "CEO change"), (r"styre", "Board change"), (r"revisor", "Auditor change"),
-    (r"regnskapsf.rer", "Accountant change"), (r"kapital", "Share capital change"), (r"navn", "Name change"),
-    (r"forretningsadresse|adresse", "Address change"), (r"vedtekt", "Articles of association change"),
-    (r"form.l", "Purpose change"), (r"signatur", "Signature authority change"), (r"prokura", "Procuration change"),
-    (r".rsregnskap", "Annual accounts approved"), (r"omdanning|organisasjonsform", "Change of legal form"),
-    (r"kreditorvarsel", "Notice to creditors"), (r"eierskifte|innehaver", "Change of owner"),
-]
+# Literal English for the official announcement categories used by Brønnøysundregistrene.
+# Only an exact (case-insensitive) title match is translated; anything else is left untranslated,
+# and the original Norwegian title is always kept in `title`.
+ANNOUNCEMENT_EN = {
+    "styre": "Board", "daglig leder": "General manager (CEO)", "daglig leder/forretningsfører": "General manager / business manager",
+    "kapital": "Capital", "forretningsadresse": "Business address", "postadresse": "Postal address", "navn": "Name",
+    "navneendring": "Change of name", "revisor": "Auditor", "regnskapsfører": "Accountant", "vedtekter": "Articles of association",
+    "formål": "Purpose", "signatur": "Signature", "prokura": "Procuration", "kontaktperson": "Contact person",
+    "nyregistrering": "New registration", "sletting": "Deletion", "slettet": "Deleted", "konkurs": "Bankruptcy",
+    "konkursåpning": "Bankruptcy proceedings opened", "fusjon": "Merger", "fisjon": "Demerger", "oppløsning": "Dissolution",
+    "avvikling": "Winding up", "tvangsoppløsning": "Compulsory dissolution", "kreditorvarsel": "Notice to creditors",
+    "innehaver": "Owner", "eierskifte": "Change of owner", "organisasjonsform": "Legal form", "omdanning": "Conversion",
+    "godkjent årsregnskap": "Approved annual accounts",
+    "godkjent årsregnskap med bærekraftsrapportering": "Approved annual accounts with sustainability reporting",
+    "årsregnskap": "Annual accounts", "stiftelse": "Incorporation", "registrering": "Registration",
+    "endring": "Change", "endringer": "Changes", "varamedlem": "Deputy board member", "styreleder": "Chair of the board",
+    "nestleder": "Deputy chair", "deltakere": "Partners", "forretningsfører": "Business manager",
+    "norsk representant": "Norwegian representative", "utenlandsk foretak": "Foreign enterprise",
+    "godkjente årsregnskap": "Approved annual accounts",
+    "godkjente årsregnskap med bærekraftsrapportering": "Approved annual accounts with sustainability reporting",
+    "erverv av egne aksjer-fullmakt": "Authorisation to acquire own shares",
+    "erverv av egne aksjer - fullmakt": "Authorisation to acquire own shares",
+    "avtalepant i egne aksjer-fullmakt": "Authorisation to take a contractual pledge over own shares",
+    "avtalepant i egne aksjer - fullmakt": "Authorisation to take a contractual pledge over own shares",
+    "kapitalforhøyelse": "Capital increase", "kapitalnedsettelse": "Capital reduction", "aksjekapital": "Share capital",
+    "forhøyelse av aksjekapital": "Increase of share capital", "nedsettelse av aksjekapital": "Reduction of share capital",
+    "nyregistrering i foretaksregisteret": "New registration in the Register of Business Enterprises",
+    "nyregistrering i enhetsregisteret": "New registration in the Central Coordinating Register for Legal Entities",
+    "registrering i foretaksregisteret": "Registration in the Register of Business Enterprises",
+    "sletting av foretak": "Deletion of the enterprise", "varsel om sletting": "Notice of deletion",
+    "varsel om tvangsoppløsning": "Notice of compulsory dissolution", "tvangsavvikling": "Compulsory winding up",
+    "konkursbo": "Bankruptcy estate", "avsluttet konkurs": "Bankruptcy proceedings concluded",
+    "opphevet konkurs": "Bankruptcy proceedings lifted", "bobestyrer": "Estate administrator",
+    "melding om fusjon": "Notice of merger", "melding om fisjon": "Notice of demerger",
+    "grenseoverskridende fusjon": "Cross-border merger", "gjennomføring av fusjon": "Completion of merger",
+    "gjennomføring av fisjon": "Completion of demerger", "endring av vedtekter": "Amendment of the articles of association",
+    "vedtektsendring": "Amendment of the articles of association", "vedtektsfestet formål": "Purpose stated in the articles",
+    "styremedlemmer": "Board members", "varamedlemmer": "Deputy board members", "næringskode": "Industry code",
+    "opplysninger om stiftelse": "Information on incorporation", "omdanning til allmennaksjeselskap": "Conversion to a public limited company",
+    "omdanning til aksjeselskap": "Conversion to a private limited company", "avvikling av selskap": "Winding up of the company",
+    "oppløsning av selskap": "Dissolution of the company", "konvertering av lån": "Conversion of a loan",
+}
 
 
 def translate_announcement(title):
-    t = (title or "").lower()
-    for pat, en in ANNOUNCEMENT_EN:
-        if re.search(pat, t):
-            return en
-    return None
+    """Literal translation of an exact, known announcement category; None when not known exactly."""
+    return ANNOUNCEMENT_EN.get(re.sub(r"\s+", " ", (title or "")).strip().lower())
 
 
 def _item(title, url, published, source, kind, match, **extra):
@@ -95,12 +124,12 @@ def _item(title, url, published, source, kind, match, **extra):
 
 def official_announcements(http, orgnr, limit=15):
     url = KUNNGJ_LIST.format(orgnr=orgnr)
-    r = http.get(url, accept="text/html", retries=1, timeout=15)
+    r = http.get(url, accept="text/html", retries=2, timeout=20)
     if r.status != 200:
         return [], {"source": "brreg_kunngjoringer", "url": url, "status": "error", "http_status": r.status}
     page = r.text()
     if not orgnr_pattern(orgnr).search(page):
-        # the page must be about this number; otherwise publish nothing
+        # the page must be about this number; otherwise publish nothing (earlier announcements are kept, see diff)
         return [], {"source": "brreg_kunngjoringer", "url": url, "status": "not_found", "http_status": 200,
                     "note": "page did not show the organisation number"}
     items, seen = [], set()
@@ -117,8 +146,9 @@ def official_announcements(http, orgnr, limit=15):
         seen.add(link)
         en = translate_announcement(title)
         items.append(_item(title, link, pub, "Brønnøysundregistrene – kunngjøringer", "official_announcement",
-                           f"Official announcement listed under organisation number {orgnr}",
-                           **({"title_en": en} if en else {})))
+                           f"Official announcement listed under organisation number {orgnr}", found_on=url,
+                           **({"title_en": en, "translation": "literal translation of the official Norwegian "
+                               "announcement category; the original is in 'title'"} if en else {})))
     items.sort(key=lambda x: x["published"], reverse=True)
     return items[:limit], {"source": "brreg_kunngjoringer", "url": url, "status": "ok" if items else "not_found",
                            "http_status": 200}
@@ -128,13 +158,30 @@ def official_announcements(http, orgnr, limit=15):
 # 2. Company website feed
 # --------------------------------------------------------------------------- #
 
+NON_NEWS_PATH = re.compile(
+    r"(?i)/(produkt|produkter|product|products|shop|butikk|nettbutikk|store|kategori|category|categories|tag|tags|"
+    r"kontakt|contact|om-oss|about|ansatte|team|jobb|jobber|jobs|job|karriere|career|careers|ledige-stillinger|stilling|"
+    r"tjenester|services|service|meny|menu|priser|prices|cart|handlekurv|kasse|checkout|faq|personvern|privacy|cookies)(/|$)")
+
+
+def is_real_post(title, url, site_url):
+    """A dated post on the company's own site: a real headline, not a menu label or a product/category page."""
+    if _host(url) != _host(site_url):
+        return False
+    path = urllib.parse.urlsplit(url).path.strip("/")
+    if not path or NON_NEWS_PATH.search("/" + path + "/"):
+        return False
+    words = re.findall(r"\w+", title)
+    return len(words) >= 3 and len(title) >= 15
+
+
 def find_feed(html, base_url):
     for m in re.finditer(r"(?is)<link\b[^>]*>", html or ""):
         tag = m.group(0)
         if not re.search(r'type=["\']application/(rss|atom)\+xml', tag, re.I):
             continue
         href = re.search(r'href=["\']([^"\']+)["\']', tag, re.I)
-        if href and "comment" not in href.group(1).lower():
+        if href and not re.search(r"(?i)comment|product|produkt|/shop|kategori|category", href.group(1)):
             return urllib.parse.urljoin(base_url, htmllib.unescape(href.group(1)))
     return None
 
@@ -156,32 +203,50 @@ def _parse_feed(xml_text):
             continue
         get = lambda name: next((c for c in el if c.tag.split("}")[-1] == name), None)
         t = get("title")
-        link_el = get("link")
+        links = [c for c in el if c.tag.split("}")[-1] == "link"]
+        alt = next((c for c in links if c.attrib.get("rel") in (None, "alternate")), links[0] if links else None)
         link = None
-        if link_el is not None:
-            link = (link_el.text or "").strip() or link_el.attrib.get("href")
-        date_el = next((e for e in (get("pubDate"), get("published"), get("updated"), get("date")) if e is not None), None)
+        if alt is not None:
+            link = (alt.text or "").strip() or alt.attrib.get("href")
+        # a publication date only: RSS pubDate, Atom published, RSS 1.0 dc:date. Atom 'updated' is NOT a publish date.
+        date_el = next((e for e in (get("pubDate"), get("published")) if e is not None), None)
+        if date_el is None:
+            dc = next((c for c in el if c.tag.endswith("}date") and "purl.org/dc" in c.tag), None)
+            date_el = dc
         out.append({"title": _clean(t.text if t is not None else ""), "url": link,
                     "published": _date_from_any(date_el.text if date_el is not None else "")})
     return out
 
 
-def company_feed(http, site_url, feed_url, orgnr, limit=10):
+def company_feed(http, site_url, feed_url, orgnr, limit=10, ownership=None):
     if not feed_url or _host(feed_url) != _host(site_url):
         return [], None
     r = http.get(feed_url, accept="application/rss+xml,application/atom+xml,application/xml,text/xml",
                  retries=0, timeout=12, max_bytes=1_500_000)
     if r.status != 200:
         return [], {"source": "company_website_feed", "url": feed_url, "status": "error", "http_status": r.status}
-    items = []
-    for it in _parse_feed(r.text()):
-        if it["title"] and it["url"] and it["published"]:
-            items.append(_item(it["title"], it["url"], it["published"], f"Company website ({_host(site_url)})",
-                               "company_news", "Published in the news feed of the website registered for this "
-                               f"organisation number ({orgnr}) in Enhetsregisteret"))
+    if NON_NEWS_PATH.search(urllib.parse.urlsplit(feed_url).path):
+        return [], {"source": "company_website_feed", "url": feed_url, "status": "not_found", "http_status": 200,
+                    "note": "feed is a product/category/jobs feed, not news"}
+    parsed = _parse_feed(r.text())
+    dated = [it for it in parsed if it["published"]]
+    if len(dated) >= 4 and len({it["published"] for it in dated}) == 1:
+        return [], {"source": "company_website_feed", "url": feed_url, "status": "not_found", "http_status": 200,
+                    "note": "every item carries the same date (a build/export date, not publication dates)"}
+    items, rejected = [], 0
+    for it in parsed:
+        if not (it["title"] and it["url"] and it["published"]) or not is_real_post(it["title"], it["url"], site_url) \
+                or it["published"] > datetime.date.today().isoformat():
+            rejected += 1
+            continue
+        items.append(_item(it["title"], it["url"], it["published"], f"Company website ({_host(site_url)})",
+                           "company_news", "Post with its own publication date in the news feed of this company's "
+                           f"website ({ownership or 'website registered for ' + orgnr + ' in Enhetsregisteret'})",
+                           found_on=feed_url))
     items.sort(key=lambda x: x["published"], reverse=True)
     return items[:limit], {"source": "company_website_feed", "url": feed_url,
-                           "status": "ok" if items else "not_found", "http_status": 200}
+                           "status": "ok" if items else "not_found", "http_status": 200,
+                           "note": f"{rejected} feed entries rejected (no publish date, or not a dated news post)" if rejected else None}
 
 
 # --------------------------------------------------------------------------- #
@@ -189,12 +254,9 @@ def company_feed(http, site_url, feed_url, orgnr, limit=10):
 # --------------------------------------------------------------------------- #
 
 def _suffix_pattern(legal_name):
-    """Regex for the exact registered name incl. legal suffix, tolerant of case and spacing."""
-    toks = re.findall(r"\w+", legal_name or "")
-    if not toks:
-        return None
-    body = r"[\s\-.,&]*".join(re.escape(t) for t in toks)
-    return re.compile(rf"(?<!\w){body}(?!\w)", re.I)
+    """The FULL registered name with its legal suffix in capitals (e.g. 'Hansen AS', not 'Hansen as he...')."""
+    from .web import full_name_pattern
+    return full_name_pattern(legal_name)
 
 
 def press_eligible(legal_name, form):
@@ -210,6 +272,10 @@ def _real_url(bing_link):
     return (q.get("url") or [bing_link])[0]
 
 
+QUOTE_PAGE = re.compile(r"(?i)\([A-Z0-9]{1,6}[.:][A-Z]{1,4}\)\s*[-–]|/quote/|/quotes/|stock price|aksjekurs|kursutvikling|"
+                        r"finance\.yahoo|marketscreener\.com/quote")
+
+
 def match_reason(text, legal_name, corroborators, orgnr):
     """Why an article is about this exact company, or None."""
     if orgnr_pattern(orgnr).search(text):
@@ -221,8 +287,9 @@ def match_reason(text, legal_name, corroborators, orgnr):
     core_pat = _suffix_pattern(core) if len(core) >= 6 else None
     if core_pat and core_pat.search(text):
         for c in corroborators:
-            if c and len(c) >= 4 and re.search(rf"(?<!\w){re.escape(c)}(?!\w)", text, re.I):
-                return f"Article names '{core}' and also mentions '{c}', which matches this company's registry record"
+            # only strong corroborators: the company's own web domain or its stock ticker
+            if c and len(c) >= 4 and "." in c and re.search(rf"(?<!\w){re.escape(c)}(?!\w)", text, re.I):
+                return f"Article names '{core}' and also mentions '{c}', the company's own web domain"
     return None
 
 
@@ -249,10 +316,12 @@ def press_coverage(http, legal_name, form, corroborators, orgnr, limit=10):
             if c.tag.split("}")[-1] in ("Source", "source") and (c.text or "").strip():
                 src = c.text.strip()
         reason = match_reason(f"{title} {desc}", legal_name, corroborators, orgnr)
+        if QUOTE_PAGE.search(title) or QUOTE_PAGE.search(link):
+            reason = None
         if not reason or not pub or not link.startswith("http"):
             rejected += 1
             continue
-        items.append(_item(title, link, pub, src or _host(link), "press", reason))
+        items.append(_item(title, link, pub, src or _host(link), "press", reason, found_on=url))
     items.sort(key=lambda x: x["published"], reverse=True)
     return items[:limit], {"source": "press", "url": url, "status": "ok" if items else "not_found", "http_status": 200,
                            "note": f"{rejected} search results rejected as not provably about this company" if rejected else None}
@@ -290,8 +359,8 @@ def gdelt_coverage(http, legal_name, form, corroborators, orgnr, limit=10):
         if not reason or not pub or not link.startswith("http"):
             rejected += 1
             continue
-        items.append(_item(title, link, pub, a.get("domain") or _host(link), "press", reason,
-                           date_note="date the article was first indexed by GDELT"))
+        items.append(_item(title, link, pub, a.get("domain") or _host(link), "press", reason, found_on=url,
+                           date_note="date the article was first indexed by GDELT (not its publication date)"))
     items.sort(key=lambda x: x["published"], reverse=True)
     return items[:limit], {"source": "press_gdelt", "url": url, "status": "ok" if items else "not_found",
                            "http_status": 200,
