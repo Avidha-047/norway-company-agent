@@ -245,7 +245,7 @@ def address_register_facts(http, fs, orgnr, rec):
     a = hits[0]
     m = (f"Exact match of the address registered for {orgnr} in Enhetsregisteret ({street}, {pn}) "
          "in the official address register")
-    key = r'text:"adressetekst"\s*:\s*' + re.escape(json_str(a.get("adressetekst")))
+    key = r'text:"adressetekst"\s*:\s*' + json_text_pattern(a.get("adressetekst"))
     add = lambda f, l, v, k=key: fs.add(f, l, v, "kartverket_adresser", url, evidence_url="https://www.norgeskart.no/",
                                          category="location", match=m, key=k)
     add("address_official", "Address in the official address register (Kartverket)",
@@ -260,6 +260,19 @@ def address_register_facts(http, fs, orgnr, rec):
     if a.get("kommunenavn"):
         add("address_municipality_official", "Municipality of the address (Kartverket)", a["kommunenavn"])
     return SourceStatus.make("kartverket_adresser", url, "ok", 200)
+
+
+def json_text_pattern(v):
+    """Regex for a JSON string value as it may appear in the raw body: letters like ø either literal or \\u-escaped."""
+    out = ['"']
+    for ch in str(v or ""):
+        if ord(ch) < 128:
+            out.append(re.escape(ch))
+        else:
+            hexd = "".join("[%s%s]" % (c.lower(), c.upper()) if c.isalpha() else c for c in "%04x" % ord(ch))
+            out.append("(?:%s|\\\\u%s)" % (re.escape(ch), hexd))
+    out.append('"')
+    return "".join(out)
 
 
 def json_str(v):
