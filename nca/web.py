@@ -208,6 +208,47 @@ def full_name_pattern(legal_name):
     return re.compile(r"(?<![\w])" + r"[\s\-.,&/'’()]+".join(parts) + r"(?![\w])")
 
 
+LOOKALIKE_WORDS = {"holding", "holdings", "invest", "investering", "eiendom", "group", "gruppen", "konsern", "drift",
+                   "management", "forvaltning", "capital", "norge", "norway", "nord", "sor", "øst", "vest"}
+
+
+def similar_company(pages_text, legal_name):
+    """The full name of ANOTHER company on the pages whose name shares this company's distinctive word
+    ('Maleran AS' for MALERAN HOLDING AS, 'Dag Mølle Drift AS' for DAG MØLL): a holding/operating look-alike.
+    Returns that name, or None."""
+    toks = re.findall(r"[^\W_]+", legal_name or "", re.UNICODE)
+    if len(toks) > 1 and toks[-1].upper() in _SUFFIX_TOKENS:
+        toks = toks[:-1]
+    key = [t for t in toks if len(t) >= 4 and t.lower() not in LOOKALIKE_WORDS]
+    if not key:
+        return None
+    own = full_name_pattern(legal_name)
+    sfx = "|".join(sorted(_SUFFIX_TOKENS, key=len, reverse=True))
+    k = key[0]
+    stem = k[:max(4, len(k) - 1)]          # 'Møll' also finds 'Mølle', 'Maleran' finds 'Malerane'
+    word = r"(?i:%s)[^\W\d_]{0,3}" % re.escape(stem)
+    pat = re.compile(r"(?<![\w])%s(?:[\s\-&]+[^\W\d_]{2,}){0,3}[\s\-]+(?:%s)(?![\w])" % (word, sfx))
+    for m in pat.finditer(pages_text or ""):
+        name = m.group(0)
+        starts = [x.start() for x in re.finditer(r"(?<![\w])" + word + r"(?![\w])", name)]
+        name = name[starts[-1]:] if starts else name             # 'Maleran Maleran AS' (title + text) -> 'Maleran AS'
+        # take back the company's own leading words ('Dag' in 'Dag Mølle Drift AS')
+        start = m.start() + (starts[-1] if starts else 0)
+        lead = [t.lower() for t in toks[:toks.index(k)]] if k in toks else []
+        while lead:
+            prev = re.search(r"([^\W\d_]+)[\s\-]+$", pages_text[:start])
+            if not prev or prev.group(1).lower() != lead[-1]:
+                break
+            start, lead = prev.start(1), lead[:-1]
+            name = re.sub(r"\s+", " ", pages_text[start:m.end()])
+        if own and own.fullmatch(name):
+            continue
+        if own and own.search(pages_text[max(0, m.start() - 40):m.end() + 40]) and own.search(name):
+            continue
+        return re.sub(r"\s+", " ", name).strip()
+    return None
+
+
 def _mod11(n):
     w = [3, 2, 7, 6, 5, 4, 3, 2]
     r = sum(int(d) * x for d, x in zip(n[:8], w)) % 11

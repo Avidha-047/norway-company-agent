@@ -185,7 +185,7 @@ def audit_profile(p):
             add("high", "accounts period", f"{f['field']} has no accounting period")
     # group sites
     own = (fields.get("website_ownership") or {}).get("value") or ""
-    if own.startswith(("shared or parent-group", "ownership not proven")):
+    if own.startswith(("shared or parent-group", "ownership not proven", "can't tell")):
         for g in GROUP_ONLY_FIELDS & set(fields):
             add("high", "group website", f"{g} published although the website is a shared/group site")
     # news
@@ -199,7 +199,7 @@ def audit_profile(p):
             add("high", "news item", f"incomplete item: {it.get('title')}")
         if it.get("title_en") and translate_announcement(it.get("title")) != it["title_en"]:
             add("high", "translation", f"'{it.get('title')}' -> '{it['title_en']}' is not the exact category translation")
-        if it.get("kind") == "company_news" and own.startswith(("shared", "ownership not proven")):
+        if it.get("kind") == "company_news" and own.startswith(("shared", "ownership not proven", "can't tell")):
             add("high", "group website", f"company news from a shared/group site: {it.get('title')}")
         if not (it.get("reference") or {}).get("content_sha256") or not (it.get("reference") or {}).get("quote"):
             add("high", "news receipt", f"news item without hash/quote: {it.get('title')}")

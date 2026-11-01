@@ -284,7 +284,7 @@ def write_outputs(out_dir, profiles, compact=False):
         with open(os.path.join(out_dir, name), "w", encoding="utf-8") as fh:
             fh.writelines(part)
     cols = ["organisation_number", "name", "status", "legal_form", "municipality", "industry", "employees",
-            "revenue", "net_income", "currency", "accounts_period", "ceo", "website", "lei", "news_count", "latest_news_date", "latest_news_title", "fact_count", "verdict", "conclusion", "summary"]
+            "revenue", "net_income", "currency", "accounts_period", "ceo", "website", "lei", "news_count", "latest_news_date", "latest_news_title", "fact_count", "verdict", "confidence", "conclusion", "summary"]
     with open(os.path.join(out_dir, "index.csv"), "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
         w.writerow(cols)
@@ -304,6 +304,8 @@ def write_outputs(out_dir, profiles, compact=False):
                 len(p.get("news") or []), (p.get("news") or [{}])[0].get("published"),
                 (p.get("news") or [{}])[0].get("title"),
                 len(p.get("facts", [])), (p.get("conclusion") or {}).get("verdict"),
+                ((p.get("confidence") or {}).get("overall") or "") + ("; can't tell: " + ", ".join(
+                    (p.get("confidence") or {}).get("cant_tell") or []).lower() if (p.get("confidence") or {}).get("cant_tell") else ""),
                 (p.get("conclusion") or {}).get("text"), p.get("summary"),
             ])
 

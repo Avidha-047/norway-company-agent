@@ -1282,3 +1282,220 @@ class ReportSizeTests(unittest.TestCase):
         self.assertEqual(field(p, "address_official")["value"], "Mølledalen 7B, 4035 STAVANGER")
         self.assertIsNotNone(field(p, "address_map"))
         self.assertFalse(p["verification"]["withheld"])
+
+
+class EmailDomainDiscoveryTests(unittest.TestCase):
+    def test_email_domain_rules(self):
+        from nca.sources import email_domain
+        self.assertEqual(email_domain("post@bergenmaling.no"), "bergenmaling.no")
+        self.assertEqual(email_domain("ola@firma.co.uk"), "firma.co.uk")
+        self.assertIsNone(email_domain("ola.nordmann@gmail.com"))
+        self.assertIsNone(email_domain("post@online.no"))
+        self.assertIsNone(email_domain("not an email"))
+        self.assertIsNone(email_domain(None))
+
+    def test_site_found_through_registered_email_domain(self):
+        rec = dict(SMALL, epostadresse="post@bergenmaling.no")
+        r = DiscoveryTests().r(**{f"/enheter/{SN}": (200, rec), "bergenmaling.no/kontakt": (200, CONTACT_OK),
+                                  "bergenmaling.no": (200, SITE_OK.replace("/kontakt", "https://bergenmaling.no/kontakt"))})
+        r = {k: v for k, v in r.items() if not k.startswith("maleran.no")}
+        p = build_profile(FakeHttp(r), SN)
+        f = field(p, "website_discovered")
+        self.assertIsNotNone(f)
+        self.assertIn("bergenmaling.no", f["value"])
+        self.assertIn("e-mail address registered", f["match"])
+        self.assertFalse(p["verification"]["withheld"])
+
+    def test_accountant_email_domain_is_not_the_company_site(self):
+        acct = ("<html><title>Regnskapskontoret AS</title><body><p>Regnskapskontoret AS org.nr 984 851 006 – "
+                "vi fører regnskap for små bedrifter i hele Norge.</p></body></html>")
+        rec = dict(SMALL, epostadresse="kunde@regnskapskontoret.no")
+        r = DiscoveryTests().r(**{f"/enheter/{SN}": (200, rec), "regnskapskontoret.no": (200, acct)})
+        r = {k: v for k, v in r.items() if not k.startswith("maleran.no")}
+        p = build_profile(FakeHttp(r), SN)
+        self.assertIsNone(field(p, "website_discovered"))
+        self.assertIsNone(field(p, "website_title"))
+        self.assertTrue(any("regnskapskontoret.no" in (x.get("candidate") or "") for x in p["verification"]["rejected"]))
+
+    def test_webmail_address_is_never_probed(self):
+        rec = dict(SMALL, epostadresse="maleren@gmail.com")
+        http = FakeHttp(DiscoveryTests().r(**{f"/enheter/{SN}": (200, rec)}))
+        build_profile(http, SN)
+        self.assertFalse(any("gmail.com" in u for u in http.urls))
+
+
+PRIOR = {"regnskapstype": "SELSKAP", "valuta": "NOK", "virksomhet": {"organisasjonsnummer": ORG},
+         "regnskapsperiode": {"fraDato": "2023-01-01", "tilDato": "2023-12-31"},
+         "resultatregnskapResultat": {"aarsresultat": 40_000_000_000,
+                                      "driftsresultat": {"driftsresultat": 65_000_000_000,
+                                                         "driftsinntekter": {"sumDriftsinntekter": 950_000_000_000}}},
+         "eiendeler": {"sumEiendeler": 1_100_000_000_000},
+         "egenkapitalGjeld": {"egenkapital": {"sumEgenkapital": 380_000_000_000}}}
+
+
+class SohamFeedbackTests(unittest.TestCase):
+    # 3. accounts: the previous year next to the latest one
+    def test_prior_year_from_same_response(self):
+        reg = json.loads(json.dumps(REGNSKAP)) + [PRIOR]
+        p = build_profile(FakeHttp(routes(**{f"regnskap/{ORG}": (200, reg)})), ORG)
+        self.assertEqual(field(p, "prior_revenue")["value"]["amount"], 950_000_000_000)
+        self.assertEqual(field(p, "prior_accounts_period")["value"], "2023-01-01/2023-12-31")
+        kp = " ".join(p["key_points"])
+        self.assertIn("Change from 2023 to 2024", kp)
+        self.assertIn("revenue down from NOK 950 000 000 000 to NOK 900 000 000 000", kp)
+        self.assertIn("net income up from NOK 40 000 000 000 to NOK 50 000 000 000", kp)
+        self.assertFalse(p["verification"]["withheld"])
+        self.assertFalse(p["verification"]["self_audit"])
+
+    def test_prior_year_asked_for_by_year(self):
+        r = {f"regnskap/{ORG}?%C3%A5r=2023": (200, [PRIOR])}
+        r.update(routes())
+        http = FakeHttp(r)
+        p = build_profile(http, ORG)
+        self.assertTrue(any("%C3%A5r=2023" in u for u in http.urls))
+        self.assertEqual(field(p, "prior_net_income")["value"]["amount"], 40_000_000_000)
+        self.assertIn("%C3%A5r=2023", field(p, "prior_net_income")["reference"]["url"])
+        self.assertFalse(p["verification"]["withheld"])
+
+    def test_prior_year_of_wrong_year_or_company_is_ignored(self):
+        wrong = dict(PRIOR, regnskapsperiode={"fraDato": "2021-01-01", "tilDato": "2021-12-31"})
+        other = dict(PRIOR, virksomhet={"organisasjonsnummer": "984851006"})
+        for bad in (wrong, other):
+            r = {f"regnskap/{ORG}?%C3%A5r=2023": (200, [bad])}
+            r.update(routes())
+            p = build_profile(FakeHttp(r), ORG)
+            self.assertIsNone(field(p, "prior_revenue"))
+            self.assertFalse(any("Change from" in k for k in p["key_points"]))
+
+    # 1. social links
+    def test_social_links_must_name_the_company(self):
+        site = HTML.replace("</body>", '<a href="https://www.facebook.com/pages">f</a>'
+                            '<a href="https://www.instagram.com/systemhus">i</a>'
+                            '<a href="https://www.facebook.com/2008">x</a>'
+                            '<a href="https://www.linkedin.com/company/equinor-holding">l</a></body>')
+        p = build_profile(FakeHttp(routes(**{"equinor.com": (200, site)})), ORG)
+        soc = (field(p, "social_profiles") or {}).get("value") or {}
+        for v in soc.values():
+            self.assertNotIn("systemhus", v)
+            self.assertNotIn("/pages", v)
+            self.assertNotIn("/2008", v)
+            self.assertNotIn("holding", v)
+        self.assertTrue(any("social link not attributed" in x["reason"] for x in p["verification"]["rejected"]))
+
+    # 2. news must be articles
+    def test_service_staff_slider_menu_and_bulk_items_are_not_news(self):
+        from nca.news import company_feed
+        items = [("Catering for bedrifter som verdsetter god mat", "/catering-for-bedrift/", "Tue, 08 Oct 2025 10:00:00 GMT"),
+                 ("Møt våre ansatte i Bergen og Oslo", "/ansatte/kari/", "Tue, 07 Oct 2025 10:00:00 GMT"),
+                 ("Alle kan få hjelp hos oss i dag", "/slide-2/", "Wed, 21 Dec 2011 10:00:00 GMT"),
+                 ("Energiberegninger og energiattest for bygg", "/energiberegninger/", "Mon, 02 Jun 2026 10:00:00 GMT"),
+                 ("Referat årsmøte 2010 i foreningen", "/2026/03/05/a/", "Thu, 05 Mar 2026 10:00:00 GMT"),
+                 ("Union Race Thon Hotel Halden 2011", "/2026/03/05/b/", "Thu, 05 Mar 2026 11:00:00 GMT"),
+                 ("Pinsetreff 2009 på Tanum Strand", "/2026/03/05/c/", "Thu, 05 Mar 2026 12:00:00 GMT"),
+                 ("Aukra ambulansestasjon er overlevert brukerne", "/w/aukra-ambulansestasjon/", "Tue, 02 Jun 2026 10:00:00 GMT")]
+        feed = "<rss><channel>" + "".join(f"<item><title>{t}</title><link>https://a.no{u}</link><pubDate>{d}</pubDate></item>"
+                                          for t, u, d in items) + "</channel></rss>"
+        got, st = company_feed(FakeHttp({"a.no/feed": (200, feed)}), "https://a.no/", "https://a.no/feed", ORG,
+                               menu={"energiberegninger"})
+        self.assertEqual([i["title"] for i in got], ["Aukra ambulansestasjon er overlevert brukerne"])
+        self.assertIn("bulk-import", st["note"])
+
+    # 4. can't tell
+    def test_holding_and_operating_lookalike_is_cant_tell(self):
+        page = ("<html><head><title>Maleran</title></head><body><p>Maleran AS er et malerfirma i Bergen med lang erfaring.</p>"
+                "<p>Fjellveien 12, 5003 Bergen</p></body></html>")
+        rec = dict(SMALL, navn="MALERAN HOLDING AS")
+        r = DiscoveryTests().r(**{f"/enheter/{SN}": (200, rec), "maleran.no/kontakt": (404, ""), "maleran.no": (200, page)})
+        p = build_profile(FakeHttp(r), SN)
+        self.assertIsNone(field(p, "website_discovered"))
+        self.assertTrue(any(g["topic"] == "website" and g["reason"].startswith("Can't tell") and "Maleran AS" in g["reason"]
+                            for g in p["gaps"]))
+        self.assertIn("Website", p["confidence"]["cant_tell"])
+        self.assertNotIn("Maleran Maleran", json.dumps(p, ensure_ascii=False))
+        why = next(l["why"] for l in p["confidence"]["links"] if l["what"] == "Website")
+        self.assertFalse(why.lower().startswith("can't tell"))
+
+    def test_registered_site_naming_us_among_other_numbers_is_cant_tell(self):
+        page = ("<html><title>USBL boligbyggelag</title><body><p>Forvaltes av USBL, org.nr 984 851 006.</p>"
+                "<p>Equinor ASA</p><footer>Org.nr 974 760 673</footer></body></html>")
+        p = build_profile(FakeHttp(routes(**{"equinor.com": (200, page)})), ORG)
+        own = field(p, "website_ownership")["value"]
+        self.assertTrue(own.startswith("can't tell"), own)
+        self.assertIsNone(field(p, "website_emails"))
+        self.assertFalse(p["verification"]["self_audit"])
+
+    # 5. confidence on every profile and on the report page
+    def test_confidence_is_reported(self):
+        p = build_profile(FakeHttp(routes()), ORG)
+        c = p["confidence"]
+        self.assertEqual(c["overall"], "high")
+        self.assertEqual(c["links"][0]["what"], "Register facts (Brønnøysund)")
+        self.assertTrue(any(l["what"].startswith("Website") for l in c["links"]))
+        import tempfile
+        from nca.report import write_report
+        with tempfile.TemporaryDirectory() as d:
+            write_report(os.path.join(d, "r.html"), [p], "2026-11-01")
+            with open(os.path.join(d, "r.html"), encoding="utf-8") as fh:
+                html = fh.read()
+        self.assertIn("Confidence — which links to trust", html)
+        self.assertIn('"confidence"', html)
+
+    def test_lookalike_with_a_slightly_different_word_is_cant_tell(self):
+        from nca.web import similar_company
+        self.assertEqual(similar_company("Velkommen til Dag Mølle Drift AS", "DAG MØLL"), "Dag Mølle Drift AS")
+        self.assertEqual(similar_company("Malerane AS i Bergen", "MALERAN HOLDING AS"), "Malerane AS")
+        self.assertIsNone(similar_company("Maleran Holding AS, Bergen", "MALERAN HOLDING AS"))
+        self.assertIsNone(similar_company("Møllevegen 3, Telenor Norge AS", "DAG MØLL"))
+        self.assertIsNone(similar_company("Maleran as he said", "MALERAN HOLDING AS"))
+
+    def test_short_company_names_keep_their_own_accounts(self):
+        from nca.sources import social_matches
+        self.assertTrue(social_matches("https://www.facebook.com/dnb", "DNB BANK ASA", "dnb.no")[0])
+        self.assertTrue(social_matches("https://www.youtube.com/user/DNB", "DNB BANK ASA", "dnb.no")[0])
+        self.assertFalse(social_matches("https://www.facebook.com/abc", "DNB BANK ASA", "dnb.no")[0])
+
+
+class HostPauseTests(unittest.TestCase):
+    def test_unanswering_host_is_paused_then_retried(self):
+        import nca.http as H
+        h = H.Http(max_requests=100)
+        calls = []
+        def fake_open(req, timeout=None):
+            calls.append(req.full_url)
+            raise TimeoutError("timed out")
+        old = H.urllib.request.urlopen
+        H.urllib.request.urlopen = fake_open
+        try:
+            for i in range(8):
+                r = h.get(f"https://ws.geonorge.no/x?{i}", retries=0)
+                self.assertEqual(r.status, 0)
+            self.assertEqual(len(calls), 5)                     # 3 later calls skipped, not sent
+            self.assertIn("skipped", r.error)
+            self.assertEqual(h.used, 5)
+            h.down["ws.geonorge.no"] = (5, 0.0)                 # pause over
+            h.get("https://ws.geonorge.no/x?again", retries=0)
+            self.assertEqual(len(calls), 6)                     # tried again
+            h.get("https://data.brreg.no/y", retries=0)
+            self.assertEqual(len(calls), 7)                     # other hosts unaffected
+        finally:
+            H.urllib.request.urlopen = old
+
+    def test_other_roles_such_as_owner_municipality_are_quoted(self):
+        rol = json.loads(json.dumps(ROLLER))
+        rol["rollegrupper"].append({"type": {"kode": "EIKM"}, "sistEndret": "2020-01-01", "roller": [
+            {"type": {"kode": "EIKM", "beskrivelse": "Eierkommune"},
+             "enhet": {"organisasjonsnummer": "945468661", "navn": ["LØDINGEN KOMMUNE"]}, "fratraadt": False}]})
+        p = build_profile(FakeHttp(routes(**{f"/enheter/{ORG}/roller": (200, rol)})), ORG)
+        f = field(p, "other_roles")
+        self.assertIsNotNone(f)
+        self.assertIn("945468661", f["reference"]["quote"])
+        self.assertFalse(p["verification"]["withheld"])
+
+    def test_audit_counts_each_company_once(self):
+        import tempfile, subprocess
+        from nca.runner import run_batch
+        with tempfile.TemporaryDirectory() as d:
+            run_batch(FakeHttp(routes()), [ORG], d, workers=1, progress=False, compact=False)
+            out = subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                  "agent.py"), "--audit", d], capture_output=True, text=True, encoding="utf-8").stdout
+        self.assertIn("AUDIT: 1 companies", out)

@@ -20,6 +20,10 @@ HOST_PACE = {"www.wikidata.org": 1.0, "query.wikidata.org": 2.0, "api.gleif.org"
              "www.bing.com": 0.6, "w2.brreg.no": 0.5, "ws.geonorge.no": 0.1, "api.gdeltproject.org": 5.5}
 
 
+DOWN_AFTER = 5          # consecutive connection failures after which a host is paused ...
+DOWN_PAUSE = 120        # ... for this many seconds, then tried again
+
+
 class BudgetExceeded(Exception):
     pass
 
@@ -62,6 +66,7 @@ class Http:
         self.timeout = timeout
         self.used = 0
         self.lock = threading.Lock()
+        self.down = {}            # host -> consecutive connection failures (timeouts, refused, DNS)
         self.cache = {}
         self.log = []
         self._next_slot = {}
@@ -144,6 +149,14 @@ class Http:
                 if getattr(res, "final_url", None):
                     got.setdefault(res.final_url, res)
             return res
+        h = urllib.parse.urlsplit(url).hostname or ""
+        with self.lock:
+            n, until = self.down.get(h, (0, 0.0))
+            dead = n >= DOWN_AFTER and time.time() < until
+        if dead:
+            # this host stopped answering: pause it briefly instead of spending time and requests on it
+            return Response(url, 0, error=f"skipped: {h} did not answer {DOWN_AFTER} times in a row; paused for "
+                                          f"{DOWN_PAUSE} seconds")
         attempt = 0
         while True:
             self._take()
@@ -175,6 +188,8 @@ class Http:
                 time.sleep(wait)
                 continue
             with self.lock:
+                n = self.down.get(h, (0, 0.0))[0] + 1 if res.status == 0 else 0
+                self.down[h] = (n, time.time() + DOWN_PAUSE if n >= DOWN_AFTER else 0.0)
                 self.cache[key] = res
             res.truncated = len(res.body or b"") >= max_bytes
             mine = getattr(self._local, "urls", None)

@@ -44,6 +44,9 @@ details.src{margin-top:4px}details.src>summary{cursor:pointer;color:var(--acc);f
 .cmpwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:10px 0;border:1px solid var(--line);border-radius:12px;background:var(--card)}
 .cmp{border-collapse:collapse;font-size:14px;min-width:100%}.cmp th,.cmp td{padding:8px 10px;border-top:1px solid var(--line);text-align:left;vertical-align:top;min-width:150px}
 .cmp th:first-child,.cmp td:first-child{position:sticky;left:0;background:var(--card);color:var(--mute);min-width:120px;z-index:1}
+.pill.conf-high{color:var(--ok);border-color:var(--ok)}.pill.conf-medium{color:var(--warn);border-color:var(--warn)}
+.pill.conf-low,.pill.conf-cant{color:var(--bad);border-color:var(--bad)}
+.lv{font-weight:600}.lv-high{color:var(--ok)}.lv-medium{color:var(--warn)}.lv-low,.lv-cant{color:var(--bad)}
 .more{margin:12px 0 40px;text-align:center}#cmp,.co{scroll-margin-top:140px}.cmp tr:first-child th{position:sticky;top:0;background:var(--card);z-index:2}
 </style></head><body>
 <header><h1>Norway Company Profiles</h1>
@@ -84,9 +87,12 @@ function card(p,open){const s=p.status||'';const cls=s==='active'?'active':(['ba
  const kp=(p.key_points||[]).map(k=>`<li>${esc(k)}</li>`).join('');
  const fs=(p.facts||[]).filter(f=>f.category!=='news');
  const gaps=(p.gaps||[]).map(g=>`<li><b>${esc(g.topic)}:</b> ${esc(g.reason)}</li>`).join('');
+ const C=p.confidence||{};const lvc=l=>l==="can't tell"?'cant':l;
+ const confPill=C.overall&&C.overall!=='none'?`<span class="pill conf-${lvc(C.overall)}" title="How far the links to this company can be trusted">confidence: ${esc(C.overall)}</span>${(C.cant_tell||[]).length?`<span class="pill conf-cant">can't tell: ${esc(C.cant_tell.join(', ').toLowerCase())}</span>`:''}`:'';
+ const conf=(C.links||[]).length?`<h3>Confidence — which links to trust</h3><ul>${C.links.map(l=>`<li><b>${esc(l.what)}:</b> <span class="lv lv-${lvc(l.level)}">${esc(l.level)}</span> <span class="org">— ${esc(l.why)}</span></li>`).join('')}</ul>`:'';
  const con=p.conclusion?`<h3>Conclusion — ${esc(p.conclusion.verdict)}</h3><ul>${p.conclusion.claims.map(c=>`<li>${esc(c.claim)} <span class="org">[based on: ${esc(c.supported_by.map(x=>x.field).join(', '))}]</span></li>`).join('')}</ul>`:'';
- return `<details class="co" id="c${esc(p.organisation_number)}" ${open?'open':''}><summary><span class="nm">${esc(p.name||'(unknown)')}</span><span class="org">${esc(p.organisation_number||'')}</span><span class="pill ${cls}">${esc(s.replace(/_/g,' '))}</span>${(p.news||[]).length?`<span class="pill">${p.news.length} dated items</span>`:''}<label class="sel" onclick="event.stopPropagation()"><input type="checkbox" data-org="${esc(p.organisation_number)}" ${SEL.has(p.organisation_number)?'checked':''}> Compare</label></summary>
- <div class="body">${con}<h3>Summary</h3><p>${esc(p.summary)}</p>${kp?`<h3>Key points</h3><ul>${kp}</ul>`:''}${risks?`<h3>Risk signals</h3><ul>${risks}</ul>`:''}
+ return `<details class="co" id="c${esc(p.organisation_number)}" ${open?'open':''}><summary><span class="nm">${esc(p.name||'(unknown)')}</span><span class="org">${esc(p.organisation_number||'')}</span><span class="pill ${cls}">${esc(s.replace(/_/g,' '))}</span>${confPill}${(p.news||[]).length?`<span class="pill">${p.news.length} dated items</span>`:''}<label class="sel" onclick="event.stopPropagation()"><input type="checkbox" data-org="${esc(p.organisation_number)}" ${SEL.has(p.organisation_number)?'checked':''}> Compare</label></summary>
+ <div class="body">${con}<h3>Summary</h3><p>${esc(p.summary)}</p>${kp?`<h3>Key points</h3><ul>${kp}</ul>`:''}${risks?`<h3>Risk signals</h3><ul>${risks}</ul>`:''}${conf}
  ${news?`<h3>Dated news &amp; official announcements</h3><ul>${news}</ul>`:''}<h3>Facts (${fs.length}) — tap “Where this came from” on any fact</h3>${fs.map(factRow).join('')}
  ${gaps?`<h3>Not found, and why</h3><ul>${gaps}</ul>`:''}</div></details>`}
 function render(){const one=rows.length===1;document.getElementById('list').innerHTML=rows.slice(0,shown).map(p=>card(p,one)).join('')||'<p class="sub">No company matches that search.</p>';
@@ -101,9 +107,11 @@ document.getElementById('list').addEventListener('change',e=>{const o=e.target.d
 const fact=(p,f)=>(p.facts||[]).find(x=>x.field===f);
 const cell=(p,fields)=>{for(const f of fields){const x=fact(p,f);if(x)return `${esc(fmtv(x.value))}<br><a class="org" href="#c${esc(p.organisation_number)}" onclick="openFact('${esc(p.organisation_number)}')">source ›</a>`}return '<span class="org">not found</span>'};
 const ROWS=[['Status',p=>esc((p.status||'').replace(/_/g,' '))],['Verdict',p=>esc(p.conclusion?p.conclusion.verdict:'—')],
+ ['Confidence',p=>{const C=p.confidence||{};return esc((C.overall||'—')+((C.cant_tell||[]).length?" · can't tell: "+C.cant_tell.join(', ').toLowerCase():''))}],
  ['Legal form',p=>cell(p,['legal_form'])],['Municipality',p=>cell(p,['municipality'])],['Industry',p=>cell(p,['industry_code_1'])],
  ['Registered',p=>cell(p,['registered_date','start_date'])],['Employees',p=>cell(p,['employees','employee_count_registered'])],
- ['Accounting period',p=>cell(p,['accounts_period'])],['Revenue',p=>cell(p,['revenue'])],['Net income',p=>cell(p,['net_income'])],
+ ['Accounting period',p=>cell(p,['accounts_period'])],['Revenue',p=>cell(p,['revenue'])],['Revenue, previous year',p=>cell(p,['prior_revenue'])],
+ ['Net income',p=>cell(p,['net_income'])],['Net income, previous year',p=>cell(p,['prior_net_income'])],
  ['Equity',p=>cell(p,['equity'])],['Total assets',p=>cell(p,['total_assets'])],['CEO',p=>cell(p,['ceo'])],['Board chair',p=>cell(p,['board_chair'])],
  ['Auditor',p=>cell(p,['auditor'])],['Website',p=>cell(p,['website','website_discovered'])],
  ['Dated items',p=>(p.news||[]).length],['Most recent dated item',p=>p.news&&p.news[0]?esc(p.news[0].published+' · '+p.news[0].title):'—'],
@@ -119,7 +127,8 @@ function fromHash(){const h=decodeURIComponent(location.hash.slice(1)).replace(/
 window.addEventListener('hashchange',fromHash);fromHash();render();
 </script></body></html>"""
 
-KEEP = ("organisation_number", "name", "status", "summary", "conclusion", "key_points", "risk_signals", "news", "gaps", "profile")
+KEEP = ("organisation_number", "name", "status", "summary", "conclusion", "key_points", "risk_signals", "news", "gaps", "profile",
+        "confidence")
 FACT_KEYS = ("field", "label", "category", "value", "as_of", "evidence_url", "source_name", "match", "note", "reference")
 
 

@@ -145,8 +145,31 @@ for mailboxes on the site's own domain and never from web-agency credits ("Laget
 ## News rules
 
 - Official announcements keep the **original Norwegian title**; an English `title_en` is added only for exact, known announcement categories (literal translation), never guessed.
-- Website news must be a **real, dated post** on the company's own site: Atom `updated` dates are not used as publish dates; menu labels, product, category, contact and job pages are rejected; feeds where every item has the same date are rejected.
+- Website news must be a **real article with a date and a headline** on the company's own site. Rejected: Atom `updated` dates (never a publish date); pages linked from the site's menu, header or footer (fixed pages); service/offer pages (catering, prices, "we offer"), staff and team pages, product, category, contact and job pages; slider, draft and copy items (`slide-2`, `…-cloned`); and posts that share one date with two or more others (a bulk import of old posts, not publication dates).
 - Stock-quote pages are not news. Press search (Bing RSS / GDELT) is off by default (`--bing` to enable): Bing's RSS terms restrict reuse and GDELT dates are index dates, not publication dates.
+
+## Social links
+
+A social account is published only if it is linked from the company's own (proven) website **and** its account
+name matches the company: its registered name, its website's domain or its brand. Generic links (`facebook.com/pages`,
+`/groups`, `profile.php`, `instagram.com/explore`), numeric ids that cannot be checked (`facebook.com/2008`, YouTube
+channel ids) and accounts of a related brand, venue, group or holding company are refused, and each refusal is listed
+with its reason under `verification.rejected`.
+
+## "Can't tell" and confidence
+
+- When a website names a **look-alike company** (e.g. "Maleran AS" on a candidate site for MALERAN HOLDING AS), or shows
+  this company's name together with other organisation numbers (e.g. a housing co-op on its manager's site), the agent
+  says **"can't tell"** with the reason and leaves the website link blank.
+- Every profile has a `confidence` block, shown on the report page and in the comparison: each kind of link
+  (register facts, website, social media, LEI, Wikidata, announcements, website news) with its level
+  (high / medium / can't tell) and why, plus an overall level.
+
+## Accounts: two years
+
+Next to the latest filed statement the agent shows the **previous year's** company-level statement (taken from the
+same response, or asked for once by year and accepted only if its period and organisation number match), and a key
+point such as *"Change from 2024 to 2025: revenue up from NOK a to NOK b"* using only exact filed figures.
 
 ## Status wording
 

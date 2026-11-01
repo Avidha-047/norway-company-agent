@@ -47,6 +47,7 @@ FIELD_KEYS = {
     "postal_postcode": ("postadresse", "postnummer"), "postal_city": ("postadresse", "poststed"),
     "subunit_count": "totalElements", "accounts_currency_note": "sisteInnsendteAarsregnskap",
     "accounts_period": "regnskapsperiode", "group_accounts_period": "regnskapsperiode",
+    "prior_accounts_period": "regnskapsperiode",
     "accounts_currency_unstated": "regnskapsperiode", "group_accounts_currency_unstated": "regnskapsperiode",
     "accounts_audited": "ikkeRevidertAarsregnskap", "group_accounts_audited": "ikkeRevidertAarsregnskap",
     "lei_registration_status": "status", "lei_next_renewal": "nextRenewalDate",
@@ -61,6 +62,7 @@ DERIVED = {
     "group_accounts_audited": "true when the filed statement's ikkeRevidertAarsregnskap flag (quoted) is false",
     "accounts_period": "period start/end dates as filed (quoted)",
     "group_accounts_period": "period start/end dates as filed (quoted)",
+    "prior_accounts_period": "period start/end dates as filed (quoted)",
     "website_discovered": "the page content proving ownership (quoted)",
     "accounts_currency_note": "Enhetsregisteret's last submitted accounts year (quoted) is later than the period returned by the accounts register",
     "social_profiles": "links found in the page content (first quoted)",
@@ -243,7 +245,8 @@ def _phone_pattern(p):
 ROLE_CODES = {"ceo": ["DAGL"], "board_chair": ["LEDE"], "board_deputy_chair": ["NEST"], "board_members": ["MEDL"],
               "board_deputies": ["VARA"], "board_observers": ["OBS"], "auditor": ["REVI"], "accountant": ["REGN"],
               "contact_person": ["KONT"], "owner": ["INNH"], "partners": ["DTPR", "DTSO"], "general_partner": ["KOMP"],
-              "norwegian_representative": ["REPR"], "business_manager": ["FFØR"], "foreign_head_office": ["HFOR"]}
+              "norwegian_representative": ["REPR"], "business_manager": ["FFØR"], "foreign_head_office": ["HFOR"],
+              "other_roles": []}           # any role type: the holder (by organisation number or name) is what is checked
 
 
 def _object_spans(text):
@@ -273,7 +276,8 @@ def _role_quote(text, field, value):
     if not isinstance(holder, dict) or not holder.get("name"):
         return None
     codes = set(ROLE_CODES.get(field) or [])
-    toks = holder["name"].split()
+    name = holder["name"].split(": ", 1)[-1] if field == "other_roles" else holder["name"]   # 'Eierkommune: X' -> 'X'
+    toks = name.split()
     first = None
     if holder.get("organisation_number"):
         pat = r'"organisasjonsnummer"\s*:\s*"%s"' % re.escape(holder["organisation_number"])
@@ -370,7 +374,7 @@ def find_quote(text, fact):
         if m:
             return _window(text, m.start(), m.end()), status
         key = None
-    if field in ABSENCE_FIELDS and (value is False or str(value).startswith(("shared", "ownership not proven"))):
+    if field in ABSENCE_FIELDS and (value is False or str(value).startswith(("shared", "ownership not proven", "can't tell"))):
         m = re.search(r"(?is)<title[^>]*>.*?</title>", text)
         if m:
             return m.group(0)[:300], "derived"
@@ -386,7 +390,7 @@ def find_quote(text, fact):
         m = re.search(r'"time"\s*:\s*"\+%s' % re.escape(value), text)
         if m:
             return _window(text, m.start(), m.end(), pad=20), status
-    if field == "accounts_period" or field == "group_accounts_period":
+    if field in ("accounts_period", "group_accounts_period", "prior_accounts_period"):
         span = _json_obj(text, "regnskapsperiode")
         if span and all(d in text[span[0]:span[1]] for d in str(value).split("/")):
             return text[span[0]:span[1]], status

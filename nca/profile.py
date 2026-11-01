@@ -148,6 +148,7 @@ def _build_profile(http, query, previous, use_web, use_wikidata, use_news, use_b
         "withheld": withheld,
     }
     prof["gaps"] = gaps(prof, kind, rec, statuses)
+    prof["confidence"] = link_confidence(prof)
     prof["sources"] = [dict(s, source_name=SOURCES.get(s.get("source"), {}).get("name"),
                             licence=SOURCES.get(s.get("source"), {}).get("licence")) for s in statuses if s]
     prof["changes"] = changes
@@ -173,7 +174,8 @@ def collect_news(http, fs, statuses, orgnr, rec, site, wst, use_bing):
     items, st = N.official_announcements(http, orgnr)
     batches.append(("brreg_kunngjoringer", items, st))
     if site and wst and wst.get("feed_url") and http.spare(1):
-        items, st = N.company_feed(http, wst.get("url") or site, wst["feed_url"], orgnr, ownership=wst.get("ownership"))
+        items, st = N.company_feed(http, wst.get("url") or site, wst["feed_url"], orgnr, ownership=wst.get("ownership"),
+                                   menu=set(wst.get("nav_paths") or []))
         batches.append(("company_website_feed", items, st))
     corr = []
     addr = (rec or {}).get("forretningsadresse") or (rec or {}).get("beliggenhetsadresse") or {}
@@ -316,6 +318,9 @@ def key_points(prof, fs):
                    + (f"; a newer {fs.get('last_annual_accounts_year')} filing is registered but its figures were not available"
                       if fs.get("accounts_currency_note") else "")
                    + "): " + ", ".join(bits))
+    trend = change_words(fs)
+    if trend:
+        pts.append(trend)
     ceo, chair = fs.get("ceo"), fs.get("board_chair")
     lead = []
     if isinstance(ceo, dict):
@@ -621,6 +626,30 @@ def _cap(s):
     return s[:1].upper() + s[1:] if s else s
 
 
+def change_words(fs):
+    """'Change from 2024 to 2025 (company level, as filed): revenue up from NOK a to NOK b; ...' - only exact filed
+    figures of two consecutive years in the same currency; no percentages or other computed numbers."""
+    period, prior = fs.get("accounts_period"), fs.get("prior_accounts_period")
+    if not period or not prior:
+        return None
+    cur, pcur = _cur(fs), _cur(fs, "prior_")
+    if cur != pcur:
+        return None
+    yr, pyr = str(period)[-10:-6], str(prior)[-10:-6]
+    bits = []
+    for field, name in (("revenue", "revenue"), ("operating_profit", "operating profit"), ("net_income", "net income"),
+                        ("equity", "equity")):
+        a, b = _val(fs, "prior_" + field), _val(fs, field)
+        if a is None or b is None:
+            continue
+        word = "up" if b > a else "down" if b < a else "unchanged"
+        bits.append(f"{name} {word} from {fmt_exact(a, cur)} to {fmt_exact(b, cur)}" if word != "unchanged"
+                    else f"{name} unchanged at {fmt_exact(b, cur)}")
+    if not bits:
+        return None
+    return f"Change from {pyr} to {yr} (company level, as filed): " + "; ".join(bits)
+
+
 def _cur(fs, prefix=""):
     """Currency the statement was filed in (never assumed): None when the filing does not state it."""
     for f in ("revenue", "net_income", "equity", "total_assets"):
@@ -724,6 +753,50 @@ def explain(prof, fs):
     return " ".join(parts)
 
 
+def link_confidence(prof):
+    """How far each kind of link to this company can be trusted, and why - shown on the report page."""
+    facts = {f["field"]: f for f in prof.get("facts") or []}
+    rej = (prof.get("verification") or {}).get("rejected") or []
+    links = []
+    if prof.get("status") in (None, "not_found", "invalid_organisation_number", "lookup_failed"):
+        return {"overall": "none", "links": []}
+    links.append({"what": "Register facts (Brønnøysund)", "level": "high",
+                  "why": "fetched by this exact organisation number from the official registers"})
+    own = (facts.get("website_ownership") or {}).get("value") or ""
+    site_level = None
+    if "website_discovered" in facts:
+        site_level = facts["website_discovered"].get("confidence") or "medium"
+        links.append({"what": "Website (found, not registered)", "level": site_level,
+                      "why": facts["website_discovered"].get("match") or "ownership proven on its pages"})
+    elif own.startswith("the company's own site"):
+        site_level = "high" if "organisation number" in own else "medium"
+        links.append({"what": "Website (registered)", "level": site_level, "why": own})
+    elif own.startswith(("can't tell", "shared", "ownership not proven")) or any(r.get("cant_tell") for r in rej):
+        why = own or next(r["reason"] for r in rej if r.get("cant_tell"))
+        why = re.sub(r"^(can't tell( which company this site belongs to)?|shared or parent-group site|ownership not proven):\s*",
+                     "", why)
+        level = "can't tell" if (own.startswith("can't tell") or not own) else "not linked"
+        links.append({"what": "Website", "level": level, "why": why + "; no website facts are attributed"})
+    if site_level and "social_profiles" in facts:
+        links.append({"what": "Social media", "level": site_level,
+                      "why": "linked from the company's own website and the account name matches the company"})
+    for field, what in (("lei", "LEI (GLEIF)"), ("wikidata_id", "Wikidata item")):
+        if field in facts:
+            links.append({"what": what, "level": facts[field].get("confidence") or "medium",
+                          "why": facts[field].get("match") or ""})
+    kinds = {n.get("kind") for n in prof.get("news") or []}
+    if "official_announcement" in kinds:
+        links.append({"what": "Official announcements", "level": "high",
+                      "why": "listed under this organisation number by the register"})
+    if "company_news" in kinds and site_level:
+        links.append({"what": "Website news", "level": site_level,
+                      "why": "dated posts from the company's own website feed"})
+    levels = [l["level"] for l in links if l["level"] in ("high", "medium", "low")]
+    overall = "low" if "low" in levels else "medium" if "medium" in levels else "high"
+    return {"overall": overall, "cant_tell": [l["what"] for l in links if l["level"] == "can't tell"], "links": links}
+
+
+
 def gaps(prof, kind, rec, statuses):
     """What was not found, and why - worded by what actually happened to the source (checked and empty,
     failed, skipped, or rejected), never claiming that something does not exist when it was not checked."""
@@ -760,7 +833,13 @@ def gaps(prof, kind, rec, statuses):
             else:
                 out.append({"topic": "financials", "reason": "The Register of Company Accounts returned no statement for this organisation number."})
     web_st = st("company_website") | st("website_discovery")
-    if not fields & {"website", "official_website", "website_discovered", "registered_social_profile"}:
+    cant = [r for r in (prof.get("verification") or {}).get("rejected", []) if r.get("cant_tell")]
+    if cant:
+        out.append({"topic": "website", "reason": "Can't tell: " + cant[0]["reason"].split(": ", 1)[-1]
+                    + f" ({cant[0].get('candidate')})."})
+    if cant and "website" not in fields:
+        pass
+    elif not fields & {"website", "official_website", "website_discovered", "registered_social_profile"}:
         if not web_st:
             out.append({"topic": "website", "reason": "No website is registered in Enhetsregisteret; no other website was checked in this run."})
         else:

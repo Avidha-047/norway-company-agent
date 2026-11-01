@@ -2,6 +2,7 @@
 facts plus a status record. Nothing is ever guessed: a value is only published
 when it is present in a source record that is keyed to the same org number.
 """
+import html as htmllib
 import re
 import urllib.parse
 
@@ -233,7 +234,7 @@ def address_register_facts(http, fs, orgnr, rec):
     if not street or not pn or (addr.get("landkode") or "NO") != "NO":
         return None
     url = GEONORGE + "?" + urllib.parse.urlencode({"sok": street, "postnummer": pn, "treffPerSide": 10, "utkoordsys": 4258})
-    r = http.get(url, retries=1, timeout=15)
+    r = http.get(url, retries=0, timeout=8)
     if r.status != 200 or not isinstance(r.json(), dict):
         return SourceStatus.make("kartverket_adresser", url, "error", r.status, r.error)
     hits = [a for a in r.json().get("adresser") or []
@@ -578,6 +579,9 @@ def accounts_facts(http, fs, orgnr):
         end = dig(st, "regnskapsperiode", "tilDato") or ""
         if typ not in by_type or end > (dig(by_type[typ], "regnskapsperiode", "tilDato") or ""):
             by_type[typ] = st
+    # every company-level statement for this number, to find the year before the latest one
+    company_stmts = [st for st in data if isinstance(st, dict) and dig(st, "virksomhet", "organisasjonsnummer") == orgnr
+                     and (st.get("regnskapstype") or "SELSKAP").upper() == "SELSKAP"]
     if not by_type:
         return SourceStatus.make("brreg_regnskap", url, "not_found", 200,
                                  "no statements for this organisation number" + (" (mismatched records rejected)" if rejected else ""))
@@ -632,7 +636,54 @@ def accounts_facts(http, fs, orgnr):
         if isinstance(aud.get("ikkeRevidertAarsregnskap"), bool):
             fs.add(prefix + "accounts_audited", f"Accounts audited ({scope})", not aud["ikkeRevidertAarsregnskap"],
                    "brreg_regnskap", url, evidence_url=evidence, as_of=end, category="financials", match=m)
+    if "SELSKAP" in by_type:
+        prior_accounts_facts(http, fs, orgnr, by_type["SELSKAP"], company_stmts, stmt_url, first_url, evidence, m)
     return SourceStatus.make("brreg_regnskap", first_url, "ok", 200)
+
+
+PRIOR_FIELDS = ("revenue", "operating_profit", "net_income", "total_assets", "equity")
+
+
+def prior_accounts_facts(http, fs, orgnr, latest, stmts, stmt_url, first_url, evidence, m):
+    """The company-level statement for the year before the latest one, so a reader can see up or down.
+    Taken from the same response when it holds that year; otherwise asked for once by year. Published only when
+    the statement carries this organisation number and its period ends in exactly the previous year."""
+    end = dig(latest, "regnskapsperiode", "tilDato") or ""
+    if not re.match(r"\d{4}-", end):
+        return
+    want = str(int(end[:4]) - 1)
+    prior = next((st for st in sorted(stmts, key=lambda x: dig(x, "regnskapsperiode", "tilDato") or "", reverse=True)
+                  if (dig(st, "regnskapsperiode", "tilDato") or "").startswith(want)), None)
+    url = stmt_url.get(id(prior), first_url) if prior else None
+    if prior is None:
+        if hasattr(http, "spare") and not http.spare(1):
+            return
+        url = f"{REGNSKAP}/{orgnr}?" + urllib.parse.urlencode({"år": want})
+        r = http.get(url, retries=1)
+        js = r.json() if r.status == 200 else None
+        if isinstance(js, dict):
+            js = [js]
+        prior = next((st for st in js or [] if isinstance(st, dict)
+                      and dig(st, "virksomhet", "organisasjonsnummer") == orgnr
+                      and (st.get("regnskapstype") or "SELSKAP").upper() == "SELSKAP"
+                      and (dig(st, "regnskapsperiode", "tilDato") or "").startswith(want)), None)
+        if prior is None:
+            return
+    start, pend = dig(prior, "regnskapsperiode", "fraDato"), dig(prior, "regnskapsperiode", "tilDato")
+    period = f"{start}/{pend}" if start and pend else pend
+    cur = prior.get("valuta") or None
+    fs.add("prior_accounts_period", "Accounting period (company, previous year)", period, "brreg_regnskap", url,
+           evidence_url=evidence, as_of=pend, category="financials", match=m)
+    for field, label, paths in FIN_FIELDS:
+        if field not in PRIOR_FIELDS:
+            continue
+        v = dig(prior, *paths[0])
+        if is_number(v):
+            fs.add("prior_" + field, f"{label} (company, previous year)",
+                   {"amount": v, "currency": cur, "period": period, "statement": "company",
+                    "filed_as": ".".join(paths[0])},
+                   "brreg_regnskap", url, evidence_url=evidence, as_of=pend, category="financials", match=m,
+                   note="Exact figure as filed for the previous year; shown so the change can be seen")
 
 
 # --------------------------------------------------------------------------- #
@@ -835,9 +886,71 @@ def wikidata_facts(http, fs, orgnr, legal_name, gleif_lei, rejections):
 # --------------------------------------------------------------------------- #
 
 SOCIAL = re.compile(
-    r"https?://(?:[a-z]{2,3}\.)?(?:www\.)?(linkedin\.com/company/[\w\-%.]+|facebook\.com/(?!sharer|share|dialog|plugins|tr\b|\d+(?![\w\-.%]))[\w\-.%]+"
+    r"https?://(?:[a-z]{2,3}\.)?(?:www\.)?(linkedin\.com/company/[\w\-%.]+|facebook\.com/(?!sharer|share|dialog|plugins|tr\b|\d+(?![\w\-.%]))(?:pages/[\w\-.%]+/?\d*|[\w\-.%]+)"
     r"|instagram\.com/(?!p/|share)[\w\-.]+|(?:twitter|x)\.com/(?!intent|share|home)[\w]+|youtube\.com/(?:@|c/|channel/|user/)[\w\-.]+)",
     re.I)
+
+
+SOCIAL_GENERIC = {"pages", "groups", "profile.php", "profile", "people", "explore", "events", "watch", "home", "login",
+                  "share", "sharer", "hashtag", "help", "legal", "policies", "privacy", "about", "search", "public",
+                  "company", "school", "in", "pub", "feed", "reel", "reels", "stories", "p", "tv", "channel", "user", "c",
+                  "photo.php", "permalink.php", "story.php", "media", "plugins", "dialog", "intent"}
+GROUPISH = ("holding", "group", "gruppen", "konsern", "invest", "eiendom", "capital", "partners")
+
+
+def _handle_tokens(text):
+    t = (text or "").lower().translate(str.maketrans({"æ": "ae", "ø": "o", "å": "a", "é": "e", "ü": "u", "ö": "o", "ä": "a"}))
+    return re.sub(r"[^a-z0-9]", "", t)
+
+
+def social_matches(link, legal_name, site_host, brand=""):
+    """(True, '') when the social account's name matches this company (its registered name, its website's domain
+    or its brand name); otherwise (False, reason). Generic paths and group/holding accounts are refused."""
+    from . import web
+    path = urllib.parse.urlsplit(link if "://" in link else "https://" + link).path.strip("/")
+    parts = [p for p in path.split("/") if p]
+    if parts and parts[0].lower() in ("company", "c", "user", "channel", "pages") and len(parts) > 1:
+        parts = parts[1:]
+    handle = parts[0] if parts else ""
+    if not handle or handle.lower() in SOCIAL_GENERIC or handle.startswith("@") and len(handle) < 3:
+        return False, f"'{link}' is a generic page, not an account"
+    if re.fullmatch(r"(?:UC|HC)[\w-]{20,}", handle) or re.fullmatch(r"\d+", handle):
+        return False, f"'{link}' is an id, so it cannot be checked against the company's name"
+    h = _handle_tokens(handle.lstrip("@"))
+    core = [t for t in (_handle_tokens(x) for x in norm_name(legal_name).split()) if len(t) >= 4
+            and t not in ("norge", "norsk", "norway", "service", "services", "consult", "consulting", "drift")]
+    joined = _handle_tokens(norm_name(legal_name))
+    dom = web.registrable(site_host or "").split(".")[0] if site_host else ""
+    dom = _handle_tokens(dom)
+    brand_t = [t for t in (_handle_tokens(x) for x in re.split(r"[\s|–-]+", brand or "")) if len(t) >= 4]
+    whole = [c for c in [joined, dom] + brand_t if len(c) >= 4]
+    hits = sum(1 for t in core if t in h)
+    short = [t for t in (_handle_tokens(x) for x in norm_name(legal_name).split()) if 2 <= len(t) < 4]
+    exact = {c for c in [joined, dom] + brand_t + core + short if len(c) >= 2}
+    named = (any(c in h or (len(h) >= 4 and h in c) for c in whole) or (core and hits >= min(2, len(core)))
+             or h in exact                                   # 'dnb' for DNB BANK ASA at dnb.no
+             or (len(dom) >= 3 and h.startswith(dom)) or (len(short) and h.startswith(short[0]) and dom.startswith(short[0])))
+    if not named:
+        return False, (f"the account name '{handle}' does not match the company's name, website or brand "
+                       "(it may belong to a related brand, venue or company)")
+    for g in GROUPISH:
+        if g in h and g not in joined:
+            return False, f"the account '{handle}' looks like a group/holding/related company's account ('{g}')"
+    return True, ""
+
+
+def menu_paths(html, base_url):
+    """Paths linked from the site's menu, header or footer: fixed pages (services, staff, contact), never news."""
+    from . import web
+    out = set()
+    for m in re.finditer(r"(?is)<(nav|header|footer)\b[^>]*>(.*?)</\1>", html or ""):
+        for href in re.findall(r'(?i)href=["\']([^"\'#]+)', m.group(2)):
+            u = urllib.parse.urljoin(base_url, htmllib.unescape(href))
+            if web.host(u) == web.host(base_url):
+                path = urllib.parse.urlsplit(u).path.strip("/").lower()
+                if path:
+                    out.add(path)
+    return out
 
 
 def _meta(html, name):
@@ -900,6 +1013,14 @@ def website_facts(http, fs, orgnr, site, rec=None, discovered=False, rejections=
                                                  ld=ld0.get("_raw") if isinstance(ld0.get("_raw"), dict) else None,
                                                  discovered=discovered)
     own = verdict == "own"
+    lookalike = None if own else web.similar_company(texts, legal_name)
+    cant_tell = None
+    if not own and lookalike:
+        cant_tell = (f"the pages name '{lookalike}', a company with a similar name, not '{legal_name}' - "
+                     "a holding company and its operating company often look alike, so the link was left blank")
+    elif verdict == "shared" and web.full_name_pattern(legal_name) and web.full_name_pattern(legal_name).search(texts):
+        cant_tell = (f"the pages show '{legal_name}' together with other organisation numbers (for example a parent "
+                     "company or a manager such as a housing co-op's management firm), so the site may belong to either")
     mentions = orgnr in web.org_numbers_on(texts) or bool(orgnr_pattern(orgnr).search(texts))
     addr_hit = web.address_match(texts, rec)
     name_pat = web.full_name_pattern(legal_name)
@@ -915,8 +1036,10 @@ def website_facts(http, fs, orgnr, site, rec=None, discovered=False, rejections=
         else:
             if rejections is not None:
                 rejections.append({"source": "website_discovery", "candidate": r.final_url,
-                                   "reason": ("not proven to be this company's site: " + own_detail
-                                              + ("" if not named else "; the full name is shown but not the registered address"))})
+                                   **({"cant_tell": True, "reason": "can't tell which company this site belongs to: " + cant_tell}
+                                      if cant_tell else
+                                      {"reason": ("not proven to be this company's site: " + own_detail
+                                                  + ("" if not named else "; the full name is shown but not the registered address"))})})
             return SourceStatus.make(src, r.final_url, "not_found", 200, "candidate rejected: could not prove ownership")
         own = True
     else:
@@ -943,8 +1066,14 @@ def website_facts(http, fs, orgnr, site, rec=None, discovered=False, rejections=
         ev=orgnr_url if mentions else None, key=f"orgnr:{orgnr}" if mentions else None)
     if not own:
         label = "shared or parent-group site" if verdict == "shared" else "ownership not proven"
+        detail = own_detail
+        if cant_tell:
+            label, detail = "can't tell", cant_tell
+            if rejections is not None:
+                rejections.append({"source": "company_website", "candidate": r.final_url, "cant_tell": True,
+                                   "reason": "can't tell which company this site belongs to: " + cant_tell})
         fs.add("website_ownership", "Website ownership check",
-               f"{label}: {own_detail}",
+               f"{label}: {detail}",
                src, r.final_url, category="web", confidence="high",
                match="Website registered for this organisation number in Enhetsregisteret",
                note="Social accounts, news, contact details and job posts from this site are not attributed to the company")
@@ -964,18 +1093,27 @@ def website_facts(http, fs, orgnr, site, rec=None, discovered=False, rejections=
     about = next((t for t in (home.get("paragraphs") or []) + ((contact or {}).get("paragraphs") or [])
                   if (name_pat and name_pat.search(t)) or (core and re.search(r"(?i)(?<!\w)" + re.escape(core[0]) + r"(?!\w)", t))), None)
     add("website_about", "Text about the company (from its website, mentions its name)", about, "activity")
-    socials = {}
-    for page_html in (html, ):
-        for mm in SOCIAL.finditer(page_html):
-            link = mm.group(0).rstrip("/.")
-            platform = mm.group(1).split(".")[0].lower().replace("twitter", "x")
-            socials.setdefault(platform, link)
+    socials, dropped = {}, []
     ld = home.get("ld") or (contact or {}).get("ld") or {}
-    for s_ in ld.get("same_as") or []:
-        mm = SOCIAL.search(s_)
-        if mm:
-            socials.setdefault(mm.group(1).split(".")[0].lower().replace("twitter", "x"), mm.group(0).rstrip("/."))
-    add("social_profiles", "Social media profiles (linked from website)", socials or None, "contact")
+    found = [mm.group(0) for mm in SOCIAL.finditer(html)] + \
+            [mm.group(0) for s_ in ld.get("same_as") or [] for mm in [SOCIAL.search(s_)] if mm]
+    brand = " ".join(x for x in (_meta(html, "og:site_name") or "", ld.get("name") or "") if x)
+    for raw in found:
+        link = raw.rstrip("/.")
+        platform = SOCIAL.match(raw).group(1).split(".")[0].lower().replace("twitter", "x")
+        if platform in socials:
+            continue
+        ok, why = social_matches(link, legal_name, site_host, brand)
+        if ok:
+            socials[platform] = link
+        elif link not in [d["link"] for d in dropped]:
+            dropped.append({"link": link, "reason": why})
+    add("social_profiles", "Social media profiles (linked from website; account name matches the company)",
+        socials or None, "contact")
+    if dropped and rejections is not None:
+        for d in dropped[:6]:
+            rejections.append({"source": "company_website", "candidate": d["link"],
+                               "reason": "social link not attributed to the company: " + d["reason"]})
     ld_email = (ld.get("email") or "").lower()
     if ld_email and web.registrable(ld_email.split("@")[-1]) != web.registrable(web.host(r.final_url)):
         ld_email = ""
@@ -994,8 +1132,31 @@ def website_facts(http, fs, orgnr, site, rec=None, discovered=False, rejections=
         add("website_founding_date", "Founding date stated on website", ld["founding_date"][:10], "identity")
     st = SourceStatus.make(src, r.final_url, "ok", 200)
     st["feed_url"] = find_feed(html, r.final_url)
+    st["nav_paths"] = sorted(menu_paths(html, r.final_url))
     st["ownership"] = m
     return st
+
+
+# e-mail providers and ISPs: their domain says nothing about the company's own website
+MAIL_PROVIDERS = {
+    "gmail.com", "googlemail.com", "hotmail.com", "hotmail.no", "outlook.com", "outlook.no", "live.com", "live.no",
+    "msn.com", "yahoo.com", "yahoo.no", "icloud.com", "me.com", "mac.com", "aol.com", "mail.com", "gmx.com", "gmx.net",
+    "proton.me", "protonmail.com", "online.no", "frisurf.no", "start.no", "getmail.no", "broadpark.no", "c2i.net",
+    "lyse.net", "altibox.no", "ebnett.no", "tele2.no", "chello.no", "vikenfiber.no", "haugnett.no", "bluezone.no",
+    "hotmail.co.uk", "yandex.com", "zoho.com", "icloud.no", "epost.no", "telia.no", "telenor.no", "netcom.no",
+}
+
+
+def email_domain(email):
+    """Registrable domain of a registered e-mail address, unless it is a webmail/ISP domain."""
+    from . import web
+    m = re.fullmatch(r"[^@\s]+@([A-Za-z0-9.-]+\.[A-Za-z]{2,})", (email or "").strip())
+    if not m:
+        return None
+    dom = web.registrable(m.group(1).lower())
+    if not dom or dom in MAIL_PROVIDERS:
+        return None
+    return dom
 
 
 def discover_website(http, fs, orgnr, rec, rejections, use_search=False):
@@ -1005,7 +1166,25 @@ def discover_website(http, fs, orgnr, rec, rejections, use_search=False):
     statuses = []
     tried = set()
     name = (rec or {}).get("navn")
+    dom = email_domain((rec or {}).get("epostadresse"))
+    if dom:
+        # the domain of the registered e-mail address is the strongest lead; ownership must still be proven
+        how = "by checking the domain of the e-mail address registered in Enhetsregisteret"
+        for cand in (dom, "www." + dom):
+            if not http.spare(2):
+                break
+            tried.add(cand)
+            st = website_facts(http, fs, orgnr, "https://" + cand, rec=rec, discovered=True, rejections=rejections,
+                               probe=True, origin=how)
+            if st and st.get("status") == "ok":
+                statuses.append(st)
+                return st, statuses
+            if st and st.get("status") == "not_found":
+                break                      # the site answered but is not proven to be this company's
     for cand in web.guess_domains(name):
+        h = web.host(cand)
+        if h in tried or h.replace("www.", "", 1) in tried:
+            continue
         if not http.spare(2):
             break
         tried.add(web.host(cand))
@@ -1025,5 +1204,6 @@ def discover_website(http, fs, orgnr, rec, rejections, use_search=False):
                 if st.get("status") == "ok":
                     return st, statuses
     statuses.append(SourceStatus.make("website_discovery", None, "not_found", None,
-                                      f"checked {len(tried)} name-matching domain(s); none proven to belong to this company"))
+                                      f"checked {len(tried)} candidate domain(s) (registered e-mail domain and name-matching domains); "
+                                      "none proven to belong to this company"))
     return None, statuses

@@ -201,14 +201,15 @@ def _print_audit(profiles, out_path=None):
 
 def audit_dir(d):
     from nca.runner import _load_bundles
-    profs = list(_load_bundles(d).values())
+    by_org = dict(_load_bundles(d))          # one profile per organisation number (bundle and per-company files)
     cdir = os.path.join(d, "companies")
     if os.path.isdir(cdir):
         for name in os.listdir(cdir):
             if name.endswith(".json"):
                 with open(os.path.join(cdir, name), encoding="utf-8") as fh:
-                    profs.append(json.load(fh))
-    return _print_audit(profs)
+                    p = json.load(fh)
+                by_org[p.get("organisation_number") or name] = p
+    return _print_audit(list(by_org.values()))
 
 
 def audit_sample(n, seed=None):
@@ -262,6 +263,13 @@ def live_check():
             v = next((x["value"] for x in p["facts"] if x["field"] == f), None)
             if v:
                 print(f"  {f}: {str(v)[:90]}")
+        trend = next((k for k in p.get("key_points") or [] if k.startswith("Change from")), None)
+        prior = next((x["value"] for x in p["facts"] if x["field"] == "prior_accounts_period"), None)
+        if prior or trend:
+            print(f"  previous year: {prior}" + (f" | {trend[:150]}" if trend else ""))
+        conf = p.get("confidence") or {}
+        if conf.get("overall"):
+            print(f"  confidence: {conf['overall']}" + (f" | can't tell: {', '.join(conf['cant_tell'])}" if conf.get("cant_tell") else ""))
         for it in (p.get("news") or [])[:5]:
             print(f"  news {it['published']} [{it['kind']}] {it['title'][:60]}"
                   + (f" (English: {it['title_en']})" if it.get("title_en") else "") + f" – {it['source']}")

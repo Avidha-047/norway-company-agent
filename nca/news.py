@@ -161,16 +161,27 @@ def official_announcements(http, orgnr, limit=15):
 NON_NEWS_PATH = re.compile(
     r"(?i)/(produkt|produkter|product|products|shop|butikk|nettbutikk|store|kategori|category|categories|tag|tags|"
     r"kontakt|contact|om-oss|about|ansatte|team|jobb|jobber|jobs|job|karriere|career|careers|ledige-stillinger|stilling|"
-    r"tjenester|services|service|meny|menu|priser|prices|cart|handlekurv|kasse|checkout|faq|personvern|privacy|cookies)(/|$)")
+    r"tjenester|tjeneste|services|service|meny|menu|priser|prices|cart|handlekurv|kasse|checkout|faq|personvern|privacy|cookies|"
+    r"ansatt|medarbeider|medarbeidere|personale|personell|styret|ledelse|people|staff|our-team|vart-team|var-stab|"
+    r"behandling|behandlinger|treatments|referanser|references|prosjekter|projects|portfolio|galleri|gallery)(/|$)")
+JUNK_SLUG = re.compile(r"(?i)(^|[/-])(slide|slider|banner|cloned|copy|kopi|test|sample|hello-world|uncategorized|"
+                       r"utkast|draft)(-?\d+)?($|[/-])")
+SERVICE_TITLE = re.compile(r"(?i)\b(catering|tjenester|vi tilbyr|we offer|bestill|book (?:time|now)|priser|prisliste|"
+                           r"tilbud|kontakt oss|om oss|our services|våre tjenester|ansatte|medarbeidere|ledige stillinger)\b")
 
 
-def is_real_post(title, url, site_url):
-    """A dated post on the company's own site: a real headline, not a menu label or a product/category page."""
+def is_real_post(title, url, site_url, menu=None):
+    """A dated post on the company's own site with a real headline - not a menu page, service/offer page, staff
+    page, product/category page or a slider/draft item."""
     if _host(url) != _host(site_url):
         return False
     path = urllib.parse.urlsplit(url).path.strip("/")
-    if not path or NON_NEWS_PATH.search("/" + path + "/"):
+    if not path or NON_NEWS_PATH.search("/" + path + "/") or JUNK_SLUG.search(path):
         return False
+    if menu and path.lower() in menu:
+        return False                                       # linked from the site's menu/header/footer: a fixed page
+    if SERVICE_TITLE.search(title or "") and not re.search(r"/(19|20)\d{2}/", "/" + path + "/"):
+        return False                                       # an offer/service page with a feed date, not an article
     words = re.findall(r"\w+", title)
     return len(words) >= 3 and len(title) >= 15
 
@@ -218,7 +229,7 @@ def _parse_feed(xml_text):
     return out
 
 
-def company_feed(http, site_url, feed_url, orgnr, limit=10, ownership=None):
+def company_feed(http, site_url, feed_url, orgnr, limit=10, ownership=None, menu=None):
     if not feed_url or _host(feed_url) != _host(site_url):
         return [], None
     r = http.get(feed_url, accept="application/rss+xml,application/atom+xml,application/xml,text/xml",
@@ -233,9 +244,15 @@ def company_feed(http, site_url, feed_url, orgnr, limit=10, ownership=None):
     if len(dated) >= 4 and len({it["published"] for it in dated}) == 1:
         return [], {"source": "company_website_feed", "url": feed_url, "status": "not_found", "http_status": 200,
                     "note": "every item carries the same date (a build/export date, not publication dates)"}
+    # three or more posts sharing one date are a bulk import (old posts moved to a new site), not publication dates
+    per_day = {}
+    for it in dated:
+        per_day[it["published"]] = per_day.get(it["published"], 0) + 1
+    bulk = {d for d, n in per_day.items() if n >= 3}
     items, rejected = [], 0
     for it in parsed:
-        if not (it["title"] and it["url"] and it["published"]) or not is_real_post(it["title"], it["url"], site_url) \
+        if not (it["title"] and it["url"] and it["published"]) or it["published"] in bulk \
+                or not is_real_post(it["title"], it["url"], site_url, menu) \
                 or it["published"] > datetime.date.today().isoformat():
             rejected += 1
             continue
@@ -246,7 +263,8 @@ def company_feed(http, site_url, feed_url, orgnr, limit=10, ownership=None):
     items.sort(key=lambda x: x["published"], reverse=True)
     return items[:limit], {"source": "company_website_feed", "url": feed_url,
                            "status": "ok" if items else "not_found", "http_status": 200,
-                           "note": f"{rejected} feed entries rejected (no publish date, or not a dated news post)" if rejected else None}
+                           "note": f"{rejected} feed entries rejected (no publish date, a bulk-import date, or a service/staff/menu page "
+                                   "rather than a dated article)" if rejected else None}
 
 
 # --------------------------------------------------------------------------- #
