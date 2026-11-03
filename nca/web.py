@@ -144,6 +144,9 @@ def extract(html, base_url, site_host):
         if p and p not in phones:
             phones.append(p)
     for m in PHONE_CTX.finditer(text):
+        # "+47 79 29 40" is a short (broken) number, not 47 79 29 40: never reuse the country code as digits
+        if not m.group(1) and text[:m.start(2)].rstrip(" .").endswith(("+", "00")):
+            continue
         p = norm_phone((m.group(1) or "") + m.group(2))
         if p and p not in phones and not _credit_context(text, m.group(0)):
             phones.append(p)
