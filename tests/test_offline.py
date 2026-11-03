@@ -256,6 +256,14 @@ class Tests(unittest.TestCase):
         self.assertEqual(p["name"], "EQUINOR ASA")
 
 
+
+class ShortPhoneTests(unittest.TestCase):
+    def test_country_code_not_reused_as_digits(self):
+        from nca import web
+        self.assertEqual(web.extract("<p>Telefon: +47 79 29 40 Epost: x</p>", "https://a.no", "a.no").get("phones"), [])
+        self.assertEqual(web.extract("<p>Tlf.: +47 901 54 495</p>", "https://a.no", "a.no").get("phones"), ["+47 90 15 44 95"])
+        self.assertEqual(web.extract("<p>Tel: 0047 22 33 44 55</p>", "https://a.no", "a.no").get("phones"), ["+47 22 33 44 55"])
+
 if __name__ == "__main__":
     unittest.main()
 
