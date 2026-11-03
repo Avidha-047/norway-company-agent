@@ -90,9 +90,11 @@ function card(p,open){const s=p.status||'';const cls=s==='active'?'active':(['ba
  const C=p.confidence||{};const lvc=l=>l==="can't tell"?'cant':l;
  const confPill=C.overall&&C.overall!=='none'?`<span class="pill conf-${lvc(C.overall)}" title="How far the links to this company can be trusted">confidence: ${esc(C.overall)}</span>${(C.cant_tell||[]).length?`<span class="pill conf-cant">can't tell: ${esc(C.cant_tell.join(', ').toLowerCase())}</span>`:''}`:'';
  const conf=(C.links||[]).length?`<h3>Confidence — which links to trust</h3><ul>${C.links.map(l=>`<li><b>${esc(l.what)}:</b> <span class="lv lv-${lvc(l.level)}">${esc(l.level)}</span> <span class="org">— ${esc(l.why)}</span></li>`).join('')}</ul>`:'';
+ const E=(p.envelope||{}).sections||[];const stc={available:'high',not_available:'medium',not_applicable:'medium',ambiguous:'cant',failed:'cant',blocked:'cant'};
+ const env=E.length?`<h3>What was found — section by section</h3><ul>${E.map(x=>`<li><b>${esc(x.title)}:</b> <span class="lv lv-${stc[x.state]||'medium'}">${esc(x.state.replace(/_/g,' '))}</span> <span class="org">— ${esc(x.reason)}</span></li>`).join('')}</ul>`:'';
  const con=p.conclusion?`<h3>Conclusion — ${esc(p.conclusion.verdict)}</h3><ul>${p.conclusion.claims.map(c=>`<li>${esc(c.claim)} <span class="org">[based on: ${esc(c.supported_by.map(x=>x.field).join(', '))}]</span></li>`).join('')}</ul>`:'';
  return `<details class="co" id="c${esc(p.organisation_number)}" ${open?'open':''}><summary><span class="nm">${esc(p.name||'(unknown)')}</span><span class="org">${esc(p.organisation_number||'')}</span><span class="pill ${cls}">${esc(s.replace(/_/g,' '))}</span>${confPill}${(p.news||[]).length?`<span class="pill">${p.news.length} dated items</span>`:''}<label class="sel" onclick="event.stopPropagation()"><input type="checkbox" data-org="${esc(p.organisation_number)}" ${SEL.has(p.organisation_number)?'checked':''}> Compare</label></summary>
- <div class="body">${con}<h3>Summary</h3><p>${esc(p.summary)}</p>${kp?`<h3>Key points</h3><ul>${kp}</ul>`:''}${risks?`<h3>Risk signals</h3><ul>${risks}</ul>`:''}${conf}
+ <div class="body">${con}<h3>Summary</h3><p>${esc(p.summary)}</p>${kp?`<h3>Key points</h3><ul>${kp}</ul>`:''}${risks?`<h3>Risk signals</h3><ul>${risks}</ul>`:''}${env}${conf}
  ${news?`<h3>Dated news &amp; official announcements</h3><ul>${news}</ul>`:''}<h3>Facts (${fs.length}) — tap “Where this came from” on any fact</h3>${fs.map(factRow).join('')}
  ${gaps?`<h3>Not found, and why</h3><ul>${gaps}</ul>`:''}</div></details>`}
 function render(){const one=rows.length===1;document.getElementById('list').innerHTML=rows.slice(0,shown).map(p=>card(p,one)).join('')||'<p class="sub">No company matches that search.</p>';
@@ -128,7 +130,7 @@ window.addEventListener('hashchange',fromHash);fromHash();render();
 </script></body></html>"""
 
 KEEP = ("organisation_number", "name", "status", "summary", "conclusion", "key_points", "risk_signals", "news", "gaps", "profile",
-        "confidence")
+        "confidence", "envelope")
 FACT_KEYS = ("field", "label", "category", "value", "as_of", "evidence_url", "source_name", "match", "note", "reference")
 
 

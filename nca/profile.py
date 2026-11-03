@@ -24,7 +24,9 @@ def build_profile(http, query, previous=None, use_web=True, use_wikidata=True, u
     if hasattr(http, "begin_company"):
         http.begin_company()
     try:
-        return _build_profile(http, query, previous, use_web, use_wikidata, use_news, use_bing, started, used_before)
+        prof = _build_profile(http, query, previous, use_web, use_wikidata, use_news, use_bing, started, used_before)
+        prof["envelope"] = envelope(prof, previous)
+        return prof
     finally:
         if hasattr(http, "end_company") and getattr(http, "free_after_company", False):
             http.end_company()
@@ -751,6 +753,134 @@ def explain(prof, fs):
     if risks:
         parts.append("Watch-outs: " + "; ".join(risks) + ".")
     return " ".join(parts)
+
+
+STATES = ("available", "not_available", "blocked", "not_applicable", "ambiguous", "failed")
+
+
+def envelope(prof, previous=None):
+    """The terminal envelope: the seven required sections, each with an explicit availability state, the fields
+    behind it and the reason. Absence is never turned into zero."""
+    status = prof.get("status")
+    facts = {f["field"] for f in prof.get("facts") or []}
+    src = {}
+    for s_ in prof.get("sources") or []:
+        src.setdefault(s_.get("source"), set()).add(s_.get("status"))
+    gaps = {g["topic"]: g["reason"] for g in prof.get("gaps") or []}
+    rej = (prof.get("verification") or {}).get("rejected") or []
+    entity = "underenhet" in (prof.get("entity_type") or "")
+    sections = []
+
+    def add(key, title, state, fields, reason):
+        assert state in STATES
+        sections.append({"section": key, "title": title, "state": state,
+                         "fields": sorted(f for f in fields if f in facts), "reason": reason})
+
+    if status in ("invalid_organisation_number",):
+        reason = "not a valid Norwegian organisation number (mod-11 check failed); nothing was looked up"
+        for key, title in SECTION_TITLES:
+            add(key, title, "not_applicable", [], reason)
+        return {"states": list(STATES), "sections": sections}
+    if status in ("not_found", "lookup_failed") or not facts:
+        st = "not_available" if status == "not_found" else "failed"
+        reason = ("no entity or sub-unit with this organisation number exists in Enhetsregisteret" if st == "not_available"
+                  else "the register could not be read in this run, so nothing was published")
+        for key, title in SECTION_TITLES:
+            add(key, title, st, [], reason)
+        return {"states": list(STATES), "sections": sections}
+
+    def state_of(source, have, missing_reason, fields):
+        st_ = src.get(source) or set()
+        if have:
+            return "available", "found in " + source.replace("_", " ")
+        if "error" in st_:
+            return "failed", f"{source.replace('_', ' ')} did not answer in this run; nothing was published rather than guessed"
+        if not st_:
+            return "not_available", missing_reason + " (source not queried in this run)"
+        return "not_available", missing_reason
+
+    ident = {"legal_name", "organisation_number", "legal_form", "registered_date", "founded_date", "business_address",
+             "municipality", "industry_code_1", "website_site_name", "lei", "wikidata_id", "status_flags"}
+    add("legal_identity", "Legal identity and public brand", "available", ident | {"website_site_name"},
+        "registry record fetched by this exact organisation number" + ("; status: " + str(status).replace("_", " ")))
+
+    acc = {"accounts_period", "revenue", "net_income", "equity", "total_assets", "prior_accounts_period", "prior_revenue",
+           "prior_net_income", "group_accounts_period", "last_annual_accounts_year"}
+    if facts & {"accounts_period"}:
+        add("annual_accounts", "Latest annual accounts and available history", "available", acc,
+            "latest filed statement" + (" and the previous year" if "prior_accounts_period" in facts else
+                                        "; the previous year was not returned by the accounts register"))
+    elif entity:
+        add("annual_accounts", "Latest annual accounts and available history", "not_applicable", acc,
+            "a sub-unit (establishment) files no accounts of its own; they are filed by its main unit")
+    else:
+        st, why = state_of("brreg_regnskap", False, gaps.get("financials") or "no filed statement was returned", acc)
+        if "normally not required" in (gaps.get("financials") or ""):
+            st, why = "not_applicable", gaps["financials"]
+        add("annual_accounts", "Latest annual accounts and available history", st, acc, why)
+
+    lead = {"ceo", "board_chair", "board_members", "board_deputies", "auditor", "accountant", "owner", "partners",
+            "contact_person", "other_roles", "subunit_count", "subunits", "employees", "employee_count_registered"}
+    if facts & lead:
+        add("leadership_workplaces", "Leadership and registered workplaces", "available", lead,
+            "roles and registered establishments listed under this organisation number")
+    else:
+        st, why = state_of("brreg_roller", False, gaps.get("people") or "no roles or establishments are registered", lead)
+        add("leadership_workplaces", "Leadership and registered workplaces", st, lead, why)
+
+    web = {"website", "website_discovered", "website_final_url", "website_title", "website_ownership", "social_profiles",
+           "registered_social_profile", "website_emails", "website_phones", "website_address", "official_website"}
+    own = next((f["value"] for f in prof["facts"] if f["field"] == "website_ownership"), "") or ""
+    cant = any(r.get("cant_tell") for r in rej) or own.startswith("can't tell")
+    if facts & {"website_discovered"} or own.startswith("the company's own site"):
+        add("website_profiles", "Verified official website and company-owned profiles", "available", web,
+            "website proven to belong to this company" + ("; social accounts linked from it and matching its name"
+                                                          if "social_profiles" in facts else ""))
+    elif cant:
+        add("website_profiles", "Verified official website and company-owned profiles", "ambiguous", web,
+            gaps.get("website") or "a candidate website could belong to a look-alike company; the link was left blank")
+    elif own.startswith(("shared", "ownership not proven")):
+        add("website_profiles", "Verified official website and company-owned profiles", "ambiguous", web,
+            "the registered website is " + own)
+    elif "error" in (src.get("company_website") or set()) and "website" in facts:
+        add("website_profiles", "Verified official website and company-owned profiles", "failed", web,
+            "the registered website could not be reached in this run")
+    else:
+        add("website_profiles", "Verified official website and company-owned profiles", "not_available", web,
+            gaps.get("website") or "no website could be verified for this company")
+
+    news = prof.get("news") or []
+    if news:
+        add("hiring_activity", "Hiring and dated public activity", "available", {"news_official", "news_company"},
+            f"{len(news)} dated items from permitted sources; no permitted job-posting source is queried, so hiring "
+            "is not reported (not_available, never 'not hiring')")
+    else:
+        st = "failed" if "error" in (src.get("brreg_kunngjoringer") or set()) else "not_available"
+        add("hiring_activity", "Hiring and dated public activity", st, set(),
+            ("the announcement register did not answer in this run" if st == "failed" else
+             "no dated announcement or company-site post was found") +
+            "; no permitted job-posting source is queried, so hiring is not reported")
+
+    n = len(prof.get("facts") or [])
+    withheld = len((prof.get("verification") or {}).get("withheld") or [])
+    add("evidence", "Claim-level evidence and availability state", "available", set(),
+        f"{n} published claims, each with source URL, retrieval time, SHA-256 of the content and the exact quote"
+        + (f"; {withheld} claims withheld because their proof could not be verified" if withheld else ""))
+
+    add("refresh", "Refresh metadata and material changes since the previous run", "available", set(),
+        (f"compared with the run of {previous.get('generated_at')}: {len(prof.get('changes') or [])} changes recorded"
+         if previous else "first run for this company: nothing to compare yet")
+        + "; earlier changes are kept in 'history', and facts from a source that failed are carried forward as stale")
+    return {"states": list(STATES), "generated_at": prof.get("generated_at"), "sections": sections}
+
+
+SECTION_TITLES = [("legal_identity", "Legal identity and public brand"),
+                  ("annual_accounts", "Latest annual accounts and available history"),
+                  ("leadership_workplaces", "Leadership and registered workplaces"),
+                  ("website_profiles", "Verified official website and company-owned profiles"),
+                  ("hiring_activity", "Hiring and dated public activity"),
+                  ("evidence", "Claim-level evidence and availability state"),
+                  ("refresh", "Refresh metadata and material changes since the previous run")]
 
 
 def link_confidence(prof):

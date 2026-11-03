@@ -165,6 +165,14 @@ with its reason under `verification.rejected`.
   (register facts, website, social media, LEI, Wikidata, announcements, website news) with its level
   (high / medium / can't tell) and why, plus an overall level.
 
+## Terminal envelope (one per input)
+
+Every profile has an `envelope` with the seven required sections, each with a state from
+`available / not_available / blocked / not_applicable / ambiguous / failed`, the fields behind it and the reason.
+Absence is never turned into zero: an accounts outage is `failed`, a legal form without a duty to file is
+`not_applicable`, a look-alike website is `ambiguous`, and hiring is `not_available` because no permitted
+job-posting source is queried. Invalid, unknown and unreadable organisation numbers get an envelope too.
+
 ## Accounts: two years
 
 Next to the latest filed statement the agent shows the **previous year's** company-level statement (taken from the

@@ -31,6 +31,9 @@ def _safe_console():
             pass
 
 
+PER_COMPANY_BUDGET = 19     # official limit: 2,000 requests per 100 companies; keep a margin
+
+
 def main(argv=None):
     _safe_console()
     ap = argparse.ArgumentParser(description="Look up Norwegian companies by organisation number and return sourced, dated facts.")
@@ -45,7 +48,8 @@ def main(argv=None):
                          "down in that run; all other stored profiles are kept as they are")
     ap.add_argument("--reports-only", metavar="DIR",
                     help="rebuild report.html (and its pages) from the profiles already stored in DIR; no lookups")
-    ap.add_argument("--max-requests", type=int, help="hard cap on outbound HTTP requests (default 1900; scaled up for --sample)")
+    ap.add_argument("--max-requests", type=int, help="hard cap on outbound HTTP requests (default: 19 per input company, at least 1,900 - under the "
+                         "official 2,000 per 100 companies)")
     ap.add_argument("--time-limit", type=int, default=40 * 60, help="seconds before the agent stops starting new requests (default 2400)")
     ap.add_argument("--no-web", action="store_true", help="skip fetching company websites")
     ap.add_argument("--no-wikidata", action="store_true", help="skip Wikidata")
@@ -126,6 +130,10 @@ def main(argv=None):
         orgnrs = retry
         if not a.max_requests:
             http.max_requests = len(retry) * 16 + 600
+    if orgnrs and not a.max_requests and not a.sample and not a.retry_incomplete:
+        # Official runs allow 2,000 requests per 100 companies: scale the cap with the batch (19 per company,
+        # never below the 1,900 default) so a 1,000-company batch is not starved after ~200 companies.
+        http.max_requests = max(budget, PER_COMPANY_BUDGET * len(orgnrs))
     if not orgnrs:
         bad = [x for x in a.orgnr if x]
         if bad:  # an argument without 9 digits: still answer honestly

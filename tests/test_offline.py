@@ -1499,3 +1499,76 @@ class HostPauseTests(unittest.TestCase):
             out = subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                                   "agent.py"), "--audit", d], capture_output=True, text=True, encoding="utf-8").stdout
         self.assertIn("AUDIT: 1 companies", out)
+
+
+class EnvelopeTests(unittest.TestCase):
+    def _states(self, p):
+        return {s["section"]: s["state"] for s in p["envelope"]["sections"]}
+
+    def test_every_profile_has_seven_sections_with_valid_states(self):
+        from nca.profile import STATES
+        p = build_profile(FakeHttp(routes()), ORG)
+        secs = p["envelope"]["sections"]
+        self.assertEqual([s["section"] for s in secs], ["legal_identity", "annual_accounts", "leadership_workplaces",
+                                                         "website_profiles", "hiring_activity", "evidence", "refresh"])
+        self.assertTrue(all(s["state"] in STATES and s["reason"] for s in secs))
+        st = self._states(p)
+        self.assertEqual(st["legal_identity"], "available")
+        self.assertEqual(st["annual_accounts"], "available")
+        self.assertEqual(st["website_profiles"], "available")
+
+    def test_not_found_invalid_and_failed_inputs_still_get_an_envelope(self):
+        p = build_profile(FakeHttp({}), "923609017")                      # bad check digit
+        self.assertEqual(set(self._states(p).values()), {"not_applicable"})
+        p = build_profile(FakeHttp({f"/enheter/{ORG}": (404, {}), f"/underenheter/{ORG}": (404, {})}), ORG)
+        self.assertIn(set(self._states(p).values()), ({"not_available"}, {"failed"}))
+        p = build_profile(FakeHttp({f"/enheter/{ORG}": (503, {})}), ORG)
+        self.assertEqual(set(self._states(p).values()), {"failed"})
+
+    def test_lookalike_website_is_ambiguous_and_no_accounts_duty_is_not_applicable(self):
+        page = ("<html><head><title>Maleran</title></head><body><p>Maleran AS er et malerfirma i Bergen.</p>"
+                "<p>Fjellveien 12, 5003 Bergen</p></body></html>")
+        rec = dict(SMALL, navn="MALERAN HOLDING AS")
+        r = DiscoveryTests().r(**{f"/enheter/{SN}": (200, rec), "maleran.no/kontakt": (404, ""), "maleran.no": (200, page)})
+        self.assertEqual(self._states(build_profile(FakeHttp(r), SN))["website_profiles"], "ambiguous")
+        e = dict(ENHET, organisasjonsform={"kode": "FLI", "beskrivelse": "Forening/lag/innretning"})
+        e.pop("sisteInnsendteAarsregnskap", None)
+        p = build_profile(FakeHttp(routes(**{f"/enheter/{ORG}": (200, e)})), ORG)
+        self.assertEqual(self._states(p)["annual_accounts"], "not_applicable")
+
+    def test_accounts_outage_is_failed_not_zero(self):
+        p = build_profile(FakeHttp(routes(**{f"regnskap/{ORG}": (500, {})})), ORG)
+        self.assertEqual(self._states(p)["annual_accounts"], "failed")
+        self.assertIsNone(field(p, "revenue"))
+
+
+class BudgetScalingTests(unittest.TestCase):
+    def test_request_cap_scales_with_the_batch(self):
+        import agent
+        captured = {}
+        class Stop(Exception):
+            pass
+        def fake_run_batch(http, orgnrs, out, **kw):
+            captured["cap"] = http.max_requests
+            raise Stop()
+        import tempfile
+        orig = agent.run_batch
+        agent.run_batch = fake_run_batch
+        try:
+            with tempfile.TemporaryDirectory() as d:
+                inp = os.path.join(d, "c.txt")
+                with open(inp, "w") as fh:
+                    fh.write("\n".join(["923609016"] * 1 + ["984851006", "975820440"]))
+                big = os.path.join(d, "big.txt")
+                from nca.util import valid_orgnr
+                nums = [n for n in (str(800000000 + i) for i in range(20000)) if valid_orgnr(n)][:1000]
+                with open(big, "w") as fh:
+                    fh.write("\n".join(nums))
+                for path, want in ((inp, 1900), (big, 19000)):
+                    try:
+                        agent.main(["--input", path, "--out", os.path.join(d, "o")])
+                    except Stop:
+                        pass
+                    self.assertEqual(captured["cap"], want)
+        finally:
+            agent.run_batch = orig
