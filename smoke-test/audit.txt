@@ -1,0 +1,5 @@
+
+AUDIT: 100 companies, 4983 published facts
+  withheld (could not be proven, not published): 0  {}
+  consistency issues in published output:       0  {}
+RESULT: CLEAN
