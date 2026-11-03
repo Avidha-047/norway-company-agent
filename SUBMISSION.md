@@ -1,4 +1,4 @@
-# Submission – Norway Company Facts Agent (version 7)
+# Submission – Norway Company Facts Agent (version 7.1)
 
 | Item | Value |
 |---|---|
@@ -10,7 +10,10 @@
 | Expected run cost | $0.00 external API cost (no paid API, no LLM). About 9–10 requests per company (measured: 842 for 100 companies in 148 s). The request cap scales with the batch: 19 per company (at least 1,900), under the official 2,000 per 100 companies; runs stop starting new requests after 40 minutes. A source that stops answering is paused after 5 timeouts in a row. |
 | 100-company smoke test | `smoke-test/` – run report, index, profiles, report page and self-audit of a fresh run of the command above on 100 companies. |
 | Pre-built profiles | `profiles/` holds stored profiles built with this agent; every fact cites its live source URL, retrieval time, SHA-256 of the content and the exact quote. |
-| Built with JBOX | No |
+| Built with JBOX | The agent: no. The Signalpost Explorer website (JBOX bonus) is built with JBOX from this agent's output. |
+
+## Changes in version 7.1
+- **Phone fix**: a broken short number such as "+47 79 29 40" on a website is no longer read as 47 79 29 40 – the country code is never reused as digits.
 
 ## Changes in version 7
 - **Terminal envelope**: every input ends in one envelope with the seven required sections (legal identity, annual accounts and history, leadership and workplaces, verified website and profiles, hiring and dated activity, claim-level evidence, refresh metadata), each with an explicit state – `available`, `not_available`, `not_applicable`, `ambiguous`, `failed` or `blocked` – and its reason. Invalid, unknown and failed inputs get an envelope too. Hiring is reported as `not_available` (no permitted job-posting source is queried), never as "not hiring".
