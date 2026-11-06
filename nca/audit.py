@@ -18,7 +18,7 @@ NEWS_KINDS = {"official_announcement", "company_news", "press"}
 BANNED_WORDS = re.compile(r"(?i)\blatest\b|\bcurrent(ly)? (revenue|profit|result)s?\b")
 GROUP_ONLY_FIELDS = {"social_profiles", "website_emails", "website_phones", "website_about", "website_contact_page",
                      "website_address", "website_logo", "website_site_name", "website_description", "news_company",
-                     "website_founding_date"}
+                     "website_founding_date", "job_postings", "careers_page"}
 
 
 def _norm(s):
@@ -56,7 +56,7 @@ def _value_tokens(field, value):
         return _value_tokens(field, value[0]) if value else []
     v = str(value)
     if field.endswith("_url") or field in ("website", "website_discovered", "website_final_url", "logo",
-                                           "wikipedia_en", "wikipedia_no", "website_contact_page", "website_logo", "address_map"):
+                                           "wikipedia_en", "wikipedia_no", "website_contact_page", "website_logo", "address_map", "careers_page"):
         return []          # URLs are checked by their own derived basis
     if " – " in v:
         v = v.split(" – ")[0]

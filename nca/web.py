@@ -392,27 +392,90 @@ def _ddg_links(html):
 _TRANS = str.maketrans({"æ": "ae", "ø": "o", "å": "a", "é": "e", "ü": "u", "ö": "o", "ä": "a"})
 
 
-def guess_domains(legal_name, limit=3):
-    """Likely own domains from the registered name, e.g. 'MALERAN AS' -> maleran.no, maleran.com."""
-    toks = [t.translate(_TRANS) for t in norm_name(legal_name).split()]
-    toks = [re.sub(r"[^a-z0-9]", "", t) for t in toks]
-    toks = [t for t in toks if t]
-    if not toks:
+_TRANS_ALT = str.maketrans({"æ": "ae", "ø": "oe", "å": "aa", "é": "e", "ü": "u", "ö": "o", "ä": "a"})
+# words a company domain usually leaves out ('Bryne Trafikkskole AS' -> bryne-trafikkskole.no / bryne.no is too broad)
+FILLER_WORDS = {"og", "and", "&", "i", "the"}
+
+
+def guess_domains(legal_name, limit=6):
+    """Likely own domains from the registered name, most likely first, e.g. 'MALERAN AS' -> maleran.no,
+    maleran.com; 'HAGSTRØM MOTORSPORT AS' -> hagstrommotorsport.no, hagstrom-motorsport.no, hagstroemmotorsport.no.
+    These are only candidates: a site is published only when its pages prove it belongs to this company."""
+    base = [t for t in norm_name(legal_name).split() if t not in FILLER_WORDS]
+    if not base:
         return []
-    joined, hyph = "".join(toks), "-".join(toks)
-    if len(joined) < 4 or len(joined) > 40:
-        return []
-    if all(t in GENERIC_WORDS for t in toks):
-        return []
-    out = [f"{joined}.no"]
-    if len(toks) > 1:
-        out.append(f"{hyph}.no")
-    out.append(f"{joined}.com")
+    variants = []
+    for table in (_TRANS, _TRANS_ALT):
+        toks = [re.sub(r"[^a-z0-9]", "", t.translate(table)) for t in base]
+        toks = [t for t in toks if t]
+        if toks and toks not in variants:
+            variants.append(toks)
+    out = []
+
+    def push(d):
+        if d not in out:
+            out.append(d)
+
+    for i, toks in enumerate(variants):
+        joined, hyph = "".join(toks), "-".join(toks)
+        if len(joined) < 4 or len(joined) > 40 or all(t in GENERIC_WORDS for t in toks):
+            continue
+        push(f"{joined}.no")
+        if len(toks) > 1:
+            push(f"{hyph}.no")
+        if i == 0:
+            push(f"{joined}.com")
+            if len(toks) >= 3:
+                # long names are often shortened to their first two words ('Sandnes Elektriske Installasjon')
+                two = toks[:2]
+                if not all(t in GENERIC_WORDS for t in two) and len("".join(two)) >= 6:
+                    push("".join(two) + ".no")
+                    push("-".join(two) + ".no")
     return [f"https://{d}/" for d in out[:limit]]
 
 
 GENERIC_WORDS = {"invest", "holding", "eiendom", "service", "bygg", "transport", "consult", "consulting", "drift",
                  "data", "design", "media", "regnskap", "norge", "norway", "group", "gruppen", "partner", "partners"}
+
+
+BRAVE_ENDPOINT = "https://api.search.brave.com/res/v1/web/search"
+# directories, aggregators and social networks are never a company's own website (list from Builderr's starter kit)
+DISCOVERY_BLOCKED = {"proff.no", "purehelp.no", "1881.no", "gulesider.no", "firmalisten.no", "companywall.no",
+                     "firmadatabasen.no", "sokfirma.no", "yra.no", "northdata.com", "nor47business.com", "brreg.no",
+                     "linkedin.com", "facebook.com", "instagram.com", "x.com", "twitter.com", "youtube.com", "tiktok.com",
+                     "finn.no", "wikipedia.org", "kompass.com", "dnb.com", "bisnode.no", "regnskapstall.no",
+                     "forvalt.no", "infobel.com", "enirogule.no", "opencorporates.com", "allabolag.se", "virksomhet.brreg.no"}
+
+
+def brave_candidates(http, legal_name, orgnr, rec, api_key, limit=3):
+    """Candidate company sites from the Brave Search API: '"<legal name>" <orgnr> <municipality>'.
+    Only the result URLs are used, transiently; publication still needs proof on the fetched site."""
+    addr = rec.get("forretningsadresse") or rec.get("beliggenhetsadresse") or {}
+    place = addr.get("kommune") or addr.get("poststed") or ""
+    q = f'"{legal_name}" {orgnr} {place}'.strip()
+    url = BRAVE_ENDPOINT + "?" + urllib.parse.urlencode({"q": q, "count": 10, "country": "no", "search_lang": "nb",
+                                                          "safesearch": "moderate", "spellcheck": "0"})
+    r = http.get(url, accept="application/json", retries=1, timeout=15,
+                 headers={"X-Subscription-Token": api_key, "Accept-Encoding": "identity"})
+    data = r.json() if r.status == 200 else None
+    results = ((data or {}).get("web") or {}).get("results") or []
+    out = []
+    for res in results:
+        u = res.get("url") if isinstance(res, dict) else None
+        h = host(u) if u else ""
+        h0 = h[4:] if h.startswith("www.") else h
+        if not h0 or any(h0 == b or h0.endswith("." + b) for b in DISCOVERY_BLOCKED) or is_social(u):
+            continue
+        home = f"https://{h}/"
+        if home not in out:
+            out.append(home)
+        if len(out) >= limit:
+            break
+    status = {"source": "website_discovery", "url": BRAVE_ENDPOINT, "status": "ok" if r.status == 200 else "error",
+              "http_status": r.status,
+              "note": f"Brave Search API: {len(results)} results, {len(out)} non-directory site(s) checked on the site itself"
+                      if r.status == 200 else f"Brave Search API did not answer (HTTP {r.status})"}
+    return out, status
 
 
 def search_candidates(http, legal_name, rec, limit=2, debug=False):

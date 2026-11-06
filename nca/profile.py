@@ -26,6 +26,11 @@ def build_profile(http, query, previous=None, use_web=True, use_wikidata=True, u
     try:
         prof = _build_profile(http, query, previous, use_web, use_wikidata, use_news, use_bing, started, used_before)
         prof["envelope"] = envelope(prof, previous)
+        from . import contract
+        prof.update(contract.build(prof, run={
+            "run_id": getattr(http, "run_id", None),
+            "started_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(started)),
+            "completed_at": now_iso()}))
         return prof
     finally:
         if hasattr(http, "end_company") and getattr(http, "free_after_company", False):
@@ -158,7 +163,8 @@ def _build_profile(http, query, previous, use_web, use_wikidata, use_news, use_b
     prof["history"] = prof["history"][-30:]
     prof["verification"]["self_audit"] = A.audit_profile(prof)
     prof["complete"] = complete
-    prof["stats"] = {"requests": http.used - used_before, "seconds": round(time.time() - started, 2), "fact_count": len(facts)}
+    own = http.company_requests() if hasattr(http, "company_requests") else None
+    prof["stats"] = {"requests": own if own is not None else http.used - used_before, "seconds": round(time.time() - started, 2), "fact_count": len(facts)}
     return prof
 
 
@@ -843,23 +849,42 @@ def envelope(prof, previous=None):
         add("website_profiles", "Verified official website and company-owned profiles", "ambiguous", web,
             "the registered website is " + own)
     elif "error" in (src.get("company_website") or set()) and "website" in facts:
-        add("website_profiles", "Verified official website and company-owned profiles", "failed", web,
-            "the registered website could not be reached in this run")
+        errs = " ".join(str(s_.get("note") or s_.get("error") or "") for s_ in prof.get("sources") or []
+                        if s_ and s_.get("source") == "company_website")
+        if re.search(r"getaddrinfo|Name or service not known|nodename nor servname|No address associated", errs):
+            add("website_profiles", "Verified official website and company-owned profiles", "not_available", web,
+                "the website registered in Enhetsregisteret does not exist any more (its domain does not resolve in DNS)")
+        else:
+            add("website_profiles", "Verified official website and company-owned profiles", "failed", web,
+                "the registered website could not be reached in this run")
     else:
         add("website_profiles", "Verified official website and company-owned profiles", "not_available", web,
             gaps.get("website") or "no website could be verified for this company")
 
     news = prof.get("news") or []
-    if news:
-        add("hiring_activity", "Hiring and dated public activity", "available", {"news_official", "news_company"},
-            f"{len(news)} dated items from permitted sources; no permitted job-posting source is queried, so hiring "
-            "is not reported (not_available, never 'not hiring')")
+    careers = next((s_.get("careers") for s_ in prof.get("sources") or [] if s_ and s_.get("careers")), None)
+    jobs = next((f["value"] for f in prof.get("facts") or [] if f["field"] == "job_postings"), None) or []
+    if jobs:
+        hiring = f"{len(jobs)} job posting(s) listed on the careers page of the company's own verified website"
+    elif careers and careers.get("checked"):
+        hiring = ("the careers page of the company's own website was checked and lists no individual job posting "
+                  "that could be identified (not the same as 'not hiring')")
+    elif careers:
+        hiring = careers.get("reason") or "no careers page was checked"
+    elif "website_profiles" in [s_["section"] for s_ in sections if s_["state"] == "available"]:
+        hiring = "the company's verified website links no careers page"
+    else:
+        hiring = ("job postings are read only from a careers page on a verified company website, and none could be "
+                  "verified for this company; hiring is not reported (never 'not hiring')")
+    if jobs or news:
+        add("hiring_activity", "Hiring and dated public activity", "available", {"news_official", "news_company",
+            "job_postings", "careers_page"},
+            "; ".join(x for x in (hiring, f"{len(news)} dated items from permitted sources" if news else "") if x))
     else:
         st = "failed" if "error" in (src.get("brreg_kunngjoringer") or set()) else "not_available"
-        add("hiring_activity", "Hiring and dated public activity", st, set(),
+        add("hiring_activity", "Hiring and dated public activity", st, {"careers_page"},
             ("the announcement register did not answer in this run" if st == "failed" else
-             "no dated announcement or company-site post was found") +
-            "; no permitted job-posting source is queried, so hiring is not reported")
+             "no dated announcement or company-site post was found") + "; " + hiring)
 
     n = len(prof.get("facts") or [])
     withheld = len((prof.get("verification") or {}).get("withheld") or [])

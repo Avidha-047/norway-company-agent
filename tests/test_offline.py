@@ -264,6 +264,152 @@ class ShortPhoneTests(unittest.TestCase):
         self.assertEqual(web.extract("<p>Tlf.: +47 901 54 495</p>", "https://a.no", "a.no").get("phones"), ["+47 90 15 44 95"])
         self.assertEqual(web.extract("<p>Tel: 0047 22 33 44 55</p>", "https://a.no", "a.no").get("phones"), ["+47 22 33 44 55"])
 
+
+class ContractV8Tests(unittest.TestCase):
+    """Builderr starter-kit output contract, synthesis with evidence ids, careers-page jobs, www retry."""
+
+    CAREERS_HOME = HTML.replace("</body>", "<a href='/karriere'>Karriere</a></body>")
+    CAREERS = ("<html><body><h1>Ledige stillinger</h1>"
+               "<a href='/karriere/vare-verdier'>Våre verdier</a>"
+               "<a href='https://equinor.webcruiter.no/main/recruit/public/4412?link_source_id=0'>Prosessingeniør</a>"
+               "<a href='https://equinor.webcruiter.no/main/recruit/public'>Se alle stillinger</a>"
+               "<script type='application/ld+json'>{\"@type\":\"JobPosting\",\"title\":\"Geolog\","
+               "\"datePosted\":\"2026-10-20\",\"hiringOrganization\":{\"name\":\"Equinor ASA\"}}</script>"
+               "<script type='application/ld+json'>{\"@type\":\"JobPosting\",\"title\":\"Kokk\","
+               "\"hiringOrganization\":{\"name\":\"Kantine Partner AS\"}}</script>"
+               "</body></html>")
+
+    def _profile(self):
+        r = {"equinor.com/karriere": (200, self.CAREERS)}
+        r.update(routes(**{"equinor.com": (200, self.CAREERS_HOME)}))
+        return build_profile(FakeHttp(r), ORG)
+
+    def test_contract_fields_and_evidence_links(self):
+        p = self._profile()
+        for k in ("run", "claims", "evidence", "synthesis", "changes", "errors", "operations"):
+            self.assertIn(k, p)
+        ids = {e["id"] for e in p["evidence"]}
+        avail = [c for c in p["claims"] if c["availability"] == "available"]
+        self.assertTrue(avail)
+        for c in avail:
+            self.assertTrue(c["evidence_ids"], c["field"])
+            self.assertTrue(set(c["evidence_ids"]) <= ids)
+        for e in p["evidence"]:
+            self.assertIn(e["source_class"], ("official_registry", "company_owned", "third_party_registry",
+                                              "third_party_publication", "other"))
+            self.assertTrue(e["retrieved_at"])
+        self.assertEqual(p["operations"]["third_party_cost_usd"], 0)
+        self.assertIn(p["run"]["terminal_status"], ("completed", "incomplete"))
+
+    def test_jobs_from_careers_page(self):
+        p = self._profile()
+        jobs = field(p, "job_postings")
+        self.assertIsNotNone(jobs)
+        titles = {j["title"] for j in jobs["value"]}
+        self.assertEqual(titles, {"Geolog", "Prosessingeniør"})      # values page, 'see all' and another employer dropped
+        for j in jobs["value"]:
+            self.assertEqual(j["reference"]["quote_status"], "exact")
+        hiring = next(s for s in p["envelope"]["sections"] if s["section"] == "hiring_activity")
+        self.assertEqual(hiring["state"], "available")
+        self.assertIn("2 job posting", hiring["reason"])
+        self.assertTrue(any(c["family"] == "job_postings" for c in p["claims"]))
+
+    def test_synthesis_cites_evidence(self):
+        p = self._profile()
+        syn = p["synthesis"]
+        ids = {e["id"] for e in p["evidence"]}
+        self.assertTrue(syn["what_it_does"])
+        self.assertTrue(syn["what_changed"])
+        for part in ("what_it_does", "what_changed"):
+            for st in syn[part]:
+                self.assertTrue(set(st["evidence_ids"]) <= ids)
+        self.assertTrue(any(st["evidence_ids"] for st in syn["what_it_does"]))
+        self.assertIn("Hiring: 2 job posting", syn["text"])
+
+    def test_no_careers_link_is_reported_not_zero(self):
+        p = build_profile(FakeHttp(routes()), ORG)
+        self.assertIsNone(field(p, "job_postings"))
+        hiring = next(s for s in p["envelope"]["sections"] if s["section"] == "hiring_activity")
+        self.assertNotIn("0 job", hiring["reason"])
+        self.assertIn("careers page", hiring["reason"])
+
+    def test_www_twin_retry(self):
+        from nca import sources as S
+        class H(FakeHttp):
+            def get(self, url, **kw):
+                if url.startswith("https://acme.no"):
+                    self.used += 1
+                    return Response(url, 0, b"", {}, url)
+                return FakeHttp.get(self, url, **kw)
+        h = H({"www.acme.no": (200, "<html><title>Acme</title></html>")})
+        r, url = S._fetch_home(h, "acme.no")
+        self.assertEqual(r.status, 200)
+        self.assertEqual(url, "https://www.acme.no/")
+
+    def test_failed_company_still_gets_contract_envelope(self):
+        from nca.runner import failed_profile, validate_envelopes
+        p = failed_profile("923609016", "error", "RuntimeError: boom", "r1")
+        self.assertEqual(p["run"]["terminal_status"], "incomplete")
+        self.assertTrue(all(c["availability"] == "failed" for c in p["claims"]))
+        self.assertEqual(len(p["claims"]), 7)
+        self.assertTrue(validate_envelopes([p], ["923609016"])["passed"])
+
+
+class DiscoveryV8Tests(unittest.TestCase):
+    SITE = ("<html><head><title>Maleran</title></head><body>Maleran AS – org.nr 975 820 440 – Tromsø</body></html>")
+
+    def _rec(self):
+        return {"navn": "MALERAN AS", "organisasjonsnummer": "975820440", "organisasjonsform": {"kode": "AS"},
+                "forretningsadresse": {"kommune": "TROMSØ", "poststed": "TROMSØ", "adresse": ["Storgata 1"],
+                                       "postnummer": "9008"}}
+
+    def test_subunit_website_is_a_candidate_and_must_prove_ownership(self):
+        from nca import sources as S
+        from nca.facts import FactSet
+        fs = FactSet()
+        fs.add("subunits", "Establishments (first 15)", [{"organisation_number": "999999999", "name": "MALERAN AVD",
+               "website": "www.maler-tromso.no"}], "brreg_enhetsregisteret", "https://x", category="size")
+        h = FakeHttp({"maler-tromso.no": (200, self.SITE)})
+        st, stats = S.discover_website(h, fs, "975820440", self._rec(), [])
+        self.assertIsNotNone(st)
+        self.assertIn("maler-tromso.no", fs.get("website_discovered"))
+        own = next(f for f in fs.items if f["field"] == "website_ownership")
+        self.assertTrue(own["value"].startswith("the company's own site"))
+
+    def test_brave_only_with_key_and_never_directories(self):
+        import os
+        from nca import sources as S
+        from nca.facts import FactSet
+        seen = {}
+
+        class H(FakeHttp):
+            def get(self, url, **kw):
+                if "api.search.brave.com" in url:
+                    seen["token"] = (kw.get("headers") or {}).get("X-Subscription-Token")
+                    self.used += 1
+                    body = {"web": {"results": [{"url": "https://www.proff.no/selskap/maleran"},
+                                                {"url": "https://www.facebook.com/maleran"},
+                                                {"url": "https://www.malerantromso.no/om-oss"}]}}
+                    return Response(url, 200, json.dumps(body).encode(), {"Content-Type": "application/json"}, url)
+                return FakeHttp.get(self, url, **kw)
+        old = os.environ.pop("BRAVE_SEARCH_API_KEY", None)
+        try:
+            h = H({"malerantromso.no": (200, self.SITE)})
+            st, _ = S.discover_website(h, FactSet(), "975820440", self._rec(), [])
+            self.assertIsNone(st)                          # no key: no search at all
+            self.assertNotIn("token", seen)
+            os.environ["BRAVE_SEARCH_API_KEY"] = "test-key"
+            fs = FactSet()
+            h = H({"malerantromso.no": (200, self.SITE)})
+            st, _ = S.discover_website(h, fs, "975820440", self._rec(), [])
+            self.assertEqual(seen["token"], "test-key")
+            self.assertIn("malerantromso.no", fs.get("website_discovered"))
+            self.assertFalse(any("proff.no" in u or "facebook.com" in u for u in getattr(h, "urls", [])))
+        finally:
+            os.environ.pop("BRAVE_SEARCH_API_KEY", None)
+            if old is not None:
+                os.environ["BRAVE_SEARCH_API_KEY"] = old
+
 if __name__ == "__main__":
     unittest.main()
 

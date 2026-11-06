@@ -32,6 +32,11 @@ SOURCES = {
         "licence": "public register announcements",
         "authority": "official",
     },
+    "company_careers": {
+        "name": "Careers page on the company's own verified website",
+        "licence": "public company web page; job titles, dates and links only",
+        "authority": "self-published",
+    },
     "company_website_feed": {
         "name": "Company's own website news feed (RSS/Atom)",
         "licence": "public web feed; titles, dates and links only",

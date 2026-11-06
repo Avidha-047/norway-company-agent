@@ -70,6 +70,7 @@ DERIVED = {
     "employee_count_registered": "the register's flag for whether an employee count is held (quoted)",
     "website_final_url": "the address the page content was retrieved from (after redirects); quote is the page title",
     "website_contact_page": "the contact link found on the homepage (quoted)",
+    "careers_page": "the careers link found on the company's own homepage (quoted)",
     "logo": "logo file name as stated on the Wikidata item (quoted)",
     "website_ownership": "the hashed page content was checked for this company's organisation number and registered name; "
                          "the quote is the matching text when found, otherwise the page title identifying the checked page",

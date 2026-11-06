@@ -51,6 +51,7 @@ def main(argv=None):
     ap.add_argument("--max-requests", type=int, help="hard cap on outbound HTTP requests (default: 19 per input company, at least 1,900 - under the "
                          "official 2,000 per 100 companies)")
     ap.add_argument("--time-limit", type=int, default=40 * 60, help="seconds before the agent stops starting new requests (default 2400)")
+    ap.add_argument("--run-id", help="identifier recorded in every envelope's run block (default: run-<UTC timestamp>)")
     ap.add_argument("--no-web", action="store_true", help="skip fetching company websites")
     ap.add_argument("--no-wikidata", action="store_true", help="skip Wikidata")
     ap.add_argument("--no-news", action="store_true", help="skip dated news and announcements")
@@ -109,6 +110,7 @@ def main(argv=None):
         return 0
     budget = a.max_requests or (a.sample * 16 + 600 if a.sample else 1900)
     http = Http(max_requests=budget, deadline=time.time() + a.time_limit)
+    http.run_id = a.run_id or time.strftime("run-%Y%m%dT%H%M%SZ", time.gmtime())
 
     inputs = list(a.orgnr)
     for path in a.input:

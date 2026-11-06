@@ -1,21 +1,39 @@
 {
-  "finished_at": "2026-11-03T17:01:33Z",
+  "finished_at": "2026-11-06T05:33:10Z",
   "companies": 100,
   "statuses": {
-    "active": 97,
-    "deleted": 1,
+    "active": 98,
     "under_liquidation": 2
   },
-  "facts_total": 4983,
-  "facts_per_company_avg": 49.8,
+  "facts_total": 7230,
+  "facts_per_company_avg": 72.3,
   "companies_with_changes": 0,
-  "companies_with_dated_news": 54,
-  "facts_with_content_hash": 4983,
-  "facts_with_exact_or_derived_quote": 4983,
-  "dated_news_items": 516,
-  "outbound_requests": 923,
+  "companies_with_dated_news": 100,
+  "facts_with_content_hash": 7230,
+  "facts_with_exact_or_derived_quote": 7230,
+  "dated_news_items": 1155,
+  "outbound_requests": 1059,
   "request_budget": 1900,
-  "seconds": 150.4,
+  "seconds": 195.1,
   "external_api_cost_usd": 0.0,
+  "run_id": "run-20261106T052955Z",
+  "expected_count": 100,
+  "emitted_envelopes": 100,
+  "validation": {
+    "passed": true,
+    "checks": {
+      "exact_expected_count": true,
+      "unique_organisation_numbers": true,
+      "all_claim_states_terminal": true,
+      "all_section_states_terminal": true,
+      "zero_silent_drops": true
+    }
+  },
+  "operations": {
+    "requests": 1059,
+    "p50_ms": 9440,
+    "p95_ms": 26360,
+    "third_party_cost_usd": 0
+  },
   "note": "All sources are free public APIs/pages; no paid API or LLM is called."
 }
