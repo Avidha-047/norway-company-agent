@@ -3,6 +3,7 @@ facts plus a status record. Nothing is ever guessed: a value is only published
 when it is present in a source record that is keyed to the same org number.
 """
 import html as htmllib
+import os
 import re
 import urllib.parse
 
@@ -453,6 +454,8 @@ def subunits_facts(http, fs, orgnr):
             item["municipality"] = place
         if is_number(u.get("antallAnsatte")) and u.get("harRegistrertAntallAnsatte") is not False:
             item["employees"] = u["antallAnsatte"]
+        if u.get("hjemmeside"):
+            item["website"] = u["hjemmeside"]
         listed.append(item)
     fs.add("subunits", "Establishments (first 15)", listed, "brreg_enhetsregisteret", url,
            evidence_url=brreg_page(orgnr), category="size", match=m)
@@ -975,11 +978,21 @@ def _fetch_home(http, site, probe=False):
                  timeout=8 if probe else 12)
     if probe:
         return r, url
-    if r.status != 200 and url.startswith("https://"):
-        alt = "http://" + url[len("https://"):]
-        r2 = http.get(alt, accept="text/html", max_bytes=1_500_000, retries=0, timeout=12)
-        if r2.status == 200:
-            r, url = r2, alt
+    if r.status != 200:
+        # the same registered address, written the other common way: www.<domain> <-> <domain>, then plain http
+        parts = urllib.parse.urlsplit(url)
+        hostname = parts.netloc
+        twin = hostname[4:] if hostname.lower().startswith("www.") else "www." + hostname
+        tries = [urllib.parse.urlunsplit(("https", twin, parts.path or "/", parts.query, ""))]
+        if url.startswith("https://"):
+            tries.append("http://" + url[len("https://"):])
+        for alt in tries:
+            if not http.spare(1):
+                break
+            r2 = http.get(alt, accept="text/html,application/xhtml+xml", max_bytes=1_500_000, retries=0, timeout=12)
+            if r2.status == 200:
+                r, url = r2, alt
+                break
     return r, url
 
 
@@ -1130,7 +1143,9 @@ def website_facts(http, fs, orgnr, site, rec=None, discovered=False, rejections=
     add("website_logo", "Logo (from the site's structured data)", ld.get("logo"), "identity")
     if ld.get("founding_date"):
         add("website_founding_date", "Founding date stated on website", ld["founding_date"][:10], "identity")
+    careers = job_facts(http, fs, html, r.final_url, legal_name, brand)
     st = SourceStatus.make(src, r.final_url, "ok", 200)
+    st["careers"] = careers
     st["feed_url"] = find_feed(html, r.final_url)
     st["nav_paths"] = sorted(menu_paths(html, r.final_url))
     st["ownership"] = m
@@ -1181,6 +1196,21 @@ def discover_website(http, fs, orgnr, rec, rejections, use_search=False):
                 return st, statuses
             if st and st.get("status") == "not_found":
                 break                      # the site answered but is not proven to be this company's
+    # a website registered on one of the company's own establishments (sub-units) is the next strongest lead
+    for unit in fs.get("subunits") or []:
+        site_ = (unit.get("website") or "").strip()
+        if not site_ or web.is_social(site_ if "://" in site_ else "https://" + site_):
+            continue
+        cand = web.host(site_ if "://" in site_ else "https://" + site_)
+        if not cand or cand in tried or not http.spare(2):
+            continue
+        tried.add(cand)
+        st = website_facts(http, fs, orgnr, "https://" + cand, rec=rec, discovered=True, rejections=rejections,
+                           probe=True, origin=f"registered as the website of its establishment {unit.get('name')} "
+                                              f"({unit.get('organisation_number')}) in Enhetsregisteret")
+        if st and st.get("status") == "ok":
+            statuses.append(st)
+            return st, statuses
     for cand in web.guess_domains(name):
         h = web.host(cand)
         if h in tried or h.replace("www.", "", 1) in tried:
@@ -1192,6 +1222,23 @@ def discover_website(http, fs, orgnr, rec, rejections, use_search=False):
         if st and st.get("status") == "ok":
             statuses.append(st)
             return st, statuses
+    brave_key = os.environ.get("BRAVE_SEARCH_API_KEY", "").strip()
+    if brave_key and http.spare(3):
+        # Builderr's recommended discovery route (starter kit: run_brave_discovery.py, same variable). Results are
+        # used transiently as crawl candidates only; nothing from the search response is stored or published.
+        cands, sst = web.brave_candidates(http, name, orgnr, (rec or {}), brave_key)
+        statuses.append(SourceStatus(**{k: v for k, v in sst.items() if v is not None}))
+        for c in cands:
+            h = web.host(c)
+            if h in tried or h.replace("www.", "", 1) in tried or not http.spare(2):
+                continue
+            tried.add(h)
+            st = website_facts(http, fs, orgnr, c, rec=rec, discovered=True, rejections=rejections,
+                               origin="found with the Brave Search API and then verified on the site itself")
+            if st:
+                statuses.append(st)
+                if st.get("status") == "ok":
+                    return st, statuses
     if use_search and http.spare(3):
         cands, sst = web.search_candidates(http, name, rec)
         statuses.append(SourceStatus(**{k: v for k, v in sst.items() if v is not None}))
@@ -1204,6 +1251,42 @@ def discover_website(http, fs, orgnr, rec, rejections, use_search=False):
                 if st.get("status") == "ok":
                     return st, statuses
     statuses.append(SourceStatus.make("website_discovery", None, "not_found", None,
-                                      f"checked {len(tried)} candidate domain(s) (registered e-mail domain and name-matching domains); "
+                                      f"checked {len(tried)} candidate domain(s) (registered e-mail domain, establishment websites, name-matching domains"
+                                      + (", Brave Search" if brave_key else "") + "); "
                                       "none proven to belong to this company"))
     return None, statuses
+
+
+def job_facts(http, fs, html, site_url, legal_name, brand="", probe=False):
+    """Job postings from the careers page of the company's verified own site (one request at most).
+    Returns what was checked, so the envelope can tell 'checked, none listed' from 'not checked'."""
+    from . import jobs as J
+    from . import web
+    link = J.careers_link(html, site_url)
+    if not link:
+        return {"checked": False, "reason": "the company's website links no careers page"}
+    if probe or not http.spare(1):
+        return {"checked": False, "url": link, "reason": "careers page found but not fetched (request budget)"}
+    r = http.get(link, accept="text/html,application/xhtml+xml", max_bytes=1_500_000, retries=0, timeout=10)
+    if r.status != 200 or web.registrable(web.host(r.final_url)) != web.registrable(web.host(site_url)):
+        return {"checked": False, "url": link, "reason": f"careers page could not be read (HTTP {r.status or 'error'})"}
+    items = []
+    names = {norm_name(x) for x in (legal_name, brand) if x}
+    for p in J.postings(r.text(), r.final_url):
+        org = p.get("hiring_organization")
+        if org and names and not any(n and (n in norm_name(org) or norm_name(org) in n) for n in names):
+            continue                       # structured data names another employer: not this company's job
+        items.append({"title": p["title"], "url": p.get("url"), "published": p.get("published"),
+                      "valid_through": p.get("valid_through"), "kind": "job_posting", "found_on": r.final_url,
+                      "company_match": "listed on the careers page of the company's own verified website",
+                      "basis": p["basis"]})
+    fs.add("careers_page", "Careers page (on the company's own website)", r.final_url, "company_careers", r.final_url,
+           evidence_url=site_url, category="jobs", confidence="high",
+           match="linked from the company's own verified website", key=None)
+    if items:
+        dated = sorted((i for i in items if i.get("published")), key=lambda i: i["published"], reverse=True)
+        fs.add("job_postings", "Job postings (careers page of the company's own website)", items, "company_careers",
+               r.final_url, evidence_url=r.final_url, as_of=dated[0]["published"] if dated else None, category="jobs",
+               confidence="high", match="listed on the careers page of the company's own verified website",
+               note=f"{len(items)} posting(s) listed when the page was retrieved")
+    return {"checked": True, "url": r.final_url, "postings": len(items)}

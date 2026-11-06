@@ -17,7 +17,7 @@ No installs, no API keys, no paid services: Python 3.9+ standard library only. *
 | One company (JSON) | `python agent.py 923609016` |
 | One company (readable) | `python agent.py 923609016 --format text` |
 | One company (browser page) | `python agent.py 923609016 --format html` → opens as `company_report.html` |
-| Daily test – a list of numbers (txt / csv / json, any layout) | `python agent.py --input companies.txt --out output` |
+| Daily test – a list of numbers (JSONL from Builderr's selector, txt / csv / json) | `python agent.py --input companies.jsonl --out output` |
 | Build 1,000 random profiles | `python agent.py --sample 1000 --seed 2026 --out profiles` |
 | Refresh / update existing profiles | run the same `--out` command again |
 | Live health check of all sources | `python agent.py --check` |
@@ -30,6 +30,28 @@ No installs, no API keys, no paid services: Python 3.9+ standard library only. *
 | Offline tests | `python -m unittest discover -s tests -v` |
 
 Org numbers may be written `923609016`, `923 609 016` or `NO 923 609 016 MVA`.
+
+## Optional: Brave Search for website discovery
+
+Set `BRAVE_SEARCH_API_KEY` (the variable used by the starter kit's `run_brave_discovery.py`) to let the agent
+search for the website of companies that register none. One query per such company
+(`"<legal name>" <orgnr> <municipality>`); directories and social networks are dropped, results are used only as
+crawl candidates and are not stored, and a site is published only when its own pages prove it is this exact
+company. Without the variable nothing changes and the run costs $0.
+
+## Output contract (Builderr starter kit)
+
+Every profile follows the starter kit's `OUTPUT_CONTRACT.md` on top of its detailed `facts`:
+
+| Key | Content |
+|---|---|
+| `run` | run_id, started_at, completed_at, terminal_status |
+| `claims[]` | field, family (legal_identity, annual_accounts, leadership, registered_workplaces, official_website, company_profiles, website_contact, job_postings, official_announcements, company_news), value, availability, confidence (0–1), `evidence_ids`, effective date / reporting period |
+| `evidence[]` | id, source_url, source_class (official_registry / company_owned / third_party_registry), retrieved_at, content_sha256, `claim_span` (the exact quoted text) |
+| `synthesis` | what_it_does, what_changed, what_is_unknown – each statement with its evidence ids |
+| `changes`, `errors`, `operations` | material changes since the previous run; sources that failed; requests, runtime_ms, third_party_cost_usd (always 0) |
+
+`output/envelopes.jsonl` holds exactly one terminal envelope per input in this shape (including invalid, unknown and failed inputs), and `run_report.json` records `expected_count`, `emitted_envelopes` and the validation checks.
 
 ## Outputs (`--out DIR`)
 
@@ -170,8 +192,10 @@ with its reason under `verification.rejected`.
 Every profile has an `envelope` with the seven required sections, each with a state from
 `available / not_available / blocked / not_applicable / ambiguous / failed`, the fields behind it and the reason.
 Absence is never turned into zero: an accounts outage is `failed`, a legal form without a duty to file is
-`not_applicable`, a look-alike website is `ambiguous`, and hiring is `not_available` because no permitted
-job-posting source is queried. Invalid, unknown and unreadable organisation numbers get an envelope too.
+`not_applicable`, a look-alike website is `ambiguous`. Hiring comes only from the careers page of a
+**verified** company website (schema.org JobPosting naming this employer, adverts on recognised applicant-tracking
+systems, or advert pages under the careers path); a checked careers page with no identifiable posting is reported
+as such, never as "not hiring". Invalid, unknown and unreadable organisation numbers get an envelope too.
 
 ## Accounts: two years
 

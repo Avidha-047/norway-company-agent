@@ -17,7 +17,8 @@ USER_AGENT = "NorwayCompanyAgent/1.1 (open-data company research; contact: {})".
     os.environ.get("NCA_CONTACT", "see project repository"))
 # Minimum seconds between requests to the same host (keeps us inside fair-use limits).
 HOST_PACE = {"www.wikidata.org": 1.0, "query.wikidata.org": 2.0, "api.gleif.org": 0.25,
-             "www.bing.com": 0.6, "w2.brreg.no": 0.5, "ws.geonorge.no": 0.1, "api.gdeltproject.org": 5.5}
+             "www.bing.com": 0.6, "w2.brreg.no": 0.5, "ws.geonorge.no": 0.1, "api.gdeltproject.org": 5.5,
+             "api.search.brave.com": 1.05}
 
 
 DOWN_AFTER = 5          # consecutive connection failures after which a host is paused ...
@@ -91,6 +92,11 @@ class Http:
         references, so freeing shared bodies in another thread can never remove evidence this company needs."""
         self._local.urls = set()
         self._local.got = {}
+        self._local.count = 0
+
+    def company_requests(self):
+        """Outbound requests made for the company this thread is working on (None when not tracked)."""
+        return getattr(self._local, "count", None)
 
     def company_lookup(self, url):
         got = getattr(self._local, "got", None)
@@ -136,7 +142,7 @@ class Http:
                 raise BudgetExceeded("time limit reached")
             self.used += 1
 
-    def get(self, url, accept="application/json", max_bytes=4_000_000, retries=2, timeout=None):
+    def get(self, url, accept="application/json", max_bytes=4_000_000, retries=2, timeout=None, headers=None):
         key = (url, accept)
         with self.lock:
             res = self.cache.get(key)
@@ -160,9 +166,13 @@ class Http:
         attempt = 0
         while True:
             self._take()
+            if getattr(self._local, "count", None) is not None:
+                self._local.count += 1
             self._pace(url)
             t0 = time.time()
-            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": accept})
+            req = urllib.request.Request(url, headers=dict({"User-Agent": USER_AGENT, "Accept": accept,
+                                                      "Accept-Language": "nb-NO,nb;q=0.9,no;q=0.8,nn;q=0.7,en;q=0.6"},
+                                                      **(headers or {})))
             try:
                 with urllib.request.urlopen(req, timeout=timeout or self.timeout) as r:
                     body = r.read(max_bytes)

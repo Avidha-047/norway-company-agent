@@ -141,9 +141,9 @@ def run_batch(http, orgnrs, out_dir, workers=8, use_web=True, use_wikidata=True,
             try:
                 n, prof = f.result()
             except BudgetExceeded as e:
-                prof = {"organisation_number": n, "status": "lookup_incomplete", "summary": str(e), "facts": []}
+                prof = failed_profile(n, "lookup_incomplete", str(e), getattr(http, "run_id", None))
             except Exception as e:  # one bad company must never sink the run
-                prof = {"organisation_number": n, "status": "error", "summary": f"{type(e).__name__}: {e}", "facts": []}
+                prof = failed_profile(n, "error", f"{type(e).__name__}: {e}", getattr(http, "run_id", None))
             results[n] = prof
             if progress:
                 print(f"[{i}/{len(orgnrs)}] {n} {prof.get('status')} – {prof.get('name') or ''} "
@@ -156,7 +156,12 @@ def run_batch(http, orgnrs, out_dir, workers=8, use_web=True, use_wikidata=True,
     for p in ordered:
         if p.get("history"):
             p["history"] = _clean_history(p["history"])
+    for p in ordered:                      # profiles restored from an earlier run still carry the contract view
+        if "claims" not in p:
+            from . import contract
+            p.update(contract.build(p, run={"run_id": getattr(http, "run_id", None)}))
     write_outputs(out_dir, ordered, compact=compact)
+    write_envelopes(out_dir, ordered)
     write_reports(out_dir, ordered, now_iso(), compact=compact)
     report = {
         "finished_at": now_iso(),
@@ -173,6 +178,11 @@ def run_batch(http, orgnrs, out_dir, workers=8, use_web=True, use_wikidata=True,
         "request_budget": http.max_requests,
         "seconds": round(time.time() - t0, 1),
         "external_api_cost_usd": 0.0,
+        "run_id": getattr(http, "run_id", None),
+        "expected_count": len(orgnrs),
+        "emitted_envelopes": len(ordered),
+        "validation": validate_envelopes(ordered, orgnrs),
+        "operations": dict(_operations(ordered), requests=http.used),
         "note": "All sources are free public APIs/pages; no paid API or LLM is called.",
     }
     with open(os.path.join(out_dir, "run_report.json"), "w", encoding="utf-8") as fh:
@@ -271,6 +281,57 @@ def write_reports(out_dir, profiles, generated, compact=False):
                  'h.innerHTML=r.length?r.map(x=>`<a href="report-${String(x[4]).padStart(2,"0")}.html#${x[0]}">${esc(x[1])} <small>· ${x[0]} · ${esc(x[2])} · ${esc(x[3])}</small></a>`).join("")'
                  ':"<p class=mut>No company matches.</p>"}'
                  'q.addEventListener("input",run);</script></body></html>')
+
+
+TERMINAL = ("available", "not_available", "blocked", "not_applicable", "ambiguous", "failed")
+
+
+def failed_profile(n, status, reason, run_id=None):
+    """A terminal envelope for a company whose research broke: it is still returned, marked failed."""
+    from . import contract
+    from .profile import SECTION_TITLES
+    prof = {"organisation_number": n, "status": status, "summary": reason, "facts": [], "generated_at": now_iso(),
+            "complete": False,
+            "envelope": {"states": list(TERMINAL), "generated_at": now_iso(),
+                         "sections": [{"section": k, "title": t, "state": "failed", "fields": [], "reason": reason}
+                                      for k, t in SECTION_TITLES]}}
+    prof.update(contract.build(prof, run={"run_id": run_id, "completed_at": now_iso()}))
+    prof["errors"].append({"source": "agent", "status": status, "error": reason})
+    return prof
+
+
+def validate_envelopes(profiles, orgnrs):
+    got = [p.get("organisation_number") for p in profiles]
+    states_ok = all(c.get("availability") in TERMINAL for p in profiles for c in p.get("claims", []))
+    sections_ok = all(s.get("state") in TERMINAL for p in profiles for s in ((p.get("envelope") or {}).get("sections") or []))
+    checks = {"exact_expected_count": len(set(got) & set(orgnrs)) == len(set(orgnrs)),
+              "unique_organisation_numbers": len(got) == len(set(got)),
+              "all_claim_states_terminal": states_ok, "all_section_states_terminal": sections_ok,
+              "zero_silent_drops": set(orgnrs) <= set(got)}
+    return {"passed": all(checks.values()), "checks": checks}
+
+
+def _operations(profiles):
+    ms = sorted(int((p.get("operations") or {}).get("runtime_ms") or 0) for p in profiles)
+    req = [int((p.get("operations") or {}).get("requests") or 0) for p in profiles]
+    return {"requests": sum(req), "p50_ms": ms[len(ms) // 2] if ms else None,
+            "p95_ms": ms[min(len(ms) - 1, int(len(ms) * 0.95))] if ms else None, "third_party_cost_usd": 0}
+
+
+ENVELOPE_KEYS = ("organisation_number", "contract_version", "run", "status", "name", "claims", "evidence",
+                 "synthesis", "changes", "errors", "operations")
+
+
+def write_envelopes(out_dir, profiles):
+    """envelopes.jsonl: exactly one terminal envelope per input, in the starter-kit output contract."""
+    tmp = os.path.join(out_dir, "envelopes.jsonl.tmp")
+    with open(tmp, "w", encoding="utf-8") as fh:
+        for p in profiles:
+            env = {k: p.get(k) for k in ENVELOPE_KEYS}
+            env["state"] = "complete" if (p.get("run") or {}).get("terminal_status") == "completed" else "failed"
+            env["sections"] = (p.get("envelope") or {}).get("sections")
+            fh.write(json.dumps(env, ensure_ascii=False) + "\n")
+    os.replace(tmp, os.path.join(out_dir, "envelopes.jsonl"))
 
 
 def write_outputs(out_dir, profiles, compact=False):
