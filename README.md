@@ -6,6 +6,19 @@ Give it a Norwegian organisation number; it returns a verified company profile w
 python agent.py --input companies.txt --out output
 ```
 
+**Official evaluator command** (the same flags as the starter kit's `scripts/run_competition_batch.py`):
+
+```bash
+python agent.py --organisations batch.jsonl --output out/envelopes.jsonl \
+                --profiles-output out/profiles.jsonl --report out/run-report.json \
+                --run-id RUN_ID --expected-count 1000
+```
+
+`out/envelopes.jsonl` then holds exactly one terminal envelope per input company. `--bulk` and `--modules` are
+accepted and ignored (the agent reads the live register by organisation number). The run's total time budget is
+`--time-limit` seconds, or the `SIGNALPOST_TIME_BUDGET_SECONDS` / `TIME_BUDGET_SECONDS` environment variable, or
+40 minutes by default.
+
 No installs, no API keys, no paid services: Python 3.9+ standard library only. **External API cost: $0.00.**
 
 ---
@@ -30,6 +43,25 @@ No installs, no API keys, no paid services: Python 3.9+ standard library only. *
 | Offline tests | `python -m unittest discover -s tests -v` |
 
 Org numbers may be written `923609016`, `923 609 016` or `NO 923 609 016 MVA`.
+
+## Version 9: output that always arrives
+
+Version 9 changes only how a batch is run and written; the research and the facts are the same as version 8.
+
+- **Envelopes are written as each company finishes**, and a complete `envelopes.jsonl` (finished companies plus a
+  `failed` placeholder for the rest) is rewritten about ten times during the run. A run that is stopped from outside
+  still leaves a readable file with exactly one envelope per input.
+- **Time budget**: lookups stop early enough to write every envelope inside `--time-limit` (or the environment
+  variable above); companies not finished by then get a `failed` envelope with the reason. Nothing is dropped.
+- **SIGTERM / SIGINT / SIGHUP**: the agent writes every envelope and exits with code 0 instead of dying with no output.
+- **Envelopes first**: `envelopes.jsonl` and the run report are written before the optional extras (profiles,
+  index, report pages); an error in an extra can no longer affect them. Batches over 200 companies use the compact
+  layout automatically.
+- **Leaner envelopes** (about 35% smaller): display-only fields (labels, long source names) stay in
+  `profiles.jsonl`; every contract field, evidence id, hash and claim span is kept.
+- **JSONL batches are read by their `organisation_number` field**, so a company whose name contains a 9-digit number
+  is no longer read as a second company.
+- 7 new offline tests (`tests/test_v9.py`), including a real SIGTERM in a subprocess; all 145 tests pass.
 
 ## Optional: Brave Search for website discovery
 
@@ -238,7 +270,7 @@ Running again with the same `--out` folder re-fetches live data and compares it 
 
 - Hard request cap (default **1,900**, `--max-requests`) counting every attempt and retry.
 - Time limit (default **40 min**, `--time-limit`) – stops starting new requests before the 45-minute limit.
-- 8 parallel workers, retries with back-off on 429/5xx, honours `Retry-After`.
+- 12 parallel workers (`--workers`), retries with back-off on 429/5xx, honours `Retry-After`.
 - One failing company never stops the run; a budget-truncated profile never overwrites a good stored one.
 
 ## Model / API details

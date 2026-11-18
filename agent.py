@@ -6,6 +6,10 @@
   python agent.py --input companies.txt --out output # the daily test (any text/CSV/JSON file of org numbers)
   python agent.py --sample 1000 --out output        # build 1,000 random profiles
   python agent.py --input companies.txt --out output   # run again later = update + change log
+
+  # Builderr's evaluator form (same flags as the starter kit's scripts/run_competition_batch.py):
+  python agent.py --organisations batch.jsonl --output out/envelopes.jsonl \
+                  --profiles-output out/profiles.jsonl --report out/run-report.json --run-id RUN --expected-count 1000
 """
 import argparse
 import json
@@ -32,6 +36,19 @@ def _safe_console():
 
 
 PER_COMPANY_BUDGET = 19     # official limit: 2,000 requests per 100 companies; keep a margin
+TIME_ENV = ("SIGNALPOST_TIME_BUDGET_SECONDS", "TIME_BUDGET_SECONDS", "AGENT_TIME_LIMIT_SECONDS")
+DEFAULT_TIME_LIMIT = 40 * 60
+
+
+def _default_time_limit():
+    for name in TIME_ENV:
+        try:
+            v = int(float(os.environ.get(name, "")))
+            if v > 0:
+                return v
+        except ValueError:
+            pass
+    return DEFAULT_TIME_LIMIT
 
 
 def main(argv=None):
@@ -42,7 +59,7 @@ def main(argv=None):
     ap.add_argument("--out", "-o", help="output directory (writes companies/*.json, profiles.jsonl, index.csv, run_report.json)")
     ap.add_argument("--sample", type=int, help="pick N random registered companies and profile them")
     ap.add_argument("--seed", type=int, help="random seed for --sample")
-    ap.add_argument("--workers", type=int, default=8)
+    ap.add_argument("--workers", type=int, default=12)
     ap.add_argument("--retry-incomplete", action="store_true",
                     help="with --out: re-check only the stored profiles whose lookup failed or whose register source was "
                          "down in that run; all other stored profiles are kept as they are")
@@ -50,7 +67,21 @@ def main(argv=None):
                     help="rebuild report.html (and its pages) from the profiles already stored in DIR; no lookups")
     ap.add_argument("--max-requests", type=int, help="hard cap on outbound HTTP requests (default: 19 per input company, at least 1,900 - under the "
                          "official 2,000 per 100 companies)")
-    ap.add_argument("--time-limit", type=int, default=40 * 60, help="seconds before the agent stops starting new requests (default 2400)")
+    ap.add_argument("--time-limit", type=int, default=None,
+                    help="total seconds the whole run may take, including writing the output (default: the first of "
+                         + ", ".join(TIME_ENV) + " that is set, else 2400). New lookups stop early enough to write "
+                         "every envelope inside it; companies not finished by then get a 'failed' envelope")
+    # Starter-kit compatible flags (scripts/run_competition_batch.py), so the evaluator's own command works as-is
+    ap.add_argument("--organisations", "--organizations", action="append", default=[],
+                    help="JSON, JSONL or text file of organisation numbers (same as --input)")
+    ap.add_argument("--output", help="path of the terminal-envelope JSONL file (one envelope per input company)")
+    ap.add_argument("--profiles-output", help="path for the full profiles JSONL")
+    ap.add_argument("--report", help="path for the run report JSON")
+    ap.add_argument("--expected-count", type=int, help="number of organisations the batch should contain (checked and reported)")
+    ap.add_argument("--bulk", help="accepted for compatibility; the agent reads the live register by organisation number")
+    ap.add_argument("--modules", help="accepted for compatibility; every module runs")
+    ap.add_argument("--checkpoint-every", type=int, help="accepted for compatibility; envelopes are written as each company finishes")
+    ap.add_argument("--resume", action="store_true", help="accepted for compatibility")
     ap.add_argument("--run-id", help="identifier recorded in every envelope's run block (default: run-<UTC timestamp>)")
     ap.add_argument("--no-web", action="store_true", help="skip fetching company websites")
     ap.add_argument("--no-wikidata", action="store_true", help="skip Wikidata")
@@ -108,12 +139,15 @@ def main(argv=None):
             print(f"  {f:<28} {n / 1_000_000:6.1f} MB" + ("   <-- too big for GitHub web upload" if n > 25_000_000 else ""),
                   file=sys.stderr)
         return 0
+    t_start = time.time()
+    time_limit = a.time_limit or _default_time_limit()
+    # Leave time to write the output: 60 s, plus 1 s per 20 companies for large batches (set below once known)
     budget = a.max_requests or (a.sample * 16 + 600 if a.sample else 1900)
-    http = Http(max_requests=budget, deadline=time.time() + a.time_limit)
+    http = Http(max_requests=budget, deadline=t_start + time_limit)
     http.run_id = a.run_id or time.strftime("run-%Y%m%dT%H%M%SZ", time.gmtime())
 
     inputs = list(a.orgnr)
-    for path in a.input:
+    for path in a.input + a.organisations:
         inputs.append(sys.stdin.read() if path == "-" else path)
     orgnrs = read_orgnrs(inputs) if inputs else []
     if a.sample:
@@ -144,20 +178,38 @@ def main(argv=None):
         ap.print_help()
         return 2
 
+    if a.expected_count is not None and a.expected_count != len(orgnrs):
+        print(f"warning: expected {a.expected_count} organisations, received {len(orgnrs)}; "
+              f"every received organisation still gets exactly one envelope", file=sys.stderr)
+    if a.output and not a.out:
+        a.out = os.path.join(os.path.dirname(os.path.abspath(a.output)), "agent-output")
+    if a.out and len(orgnrs) > 200:
+        a.compact = True                 # large batches: a few split files instead of one file per company
     if a.out:
+        margin = 60 + len(orgnrs) / 20
+        http.deadline = t_start + max(60, time_limit - margin)
         if a.sample:
             os.makedirs(a.out, exist_ok=True)
             with open(os.path.join(a.out, "sample_orgnrs.txt"), "w") as fh:
                 fh.write("\n".join(orgnrs) + "\n")
         profiles, report = run_batch(http, orgnrs, a.out, workers=a.workers, use_web=not a.no_web,
                                      use_wikidata=not a.no_wikidata, use_news=not a.no_news, use_bing=a.bing,
-                                     compact=a.compact, keep_others=a.retry_incomplete)
+                                     compact=a.compact, keep_others=a.retry_incomplete,
+                                     deadline=t_start + max(60, time_limit - margin + 30),
+                                     envelopes_path=a.output, report_path=a.report)
+        if a.profiles_output:
+            _copy_profiles(a.out, a.profiles_output)
         print(json.dumps(report, indent=2), file=sys.stderr)
         print(f"\nDone: {report['companies']} profiles, {report['dated_news_items']} dated news items, "
               f"{report['outbound_requests']} requests, ${report['external_api_cost_usd']:.2f} API cost.", file=sys.stderr)
         files = sorted(f for f in os.listdir(a.out) if re.fullmatch(r"profiles(-\d+)?\.jsonl", f))
-        print(f"Open {os.path.join(a.out, 'report.html')} in a browser to browse the results; machine-readable files: "
-              f"{', '.join(files)}, index.csv" + ("" if a.compact else ", companies/*.json"), file=sys.stderr)
+        print(f"Envelopes: {a.output or os.path.join(a.out, 'envelopes.jsonl')} ({report['emitted_envelopes']} for "
+              f"{report['expected_count']} inputs). Open {os.path.join(a.out, 'report.html')} in a browser to browse "
+              f"the results; other files: {', '.join(files)}, index.csv", file=sys.stderr)
+        sys.stdout.flush()
+        sys.stderr.flush()
+        if report.get("time_budget_reached"):
+            os._exit(0)                  # do not wait for lookups that were still running when time ran out
         return 0
 
     # No output dir: print to stdout
@@ -179,6 +231,22 @@ def main(argv=None):
         print("Wrote company_report.html – open it in a browser.", file=sys.stderr)
     print(f"\n[{http.used} outbound requests, $0.00 external API cost]", file=sys.stderr)
     return 0
+
+
+def _copy_profiles(out_dir, dest):
+    """All profiles (one file, any split parts joined) at the path the evaluator asked for."""
+    try:
+        parts = sorted(f for f in os.listdir(out_dir) if re.fullmatch(r"profiles(-\d+)?\.jsonl", f))
+        os.makedirs(os.path.dirname(os.path.abspath(dest)), exist_ok=True)
+        tmp = dest + ".tmp"
+        with open(tmp, "w", encoding="utf-8") as out:
+            for name in parts:
+                with open(os.path.join(out_dir, name), encoding="utf-8") as fh:
+                    for line in fh:
+                        out.write(line)
+        os.replace(tmp, dest)
+    except Exception as e:
+        print(f"warning: profiles not copied to {dest}: {type(e).__name__}: {e}", file=sys.stderr)
 
 
 def _print_audit(profiles, out_path=None):

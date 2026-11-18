@@ -1,16 +1,34 @@
-# Submission – Norway Company Facts Agent (version 8)
+# Submission – Norway Company Facts Agent (version 9)
 
 | Item | Value |
 |---|---|
 | Repository | https://github.com/Avidha-047/norway-company-agent |
 | Commit | see the commit link in the submission email (the latest commit on `main`) |
-| Command | `python agent.py --input companies.jsonl --out output` (JSONL from Builderr's batch selector, or txt/csv/json; optional `--run-id ID`) |
+| Command | `python agent.py --organisations batch.jsonl --output out/envelopes.jsonl --profiles-output out/profiles.jsonl --report out/run-report.json --run-id RUN_ID --expected-count 1000` (the starter kit's flags; `--bulk` / `--modules` accepted and ignored). Short form: `python agent.py --input batch.jsonl --out output` → `output/envelopes.jsonl` |
+| Time budget | `--time-limit SECONDS`, else `SIGNALPOST_TIME_BUDGET_SECONDS` / `TIME_BUDGET_SECONDS`, else 2400 s. Every input still gets one envelope if time runs out or the run is stopped (SIGTERM) |
 | Browse results (laptop or phone) | open `output/report.html` – find, compare, and "Where this came from" on every fact |
 | Model / API | No LLM. Optional: Brave Search API for website discovery when `BRAVE_SEARCH_API_KEY` is set (Builderr-supplied key; at most one query per company without a website). Without it, no paid API. Python 3.9+, standard library only. Sources: Brønnøysund Enhetsregisteret (entities, roles, sub-units, announcements) Regnskapsregisteret and Frivillighetsregisteret (NLOD 2.0); Kartverket's official address register via Geonorge (CC BY 4.0); GLEIF (CC0); Wikidata (CC0); the company's own website. |
-| Expected run cost | $0.00 external API cost (no paid API, no LLM). About 10–11 requests per company (measured on 100 companies from Builderr's universe: 1,059 requests in 195 s). The request cap scales with the batch: 19 per company (at least 1,900), under the official 2,000 per 100 companies; runs stop starting new requests after 40 minutes. A source that stops answering is paused after 5 timeouts in a row. |
+| Expected run cost | $0.00 external API cost (no paid API, no LLM). About 10–11 requests per company (measured on 100 companies from Builderr's universe: 1,059 requests in 195 s). The request cap scales with the batch: 19 per company (at least 1,900), under the official 2,000 per 100 companies; the whole run, including writing every envelope, fits inside the time budget (default 40 minutes; 1,000 companies take about 25–35 minutes with 12 workers). A source that stops answering is paused after 5 timeouts in a row. |
 | 100-company smoke test | `smoke-test/` – envelopes, profiles, index, report page, run report and self-audit of a fresh live run on 100 companies drawn from Builderr's public universe (100/100 envelopes, 7,230 facts, audit clean); see `smoke-test/README.md`. |
 | Pre-built profiles | `profiles/` holds stored profiles built with this agent; every fact cites its live source URL, retrieval time, SHA-256 of the content and the exact quote. |
 | Built with JBOX | The agent: no. The Signalpost Explorer website (JBOX bonus) is built with JBOX from this agent's output. |
+
+## Changes in version 9 (output that always arrives)
+Version 9 changes only how a batch is run and written; research and facts are unchanged from version 8.
+- Envelopes are written as each company finishes, and a complete `envelopes.jsonl` (with `failed` placeholders for
+  unfinished companies) is rewritten about ten times during the run, so a stopped run still leaves one readable
+  envelope per input.
+- A total time budget (`--time-limit` or the environment variables above, default 40 minutes): lookups stop early
+  enough to write every envelope inside it; unfinished companies get a `failed` envelope with the reason.
+- SIGTERM / SIGINT / SIGHUP: every envelope is written and the agent exits with code 0.
+- Envelopes and the run report are written before the optional extras (profiles, index, report pages); batches over
+  200 companies use the compact layout automatically.
+- The starter kit's command-line flags (`--organisations`, `--output`, `--profiles-output`, `--report`,
+  `--expected-count`) are accepted, so the evaluator's own command works unchanged.
+- Leaner envelopes (about 35% smaller); display-only fields stay in `profiles.jsonl`.
+- JSONL batches are read by their `organisation_number` field only.
+- 7 new offline tests (`tests/test_v9.py`), including a real SIGTERM in a subprocess; all 145 tests pass. The
+  committed 100-company smoke test was made with the version-8 research code, which version 9 does not change.
 
 ## Changes in version 8 (aligned with the official starter kit)
 - **Starter-kit output contract** (`OUTPUT_CONTRACT.md`): every profile now carries `run`, `claims[]` (field, family, value, availability, numeric confidence, `evidence_ids`, effective date / reporting period), `evidence[]` (id, source_url, `source_class` – official_registry / company_owned / third_party_registry, retrieved_at, content_sha256, `claim_span`), `changes`, `errors` and `operations` (requests, runtime_ms, third_party_cost_usd). `output/envelopes.jsonl` holds exactly one terminal envelope per input in that shape; `run_report.json` adds `expected_count`, `emitted_envelopes`, `validation` (count, uniqueness, terminal states, zero silent drops) and p50/p95 runtime. Each of the seven required sections without data appears as a claim with its explicit state and reason.
