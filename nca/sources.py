@@ -1021,10 +1021,40 @@ def website_facts(http, fs, orgnr, site, rec=None, discovered=False, rejections=
     title0 = re.search(r"<title[^>]*>(.*?)</title>", html, re.I | re.S)
     identity = " ".join(x for x in ((_clean(title0.group(1)) if title0 else ""), _meta(html, "og:site_name") or "",
                                     ld0.get("name") or "") if x)
-    verdict, own_how, own_detail = web.ownership(texts, orgnr, legal_name, registered_url=None if discovered else site,
-                                                 final_url=r.final_url, identity_text=identity, rec=rec,
-                                                 ld=ld0.get("_raw") if isinstance(ld0.get("_raw"), dict) else None,
-                                                 discovered=discovered)
+    # A candidate found from the company's own registered data (its e-mail domain, an establishment's website or a
+    # domain spelled like its registered name) may be proven by the registered phone / e-mail on the site; a
+    # candidate from web search must show the organisation number or the full name and address.
+    from_registry_lead = discovered and probe
+
+    def judge(t):
+        return web.ownership(t, orgnr, legal_name, registered_url=None if discovered else site,
+                             final_url=r.final_url, identity_text=identity, rec=rec,
+                             ld=ld0.get("_raw") if isinstance(ld0.get("_raw"), dict) else None,
+                             discovered=discovered and not from_registry_lead)
+    verdict, own_how, own_detail = judge(texts)
+    proof_url, proof = None, None
+    if (verdict == "unproven" or (verdict == "own" and own_how != "orgnr")) and http.spare(1) and (
+            not discovered or web.name_on_page(texts, legal_name) or web.name_on_page(identity, legal_name)
+            or from_registry_lead):
+        # Norwegian sites usually print the organisation number on the privacy policy / terms page: read one
+        # such page so the site can be proven by the organisation number itself
+        purl = web.proof_page(html, r.final_url, site_host, skip=(contact_url,))
+        if purl:
+            rp = http.get(purl, accept="text/html,application/xhtml+xml", max_bytes=1_000_000, retries=0, timeout=10)
+            if rp.status == 200 and web.host(rp.final_url) == site_host:
+                proof = web.extract(rp.text(), rp.final_url, site_host)
+                v2 = judge(texts + " " + proof["text"])
+                if v2[0] == "own" and (verdict != "own" or v2[1] == "orgnr"):
+                    verdict, own_how, own_detail = v2
+                    proof_url = rp.final_url
+                    texts = texts + " " + proof["text"]
+                elif v2[0] == "shared" and verdict == "unproven":
+                    verdict, own_how, own_detail = v2
+                    texts = texts + " " + proof["text"]
+    if discovered and from_registry_lead and verdict == "own" and own_how == "contact" \
+            and not (web.name_on_page(texts, legal_name) or web.name_on_page(identity, legal_name)):
+        # registered phone / e-mail alone, on a site that does not even show the company's name: not enough
+        verdict, own_how, own_detail = "unproven", None, own_detail + "; the site does not show the company's name"
     own = verdict == "own"
     lookalike = None if own else web.similar_company(texts, legal_name)
     cant_tell = None
@@ -1062,7 +1092,10 @@ def website_facts(http, fs, orgnr, site, rec=None, discovered=False, rejections=
     add = lambda f, l, v, cat="web", ev=None, key=None: fs.add(f, l, v, src, r.final_url, evidence_url=ev or r.final_url,
                                                                category=cat, confidence=conf, match=m, key=key)
     # page whose content proves the org number / address (home page or contact page)
-    orgnr_url = r.final_url if orgnr_pattern(orgnr).search(html) else (contact_url if contact and mentions else None)
+    orgnr_url = r.final_url if orgnr_pattern(orgnr).search(html) else \
+        (contact_url if contact and orgnr_pattern(orgnr).search(contact.get("raw") or "") else
+         proof_url if proof_url and orgnr_pattern(orgnr).search(proof.get("raw") or "") else
+         (contact_url if contact and mentions else None))
     addr_url = r.final_url if web.address_match(home["text"], rec) else (contact_url if contact else None)
     name_url = r.final_url if (name_pat and name_pat.search(home["text"] + html)) else (contact_url if contact else None)
     name_key = "text:" + name_pat.pattern if name_pat else None
@@ -1075,7 +1108,7 @@ def website_facts(http, fs, orgnr, site, rec=None, discovered=False, rejections=
     add("website_final_url", "Website (resolved URL)", r.final_url)
     add("website_title", "Website title", (_clean(title.group(1)) if title else None)
         or _meta(html, "og:title") or _meta(html, "twitter:title"))
-    add("website_shows_orgnr", "Organisation number found on the pages checked (home and contact page)", mentions,
+    add("website_shows_orgnr", "Organisation number found on the pages checked (home, contact and privacy/terms page)", mentions,
         ev=orgnr_url if mentions else None, key=f"orgnr:{orgnr}" if mentions else None)
     if not own:
         label = "shared or parent-group site" if verdict == "shared" else "ownership not proven"
@@ -1098,7 +1131,12 @@ def website_facts(http, fs, orgnr, site, rec=None, discovered=False, rejections=
         cp = web.contact_proof(texts, rec, r.final_url)
         if cp:
             own_key = "text:" + cp[1]
-            own_ev = r.final_url if re.search(cp[1], home["text"] + " " + html) else (contact_url if contact else None)
+            own_ev = r.final_url if re.search(cp[1], home["text"] + " " + html) else \
+                (contact_url if contact and re.search(cp[1], contact["text"] + " " + contact.get("raw", "")) else
+                 proof_url if proof_url else (contact_url if contact else None))
+    elif own_how == "name" and proof_url and not (name_pat and name_pat.search(home["text"] + html)) \
+            and not (contact and name_pat and name_pat.search(contact["text"])):
+        own_ev = proof_url
     add("website_ownership", "Website ownership check", "the company's own site: " + own_detail, ev=own_ev, key=own_key)
     add("website_description", "Website description", _meta(html, "description") or _meta(html, "og:description"))
     add("website_site_name", "Website brand name", _meta(html, "og:site_name"))
@@ -1174,12 +1212,16 @@ def email_domain(email):
     return dom
 
 
-def discover_website(http, fs, orgnr, rec, rejections, use_search=False):
-    """Find a website when none is registered: try the domains matching the registered name
-    (maleran.no, maleran.com …), optionally web search; publish only after ownership is proven."""
+def discover_website(http, fs, orgnr, rec, rejections, use_search=False, skip_hosts=None):
+    """Find a website when none is registered (or the registered one is dead): try the domains matching the
+    registered name (maleran.no, maleran.com …), optionally web search; publish only after ownership is proven."""
     from . import web
     statuses = []
     tried = set()
+    for h_ in skip_hosts or ():
+        if h_:
+            tried.add(h_)
+            tried.add(h_[4:] if h_.startswith("www.") else "www." + h_)
     name = (rec or {}).get("navn")
     dom = email_domain((rec or {}).get("epostadresse"))
     if dom:

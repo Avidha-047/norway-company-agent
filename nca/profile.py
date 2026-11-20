@@ -117,11 +117,19 @@ def _build_profile(http, query, previous, use_web, use_wikidata, use_news, use_b
                     site = wd_site if wst.get("status") == "ok" else None
                     if not site:
                         wst = None
-            if use_web and not site and not wd_site and kind == "enhet" and prof["status"] in ("active", "registered"):
-                dst, dstats = S.discover_website(http, fs, orgnr, rec, rejections, use_search=use_bing)
+            dead_site = bool(site and wst and wst.get("status") == "error")
+            if use_web and (not site or dead_site) and not wd_site and kind == "enhet" \
+                    and prof["status"] in ("active", "registered"):
+                # no website registered, or the registered one no longer answers (domain gone, 404): look for the
+                # company's current site the same careful way (it is published only when its pages prove it)
+                dst, dstats = S.discover_website(http, fs, orgnr, rec, rejections, use_search=use_bing,
+                                                 skip_hosts=({W.host(site if "://" in site else "https://" + site)}
+                                                             if dead_site else None))
                 statuses.extend(dstats)
                 if dst:
                     wst, site = dst, dst.get("url")
+                elif dead_site:
+                    site = None
             if use_news and kind in ("enhet", "deleted"):
                 collect_news(http, fs, statuses, orgnr, rec, site, wst, use_bing)
     except BudgetExceeded as e:

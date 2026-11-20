@@ -1,4 +1,4 @@
-# Submission – Norway Company Facts Agent (version 9)
+# Submission – Norway Company Facts Agent (version 10)
 
 | Item | Value |
 |---|---|
@@ -12,6 +12,16 @@
 | 100-company smoke test | `smoke-test/` – envelopes, profiles, index, report page, run report and self-audit of a fresh live run on 100 companies drawn from Builderr's public universe (100/100 envelopes, 7,230 facts, audit clean); see `smoke-test/README.md`. |
 | Pre-built profiles | `profiles/` holds stored profiles built with this agent; every fact cites its live source URL, retrieval time, SHA-256 of the content and the exact quote. |
 | Built with JBOX | The agent: no. The Signalpost Explorer website (JBOX bonus) is built with JBOX from this agent's output. |
+
+## Changes in version 10 (more websites proven, same proof standard)
+- When the home and contact pages do not prove a site, one privacy-policy / terms page is read: Norwegian sites
+  usually print the organisation number there. The evidence then points to that page.
+- A site found from the company's own registered data (e-mail domain, establishment website, name-matching domain)
+  is also accepted when it shows the registered phone or e-mail **and** the company's name (confidence medium);
+  search results still need the organisation number, or the full name and registered address.
+- A registered website that no longer answers leads to the same careful discovery.
+- Another company's organisation number still blocks a site; lookalike names are still left blank.
+- 8 new offline tests (`tests/test_v10.py`); all 153 tests pass.
 
 ## Changes in version 9 (output that always arrives)
 Version 9 changes only how a batch is run and written; research and facts are unchanged from version 8.

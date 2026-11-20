@@ -31,6 +31,32 @@ EMAIL_RE = re.compile(r"(?<![\w.+-])[A-Za-z0-9._%+-]{1,64}@[A-Za-z0-9.-]+\.[A-Za
 PHONE_CTX = re.compile(r"(?i)(?:tlf|telefon|tel|phone|mob|mobil|ring)\W{0,12}((?:\+|00)?47[\s.]?)?(\d{2}[\s.]?\d{2}[\s.]?\d{2}[\s.]?\d{2}|\d{3}[\s.]?\d{2}[\s.]?\d{3})(?!\d)")
 CONTACT_LINK = re.compile(r'(?is)<a\b[^>]*href=["\']([^"\'#]+)["\'][^>]*>(.*?)</a>')
 CONTACT_WORDS = re.compile(r"(?i)kontakt|contact|om[\s-]?oss|about")
+# pages where Norwegian sites usually print the organisation number (privacy policy, terms of sale, about, footer pages)
+PROOF_WORDS = re.compile(r"(?i)personvern|privacy|vilk[aå]r|betingelser|kj[oø]psvilk|terms|om[\s-]?oss|about|"
+                         r"impressum|firmainfo|selskapet|company[\s-]?info|juridisk|cookie")
+
+
+def proof_page(html, base_url, site_host, skip=()):
+    """The page on the same site most likely to print the organisation number (privacy policy first, then terms of
+    sale, then about pages); None if the home page links none."""
+    best, best_rank = None, 99
+    for m in CONTACT_LINK.finditer(html or ""):
+        href, label = m.group(1), _text(m.group(2))
+        both = label + " " + href
+        if not PROOF_WORDS.search(both):
+            continue
+        u = urllib.parse.urljoin(base_url, htmllib.unescape(href))
+        if host(u) != site_host or u.rstrip("/") == base_url.rstrip("/") or u.rstrip("/") in {x.rstrip("/") for x in skip if x}:
+            continue
+        if re.search(r"(?i)\.(pdf|jpe?g|png|zip|docx?)(\?|$)", u):
+            continue
+        rank = (0 if re.search(r"(?i)personvern|privacy", both) else 1 if re.search(r"(?i)vilk|betingelser|terms|kj[oø]p", both)
+                else 2 if re.search(r"(?i)impressum|firmainfo|selskapet|company|juridisk", both) else 3)
+        if rank < best_rank:
+            best, best_rank = u, rank
+    return best
+
+
 BAD_EMAIL = re.compile(r"(?i)\.(png|jpe?g|gif|svg|webp)$|example\.|sentry|wixpress|@2x|domain\.|yourdomain|email\.com$|godaddy")
 
 

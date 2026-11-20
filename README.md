@@ -44,6 +44,21 @@ No installs, no API keys, no paid services: Python 3.9+ standard library only. *
 
 Org numbers may be written `923609016`, `923 609 016` or `NO 923 609 016 MVA`.
 
+## Version 10: more websites proven, same proof standard
+
+- **Privacy-policy / terms page**: Norwegian sites usually print the organisation number there. When a site's home
+  and contact pages do not prove it, the agent reads one such page (one request) and proves the site by the
+  organisation number itself. The evidence points to that page.
+- **Registered phone or e-mail**: a site found from the company's own registered data (its e-mail domain, an
+  establishment's website, or a domain spelled like its registered name) is also accepted when it shows the
+  registered phone number or e-mail address **and** the company's name (confidence medium). Sites found by web
+  search still need the organisation number, or the full name and registered address.
+- **Dead registered website**: when the registered site no longer answers (domain gone, 404), the agent looks for the
+  company's current site the same careful way instead of stopping.
+- Unchanged: another company's organisation number on any checked page still blocks the site, lookalike names are
+  still left blank, and nothing is published from an unproven site. 8 new offline tests (`tests/test_v10.py`);
+  all 153 tests pass.
+
 ## Version 9: output that always arrives
 
 Version 9 changes only how a batch is run and written; the research and the facts are the same as version 8.
