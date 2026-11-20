@@ -996,6 +996,39 @@ def _fetch_home(http, site, probe=False):
     return r, url
 
 
+HOLDING_RE = re.compile(r"(?i)\b(holding|invest\w*|eiendom\w*|kapital|capital|finans\w*|eierselskap)\b")
+_LEGAL_NAME_RE = re.compile(r"([A-ZÆØÅ][\wÆØÅæøå&.'\-]*(?:[ \t]+[\wÆØÅæøå&.'\-]+){0,5})[ \t]+(AS|ASA|ANS|DA|SA|NUF|BA)\b")
+
+
+def _name_shown(text, legal_name):
+    """The company's name on the page itself – not merely inside an e-mail address or a web address
+    ('brian@bkraft.no' does not show the name 'BKRAFT HOLDING AS')."""
+    from . import web
+    t = re.sub(r"\S+@\S+|https?://\S+|\bwww\.\S+|\b[\w-]+\.(?:no|com|net|org|se|dk)\b", " ", text or "")
+    return web.name_on_page(t, legal_name)
+
+
+def _other_legal_name(text, legal_name):
+    """Another company's full legal name (e.g. 'Bærekraftig Investering AS') printed on the site, or None."""
+    own = norm_name(legal_name)
+    for m in _LEGAL_NAME_RE.finditer(text or ""):
+        cand = (m.group(1) + " " + m.group(2)).strip()
+        words = cand.split()
+        # try the shortest tail first ('Kontakt Bærekraftig Investering AS' -> 'Investering AS', ...)
+        for i in range(len(words) - 2, -1, -1):
+            sub = " ".join(words[i:])
+            n = norm_name(sub)
+            if not n or len(n) < 3:
+                continue
+            if n == own or own.endswith(n) or n.endswith(own):
+                break                           # our own name (possibly with leading words): not another company
+        else:
+            n_full = norm_name(cand)
+            if n_full and n_full != own and own not in n_full and not n_full.endswith(own):
+                return cand
+    return None
+
+
 def website_facts(http, fs, orgnr, site, rec=None, discovered=False, rejections=None, probe=False, origin=None):
     """Facts from the company's website. For a discovered (unregistered) site the page must prove it
     belongs to this company before anything is published."""
@@ -1051,10 +1084,22 @@ def website_facts(http, fs, orgnr, site, rec=None, discovered=False, rejections=
                 elif v2[0] == "shared" and verdict == "unproven":
                     verdict, own_how, own_detail = v2
                     texts = texts + " " + proof["text"]
-    if discovered and from_registry_lead and verdict == "own" and own_how == "contact" \
-            and not (web.name_on_page(texts, legal_name) or web.name_on_page(identity, legal_name)):
-        # registered phone / e-mail alone, on a site that does not even show the company's name: not enough
-        verdict, own_how, own_detail = "unproven", None, own_detail + "; the site does not show the company's name"
+    if discovered and from_registry_lead and verdict == "own" and own_how == "contact":
+        # only the site's own identity (title, site name, structured-data name) is read for this: a web agency's
+        # credit in the footer ('Levert av Webbyrå AS') must not block a site
+        other = _other_legal_name(identity, legal_name)
+        if HOLDING_RE.search(legal_name or ""):
+            # a holding / investment company usually shares its owner's phone and e-mail domain with the operating
+            # company whose site this is: contact details never prove such a site, only the org number does
+            verdict, own_how, own_detail = "unproven", None, ("a holding or investment company's registered contact "
+                                                               "details are often shared with another company; "
+                                                               "the site does not show this organisation number")
+        elif other:
+            verdict, own_how, own_detail = "unproven", None, (f"the site names another company ('{other}'), "
+                                                               "so it may belong to that company")
+        elif not (_name_shown(texts, legal_name) or _name_shown(identity, legal_name)):
+            # registered phone / e-mail alone, on a site that does not show the company's name: not enough
+            verdict, own_how, own_detail = "unproven", None, own_detail + "; the site does not show the company's name"
     own = verdict == "own"
     lookalike = None if own else web.similar_company(texts, legal_name)
     cant_tell = None

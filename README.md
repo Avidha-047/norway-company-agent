@@ -52,12 +52,16 @@ Org numbers may be written `923609016`, `923 609 016` or `NO 923 609 016 MVA`.
 - **Registered phone or e-mail**: a site found from the company's own registered data (its e-mail domain, an
   establishment's website, or a domain spelled like its registered name) is also accepted when it shows the
   registered phone number or e-mail address **and** the company's name (confidence medium). Sites found by web
-  search still need the organisation number, or the full name and registered address.
+  search still need the organisation number, or the full name and registered address. This route is never used
+  for holding / investment companies (they often share the owner's phone and e-mail domain with another company),
+  never when the site's title names another company ('Bærekraftig Investering AS'), and a name that appears only
+  inside an e-mail or web address does not count. These guards come from checking every new site in a live
+  100-company run by hand.
 - **Dead registered website**: when the registered site no longer answers (domain gone, 404), the agent looks for the
   company's current site the same careful way instead of stopping.
 - Unchanged: another company's organisation number on any checked page still blocks the site, lookalike names are
   still left blank, and nothing is published from an unproven site. 8 new offline tests (`tests/test_v10.py`);
-  all 153 tests pass.
+  all 157 tests pass.
 
 ## Version 9: output that always arrives
 

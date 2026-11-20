@@ -18,10 +18,12 @@
   usually print the organisation number there. The evidence then points to that page.
 - A site found from the company's own registered data (e-mail domain, establishment website, name-matching domain)
   is also accepted when it shows the registered phone or e-mail **and** the company's name (confidence medium);
-  search results still need the organisation number, or the full name and registered address.
+  search results still need the organisation number, or the full name and registered address. Never for holding /
+  investment companies, never when the site's title names another company, and a name only inside an e-mail or
+  web address does not count (guards added after checking every new site in a live 100-company run by hand).
 - A registered website that no longer answers leads to the same careful discovery.
 - Another company's organisation number still blocks a site; lookalike names are still left blank.
-- 8 new offline tests (`tests/test_v10.py`); all 153 tests pass.
+- 12 new offline tests (`tests/test_v10.py`); all 157 tests pass.
 
 ## Changes in version 9 (output that always arrives)
 Version 9 changes only how a batch is run and written; research and facts are unchanged from version 8.

@@ -104,6 +104,39 @@ class RegisteredContactProof(unittest.TestCase):
                 os.environ["BRAVE_SEARCH_API_KEY"] = old
 
 
+class WrongCompanyGuards(unittest.TestCase):
+    """Found in the live 100-company test: BKRAFT HOLDING AS's registered e-mail domain bkraft.no is the site of
+    'Bærekraftig Investering AS', which shows the holding's registered phone. That must not be published."""
+    BK = {"navn": "BKRAFT HOLDING AS", "organisasjonsnummer": "919072571", "organisasjonsform": {"kode": "AS"},
+          "telefon": "92828197", "epostadresse": "brian@bkraft.no",
+          "forretningsadresse": {"kommune": "OSLO", "poststed": "OSLO", "adresse": ["Gata 1"], "postnummer": "0150"}}
+    PAGE = ("<html><head><title>Bærekraftig Investering AS</title></head><body><p>Vi investerer bærekraftig.</p>"
+            "<div class=footer>Kontakt oss: Tlf: (+47) 92828197, E-post: brian@bkraft.no</div></body></html>")
+
+    def test_holding_company_never_proven_by_contact_details(self):
+        rej = []
+        st, _ = S.discover_website(FakeHttp({"bkraft.no": (200, self.PAGE)}), FactSet(), "919072571", self.BK, rej)
+        self.assertIsNone(st)
+        self.assertTrue(rej)
+
+    def test_site_naming_another_company_is_rejected(self):
+        rec = dict(REC, navn="MALERAN AS")
+        page = ("<html><head><title>Malermester Olsen AS</title></head><body>Maleran - ring 77 12 34 56</body></html>")
+        st, _ = S.discover_website(FakeHttp({"maleran.no": (200, page)}), FactSet(), SN, rec, [])
+        self.assertIsNone(st)
+
+    def test_name_only_inside_an_email_address_does_not_count(self):
+        page = "<html><head><title>Velkommen</title></head><body>Ring 77 12 34 56, e-post post@maleran.no</body></html>"
+        st, _ = S.discover_website(FakeHttp({"maleran.no": (200, page)}), FactSet(), SN, REC, [])
+        self.assertIsNone(st)
+
+    def test_holding_company_still_proven_by_its_org_number(self):
+        page = self.PAGE.replace("Vi investerer", "BKraft Holding AS, org.nr 919 072 571. Vi investerer")
+        page = page.replace("<title>Bærekraftig Investering AS</title>", "<title>BKraft</title>")
+        st, _ = S.discover_website(FakeHttp({"bkraft.no": (200, page)}), FactSet(), "919072571", self.BK, [])
+        self.assertIsNotNone(st)
+
+
 class DeadRegisteredSite(unittest.TestCase):
     def test_dead_registered_site_leads_to_discovery(self):
         rec = dict(SMALL, hjemmeside="www.gammel-maleran.no")
