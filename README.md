@@ -60,7 +60,7 @@ Org numbers may be written `923609016`, `923 609 016` or `NO 923 609 016 MVA`.
 - **Dead registered website**: when the registered site no longer answers (domain gone, 404), the agent looks for the
   company's current site the same careful way instead of stopping.
 - Unchanged: another company's organisation number on any checked page still blocks the site, lookalike names are
-  still left blank, and nothing is published from an unproven site. 8 new offline tests (`tests/test_v10.py`);
+  still left blank, and nothing is published from an unproven site. 12 new offline tests (`tests/test_v10.py`);
   all 157 tests pass.
 
 ## Version 9: output that always arrives
